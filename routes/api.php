@@ -14,6 +14,6 @@ Route::post('/temperature', [TemperatureController::class, 'store']);
 Route::get('/temperature', [TemperatureController::class, 'index']);
 
 Route::prefix('sensors')->group(function () {
-    Route::post('/', [SensorDataController::class, 'store']); // Untuk ESP32 kirim data
-    Route::get('/', [SensorDataController::class, 'index']);  // Untuk Web lihat data
+    Route::post('/', [SensorDataController::class, 'store']);
+    Route::get('/', [SensorDataController::class, 'index']);  
 });
