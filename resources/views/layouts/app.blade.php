@@ -7,7 +7,7 @@
 
 <body class="bg-gray-100">
 
-<div x-data="{ openSidebar: true, openHistory: false }" class="flex h-screen">
+<div x-data="{ openSidebar: true }" class="flex h-screen">
 
     <!-- SIDEBAR -->
     <div :class="openSidebar ? 'w-64' : 'w-20'"
@@ -17,13 +17,16 @@
         <div class="flex items-center justify-between p-4">
             <span x-show="openSidebar" class="font-bold text-lg">AquaPakcoy</span>
 
-            <!-- Toggle -->
-            <button @click="openSidebar = !openSidebar">
-                ☰
+            <button @click="openSidebar = !openSidebar"
+                    class="text-gray-500 hover:text-black">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                     viewBox="0 0 24 24">
+                    <path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
             </button>
         </div>
 
-        <!-- Menu -->
+        <!-- MENU -->
         <ul class="space-y-2 px-2">
 
             <!-- Dashboard -->
@@ -32,63 +35,92 @@
                    class="flex items-center gap-3 p-2 rounded transition
                    {{ request()->is('dashboard') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
-                    <!-- SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                         viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M3 12l2-2 4 4 8-8 4 4"/>
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
+                              d="M3 13h8V3H3v10zM13 21h8v-6h-8v6zM13 3v6h8V3h-8zM3 21h8v-4H3v4z"/>
                     </svg>
 
                     <span x-show="openSidebar">Dashboard</span>
                 </a>
             </li>
 
-            <!-- Kontrol -->
+            <!-- Sites -->
             <li>
-                <a href="/device"
+                <a href="/sites"
                    class="flex items-center gap-3 p-2 rounded transition
-                   {{ request()->is('device') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+                   {{ request()->is('sites*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9.75 3v2.25M14.25 3v2.25M4.5 9.75h15"/>
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
+                              d="M3 10h18M5 10v10h14V10M9 10V6h6v4"/>
                     </svg>
 
-                    <span x-show="openSidebar">Kontrol</span>
+                    <span x-show="openSidebar">Sites</span>
                 </a>
             </li>
 
-            <!-- Riwayat (Dropdown) -->
+            <!-- Devices -->
             <li>
-                <button @click="openHistory = !openHistory"
-                        class="flex items-center gap-3 w-full p-2 rounded hover:bg-gray-100">
+                <a href="/devices"
+                   class="flex items-center gap-3 p-2 rounded transition
+                   {{ request()->is('devices*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 8v4l3 3"/>
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
+                              d="M9.75 3v2.25M14.25 3v2.25M4.5 9.75h15M6 14h12M8 18h8"/>
                     </svg>
 
-                    <span x-show="openSidebar">Riwayat</span>
+                    <span x-show="openSidebar">Devices</span>
+                </a>
+            </li>
 
-                    <span x-show="openSidebar" class="ml-auto">⌄</span>
-                </button>
+            <!-- Data Sensor -->
+            <li>
+                <a href="/sensor"
+                   class="flex items-center gap-3 p-2 rounded transition
+                   {{ request()->is('sensor*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
-                <!-- Dropdown -->
-                <div x-show="openHistory"
-                     x-transition
-                     class="ml-8 mt-1 space-y-1 text-sm">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
+                              d="M12 8v4l3 3M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+                    </svg>
 
-                    <a href="/history/suhu" class="block hover:text-green-600">Suhu</a>
-                    <a href="/history/kelembapan" class="block hover:text-green-600">Kelembapan</a>
-                    <a href="/history/ph" class="block hover:text-green-600">pH</a>
-                    <a href="/history/debit" class="block hover:text-green-600">Debit</a>
+                    <span x-show="openSidebar">Data Sensor</span>
+                </a>
+            </li>
 
-                </div>
+            <!-- Jadwal Pakan -->
+            <li>
+                <a href="/feeding"
+                   class="flex items-center gap-3 p-2 rounded transition
+                   {{ request()->is('feeding*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2" d="M12 6v6l4 2"/>
+                    </svg>
+
+                    <span x-show="openSidebar">Jadwal Pakan</span>
+                </a>
+            </li>
+
+            <!-- Log Aktuator -->
+            <li>
+                <a href="/actuator"
+                   class="flex items-center gap-3 p-2 rounded transition
+                   {{ request()->is('actuator*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+
+                    <span x-show="openSidebar">Log Aktuator</span>
+                </a>
             </li>
 
             <!-- Account -->
@@ -96,10 +128,9 @@
                 <a href="/account"
                    class="flex items-center gap-3 p-2 rounded hover:bg-gray-100">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
                               d="M5.121 17.804A9 9 0 1112 21"/>
                     </svg>
 
@@ -113,10 +144,9 @@
                 <a href="/users"
                    class="flex items-center gap-3 p-2 rounded hover:bg-gray-100">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
                               d="M17 20h5v-2a4 4 0 00-5-4"/>
                     </svg>
 
@@ -130,10 +160,9 @@
                 <a href="/notifications"
                    class="flex items-center gap-3 p-2 rounded hover:bg-gray-100">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-width="2"
                               d="M15 17h5l-1.405-1.405"/>
                     </svg>
 
@@ -146,7 +175,13 @@
                 <form method="POST" action="/logout">
                     @csrf
                     <button class="flex items-center gap-3 p-2 w-full hover:bg-red-100 rounded">
-                        ⎋
+
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-width="2"
+                                  d="M17 16l4-4m0 0l-4-4m4 4H7"/>
+                        </svg>
+
                         <span x-show="openSidebar">Logout</span>
                     </button>
                 </form>
@@ -162,7 +197,6 @@
 
 </div>
 
-<!-- AlpineJS -->
 <script src="https://unpkg.com/alpinejs" defer></script>
 
 </body>
