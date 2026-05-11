@@ -181,6 +181,255 @@
 
     </div>
 
+    <!-- DEVICE LIST -->
+    <div class="bg-white p-6 rounded-xl shadow mt-6">
+
+        <!-- HEADER -->
+        <div class="flex items-center justify-between mb-4">
+
+            <div>
+                <h3 class="font-bold text-lg">Daftar Device</h3>
+                <p class="text-sm text-gray-500">
+                    Sensor dan aktuator yang terhubung
+                </p>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center gap-2">
+
+                <button class="w-8 h-8 rounded-lg border hover:bg-gray-100 flex items-center justify-center">
+
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-width="2"
+                            d="M15 19l-7-7 7-7"/>
+                    </svg>
+
+                </button>
+
+                <span class="text-sm text-gray-500">
+                    1 / 3
+                </span>
+
+                <button class="w-8 h-8 rounded-lg border hover:bg-gray-100 flex items-center justify-center">
+
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-width="2"
+                            d="M9 5l7 7-7 7"/>
+                    </svg>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- LIST -->
+        <div class="space-y-3 max-h-[420px] overflow-y-auto pr-2">
+
+            <!-- ITEM -->
+            <div class="flex items-center justify-between border rounded-xl p-4 hover:bg-gray-50 transition">
+
+                <div class="flex items-center gap-3">
+
+                    <!-- ICON -->
+                    <div class="bg-green-100 p-2 rounded-lg">
+
+                        <svg class="w-5 h-5 text-green-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path stroke-width="2"
+                                d="M12 8v4l3 3M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+
+                        </svg>
+
+                    </div>
+
+                    <!-- INFO -->
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Sensor pH Kolam A
+                        </h4>
+
+                        <p class="text-sm text-gray-500">
+                            Sensor • pH
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- STATUS -->
+                <span class="bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full">
+                    Aktif
+                </span>
+
+            </div>
+
+            <!-- ITEM -->
+            <div class="flex items-center justify-between border rounded-xl p-4 hover:bg-gray-50 transition">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="bg-blue-100 p-2 rounded-lg">
+
+                        <svg class="w-5 h-5 text-blue-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path stroke-width="2"
+                                d="M9.75 3v2.25M14.25 3v2.25M4.5 9.75h15"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Sensor Suhu Kolam B
+                        </h4>
+
+                        <p class="text-sm text-gray-500">
+                            Sensor • Temperature
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full">
+                    Aktif
+                </span>
+
+            </div>
+
+            <!-- ITEM -->
+            <div class="flex items-center justify-between border rounded-xl p-4 hover:bg-gray-50 transition">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="bg-yellow-100 p-2 rounded-lg">
+
+                        <svg class="w-5 h-5 text-yellow-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path stroke-width="2"
+                                d="M12 6v6l4 2"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Feeder Otomatis
+                        </h4>
+
+                        <p class="text-sm text-gray-500">
+                            Aktuator • Feeder
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="bg-gray-200 text-gray-600 text-sm px-3 py-1 rounded-full">
+                    Nonaktif
+                </span>
+
+            </div>
+
+            <!-- ITEM -->
+            <div class="flex items-center justify-between border rounded-xl p-4 hover:bg-gray-50 transition">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="bg-purple-100 p-2 rounded-lg">
+
+                        <svg class="w-5 h-5 text-purple-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path stroke-width="2"
+                                d="M5 13l4 4L19 7"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Pompa Air Utama
+                        </h4>
+
+                        <p class="text-sm text-gray-500">
+                            Aktuator • Pump
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full">
+                    Aktif
+                </span>
+
+            </div>
+
+            <!-- ITEM -->
+            <div class="flex items-center justify-between border rounded-xl p-4 hover:bg-gray-50 transition">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="bg-red-100 p-2 rounded-lg">
+
+                        <svg class="w-5 h-5 text-red-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+
+                            <path stroke-width="2"
+                                d="M3 10h18M5 10v10h14V10"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Water Level Sensor
+                        </h4>
+
+                        <p class="text-sm text-gray-500">
+                            Sensor • Water Level
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="bg-gray-200 text-gray-600 text-sm px-3 py-1 rounded-full">
+                    Nonaktif
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 @endif
