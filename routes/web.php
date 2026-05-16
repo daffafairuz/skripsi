@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\ActuatorLogController;
+use App\Http\Controllers\DataSensorController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -36,6 +38,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Notifikasi
     Route::get('/notifications', [NotificationController::class, 'index']);
+
+    // Actuator Log
+    Route::get('/actuator-log', [ActuatorLogController::class, 'index'])->name('actuator-log');
+
+    // Data Sensor
+    Route::get('/data-sensor', [DataSensorController::class, 'index'])->name('data-sensor');
 
     // Admin only nanti dibikin middlewarenya, 
     Route::middleware(['auth', 'role:admin'])->group(function () {

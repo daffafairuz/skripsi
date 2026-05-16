@@ -204,7 +204,7 @@
 
                     <!-- LOG AKTUATOR -->
                     <li>
-                        <a href="/actuator"
+                        <a href="{{ route('actuator-log') }}"
                         class="flex items-center gap-3 p-2 rounded transition
                         {{ request()->is('actuator*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
@@ -232,9 +232,9 @@
 
                     <!-- RIWAYAT DATA SENSOR -->
                     <li>
-                        <a href="/sensor/history"
+                        <a href="{{ route('data-sensor') }}"
                         class="flex items-center gap-3 p-2 rounded transition
-                        {{ request()->is('sensor/history') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+                        {{ request()->is('data-sensor') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
                             <svg class="w-4 h-4 flex-shrink-0"
                                 fill="none"
