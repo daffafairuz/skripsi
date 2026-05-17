@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
             SensorSeeder::class,
             DataSensorSeeder::class,
             ActuatorLogSeeder::class,
-            SiteDeviceSeeder::class,
             NotificationSeeder::class,
+            SiteDeviceSeeder::class,
         ]);
     }
 }

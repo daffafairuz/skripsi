@@ -114,7 +114,7 @@
 
             <!-- JADWAL PAKAN -->
             <li>
-                <a href="/feeding"
+                <a href="{{ route('feeder-schedule') }}"
                    class="flex items-center gap-3 p-2 rounded transition
                    {{ request()->is('feeding*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
@@ -140,7 +140,7 @@
 
             <!-- JADWAL GROW LIGHT -->
             <li>
-                <a href="/grow-light"
+                <a href="{{ route('grow-light-schedule') }}"
                    class="flex items-center gap-3 p-2 rounded transition
                    {{ request()->is('grow-light*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('actuator_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('actuator_id')->constrained('actuators')->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            // $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->enum('action', ['on', 'off']);
             $table->enum('triggered_by', ['manual', 'auto']);
             $table->timestamps();

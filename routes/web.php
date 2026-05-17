@@ -11,6 +11,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ActuatorLogController;
 use App\Http\Controllers\DataSensorController;
+use App\Http\Controllers\GrowLightScheduleController;
+use App\Http\Controllers\FeederScheduleController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -49,6 +51,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Data Sensor
     Route::get('/data-sensor', [DataSensorController::class, 'index'])->name('data-sensor');
+
+    // Grow Light Schedule
+    Route::get('/jadwal-grow-light', [GrowLightScheduleController::class, 'index'])->name('grow-light-schedule');
+
+    // Feeder Schedule
+    Route::get('/jadwal-feeder', [FeederScheduleController::class, 'index'])->name('feeder-schedule');
 
     // Admin only nanti dibikin middlewarenya, 
     Route::middleware(['auth', 'role:admin'])->group(function () {
