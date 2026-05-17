@@ -382,7 +382,7 @@
 
             <!-- NOTIFIKASI -->
             <li>
-                <a href="/notifications"
+                <a href="{{ route('notifications') }}"
                    class="flex items-center gap-3 p-2 rounded transition
                    {{ request()->is('notifications*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
@@ -404,7 +404,7 @@
 
             <!-- ACCOUNT -->
             <li>
-                <a href="/account"
+                <a href="{{ route('account-setting') }}"
                    class="flex items-center gap-3 p-2 rounded transition
                    {{ request()->is('account*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 

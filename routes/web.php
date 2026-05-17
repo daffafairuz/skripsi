@@ -33,11 +33,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/debit', [HistoryController::class, 'debit']);
     });
 
-    // Account
-    Route::get('/account', [AccountController::class, 'index']);
+    // Account Setting
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/account', [AccountController::class, 'index'])->name('account-setting');
+        Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
+        Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
+        Route::delete('/account/destroy', [AccountController::class, 'destroy'])->name('account.destroy');
+    });
 
     // Notifikasi
-    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
 
     // Actuator Log
     Route::get('/actuator-log', [ActuatorLogController::class, 'index'])->name('actuator-log');
