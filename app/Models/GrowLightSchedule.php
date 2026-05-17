@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class GrowLightSchedule extends Model
 {
-    //
+    protected $fillable = [
+        'site_id',
+        'start_time',
+        'end_time',
+        'last_time_active'
+    ];
+    protected $casts = [
+        'last_time_active' => 'datetime'
+    ];
 }

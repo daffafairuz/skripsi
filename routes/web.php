@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/devices', [DeviceController::class, 'index']);
 
+
     // Riwayat Data
     Route::prefix('history')->group(function () {
         Route::get('/suhu', [HistoryController::class, 'suhu']);
@@ -41,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
         Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
         Route::delete('/account/destroy', [AccountController::class, 'destroy'])->name('account.destroy');
-    });
+        });
 
     // Notifikasi
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
@@ -49,6 +50,16 @@ Route::middleware(['auth'])->group(function () {
     // Actuator Log
     Route::get('/actuator-log', [ActuatorLogController::class, 'index'])->name('actuator-log');
 
+    // Grow Light Schedule
+    Route::prefix('growlight')->group(function () {
+        Route::get('/schedule', [GrowLightScheduleController::class, 'index'])->name('growlight.schedule');
+        Route::get('/create', [GrowLightScheduleController::class, 'create'])->name('growlight.create');
+        Route::post('/store', [GrowLightScheduleController::class, 'store'])->name('growlight.store');
+        Route::get('/edit/{id}', [GrowLightScheduleController::class, 'edit'])->name('growlight.edit');
+        Route::put('/update/{id}', [GrowLightScheduleController::class, 'update'])->name('growlight.update');
+        Route::delete('/destroy/{id}', [GrowLightScheduleController::class, 'destroy'])->name('growlight.destroy');
+    });
+    
     // Data Sensor
     Route::get('/data-sensor', [DataSensorController::class, 'index'])->name('data-sensor');
 
@@ -58,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
     // Feeder Schedule
     Route::get('/jadwal-feeder', [FeederScheduleController::class, 'index'])->name('feeder-schedule');
 
-    // Admin only nanti dibikin middlewarenya, 
+    // Admin only nanti dibikin middlewarenya,
     Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/users', [UserController::class, 'index']);

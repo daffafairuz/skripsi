@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->hasMany(Site::class);
     }
 
+    public function site()
+    {
+        return $this->hasOne(Site::class);
+    }
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);

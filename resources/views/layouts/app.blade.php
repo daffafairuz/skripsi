@@ -140,9 +140,9 @@
 
             <!-- JADWAL GROW LIGHT -->
             <li>
-                <a href="{{ route('grow-light-schedule') }}"
+                <a href="{{ route('growlight.schedule') }}"
                    class="flex items-center gap-3 p-2 rounded transition
-                   {{ request()->is('grow-light*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+                   {{ request()->is('growlight*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
                     <svg class="w-5 h-5 flex-shrink-0"
                          fill="none"
