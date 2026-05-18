@@ -12,7 +12,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ActuatorLogController;
 use App\Http\Controllers\DataSensorController;
 use App\Http\Controllers\GrowLightScheduleController;
-use App\Http\Controllers\FeederScheduleController;
+use App\Http\Controllers\FeedScheduleController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{id}', [GrowLightScheduleController::class, 'update'])->name('growlight.update');
         Route::delete('/destroy/{id}', [GrowLightScheduleController::class, 'destroy'])->name('growlight.destroy');
     });
-    
+
     // Data Sensor
     Route::get('/data-sensor', [DataSensorController::class, 'index'])->name('data-sensor');
 
@@ -67,7 +67,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/jadwal-grow-light', [GrowLightScheduleController::class, 'index'])->name('grow-light-schedule');
 
     // Feeder Schedule
-    Route::get('/jadwal-feeder', [FeederScheduleController::class, 'index'])->name('feeder-schedule');
+    Route::get('/jadwal-pakan', [FeedScheduleController::class, 'index'])->name('jadwal-pakan.index');
+    Route::get('/jadwal-pakan/create', [FeedScheduleController::class, 'create'])->name('jadwal-pakan.create');
+    Route::post('/jadwal-pakan', [FeedScheduleController::class, 'store'])->name('jadwal-pakan.store');
+    Route::get('/jadwal-pakan/{id}/edit', [FeedScheduleController::class, 'edit'])->name('jadwal-pakan.edit');
+    Route::put('/jadwal-pakan/{id}', [FeedScheduleController::class, 'update'])->name('jadwal-pakan.update');
+    Route::delete('/jadwal-pakan/{id}', [FeedScheduleController::class, 'destroy'])->name('jadwal-pakan.destroy');
 
     // Admin only nanti dibikin middlewarenya,
     Route::middleware(['auth', 'role:admin'])->group(function () {

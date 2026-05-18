@@ -114,9 +114,9 @@
 
             <!-- JADWAL PAKAN -->
             <li>
-                <a href="{{ route('feeder-schedule') }}"
+                <a href="{{ route('jadwal-pakan.index') }}"
                    class="flex items-center gap-3 p-2 rounded transition
-                   {{ request()->is('feeding*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+                   {{ request()->is('jadwal-pakan*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
                     <svg class="w-5 h-5 flex-shrink-0"
                          fill="none"
