@@ -9,6 +9,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\SiteDeviceController;
+use App\Http\Controllers\ActuatorController;
+use App\Http\Controllers\SensorController;
+
+
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -21,8 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chart-data', [DashboardController::class, 'chartData'])
         ->middleware('auth');
 
-    Route::get('/devices', [DeviceController::class, 'index']);
+    Route::middleware(['auth'])->group(function () {
 
+        Route::resource('devices', DeviceController::class);
+
+    });
     // Riwayat Data
     Route::prefix('history')->group(function () {
         Route::get('/suhu', [HistoryController::class, 'suhu']);
@@ -53,9 +61,57 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
 
-    Route::get('/sites', [SiteController::class, 'index'])
-        ->name('sites.index');
+    Route::middleware(['auth'])
+    ->group(function(){
+
+    Route::resource(
+        'sites',
+        SiteController::class
+    );
+
+    });
 
 });
 
 Route::get('/', fn() => redirect('/login'));
+
+
+Route::middleware(['auth'])
+->group(function(){
+
+Route::get(
+'/sites/{site}/devices/create',
+[SiteDeviceController::class,'create']
+)
+->name('sites.devices.create');
+
+
+Route::post(
+'/sites/{site}/devices',
+[SiteDeviceController::class,'store']
+)
+->name('sites.devices.store');
+
+});
+
+Route::get(
+'/sites/{site}',
+[SiteController::class,'show']
+)->name('sites.show');
+
+Route::post(
+'/actuator/{actuator}/toggle',
+[ActuatorController::class,'toggle']
+)
+->name('actuator.toggle');
+
+
+Route::get(
+    '/sensors/device/{device}',
+    [SensorController::class,'device']
+)->name('sensors.device');
+
+Route::get(
+'/sensor/{sensor}/chart',
+[SensorController::class,'chart']
+)->name('sensor.chart');

@@ -2,77 +2,270 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
+use App\Models\Sensor;
+use App\Models\Actuator;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | LIST DEVICE
+    |--------------------------------------------------------------------------
+    */
+
     public function index()
     {
+        $user = auth()->user();
+
+        $query = Device::with([
+            'sensors',
+            'actuators',
+            'sites'
+        ]);
+
         /*
         |--------------------------------------------------------------------------
-        | STATIC DATA
+        | ADMIN
         |--------------------------------------------------------------------------
         */
 
-        $devices = [
+        if($user->role=='admin')
+        {
+            $devices = $query->get();
 
-            [
-                'id' => 1,
-                'name' => 'ESP32 Kolam A',
-                'type' => 'ESP32',
-                'category' => 'Controller',
-                'site' => 'Kolam Lele A',
-                'owner' => 'Bima Aryono',
-                'status' => 'online',
-                'last_update' => '2 menit lalu',
-            ],
+            return view(
+                'admin.devices.index',
+                compact('devices')
+            );
+        }
 
-            [
-                'id' => 2,
-                'name' => 'Sensor pH',
-                'type' => 'pH Sensor',
-                'category' => 'Sensor',
-                'site' => 'Kolam Lele A',
-                'owner' => 'Bima Aryono',
-                'status' => 'online',
-                'last_update' => '1 menit lalu',
-            ],
+        /*
+        |--------------------------------------------------------------------------
+        | USER
+        |--------------------------------------------------------------------------
+        */
+        $hasSite = $user->sites()->exists();
+        $devices=$query
+            ->whereHas(
+                'sites',
+                function($q) use($user){
 
-            [
-                'id' => 3,
-                'name' => 'Sensor Suhu',
-                'type' => 'Temperature',
-                'category' => 'Sensor',
-                'site' => 'Kolam Pakcoy',
-                'owner' => 'Daffa Fairuz',
-                'status' => 'offline',
-                'last_update' => '15 menit lalu',
-            ],
+                    $q->where(
+                        'user_id',
+                        $user->id
+                    );
 
-            [
-                'id' => 4,
-                'name' => 'Pompa Air',
-                'type' => 'Pump',
-                'category' => 'Actuator',
-                'site' => 'Kolam Lele A',
-                'owner' => 'Bima Aryono',
-                'status' => 'online',
-                'last_update' => '5 menit lalu',
-            ],
+                }
+            )
+            ->get();
 
-            [
-                'id' => 5,
-                'name' => 'Feeder Otomatis',
-                'type' => 'Feeder',
-                'category' => 'Actuator',
-                'site' => 'Aquaponik Greenhouse',
-                'owner' => 'Admin',
-                'status' => 'offline',
-                'last_update' => '20 menit lalu',
-            ],
+        return view(
+            'user.devices.index',
+            compact('devices','hasSite')
+        );
+    }
 
-        ];
 
-        return view('devices', compact('devices'));
+    /*
+    |--------------------------------------------------------------------------
+    | CREATE
+    |--------------------------------------------------------------------------
+    */
+
+    public function create()
+    {
+        return view(
+            'admin.devices.create'
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | STORE
+    |--------------------------------------------------------------------------
+    */
+
+    public function store(Request $request)
+    {
+        $request->validate([
+
+            'name'=>'required',
+            'mac_address'=>'required|unique:devices',
+
+            'description'=>'nullable'
+
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | CREATE ESP
+        |--------------------------------------------------------------------------
+        */
+
+        $device=Device::create([
+
+            'name'=>$request->name,
+            'mac_address'=>$request->mac_address,
+            'description'=>$request->description,
+            'status'=>'available'
+
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | SENSOR
+        |--------------------------------------------------------------------------
+        */
+
+        if($request->sensors)
+        {
+            foreach(
+                $request->sensors
+                as $sensor
+            )
+            {
+                Sensor::create([
+
+                    'device_id'=>$device->id,
+                    'name'=>$sensor['name'],
+                    'type'=>$sensor['type'],
+                    'unit'=>$sensor['unit'] ?? null
+
+                ]);
+            }
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | ACTUATOR
+        |--------------------------------------------------------------------------
+        */
+
+        if($request->actuators)
+        {
+            foreach(
+                $request->actuators
+                as $actuator
+            )
+            {
+
+                Actuator::create([
+
+                    'device_id'=>$device->id,
+
+                    'name'=>$actuator['name'],
+
+                    'type'=>$actuator['type'],
+
+                    'default_state'=>'off'
+
+                ]);
+
+            }
+        }
+
+        return redirect()
+            ->route('devices.index')
+            ->with(
+                'success',
+                'Device berhasil ditambahkan'
+            );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SHOW
+    |--------------------------------------------------------------------------
+    */
+
+    public function show(Device $device)
+    {
+        $device->load([
+
+            'sensors',
+            'actuators.logs',
+            'sites'
+
+        ]);
+
+        return view(
+            'devices.show',
+            compact('device')
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT
+    |--------------------------------------------------------------------------
+    */
+
+    public function edit(Device $device)
+    {
+        $device->load([
+            'sensors',
+            'actuators'
+        ]);
+
+        return view(
+            'admin.devices.edit',
+            compact('device')
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE
+    |--------------------------------------------------------------------------
+    */
+
+    public function update(
+        Request $request,
+        Device $device
+    )
+    {
+
+        $device->update([
+
+            'name'=>$request->name,
+
+            'mac_address'=>$request->mac_address,
+
+            'description'=>$request->description
+
+        ]);
+
+        return redirect()
+            ->route('devices.index')
+            ->with(
+                'success',
+                'Device berhasil diupdate'
+            );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | DELETE
+    |--------------------------------------------------------------------------
+    */
+
+    public function destroy(Device $device)
+    {
+        $device->delete();
+
+        return redirect()
+            ->route('devices.index')
+            ->with(
+                'success',
+                'Device berhasil dihapus'
+            );
     }
 }

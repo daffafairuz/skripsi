@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SensorData; 
+use App\Models\DataSensor;
 
 class SensorDataController extends Controller
 {
@@ -35,6 +36,27 @@ class SensorDataController extends Controller
         return response()->json([
             'status' => 'success',
             'data'   => $data
+        ]);
+    }
+    public function chartData()
+    {
+        $data = SensorData::latest()
+            ->take(20)
+            ->get()
+            ->reverse();
+
+        return response()->json([
+            'labels' => $data->map(
+                fn($r)=>optional($r->created_at)->format('H:i')
+            )->values(),
+
+            'temperature' => $data
+                ->pluck('temperature')
+                ->values(),
+
+            'ph' => $data
+                ->pluck('ph')
+                ->values()
         ]);
     }
 }
