@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -13,51 +14,122 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $now = Carbon::now();
+
         DB::table('users')->insert([
+            // === ADMIN USERS ===
             [
-                'name' => 'John Doe',
-                'email' => 'john_doe@example.com',
-                'phone_number' => '1234567890',
-                'role' => 'user',
-                'status' => 'active',
-                'password' => bcrypt('password'),
-                'remember_token' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Admin User',
+                'name' => 'Admin Utama',
                 'email' => 'admin@gmail.com',
-                'phone_number' => '0987654321',
+                'phone_number' => '081234567890',
                 'role' => 'admin',
                 'status' => 'active',
                 'password' => bcrypt('password'),
                 'remember_token' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => $now->copy()->subMonths(6),
+                'updated_at' => $now->copy()->subMonths(6),
             ],
             [
-                'name' => 'Jane Smith',
-                'email' => 'jane_smith@example.com',
-                'phone_number' => '082918171',
-                'role' => 'user',
+                'name' => 'Admin Teknis',
+                'email' => 'admin.teknis@gmail.com',
+                'phone_number' => '081298765432',
+                'role' => 'admin',
                 'status' => 'active',
                 'password' => bcrypt('password'),
                 'remember_token' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ], 
+                'created_at' => $now->copy()->subMonths(5),
+                'updated_at' => $now->copy()->subMonths(5),
+            ],
+
+            // === REGULAR USERS ===
             [
-                'name' => 'Jane Doe',
-                'email' => 'jane_doe@example.com',
-                'phone_number' => '082911221',
+                'name' => 'Budi Santoso',
+                'email' => 'budi.santoso@gmail.com',
+                'phone_number' => '082145678901',
                 'role' => 'user',
                 'status' => 'active',
                 'password' => bcrypt('password'),
                 'remember_token' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
+                'created_at' => $now->copy()->subMonths(4),
+                'updated_at' => $now->copy()->subMonths(4),
+            ],
+            [
+                'name' => 'Siti Rahayu',
+                'email' => 'siti.rahayu@gmail.com',
+                'phone_number' => '085367890123',
+                'role' => 'user',
+                'status' => 'active',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonths(4),
+                'updated_at' => $now->copy()->subMonths(4),
+            ],
+            [
+                'name' => 'Ahmad Hidayat',
+                'email' => 'ahmad.hidayat@gmail.com',
+                'phone_number' => '087812345678',
+                'role' => 'user',
+                'status' => 'active',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonths(3),
+                'updated_at' => $now->copy()->subMonths(3),
+            ],
+            [
+                'name' => 'Dewi Lestari',
+                'email' => 'dewi.lestari@gmail.com',
+                'phone_number' => '081356789012',
+                'role' => 'user',
+                'status' => 'active',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonths(3),
+                'updated_at' => $now->copy()->subMonths(3),
+            ],
+            [
+                'name' => 'Rizky Pratama',
+                'email' => 'rizky.pratama@gmail.com',
+                'phone_number' => '089678901234',
+                'role' => 'user',
+                'status' => 'active',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonths(2),
+                'updated_at' => $now->copy()->subMonths(2),
+            ],
+            [
+                'name' => 'Nur Aisyah',
+                'email' => 'nur.aisyah@gmail.com',
+                'phone_number' => '082289012345',
+                'role' => 'user',
+                'status' => 'active',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonths(2),
+                'updated_at' => $now->copy()->subMonths(2),
+            ],
+            [
+                'name' => 'Eko Wijaya',
+                'email' => 'eko.wijaya@gmail.com',
+                'phone_number' => '085690123456',
+                'role' => 'user',
+                'status' => 'active',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonth(),
+                'updated_at' => $now->copy()->subMonth(),
+            ],
+            [
+                'name' => 'Fitri Handayani',
+                'email' => 'fitri.handayani@gmail.com',
+                'phone_number' => '087801234567',
+                'role' => 'user',
+                'status' => 'inactive',
+                'password' => bcrypt('password'),
+                'remember_token' => null,
+                'created_at' => $now->copy()->subMonths(5),
+                'updated_at' => $now->copy()->subWeeks(2),
+            ],
         ]);
     }
 }

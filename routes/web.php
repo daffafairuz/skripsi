@@ -13,6 +13,9 @@ use App\Http\Controllers\ActuatorLogController;
 use App\Http\Controllers\DataSensorController;
 use App\Http\Controllers\GrowLightScheduleController;
 use App\Http\Controllers\FeedScheduleController;
+use App\Http\Controllers\SensorController;
+use App\Http\Controllers\ActuatorController;
+use App\Http\Controllers\ActuatorControlController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -25,8 +28,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chart-data', [DashboardController::class, 'chartData'])
         ->middleware('auth');
 
+    // ========================= 
+    // DEVICES (admin + user)
+    // =========================
     Route::get('/devices', [DeviceController::class, 'index']);
-
+    Route::post('/devices', [DeviceController::class, 'store']);
+    Route::put('/devices/{device}', [DeviceController::class, 'update']);
+    Route::delete('/devices/{device}', [DeviceController::class, 'destroy']);
 
     // Riwayat Data
     Route::prefix('history')->group(function () {
@@ -47,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     // Notifikasi
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
 
-    // Actuator Log
+    // Actuator Log (Data Monitoring)
     Route::get('/actuator-log', [ActuatorLogController::class, 'index'])->name('actuator-log');
 
     // Grow Light Schedule
@@ -60,10 +68,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy/{id}', [GrowLightScheduleController::class, 'destroy'])->name('growlight.destroy');
     });
 
-    // Data Sensor
+    // Data Sensor (Data Monitoring)
     Route::get('/data-sensor', [DataSensorController::class, 'index'])->name('data-sensor');
 
-    // Grow Light Schedule
+    // Grow Light Schedule (alias)
     Route::get('/jadwal-grow-light', [GrowLightScheduleController::class, 'index'])->name('grow-light-schedule');
 
     // Feeder Schedule
@@ -74,24 +82,46 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/jadwal-pakan/{id}', [FeedScheduleController::class, 'update'])->name('jadwal-pakan.update');
     Route::delete('/jadwal-pakan/{id}', [FeedScheduleController::class, 'destroy'])->name('jadwal-pakan.destroy');
 
-    // Admin only nanti dibikin middlewarenya,
+    // ========================= 
+    // ACTUATOR CONTROL (User)
+    // =========================
+    Route::get('/actuator-control', [ActuatorControlController::class, 'index'])->name('actuator-control');
+    Route::post('/actuator-control/{id}/toggle', [ActuatorControlController::class, 'toggle'])->name('actuator-control.toggle');
+
+    // ========================= 
+    // ADMIN ONLY ROUTES
+    // =========================
     Route::middleware(['auth', 'role:admin'])->group(function () {
 
+        // Users CRUD
         Route::get('/users', [UserController::class, 'index']);
-
         Route::post('/users', [UserController::class, 'store']);
-
         Route::put('/users/{user}', [UserController::class, 'update']);
-
         Route::delete('/users/{user}', [UserController::class, 'destroy']);
 
+        // Sensors CRUD
+        Route::get('/sensors', [SensorController::class, 'index']);
+        Route::post('/sensors', [SensorController::class, 'store']);
+        Route::put('/sensors/{sensor}', [SensorController::class, 'update']);
+        Route::delete('/sensors/{sensor}', [SensorController::class, 'destroy']);
+
+        // Actuators CRUD
+        Route::get('/actuators', [ActuatorController::class, 'index']);
+        Route::post('/actuators', [ActuatorController::class, 'store']);
+        Route::put('/actuators/{actuator}', [ActuatorController::class, 'update']);
+        Route::delete('/actuators/{actuator}', [ActuatorController::class, 'destroy']);
     });
+
     //=========================
     Route::post('/logout', [AuthController::class, 'logout']);
 
-
-    Route::get('/sites', [SiteController::class, 'index'])
-        ->name('sites.index');
+    // Sites CRUD
+    Route::get('/sites', [SiteController::class, 'index'])->name('sites.index');
+    Route::get('/sites/create', [SiteController::class, 'create'])->name('sites.create');
+    Route::post('/sites', [SiteController::class, 'store'])->name('sites.store');
+    Route::get('/sites/{site}/edit', [SiteController::class, 'edit'])->name('sites.edit');
+    Route::put('/sites/{site}', [SiteController::class, 'update'])->name('sites.update');
+    Route::delete('/sites/{site}', [SiteController::class, 'destroy'])->name('sites.destroy');
 
 });
 

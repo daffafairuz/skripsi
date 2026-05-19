@@ -2,77 +2,107 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | INDEX
+    |--------------------------------------------------------------------------
+    */
+
     public function index()
     {
-        /*
-        |--------------------------------------------------------------------------
-        | STATIC DATA
-        |--------------------------------------------------------------------------
-        */
+        $user = auth()->user();
 
-        $devices = [
+        if ($user->role === 'admin') {
+            $devices = Device::with(['sites', 'sensors', 'actuators'])->latest()->get();
+        } else {
+            // User hanya lihat device di site miliknya
+            $siteIds = $user->sites->pluck('id');
+            $deviceIds = \DB::table('site_devices')
+                ->whereIn('site_id', $siteIds)
+                ->pluck('device_id');
 
-            [
-                'id' => 1,
-                'name' => 'ESP32 Kolam A',
-                'type' => 'ESP32',
-                'category' => 'Controller',
-                'site' => 'Kolam Lele A',
-                'owner' => 'Bima Aryono',
-                'status' => 'online',
-                'last_update' => '2 menit lalu',
-            ],
-
-            [
-                'id' => 2,
-                'name' => 'Sensor pH',
-                'type' => 'pH Sensor',
-                'category' => 'Sensor',
-                'site' => 'Kolam Lele A',
-                'owner' => 'Bima Aryono',
-                'status' => 'online',
-                'last_update' => '1 menit lalu',
-            ],
-
-            [
-                'id' => 3,
-                'name' => 'Sensor Suhu',
-                'type' => 'Temperature',
-                'category' => 'Sensor',
-                'site' => 'Kolam Pakcoy',
-                'owner' => 'Daffa Fairuz',
-                'status' => 'offline',
-                'last_update' => '15 menit lalu',
-            ],
-
-            [
-                'id' => 4,
-                'name' => 'Pompa Air',
-                'type' => 'Pump',
-                'category' => 'Actuator',
-                'site' => 'Kolam Lele A',
-                'owner' => 'Bima Aryono',
-                'status' => 'online',
-                'last_update' => '5 menit lalu',
-            ],
-
-            [
-                'id' => 5,
-                'name' => 'Feeder Otomatis',
-                'type' => 'Feeder',
-                'category' => 'Actuator',
-                'site' => 'Aquaponik Greenhouse',
-                'owner' => 'Admin',
-                'status' => 'offline',
-                'last_update' => '20 menit lalu',
-            ],
-
-        ];
+            $devices = Device::with(['sites', 'sensors', 'actuators'])
+                ->whereIn('id', $deviceIds)
+                ->latest()
+                ->get();
+        }
 
         return view('devices', compact('devices'));
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | STORE
+    |--------------------------------------------------------------------------
+    */
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'mac_address' => 'required|string|unique:devices,mac_address',
+            'description' => 'nullable|string',
+            'status' => 'required|in:available,assigned,inactive',
+        ], [
+            'name.required' => 'Nama device wajib diisi',
+            'mac_address.required' => 'MAC Address wajib diisi',
+            'mac_address.unique' => 'MAC Address sudah terdaftar',
+        ]);
+
+        Device::create([
+            'name' => $request->name,
+            'mac_address' => $request->mac_address,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+
+        return redirect('/devices')
+            ->with('success', 'Device berhasil ditambahkan');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE
+    |--------------------------------------------------------------------------
+    */
+
+    public function update(Request $request, Device $device)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'mac_address' => 'required|string|unique:devices,mac_address,' . $device->id,
+            'description' => 'nullable|string',
+            'status' => 'required|in:available,assigned,inactive',
+        ]);
+
+        $device->update([
+            'name' => $request->name,
+            'mac_address' => $request->mac_address,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+
+        return redirect('/devices')
+            ->with('success', 'Device berhasil diperbarui');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | DELETE
+    |--------------------------------------------------------------------------
+    */
+
+    public function destroy(Device $device)
+    {
+        $device->delete();
+
+        return redirect('/devices')
+            ->with('success', 'Device berhasil dihapus');
     }
 }

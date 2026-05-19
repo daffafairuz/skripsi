@@ -66,9 +66,9 @@
 
             <!-- CONTROL PERANGKAT -->
             <li>
-                <a href="/feeding"
+                <a href="/actuator-control"
                    class="flex items-center gap-3 p-2 rounded transition
-                   {{ request()->is('feeding*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+                   {{ request()->is('actuator-control*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
                     <svg class="w-5 h-5 flex-shrink-0"
                         fill="none"
@@ -92,9 +92,9 @@
 
             <!-- KELOLA DEVICE -->
             <li>
-                <a href="/feeding"
+                <a href="/devices"
                    class="flex items-center gap-3 p-2 rounded transition
-                   {{ request()->is('feeding*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
+                   {{ request()->is('devices*') ? 'bg-green-500 text-white' : 'hover:bg-gray-100' }}">
 
                     <svg class="w-5 h-5 flex-shrink-0"
                          fill="none"

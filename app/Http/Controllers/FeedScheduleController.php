@@ -105,7 +105,7 @@ class FeedScheduleController extends Controller
             'amount' => $validated['amount'],
         ]);
 
-        return redirect()->route('jadwal_pakan.index')
+        return redirect()->route('jadwal-pakan.index')
             ->with('success', 'Jadwal pakan berhasil diupdate');
     }
 
@@ -117,7 +117,7 @@ class FeedScheduleController extends Controller
 
         $schedule->delete();
 
-        return redirect()->route('jadwal_pakan.index')
+        return redirect()->route('jadwal-pakan.index')
             ->with('success', 'Jadwal pakan berhasil dihapus');
     }
 }

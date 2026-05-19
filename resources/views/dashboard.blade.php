@@ -494,4 +494,4 @@ function prevChart() {
 document.addEventListener("DOMContentLoaded", function () {
     loadChart();
 });
-</script>
+</script>on
