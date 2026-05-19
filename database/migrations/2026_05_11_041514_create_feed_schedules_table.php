@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('site_id')->constrained('sites')->onDelete('cascade'); 
             $table->time('time');
-            $table->time('last_time_active')->nullable();
-            $table->decimal('amount', 8, 2)->nullable();
+            $table->unsignedInteger('duration')->default(5)->comment('Durasi nyala dalam menit');
             $table->timestamps();
         });
     }

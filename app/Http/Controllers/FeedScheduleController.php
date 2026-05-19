@@ -8,12 +8,27 @@ use Illuminate\Support\Facades\Auth;
 
 class FeedScheduleController extends Controller
 {
+    /**
+     * Get the site_id for the current user.
+     */
+    private function getUserSiteId()
+    {
+        $user = Auth::user();
+        return optional($user->sites()->first())->id;
+    }
+
     // Halaman daftar jadwal
     public function index()
     {
-        $schedules = FeedSchedule::where('site_id', Auth::user()->id)
-            ->orderBy('time')
-            ->get();
+        $siteId = $this->getUserSiteId();
+
+        if (!$siteId) {
+            $schedules = collect();
+        } else {
+            $schedules = FeedSchedule::where('site_id', $siteId)
+                ->orderBy('time')
+                ->get();
+        }
 
         return view('jadwal_pakan.index', compact('schedules'));
     }
@@ -27,21 +42,29 @@ class FeedScheduleController extends Controller
     // Proses simpan jadwal baru
     public function store(Request $request)
     {
+        $siteId = $this->getUserSiteId();
+
+        if (!$siteId) {
+            return redirect()->back()
+                ->with('error', 'User tidak memiliki site')
+                ->withInput();
+        }
+
         // Validasi
         $validated = $request->validate([
             'time' => 'required|date_format:H:i',
-            'amount' => 'required|integer|min:1|max:10000',
+            'duration' => 'required|integer|min:1|max:60',
         ], [
             'time.required' => 'Waktu wajib diisi',
             'time.date_format' => 'Format waktu tidak valid (contoh: 08:00)',
-            'amount.required' => 'Jumlah pakan wajib diisi',
-            'amount.integer' => 'Jumlah pakan harus berupa angka',
-            'amount.min' => 'Jumlah pakan minimal 1 gram',
-            'amount.max' => 'Jumlah pakan maksimal 10000 gram',
+            'duration.required' => 'Durasi wajib diisi',
+            'duration.integer' => 'Durasi harus berupa angka',
+            'duration.min' => 'Durasi minimal 1 menit',
+            'duration.max' => 'Durasi maksimal 60 menit',
         ]);
 
         // Cek duplikasi waktu
-        $existing = FeedSchedule::where('site_id', Auth::user()->id)
+        $existing = FeedSchedule::where('site_id', $siteId)
             ->where('time', $validated['time'] . ':00')
             ->first();
 
@@ -51,10 +74,9 @@ class FeedScheduleController extends Controller
 
         // Simpan data
         FeedSchedule::create([
-            'site_id' => Auth::user()->id,
+            'site_id' => $siteId,
             'time' => $validated['time'] . ':00',
-            'amount' => $validated['amount'],
-            'last_time_active' => null,
+            'duration' => $validated['duration'],
         ]);
 
         return redirect()->route('jadwal-pakan.index')
@@ -64,7 +86,9 @@ class FeedScheduleController extends Controller
     // Halaman form edit jadwal
     public function edit($id)
     {
-        $schedule = FeedSchedule::where('site_id', Auth::user()->id)
+        $siteId = $this->getUserSiteId();
+
+        $schedule = FeedSchedule::where('site_id', $siteId)
             ->findOrFail($id);
 
         return view('jadwal_pakan.edit', compact('schedule'));
@@ -73,24 +97,26 @@ class FeedScheduleController extends Controller
     // Proses update jadwal
     public function update(Request $request, $id)
     {
-        $schedule = FeedSchedule::where('site_id', Auth::user()->id)
+        $siteId = $this->getUserSiteId();
+
+        $schedule = FeedSchedule::where('site_id', $siteId)
             ->findOrFail($id);
 
         // Validasi
         $validated = $request->validate([
             'time' => 'required|date_format:H:i',
-            'amount' => 'required|integer|min:1|max:10000',
+            'duration' => 'required|integer|min:1|max:60',
         ], [
             'time.required' => 'Waktu wajib diisi',
             'time.date_format' => 'Format waktu tidak valid (contoh: 08:00)',
-            'amount.required' => 'Jumlah pakan wajib diisi',
-            'amount.integer' => 'Jumlah pakan harus berupa angka',
-            'amount.min' => 'Jumlah pakan minimal 1 gram',
-            'amount.max' => 'Jumlah pakan maksimal 10000 gram',
+            'duration.required' => 'Durasi wajib diisi',
+            'duration.integer' => 'Durasi harus berupa angka',
+            'duration.min' => 'Durasi minimal 1 menit',
+            'duration.max' => 'Durasi maksimal 60 menit',
         ]);
 
         // Cek duplikasi waktu (kecuali data sendiri)
-        $existing = FeedSchedule::where('site_id', Auth::user()->id)
+        $existing = FeedSchedule::where('site_id', $siteId)
             ->where('time', $validated['time'] . ':00')
             ->where('id', '!=', $id)
             ->first();
@@ -102,7 +128,7 @@ class FeedScheduleController extends Controller
         // Update data
         $schedule->update([
             'time' => $validated['time'] . ':00',
-            'amount' => $validated['amount'],
+            'duration' => $validated['duration'],
         ]);
 
         return redirect()->route('jadwal-pakan.index')
@@ -112,7 +138,9 @@ class FeedScheduleController extends Controller
     // Proses hapus jadwal
     public function destroy($id)
     {
-        $schedule = FeedSchedule::where('site_id', Auth::user()->id)
+        $siteId = $this->getUserSiteId();
+
+        $schedule = FeedSchedule::where('site_id', $siteId)
             ->findOrFail($id);
 
         $schedule->delete();

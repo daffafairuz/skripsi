@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sensor;
 use App\Models\Device;
+use App\Models\Sensor;
 use Illuminate\Http\Request;
 
 class SensorController extends Controller
@@ -20,6 +20,49 @@ class SensorController extends Controller
         $devices = Device::all();
 
         return view('sensors.index', compact('sensors', 'devices'));
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | DEVICE - Show sensors for a specific device
+    |--------------------------------------------------------------------------
+    */
+
+    public function device(Device $device)
+    {
+        $device->load([
+            'sensors.dataSensors' => function ($query) {
+                $query->latest()->take(20);
+            }
+        ]);
+
+        return view(
+            'sensors.device',
+            compact('device')
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | CHART - Return chart data for a sensor
+    |--------------------------------------------------------------------------
+    */
+
+    public function chart(Sensor $sensor)
+    {
+        $data = $sensor
+            ->dataSensors()
+            ->latest()
+            ->take(20)
+            ->get()
+            ->reverse();
+
+        return response()->json([
+            'labels' => $data->map(fn($d) => $d->created_at->format('H:i')),
+            'values' => $data->pluck('value'),
+            'sensor' => $sensor->name,
+            'unit' => $sensor->unit
+        ]);
     }
 
     /*

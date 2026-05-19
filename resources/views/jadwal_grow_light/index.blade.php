@@ -2,12 +2,7 @@
 
 @section('content')
 
-@php
-    $role = auth()->user()->id;
-    $schedules = \App\Models\GrowLightSchedule::where('site_id', $role)->get();
-@endphp
 
-{{-- @dd($role, $schedules); --}}
 
 <!-- Header -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -53,7 +48,6 @@
                     <th class="py-4 px-6">Site ID</th>
                     <th class="py-4 px-6">Start Time</th>
                     <th class="py-4 px-6">End Time</th>
-                    <th class="py-4 px-6">Last Time Active</th>
                     <th class="py-4 px-6 text-center">Status</th>
                     <th class="py-4 px-6 text-center">Aksi</th>
                 </tr>
@@ -81,23 +75,7 @@
                             {{ $schedule->end_time }}
                         </td>
 
-                        <!-- Last Time Active -->
-                        <td class="py-4 px-6">
-                            <div class="flex flex-col">
-                                @if($schedule->last_time_active)
-                                    <span class="text-sm">
-                                        {{ \Carbon\Carbon::parse($schedule->last_time_active)->format('Y-m-d') }}
-                                    </span>
-                                    <span class="text-xs text-gray-400">
-                                        {{ \Carbon\Carbon::parse($schedule->last_time_active)->format('H:i:s') }} WIB
-                                    </span>
-                                @else
-                                    <span class="text-sm text-gray-400">
-                                        -
-                                    </span>
-                                @endif
-                            </div>
-                        </td>
+
 
                         <!-- Status -->
                         <td class="py-4 px-6 text-center">
@@ -147,7 +125,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="py-12 text-center text-gray-400">
+                        <td colspan="6" class="py-12 text-center text-gray-400">
                             Belum ada jadwal grow light. Klik tombol "Tambah Jadwal" untuk membuat jadwal baru.
                         </td>
                     </tr>

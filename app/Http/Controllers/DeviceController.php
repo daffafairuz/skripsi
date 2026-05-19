@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\Site;
+use App\Models\Sensor;
+use App\Models\Actuator;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -18,22 +20,55 @@ class DeviceController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->role === 'admin') {
-            $devices = Device::with(['sites', 'sensors', 'actuators'])->latest()->get();
-        } else {
-            // User hanya lihat device di site miliknya
-            $siteIds = $user->sites->pluck('id');
-            $deviceIds = \DB::table('site_devices')
-                ->whereIn('site_id', $siteIds)
-                ->pluck('device_id');
+        $query = Device::with([
+            'sensors',
+            'actuators',
+            'sites'
+        ]);
 
-            $devices = Device::with(['sites', 'sensors', 'actuators'])
-                ->whereIn('id', $deviceIds)
-                ->latest()
-                ->get();
+        /*
+        |--------------------------------------------------------------------------
+        | ADMIN
+        |--------------------------------------------------------------------------
+        */
+
+        if ($user->role == 'admin') {
+            $devices = $query->get();
+
+            return view(
+                'admin.devices.index',
+                compact('devices')
+            );
         }
 
-        return view('devices', compact('devices'));
+        /*
+        |--------------------------------------------------------------------------
+        | USER
+        |--------------------------------------------------------------------------
+        */
+
+        $hasSite = $user->sites()->exists();
+        $devices = $query
+            ->whereHas('sites', function ($q) use ($user) {
+                $q->where('user_id', $user->id);
+            })
+            ->get();
+
+        return view(
+            'user.devices.index',
+            compact('devices', 'hasSite')
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | CREATE
+    |--------------------------------------------------------------------------
+    */
+
+    public function create()
+    {
+        return view('admin.devices.create');
     }
 
     /*
@@ -48,22 +83,97 @@ class DeviceController extends Controller
             'name' => 'required|string|max:255',
             'mac_address' => 'required|string|unique:devices,mac_address',
             'description' => 'nullable|string',
-            'status' => 'required|in:available,assigned,inactive',
-        ], [
-            'name.required' => 'Nama device wajib diisi',
-            'mac_address.required' => 'MAC Address wajib diisi',
-            'mac_address.unique' => 'MAC Address sudah terdaftar',
         ]);
 
-        Device::create([
+        /*
+        |--------------------------------------------------------------------------
+        | CREATE ESP
+        |--------------------------------------------------------------------------
+        */
+
+        $device = Device::create([
             'name' => $request->name,
             'mac_address' => $request->mac_address,
             'description' => $request->description,
-            'status' => $request->status,
+            'status' => 'available'
         ]);
 
-        return redirect('/devices')
+        /*
+        |--------------------------------------------------------------------------
+        | SENSOR
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->sensors) {
+            foreach ($request->sensors as $sensor) {
+                Sensor::create([
+                    'device_id' => $device->id,
+                    'name' => $sensor['name'],
+                    'type' => $sensor['type'],
+                    'unit' => $sensor['unit'] ?? null
+                ]);
+            }
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | ACTUATOR
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->actuators) {
+            foreach ($request->actuators as $actuator) {
+                Actuator::create([
+                    'device_id' => $device->id,
+                    'name' => $actuator['name'],
+                    'type' => $actuator['type'],
+                    'default_state' => 'off'
+                ]);
+            }
+        }
+
+        return redirect()
+            ->route('devices.index')
             ->with('success', 'Device berhasil ditambahkan');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SHOW
+    |--------------------------------------------------------------------------
+    */
+
+    public function show(Device $device)
+    {
+        $device->load([
+            'sensors',
+            'actuators.logs',
+            'sites'
+        ]);
+
+        return view(
+            'devices.show',
+            compact('device')
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | EDIT
+    |--------------------------------------------------------------------------
+    */
+
+    public function edit(Device $device)
+    {
+        $device->load([
+            'sensors',
+            'actuators'
+        ]);
+
+        return view(
+            'admin.devices.edit',
+            compact('device')
+        );
     }
 
     /*
@@ -78,18 +188,17 @@ class DeviceController extends Controller
             'name' => 'required|string|max:255',
             'mac_address' => 'required|string|unique:devices,mac_address,' . $device->id,
             'description' => 'nullable|string',
-            'status' => 'required|in:available,assigned,inactive',
         ]);
 
         $device->update([
             'name' => $request->name,
             'mac_address' => $request->mac_address,
             'description' => $request->description,
-            'status' => $request->status,
         ]);
 
-        return redirect('/devices')
-            ->with('success', 'Device berhasil diperbarui');
+        return redirect()
+            ->route('devices.index')
+            ->with('success', 'Device berhasil diupdate');
     }
 
     /*
@@ -102,7 +211,8 @@ class DeviceController extends Controller
     {
         $device->delete();
 
-        return redirect('/devices')
+        return redirect()
+            ->route('devices.index')
             ->with('success', 'Device berhasil dihapus');
     }
 }

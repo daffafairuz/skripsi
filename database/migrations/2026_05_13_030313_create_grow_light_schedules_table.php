@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->time('start_time');
             $table->time('end_time');
-            $table->time('last_time_active')->nullable();
             $table->timestamps();
         });
     }

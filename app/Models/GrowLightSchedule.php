@@ -10,9 +10,5 @@ class GrowLightSchedule extends Model
         'site_id',
         'start_time',
         'end_time',
-        'last_time_active'
-    ];
-    protected $casts = [
-        'last_time_active' => 'datetime'
     ];
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\FeedScheduleController;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\ActuatorController;
 use App\Http\Controllers\ActuatorControlController;
+use App\Http\Controllers\SiteDeviceController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,13 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chart-data', [DashboardController::class, 'chartData'])
         ->middleware('auth');
 
-    // ========================= 
-    // DEVICES (admin + user)
     // =========================
-    Route::get('/devices', [DeviceController::class, 'index']);
-    Route::post('/devices', [DeviceController::class, 'store']);
-    Route::put('/devices/{device}', [DeviceController::class, 'update']);
-    Route::delete('/devices/{device}', [DeviceController::class, 'destroy']);
+    // DEVICES (resource)
+    // =========================
+    Route::resource('devices', DeviceController::class);
 
     // Riwayat Data
     Route::prefix('history')->group(function () {
@@ -45,12 +43,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Account Setting
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/account', [AccountController::class, 'index'])->name('account-setting');
-        Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
-        Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
-        Route::delete('/account/destroy', [AccountController::class, 'destroy'])->name('account.destroy');
-        });
+    Route::get('/account', [AccountController::class, 'index'])->name('account-setting');
+    Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
+    Route::put('/account/update', [AccountController::class, 'update'])->name('account.update');
+    Route::delete('/account/destroy', [AccountController::class, 'destroy'])->name('account.destroy');
 
     // Notifikasi
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
@@ -82,13 +78,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/jadwal-pakan/{id}', [FeedScheduleController::class, 'update'])->name('jadwal-pakan.update');
     Route::delete('/jadwal-pakan/{id}', [FeedScheduleController::class, 'destroy'])->name('jadwal-pakan.destroy');
 
-    // ========================= 
+    // =========================
     // ACTUATOR CONTROL (User)
     // =========================
     Route::get('/actuator-control', [ActuatorControlController::class, 'index'])->name('actuator-control');
     Route::post('/actuator-control/{id}/toggle', [ActuatorControlController::class, 'toggle'])->name('actuator-control.toggle');
 
-    // ========================= 
+    // =========================
     // ADMIN ONLY ROUTES
     // =========================
     Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -115,13 +111,21 @@ Route::middleware(['auth'])->group(function () {
     //=========================
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // Sites CRUD
-    Route::get('/sites', [SiteController::class, 'index'])->name('sites.index');
-    Route::get('/sites/create', [SiteController::class, 'create'])->name('sites.create');
-    Route::post('/sites', [SiteController::class, 'store'])->name('sites.store');
-    Route::get('/sites/{site}/edit', [SiteController::class, 'edit'])->name('sites.edit');
-    Route::put('/sites/{site}', [SiteController::class, 'update'])->name('sites.update');
-    Route::delete('/sites/{site}', [SiteController::class, 'destroy'])->name('sites.destroy');
+    // Sites (resource)
+    Route::resource('sites', SiteController::class);
+
+    // Site Devices
+    Route::get('/sites/{site}/devices/create', [SiteDeviceController::class, 'create'])->name('sites.devices.create');
+    Route::post('/sites/{site}/devices', [SiteDeviceController::class, 'store'])->name('sites.devices.store');
+
+    // Actuator Toggle (from bima_view)
+    Route::post('/actuator/{actuator}/toggle', [ActuatorController::class, 'toggle'])->name('actuator.toggle');
+
+    // Sensor by Device
+    Route::get('/sensors/device/{device}', [SensorController::class, 'device'])->name('sensors.device');
+
+    // Sensor Chart
+    Route::get('/sensor/{sensor}/chart', [SensorController::class, 'chart'])->name('sensor.chart');
 
 });
 

@@ -16,18 +16,65 @@ class SiteController extends Controller
 
     public function index()
     {
-        $user = auth()->user();
+        /*
+        |--------------------------------------------------------------------------
+        | ADMIN
+        |--------------------------------------------------------------------------
+        */
 
-        if ($user->role === 'admin') {
-            $sites = Site::with('user', 'devices')->latest()->get();
-        } else {
-            $sites = Site::with('user', 'devices')
-                ->where('user_id', $user->id)
-                ->latest()
-                ->get();
+        if (auth()->user()->role == 'admin') {
+            $sites = Site::with([
+                'user',
+                'devices.sensors',
+                'devices.actuators'
+            ])->get();
+
+            $users = User::where('role', 'user')->get();
+
+            return view(
+                'admin.sites.index',
+                compact('sites', 'users')
+            );
         }
 
-        return view('sites.index', compact('sites'));
+        /*
+        |--------------------------------------------------------------------------
+        | USER
+        |--------------------------------------------------------------------------
+        */
+
+        $site = Site::with([
+            'devices.sensors',
+            'devices.actuators',
+            'feedSchedules',
+            'notifications'
+        ])
+        ->where('user_id', auth()->id())
+        ->first();
+
+        $totalSensors = $site
+            ? $site->devices->sum(function ($d) {
+                return $d->sensors->count();
+            })
+            : 0;
+
+        $totalActuators = $site
+            ? $site->devices->sum(function ($d) {
+                return $d->actuators->count();
+            })
+            : 0;
+
+        $hasSite = $site != null;
+
+        return view(
+            'user.sites.index',
+            compact(
+                'site',
+                'hasSite',
+                'totalSensors',
+                'totalActuators'
+            )
+        );
     }
 
     /*
@@ -38,8 +85,16 @@ class SiteController extends Controller
 
     public function create()
     {
+        if (auth()->user()->role != 'admin') {
+            abort(403);
+        }
+
         $users = User::where('role', 'user')->get();
-        return view('sites.create', compact('users'));
+
+        return view(
+            'admin.sites.create',
+            compact('users')
+        );
     }
 
     /*
@@ -51,29 +106,47 @@ class SiteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'mac_address' => 'required|string|unique:sites,mac_address',
-            'user_id' => 'required|exists:users,id',
-        ], [
-            'name.required' => 'Nama site wajib diisi',
-            'location.required' => 'Lokasi wajib diisi',
-            'mac_address.required' => 'MAC Address wajib diisi',
-            'mac_address.unique' => 'MAC Address sudah terdaftar',
-            'user_id.required' => 'Owner wajib dipilih',
         ]);
 
         Site::create([
+            'user_id' => $request->user_id,
             'name' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
-            'mac_address' => $request->mac_address,
-            'user_id' => $request->user_id,
         ]);
 
-        return redirect()->route('sites.index')
-            ->with('success', 'Site berhasil ditambahkan');
+        return redirect()
+            ->route('sites.index')
+            ->with('success', 'Site berhasil dibuat');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SHOW
+    |--------------------------------------------------------------------------
+    */
+
+    public function show(Site $site)
+    {
+        $site->load([
+            'devices.sensors.dataSensors' => function ($query) {
+                $query->latest();
+            },
+            'devices.actuators.logs' => function ($query) {
+                $query->latest();
+            },
+            'notifications',
+            'feedSchedules'
+        ]);
+
+        return view(
+            'user.sites.show',
+            compact('site')
+        );
     }
 
     /*
@@ -85,7 +158,7 @@ class SiteController extends Controller
     public function edit(Site $site)
     {
         $users = User::where('role', 'user')->get();
-        return view('sites.edit', compact('site', 'users'));
+        return view('admin.sites.create', compact('site', 'users'));
     }
 
     /*
@@ -100,7 +173,6 @@ class SiteController extends Controller
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'mac_address' => 'required|string|unique:sites,mac_address,' . $site->id,
             'user_id' => 'required|exists:users,id',
         ]);
 
@@ -108,7 +180,6 @@ class SiteController extends Controller
             'name' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
-            'mac_address' => $request->mac_address,
             'user_id' => $request->user_id,
         ]);
 

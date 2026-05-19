@@ -9,8 +9,7 @@ class FeedSchedule extends Model
     protected $fillable = [
         'site_id',
         'time',
-        'last_time_active',
-        'amount'
+        'duration',
     ];
 
     public function site()

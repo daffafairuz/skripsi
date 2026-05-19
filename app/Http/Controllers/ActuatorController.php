@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actuator;
+use App\Models\ActuatorLog;
 use App\Models\Device;
 use Illuminate\Http\Request;
 
@@ -90,5 +91,53 @@ class ActuatorController extends Controller
 
         return redirect('/actuators')
             ->with('success', 'Aktuator berhasil dihapus');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | TOGGLE (from bima_view)
+    |--------------------------------------------------------------------------
+    */
+
+    public function toggle(Request $request, Actuator $actuator)
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | Ambil status terakhir
+        |--------------------------------------------------------------------------
+        */
+
+        $latest = $actuator
+            ->logs()
+            ->latest()
+            ->first();
+
+        /*
+        |--------------------------------------------------------------------------
+        | Toggle
+        |--------------------------------------------------------------------------
+        */
+
+        $action = ($latest && $latest->action == "on")
+            ? "off"
+            : "on";
+
+        /*
+        |--------------------------------------------------------------------------
+        | Simpan log
+        |--------------------------------------------------------------------------
+        */
+
+        ActuatorLog::create([
+            'actuator_id' => $actuator->id,
+            'user_id' => auth()->id(),
+            'action' => $action,
+            'triggered_by' => 'manual'
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'action' => $action
+        ]);
     }
 }

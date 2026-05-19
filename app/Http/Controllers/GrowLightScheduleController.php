@@ -56,9 +56,6 @@ class GrowLightScheduleController extends Controller
             'site_id' => $siteId,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
-            'last_time_active' => null,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
         ]);
 
         return redirect()->route('growlight.schedule')
@@ -100,8 +97,6 @@ class GrowLightScheduleController extends Controller
         $schedule->update([
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
-            'updated_at' => Carbon::now(),
-            // last_time_active tidak diupdate karena otomatis diisi oleh sistem
         ]);
 
         return redirect()->route('growlight.schedule')
@@ -133,19 +128,4 @@ class GrowLightScheduleController extends Controller
         return optional($user->sites()->first())->id;
     }
 
-    // Optional: Method untuk update last_time_active (dipanggil saat grow light menyala)
-    public function updateLastActive($id)
-    {
-        $siteId = $this->getUserSiteId();
-
-        $schedule = Schedule::where('id', $id)
-                            ->where('site_id', $siteId)
-                            ->firstOrFail();
-
-        $schedule->update([
-            'last_time_active' => Carbon::now()
-        ]);
-
-        return response()->json(['success' => true]);
-    }
 }

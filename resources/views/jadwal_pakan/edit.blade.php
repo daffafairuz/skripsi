@@ -30,18 +30,20 @@
             </div>
 
             <div class="mb-4">
-                <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">
-                    Jumlah Pakan (gram) <span class="text-red-500">*</span>
+                <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">
+                    Durasi Nyala (menit) <span class="text-red-500">*</span>
                 </label>
-                <input type="number" name="amount" id="amount"
-                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 @error('amount') border-red-500 @enderror"
-                       placeholder="Contoh: 100"
+                <input type="number" name="duration" id="duration"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 @error('duration') border-red-500 @enderror"
+                       placeholder="Contoh: 10"
                        min="1"
-                       value="{{ old('amount', $schedule->amount) }}"
+                       max="60"
+                       value="{{ old('duration', $schedule->duration) }}"
                        required>
-                @error('amount')
+                @error('duration')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
+                <p class="mt-1 text-xs text-gray-500">Berapa menit feeder akan menyala. Minimal 1 menit, maksimal 60 menit.</p>
             </div>
 
             <div class="flex gap-2 mt-6">
