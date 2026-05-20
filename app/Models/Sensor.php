@@ -32,4 +32,12 @@ protected $fillable = [
     {
         return $this->hasMany(DataSensor::class, 'sensor_id');
     }
+
+    /**
+     * Relasi: Mengambil satu data sensor terbaru.
+     */
+    public function latestData()
+    {
+        return $this->hasOne(DataSensor::class, 'sensor_id')->latestOfMany();
+    }
 }

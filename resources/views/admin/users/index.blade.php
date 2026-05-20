@@ -33,14 +33,18 @@ class="relative">
         </p>
     </div>
 
-    <!-- BUTTON -->
-    <button
-        @click="openCreate = true"
-        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl transition">
+    <div class="flex items-center gap-3">
+        <!-- BUTTON -->
+        <button
+            @click="openCreate = true"
+            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl transition">
 
-        + Tambah User
+            + Tambah User
 
-    </button>
+        </button>
+
+        @include('layouts.user-card', ['subtitle' => 'User Management'])
+    </div>
 
 </div>
 

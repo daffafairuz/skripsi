@@ -10,6 +10,7 @@
             Buat jadwal baru untuk lampu tanam
         </p>
     </div>
+    @include('layouts.user-card', ['subtitle' => 'Add Grow Light Schedule'])
 </div>
 
 @if(session('success'))

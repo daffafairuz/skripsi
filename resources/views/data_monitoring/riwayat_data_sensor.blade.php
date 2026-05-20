@@ -9,15 +9,7 @@
         <p class="text-sm text-gray-500">Log telemetri berkala (interval 5 menit) dari ESP32 Slave yang terhubung ke ESP32 Master (Site)</p>
     </div>
     
-    <div class="flex items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-gray-100">
-        <div class="text-right hidden sm:block">
-            <p class="text-xs font-bold text-gray-800 leading-none">{{ auth()->user()->name ?? 'User' }}</p>
-            <p class="text-[10px] text-blue-500 font-medium italic">Telemetry Hub Active</p>
-        </div>
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-100">
-            {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
-        </div>
-    </div>
+    @include('layouts.user-card', ['subtitle' => 'Telemetry Hub Active'])
 </div>
 
 <!-- Main Telemetry Grid -->

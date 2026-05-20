@@ -3,15 +3,19 @@
 @section('content')
 
 <!-- HEADER -->
-<div class="mb-8">
+<div class="flex justify-between items-center mb-8">
 
-    <h1 class="text-3xl font-bold">
-        {{ $site->name }}
-    </h1>
+    <div>
+        <h1 class="text-3xl font-bold">
+            {{ $site->name }}
+        </h1>
 
-    <p class="text-gray-500">
-        {{ $site->location }}
-    </p>
+        <p class="text-gray-500">
+            {{ $site->location }}
+        </p>
+    </div>
+
+    @include('layouts.user-card', ['subtitle' => 'Site Detail'])
 
 </div>
 

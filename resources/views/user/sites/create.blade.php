@@ -6,19 +6,23 @@
 
     <!-- HEADER -->
 
-    <div class="mb-8">
+    <div class="flex justify-between items-center mb-8">
 
-        <h1 class="text-3xl font-bold">
+        <div>
+            <h1 class="text-3xl font-bold">
 
-            Buat Site
+                Buat Site
 
-        </h1>
+            </h1>
 
-        <p class="text-gray-500">
+            <p class="text-gray-500">
 
-            Tambahkan site untuk memulai sistem monitoring aquaponik
+                Tambahkan site untuk memulai sistem monitoring aquaponik
 
-        </p>
+            </p>
+        </div>
+
+        @include('layouts.user-card', ['subtitle' => 'Create Site'])
 
     </div>
 

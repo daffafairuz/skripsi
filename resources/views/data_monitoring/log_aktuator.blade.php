@@ -9,15 +9,7 @@
         <p class="text-sm text-gray-500">Menampilkan hingga 500 riwayat aktivitas terakhir untuk setiap perangkat</p>
     </div>
     
-    <div class="flex items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-gray-100">
-        <div class="text-right hidden sm:block">
-            <p class="text-xs font-bold text-gray-800 leading-none">{{ auth()->user()->name ?? 'Administrator' }}</p>
-            <p class="text-[10px] text-green-500 font-medium">Online</p>
-        </div>
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold shadow-lg shadow-green-100">
-            {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
-        </div>
-    </div>
+    @include('layouts.user-card', ['subtitle' => 'Online'])
 </div>
 
 <!-- Main Container -->

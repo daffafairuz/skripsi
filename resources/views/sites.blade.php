@@ -12,26 +12,30 @@
         </p>
     </div>
 
-    {{-- USER ONLY --}}
-    @if(auth()->user()->role == 'user')
+    <div class="flex items-center gap-3">
+        {{-- USER ONLY --}}
+        @if(auth()->user()->role == 'user')
 
-    <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
+        <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
 
-        <svg class="w-5 h-5"
-             fill="none"
-             stroke="currentColor"
-             viewBox="0 0 24 24">
+            <svg class="w-5 h-5"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24">
 
-            <path stroke-width="2"
-                  d="M12 4v16m8-8H4"/>
+                <path stroke-width="2"
+                      d="M12 4v16m8-8H4"/>
 
-        </svg>
+            </svg>
 
-        Tambah Site
+            Tambah Site
 
-    </button>
+        </button>
 
-    @endif
+        @endif
+
+        @include('layouts.user-card', ['subtitle' => 'Sites'])
+    </div>
 
 </div>
 

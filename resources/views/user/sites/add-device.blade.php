@@ -4,7 +4,9 @@
 
 <div class="max-w-4xl mx-auto">
 
-<div class="mb-6">
+<div class="flex justify-between items-center mb-6">
+
+<div>
 
 <h1 class="text-2xl font-bold">
 
@@ -17,6 +19,10 @@ Tambah Device
 Pilih device yang tersedia
 
 </p>
+
+</div>
+
+@include('layouts.user-card', ['subtitle' => 'Add Device'])
 
 </div>
 

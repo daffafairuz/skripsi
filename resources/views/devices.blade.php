@@ -27,16 +27,20 @@
         </p>
     </div>
 
-    @if(auth()->user()->role == 'admin')
-    <button
-        @click="openCreate = true"
-        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M12 4v16m8-8H4"/>
-        </svg>
-        Tambah Device
-    </button>
-    @endif
+    <div class="flex items-center gap-3">
+        @if(auth()->user()->role == 'admin')
+        <button
+            @click="openCreate = true"
+            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Tambah Device
+        </button>
+        @endif
+
+        @include('layouts.user-card', ['subtitle' => 'Devices'])
+    </div>
 
 </div>
 

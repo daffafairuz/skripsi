@@ -25,15 +25,19 @@
     </div>
 
 
-    <!-- CREATE -->
+    <div class="flex items-center gap-3">
+        <!-- CREATE -->
 
-    <button
-        @click="openCreate=true"
-        class="bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-xl">
+        <button
+            @click="openCreate=true"
+            class="bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-xl">
 
-        + Tambah Site
+            + Tambah Site
 
-    </button>
+        </button>
+
+        @include('layouts.user-card', ['subtitle' => 'Site Monitoring'])
+    </div>
 
 </div>
 

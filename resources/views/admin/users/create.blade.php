@@ -4,9 +4,12 @@
 
 <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow p-6">
 
-    <h1 class="text-2xl font-bold mb-6">
-        Tambah Site
-    </h1>
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">
+            Tambah Site
+        </h1>
+        @include('layouts.user-card', ['subtitle' => 'Add Site'])
+    </div>
 
     @if($errors->any())
         <div class="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">

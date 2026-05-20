@@ -14,13 +14,17 @@
             Daftar jadwal otomatis untuk pakan ikan Anda
         </p>
     </div>
-    <a href="{{ route('jadwal-pakan.create') }}"
-       class="px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-medium text-sm shadow-sm shadow-green-200 flex items-center gap-2">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-        </svg>
-        Tambah Jadwal
-    </a>
+    <div class="flex items-center gap-3">
+        <a href="{{ route('jadwal-pakan.create') }}"
+           class="px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-medium text-sm shadow-sm shadow-green-200 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Tambah Jadwal
+        </a>
+
+        @include('layouts.user-card', ['subtitle' => 'Feeding Schedule'])
+    </div>
 </div>
 
 <!-- Tabel Daftar Jadwal -->

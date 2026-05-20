@@ -6,15 +6,19 @@
 
     <!-- HEADER -->
 
-    <div class="mb-6">
+    <div class="flex justify-between items-center mb-6">
 
-        <h1 class="text-2xl font-bold">
-            {{ $device->name }}
-        </h1>
+        <div>
+            <h1 class="text-2xl font-bold">
+                {{ $device->name }}
+            </h1>
 
-        <p class="text-gray-500">
-            {{ $device->mac_address }}
-        </p>
+            <p class="text-gray-500">
+                {{ $device->mac_address }}
+            </p>
+        </div>
+
+        @include('layouts.user-card', ['subtitle' => 'Device Telemetry'])
 
     </div>
 

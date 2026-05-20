@@ -22,6 +22,8 @@
 
     </div>
 
+    @include('layouts.user-card', ['subtitle' => 'Devices'])
+
 </div>
 
 

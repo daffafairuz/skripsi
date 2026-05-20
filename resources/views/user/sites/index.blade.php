@@ -22,6 +22,8 @@ Kelola sistem aquaponik Anda
 
 </div>
 
+@include('layouts.user-card', ['subtitle' => 'Sites'])
+
 </div>
 
 

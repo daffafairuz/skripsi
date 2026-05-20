@@ -2,13 +2,16 @@
 
 @section('content')
 <div class="mx-auto">
-    <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
-            Tambah Jadwal Pakan
-        </h1>
-        <p class="text-sm text-gray-500">
-            Tambahkan jadwal pemberian pakan otomatis
-        </p>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
+                Tambah Jadwal Pakan
+            </h1>
+            <p class="text-sm text-gray-500">
+                Tambahkan jadwal pemberian pakan otomatis
+            </p>
+        </div>
+        @include('layouts.user-card', ['subtitle' => 'Add Feed Schedule'])
     </div>
 
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">

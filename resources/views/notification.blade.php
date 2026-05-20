@@ -19,6 +19,8 @@
         </p>
     </div>
 
+    @include('layouts.user-card', ['subtitle' => 'Notifications'])
+
 </div>
 
 <!-- Container -->
