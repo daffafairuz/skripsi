@@ -9,17 +9,17 @@ const axios = require('axios');
 
 const db = mysql.createConnection({
 
-    host:'localhost',
-    user:'root',
-    password:'',
-    database:'skripsi'
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'skripsi_daffa'
 
 });
 
 
-db.connect((err)=>{
+db.connect((err) => {
 
-    if(err){
+    if (err) {
 
         console.log(
             'DB Error:',
@@ -42,29 +42,29 @@ db.connect((err)=>{
 
 const client = mqtt.connect(
 
-'mqtts://d1d3bb1af2324fe8893ca5b4d8ff18c3.s1.eu.hivemq.cloud:8883',
+    'mqtts://d1d3bb1af2324fe8893ca5b4d8ff18c3.s1.eu.hivemq.cloud:8883',
 
-{
-    username:'aquaponic',
-    password:'Aquaponic1'
-}
+    {
+        username: 'aquaponic',
+        password: 'Aquaponic1'
+    }
 
 );
 
 
 client.on(
-'connect',
-()=>{
+    'connect',
+    () => {
 
-    console.log(
-        'MQTT Connected'
-    );
+        console.log(
+            'MQTT Connected'
+        );
 
-    client.subscribe(
-        'aquaponic/device/data'
-    );
+        client.subscribe(
+            'aquaponic/device/data'
+        );
 
-});
+    });
 
 
 
@@ -73,26 +73,26 @@ client.on(
 // ======================
 
 client.on(
-'message',
-async(topic,message)=>{
+    'message',
+    async (topic, message) => {
 
-try{
+        try {
 
-let data=
-JSON.parse(
-message.toString()
-);
+            let data =
+                JSON.parse(
+                    message.toString()
+                );
 
-console.log(data);
+            console.log(data);
 
-let mac=
-data.mac_address;
+            let mac =
+                data.mac_address;
 
 
-// cari device
-db.query(
+            // cari device
+            db.query(
 
-`
+                `
 SELECT
 id
 FROM devices
@@ -100,42 +100,42 @@ WHERE mac_address=?
 LIMIT 1
 `,
 
-[mac],
+                [mac],
 
-(err,deviceRows)=>{
+                (err, deviceRows) => {
 
-if(err){
+                    if (err) {
 
-console.log(
-err
-);
+                        console.log(
+                            err
+                        );
 
-return;
+                        return;
 
-}
-
-
-if(
-deviceRows.length===0
-){
-
-console.log(
-'Device not found'
-);
-
-return;
-
-}
+                    }
 
 
-let deviceId=
-deviceRows[0].id;
+                    if (
+                        deviceRows.length === 0
+                    ) {
+
+                        console.log(
+                            'Device not found'
+                        );
+
+                        return;
+
+                    }
 
 
-// ambil semua sensor device
-db.query(
+                    let deviceId =
+                        deviceRows[0].id;
 
-`
+
+                    // ambil semua sensor device
+                    db.query(
+
+                        `
 SELECT
 id,
 name,
@@ -146,106 +146,106 @@ FROM sensors
 WHERE device_id=?
 `,
 
-[deviceId],
+                        [deviceId],
 
-async(
-err,
-sensorRows
-)=>{
-
-
-if(err){
-
-console.log(
-err
-);
-
-return;
-
-}
+                        async (
+                            err,
+                            sensorRows
+                        ) => {
 
 
-for(
-let sensor
-of sensorRows
-){
+                            if (err) {
 
-let value=null;
+                                console.log(
+                                    err
+                                );
 
-let type=
-sensor.type
-.toLowerCase()
-.trim();
+                                return;
+
+                            }
 
 
+                            for (
+                                let sensor
+                                of sensorRows
+                            ) {
 
-// mapping sensor payload
-switch(type){
+                                let value = null;
 
-case 'temperature':
-
-value=
-data.sensors.temperature;
-
-break;
-
-
-case 'humidity':
-
-value=
-data.sensors.humidity;
-
-break;
+                                let type =
+                                    sensor.type
+                                        .toLowerCase()
+                                        .trim();
 
 
-case 'ph':
 
-value=
-data.sensors.ph;
+                                // mapping sensor payload
+                                switch (type) {
 
-break;
+                                    case 'temperature':
 
+                                        value =
+                                            data.sensors.temperature;
 
-case 'tds':
-
-value=
-data.sensors.tds;
-
-break;
+                                        break;
 
 
-case 'water_level':
+                                    case 'humidity':
 
-value=
-data.sensors.water_level;
+                                        value =
+                                            data.sensors.humidity;
 
-break;
-
-}
+                                        break;
 
 
-// skip jika payload tidak ada
-if(
-value===undefined ||
-value===null
-){
+                                    case 'ph':
 
-console.log(
-`No value for ${type}`
-);
+                                        value =
+                                            data.sensors.ph;
 
-continue;
-
-}
+                                        break;
 
 
-// ==================
-// INSERT SENSOR DATA
-// ==================
+                                    case 'tds':
 
-db.query(
+                                        value =
+                                            data.sensors.tds;
 
-`
+                                        break;
+
+
+                                    case 'water_level':
+
+                                        value =
+                                            data.sensors.water_level;
+
+                                        break;
+
+                                }
+
+
+                                // skip jika payload tidak ada
+                                if (
+                                    value === undefined ||
+                                    value === null
+                                ) {
+
+                                    console.log(
+                                        `No value for ${type}`
+                                    );
+
+                                    continue;
+
+                                }
+
+
+                                // ==================
+                                // INSERT SENSOR DATA
+                                // ==================
+
+                                db.query(
+
+                                    `
 INSERT INTO
 data_sensors
 (
@@ -263,95 +263,95 @@ NOW()
 )
 `,
 
-[
-sensor.id,
-value
-],
+                                    [
+                                        sensor.id,
+                                        value
+                                    ],
 
-(err)=>{
+                                    (err) => {
 
-if(err){
+                                        if (err) {
 
-console.log(
-'Insert Error:',
-err
-);
+                                            console.log(
+                                                'Insert Error:',
+                                                err
+                                            );
 
-}
-else{
+                                        }
+                                        else {
 
-console.log(
-`${type}: ${value} saved`
-);
+                                            console.log(
+                                                `${type}: ${value} saved`
+                                            );
 
-}
+                                        }
 
-}
+                                    }
 
-);
+                                );
 
 
-// ==================
-// THRESHOLD CHECK
-// ==================
+                                // ==================
+                                // THRESHOLD CHECK
+                                // ==================
 
-if(
+                                if (
 
-value<
-sensor.min_threshold ||
+                                    value <
+                                    sensor.min_threshold ||
 
-value>
-sensor.max_threshold
+                                    value >
+                                    sensor.max_threshold
 
-){
+                                ) {
 
-try{
+                                    try {
 
-await axios.post(
+                                        await axios.post(
 
-'http://127.0.0.1:8000/api/sensor-alert',
+                                            'http://127.0.0.1:8000/api/sensor-alert',
 
-{
+                                            {
 
-site_id:1,
+                                                site_id: 1,
 
-message:
-`${sensor.name} abnormal (${value}${sensor.unit})`
+                                                message:
+                                                    `${sensor.name} abnormal (${value}${sensor.unit})`
 
-}
+                                            }
 
-);
+                                        );
 
-console.log(
-'Notification sent'
-);
+                                        console.log(
+                                            'Notification sent'
+                                        );
 
-}
-catch(err){
+                                    }
+                                    catch (err) {
 
-console.log(
-'API Error:',
-err.message
-);
+                                        console.log(
+                                            'API Error:',
+                                            err.message
+                                        );
 
-}
+                                    }
 
-}
+                                }
 
-}
+                            }
 
-});
+                        });
 
-});
+                });
 
-}
-catch(error){
+        }
+        catch (error) {
 
-console.log(
-'JSON Error:',
-error
-);
+            console.log(
+                'JSON Error:',
+                error
+            );
 
-}
+        }
 
-});
+    });
