@@ -16,42 +16,29 @@ class FeedScheduleSeeder extends Seeder
     {
         $now = Carbon::now();
 
+        $feeder = DB::table('actuators')->where('type', 'feeder')->first();
+        $feederId = $feeder ? $feeder->id : 6;
+
         DB::table('feed_schedules')->insert([
-            // Site 2 (Kebun Aquaponik Belakang - Budi)
+            // Feeder 1
             [
-                'site_id' => 2,
+                'actuator_id' => $feederId,
                 'time' => '07:00:00',
                 'duration' => 10,
                 'created_at' => $now->copy()->subMonths(3),
                 'updated_at' => $now->copy()->subMonths(3),
             ],
             [
-                'site_id' => 2,
+                'actuator_id' => $feederId,
                 'time' => '12:00:00',
                 'duration' => 10,
                 'created_at' => $now->copy()->subMonths(3),
                 'updated_at' => $now->copy()->subMonths(3),
             ],
             [
-                'site_id' => 2,
+                'actuator_id' => $feederId,
                 'time' => '17:00:00',
                 'duration' => 15,
-                'created_at' => $now->copy()->subMonths(3),
-                'updated_at' => $now->copy()->subMonths(3),
-            ],
-
-            // Site 4 (Hidroponik Rooftop - Ahmad)
-            [
-                'site_id' => 4,
-                'time' => '08:00:00',
-                'duration' => 5,
-                'created_at' => $now->copy()->subMonths(3),
-                'updated_at' => $now->copy()->subMonths(3),
-            ],
-            [
-                'site_id' => 4,
-                'time' => '16:00:00',
-                'duration' => 5,
                 'created_at' => $now->copy()->subMonths(3),
                 'updated_at' => $now->copy()->subMonths(3),
             ],

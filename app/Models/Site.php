@@ -42,16 +42,4 @@ protected $fillable = [
     {
         return $this->hasMany(Notification::class);
     }
-
-    /**
-     * Relasi: Site memiliki banyak jadwal pemberian pakan.
-     */
-    public function feedSchedules(): HasMany
-    {
-        return $this->hasMany(FeedSchedule::class);
-    }
-    public function growLightSchedules(): HasMany
-    {
-        return $this->hasMany(GrowLightSchedule::class);
-    }
 }

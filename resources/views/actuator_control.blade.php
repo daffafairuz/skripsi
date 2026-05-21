@@ -28,6 +28,75 @@
     </div>
 @endif
 
+<!-- Filter Section -->
+@if(isset($sites) && !$sites->isEmpty())
+    <div class="bg-white p-6 rounded-3xl border border-gray-100/80 shadow-sm mb-8 transition duration-300 hover:shadow-md">
+        <form action="{{ route('actuator-control') }}" method="GET" class="flex flex-col md:flex-row items-end gap-5">
+            <!-- Filter Site -->
+            <div class="flex-1 w-full">
+                <label for="site-select" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Filter Site</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </span>
+                    <select id="site-select" name="site_id" onchange="document.getElementById('device-select').value = ''; this.form.submit();"
+                            class="w-full pl-10 pr-10 py-3 bg-gray-50/50 border border-gray-200/80 rounded-2xl text-sm font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all appearance-none cursor-pointer hover:bg-gray-50">
+                        <option value="">Semua Site</option>
+                        @foreach($sites as $s)
+                            <option value="{{ $s->id }}" {{ $selectedSiteId == $s->id ? 'selected' : '' }}>
+                                {{ $s->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-455">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Device -->
+            <div class="flex-1 w-full">
+                <label for="device-select" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Filter Device</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </span>
+                    <select id="device-select" name="device_id" onchange="this.form.submit();"
+                            class="w-full pl-10 pr-10 py-3 bg-gray-50/50 border border-gray-200/80 rounded-2xl text-sm font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all appearance-none cursor-pointer hover:bg-gray-50">
+                        <option value="">Semua Device</option>
+                        @foreach($devices as $d)
+                            <option value="{{ $d->id }}" {{ $selectedDeviceId == $d->id ? 'selected' : '' }}>
+                                {{ $d->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-455">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            @if($selectedSiteId || $selectedDeviceId)
+                <div class="w-full md:w-auto">
+                    <a href="{{ route('actuator-control') }}"
+                       class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-2xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-95">
+                        Reset
+                    </a>
+                </div>
+            @endif
+        </form>
+    </div>
+@endif
+
 <!-- Actuator Cards -->
 @if($actuators->isEmpty())
 

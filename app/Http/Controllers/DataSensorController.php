@@ -5,44 +5,92 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataSensor;
 use App\Models\Sensor;
+use App\Models\Site;
+use App\Models\Device;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DataSensorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
 
+        // 1. Get sites
         if ($user->role === 'admin') {
-            // Admin can see all sensor data from all users/sites
-            $rawSensors = DataSensor::with(['sensor.device.sites'])
-                ->orderBy('created_at', 'desc')
-                ->take(3000)
-                ->get();
+            $sites = Site::latest()->get();
         } else {
-            // User can only see sensor data from their own sites (ESP32 Master) and connected devices (ESP32 Slaves)
-            $siteIds = $user->sites()->pluck('id');
+            $sites = $user->sites;
+        }
 
-            if ($siteIds->isEmpty()) {
-                $rawSensors = collect();
-            } else {
-                // Get all devices (Slaves) assigned to the user's sites
-                $deviceIds = DB::table('site_devices')
-                    ->whereIn('site_id', $siteIds)
-                    ->pluck('device_id');
+        if ($sites->isEmpty()) {
+            return view('data_monitoring.riwayat_data_sensor', [
+                'pivotedData' => new LengthAwarePaginator([], 0, 10),
+                'sites' => collect(),
+                'devices' => collect(),
+                'selectedSiteId' => null,
+                'selectedDeviceId' => null,
+                'activeSensorColumns' => [],
+                'perPage' => 10,
+            ]);
+        }
 
-                // Get all sensors associated with those devices
+        $selectedSiteId = $request->input('site_id');
+        $selectedDeviceId = $request->input('device_id');
+
+        // Validate selectedSiteId
+        if ($selectedSiteId && !$sites->contains('id', $selectedSiteId)) {
+            $selectedSiteId = null;
+        }
+
+        // Get devices for filtering
+        if ($selectedSiteId) {
+            $devices = Device::whereHas('sites', function ($q) use ($selectedSiteId) {
+                $q->where('sites.id', $selectedSiteId)
+                  ->whereNull('site_devices.ended_at');
+            })->get();
+        } else {
+            // Devices from all accessible sites
+            $allSiteIds = $sites->pluck('id');
+            $devices = Device::whereHas('sites', function ($q) use ($allSiteIds) {
+                $q->whereIn('sites.id', $allSiteIds)
+                  ->whereNull('site_devices.ended_at');
+            })->get();
+        }
+
+        // Validate selectedDeviceId
+        if ($selectedDeviceId && !$devices->contains('id', $selectedDeviceId)) {
+            $selectedDeviceId = null;
+        }
+
+        // Now query DataSensor based on selected site / device
+        $query = DataSensor::with(['sensor.device.sites']);
+
+        if ($selectedDeviceId) {
+            $sensorIds = Sensor::where('device_id', $selectedDeviceId)->pluck('id');
+            $query->whereIn('sensor_id', $sensorIds);
+        } elseif ($selectedSiteId) {
+            $deviceIds = Device::whereHas('sites', function ($q) use ($selectedSiteId) {
+                $q->where('sites.id', $selectedSiteId)
+                  ->whereNull('site_devices.ended_at');
+            })->pluck('devices.id');
+            $sensorIds = Sensor::whereIn('device_id', $deviceIds)->pluck('id');
+            $query->whereIn('sensor_id', $sensorIds);
+        } else {
+            if ($user->role !== 'admin') {
+                $allSiteIds = $sites->pluck('id');
+                $deviceIds = Device::whereHas('sites', function ($q) use ($allSiteIds) {
+                    $q->whereIn('sites.id', $allSiteIds)
+                      ->whereNull('site_devices.ended_at');
+                })->pluck('devices.id');
                 $sensorIds = Sensor::whereIn('device_id', $deviceIds)->pluck('id');
-
-                $rawSensors = DataSensor::with(['sensor.device.sites'])
-                    ->whereIn('sensor_id', $sensorIds)
-                    ->orderBy('created_at', 'desc')
-                    ->take(3000)
-                    ->get();
+                $query->whereIn('sensor_id', $sensorIds);
             }
         }
+
+        $rawSensors = $query->orderBy('created_at', 'desc')->take(3000)->get();
 
         // Pivot EAV data: Group by device & 5-minute time window
         $tempGroups = [];
@@ -98,6 +146,122 @@ class DataSensorController extends Controller
             ->sortByDesc('raw_created')
             ->values();
 
-        return view('data_monitoring.riwayat_data_sensor', compact('pivotedData'));
+        // Define sensor columns mapping with styling & formatting
+        $sensorColumns = [
+            'temperature' => [
+                'label' => 'Suhu',
+                'unit' => '°C',
+                'bg_color' => 'bg-orange-50 border border-orange-100 text-orange-600',
+                'format' => '%.1f',
+            ],
+            'humidity' => [
+                'label' => 'Kelembapan',
+                'unit' => '%',
+                'bg_color' => 'bg-blue-50 border border-blue-100 text-blue-600',
+                'format' => '%.1f',
+            ],
+            'ph' => [
+                'label' => 'pH Air',
+                'unit' => '',
+                'bg_color' => 'bg-emerald-50 border border-emerald-100 text-emerald-600',
+                'format' => '%.2f',
+            ],
+            'tds' => [
+                'label' => 'TDS',
+                'unit' => 'ppm',
+                'bg_color' => 'bg-purple-50 border border-purple-100 text-purple-600',
+                'format' => '%.0f',
+            ],
+            'water_level' => [
+                'label' => 'Water Level',
+                'unit' => 'cm',
+                'bg_color' => 'bg-cyan-50 border border-cyan-100 text-cyan-600',
+                'format' => '%.1f',
+            ],
+            'dissolved_oxygen' => [
+                'label' => 'DO',
+                'unit' => 'mg/L',
+                'bg_color' => 'bg-teal-50 border border-teal-100 text-teal-600',
+                'format' => '%.1f',
+            ],
+            'ec' => [
+                'label' => 'EC',
+                'unit' => 'mS',
+                'bg_color' => 'bg-indigo-50 border border-indigo-100 text-indigo-600',
+                'format' => '%.2f',
+            ],
+            'soil_moisture' => [
+                'label' => 'Soil Moist.',
+                'unit' => '%',
+                'bg_color' => 'bg-rose-50 border border-rose-100 text-rose-600',
+                'format' => '%.1f',
+            ],
+            'light' => [
+                'label' => 'Cahaya',
+                'unit' => 'lux',
+                'bg_color' => 'bg-yellow-50 border border-yellow-200 text-yellow-700',
+                'format' => '%.0f',
+            ],
+        ];
+
+        // Determine which sensors are present on the filtered scope for dynamic columns
+        if ($selectedDeviceId) {
+            $scopedSensorTypes = Sensor::where('device_id', $selectedDeviceId)
+                ->distinct()
+                ->pluck('type');
+        } elseif ($selectedSiteId) {
+            $deviceIds = Device::whereHas('sites', function ($q) use ($selectedSiteId) {
+                $q->where('sites.id', $selectedSiteId)
+                  ->whereNull('site_devices.ended_at');
+            })->pluck('devices.id');
+            $scopedSensorTypes = Sensor::whereIn('device_id', $deviceIds)
+                ->distinct()
+                ->pluck('type');
+        } else {
+            $allSiteIds = $sites->pluck('id');
+            $deviceIds = Device::whereHas('sites', function ($q) use ($allSiteIds) {
+                $q->whereIn('sites.id', $allSiteIds)
+                  ->whereNull('site_devices.ended_at');
+            })->pluck('devices.id');
+            $scopedSensorTypes = Sensor::whereIn('device_id', $deviceIds)
+                ->distinct()
+                ->pluck('type');
+        }
+
+        $scopedSensorTypesArr = $scopedSensorTypes->map(fn($t) => strtolower($t))->toArray();
+
+        $activeSensorColumns = array_filter($sensorColumns, function($key) use ($scopedSensorTypesArr) {
+            return in_array(strtolower($key), $scopedSensorTypesArr);
+        }, ARRAY_FILTER_USE_KEY);
+
+        // Perform manual pagination on pivoted collection
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = (int) $request->input('per_page', 10);
+        if (!in_array($perPage, [10, 30, 50, 100])) {
+            $perPage = 10;
+        }
+
+        $currentItems = $pivotedData->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+        $pivotedDataPaginated = new LengthAwarePaginator(
+            $currentItems,
+            $pivotedData->count(),
+            $perPage,
+            $currentPage,
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'query' => $request->query()
+            ]
+        );
+
+        return view('data_monitoring.riwayat_data_sensor', [
+            'pivotedData' => $pivotedDataPaginated,
+            'sites' => $sites,
+            'devices' => $devices,
+            'selectedSiteId' => $selectedSiteId,
+            'selectedDeviceId' => $selectedDeviceId,
+            'activeSensorColumns' => $activeSensorColumns,
+            'perPage' => $perPage,
+        ]);
     }
 }

@@ -30,4 +30,20 @@ protected $fillable = [
     {
         return $this->hasMany(ActuatorLog::class);
     }
+
+    /**
+     * Relasi: Actuator memiliki banyak jadwal pakan.
+     */
+    public function feedSchedules(): HasMany
+    {
+        return $this->hasMany(FeedSchedule::class);
+    }
+
+    /**
+     * Relasi: Actuator memiliki banyak jadwal grow light.
+     */
+    public function growLightSchedules(): HasMany
+    {
+        return $this->hasMany(GrowLightSchedule::class);
+    }
 }

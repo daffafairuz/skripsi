@@ -20,6 +20,25 @@
             @method('PUT')
 
             <div class="mb-4">
+                <label for="actuator_id" class="block text-sm font-medium text-gray-700 mb-1">
+                    Pilih Feeder <span class="text-red-500">*</span>
+                </label>
+                <select name="actuator_id" id="actuator_id"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 @error('actuator_id') border-red-500 @enderror"
+                        required>
+                    <option value="">-- Pilih Feeder --</option>
+                    @foreach($feeders as $feeder)
+                        <option value="{{ $feeder->id }}" {{ old('actuator_id', $schedule->actuator_id) == $feeder->id ? 'selected' : '' }}>
+                            {{ $feeder->name }} ({{ $feeder->device->name ?? 'Tanpa Perangkat' }})
+                        </option>
+                    @endforeach
+                </select>
+                @error('actuator_id')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
                 <label for="time" class="block text-sm font-medium text-gray-700 mb-1">
                     Waktu Pemberian Pakan <span class="text-red-500">*</span>
                 </label>

@@ -27,6 +27,43 @@
     </div>
 </div>
 
+<!-- Success/Error Messages -->
+@if(session('success'))
+    <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if(isset($sites) && $sites->count() > 1)
+<div class="flex items-center gap-3 mb-6 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+    <form action="{{ route('jadwal-pakan.index') }}" method="GET" class="flex items-center gap-2 w-full md:w-auto">
+        <label for="site-select" class="text-xs font-semibold text-gray-400 uppercase tracking-wider whitespace-nowrap hidden sm:inline text-gray-500">Pilih Site:</label>
+        <div class="relative w-full md:w-64">
+            <select id="site-select" name="site_id" onchange="this.form.submit()" 
+                    class="w-full pl-4 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all appearance-none cursor-pointer">
+                <option value="">Semua Site</option>
+                @foreach($sites as $s)
+                    <option value="{{ $s->id }}" {{ $selectedSiteId == $s->id ? 'selected' : '' }}>
+                        {{ $s->name }}
+                    </option>
+                @endforeach
+            </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+    </form>
+</div>
+@endif
+
 <!-- Tabel Daftar Jadwal -->
 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
     <div class="overflow-x-auto">
@@ -34,6 +71,7 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Feeder (Perangkat)</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Mulai</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi (menit)</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Selesai</th>
@@ -44,6 +82,10 @@
                 @forelse($schedules as $index => $schedule)
                 <tr class="hover:bg-gray-50 transition">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $index + 1 }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <span class="font-medium text-gray-800">{{ $schedule->actuator->name ?? '-' }}</span>
+                        <span class="text-xs text-gray-400 block">{{ $schedule->actuator->device->name ?? '-' }}</span>
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}
                     </td>

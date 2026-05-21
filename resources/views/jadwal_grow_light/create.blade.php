@@ -40,6 +40,22 @@
         @csrf
         <div class="space-y-4">
             <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Pilih Grow Light <span class="text-red-500">*</span></label>
+                <select name="actuator_id" required
+                        class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition">
+                    <option value="">-- Pilih Grow Light --</option>
+                    @foreach($growLights as $growLight)
+                        <option value="{{ $growLight->id }}" {{ old('actuator_id') == $growLight->id ? 'selected' : '' }}>
+                            {{ $growLight->name }} ({{ $growLight->device->name ?? 'Tanpa Perangkat' }})
+                        </option>
+                    @endforeach
+                </select>
+                @error('actuator_id')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
                 <label class="block text-sm font-medium text-gray-600 mb-1">Start Time</label>
                 <input type="time" name="start_time" required
                        class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition"

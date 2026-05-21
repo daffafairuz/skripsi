@@ -16,7 +16,7 @@ class DeviceController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
 
@@ -48,15 +48,21 @@ class DeviceController extends Controller
         */
 
         $hasSite = $user->sites()->exists();
+        $sites = $user->sites;
+        $selectedSiteId = $request->query('site_id');
+
         $devices = $query
-            ->whereHas('sites', function ($q) use ($user) {
+            ->whereHas('sites', function ($q) use ($user, $selectedSiteId) {
                 $q->where('user_id', $user->id);
+                if ($selectedSiteId) {
+                    $q->where('sites.id', $selectedSiteId);
+                }
             })
             ->get();
 
         return view(
             'user.devices.index',
-            compact('devices', 'hasSite')
+            compact('devices', 'hasSite', 'sites', 'selectedSiteId')
         );
     }
 

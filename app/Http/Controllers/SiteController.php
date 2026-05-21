@@ -46,7 +46,6 @@ class SiteController extends Controller
         $site = Site::with([
             'devices.sensors',
             'devices.actuators',
-            'feedSchedules',
             'notifications'
         ])
         ->where('user_id', auth()->id())
@@ -139,8 +138,7 @@ class SiteController extends Controller
             'devices.actuators.logs' => function ($query) {
                 $query->latest();
             },
-            'notifications',
-            'feedSchedules'
+            'notifications'
         ]);
 
         return view(

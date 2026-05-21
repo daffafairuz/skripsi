@@ -13,6 +13,8 @@ class NotificationController extends Controller
         // ADMIN -> lihat semua notifikasi
         if ($user->role === 'admin') {
             $notifications = Notification::latest()->get();
+            // Mark all unread notifications as read
+            Notification::where('is_read', false)->update(['is_read' => true]);
         } else {
             // Ambil semua site milik user
             $siteIds = $user->sites->pluck('id');
@@ -20,6 +22,10 @@ class NotificationController extends Controller
             $notifications = Notification::whereIn('site_id', $siteIds)
                 ->latest()
                 ->get();
+            // Mark all user's site unread notifications as read
+            Notification::whereIn('site_id', $siteIds)
+                ->where('is_read', false)
+                ->update(['is_read' => true]);
         }
         return view('notification', compact('notifications'));
     }
