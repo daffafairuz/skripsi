@@ -20,7 +20,7 @@ actuators:[]
 }">
 
 <!-- HEADER -->
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
     <div>
 
@@ -64,7 +64,7 @@ actuators:[]
 
 <!-- TABLE -->
 
-<div class="bg-white rounded-2xl shadow overflow-hidden">
+<div class="bg-white rounded-2xl shadow overflow-x-auto">
 
 <table class="w-full">
 

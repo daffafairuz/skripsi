@@ -18,7 +18,7 @@
 }" class="relative">
 
 <!-- HEADER -->
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
     <div>
         <h1 class="text-2xl font-bold">Daftar Aktuator</h1>
@@ -60,7 +60,7 @@
 @endif
 
 <!-- TABLE -->
-<div class="bg-white rounded-2xl shadow overflow-hidden">
+<div class="bg-white rounded-2xl shadow overflow-x-auto">
 
     <table class="w-full">
         <thead class="bg-gray-100">
@@ -142,9 +142,9 @@
 <div
     x-show="openCreate"
     x-transition
-    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
 
-    <div class="bg-white rounded-2xl p-6 w-full max-w-xl">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
 
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-bold">Tambah Aktuator</h2>
@@ -198,9 +198,9 @@
 <div
     x-show="openEdit"
     x-transition
-    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
 
-    <div class="bg-white rounded-2xl p-6 w-full max-w-xl">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
 
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-bold">Edit Aktuator</h2>

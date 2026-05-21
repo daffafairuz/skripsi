@@ -6,7 +6,7 @@
 
 <!-- HEADER -->
 
-<div class="flex justify-between items-center mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
     <div>
 
@@ -79,7 +79,7 @@ Aktif
 
 
 
-<div class="grid grid-cols-4 gap-6 mt-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
 
 <div>
 

@@ -4,7 +4,7 @@
 
 <!-- HEADER -->
 
-<div class="flex justify-between items-center mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
     <div>
 
@@ -159,7 +159,7 @@
 
 <!-- DEVICE LIST -->
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 @foreach($devices as $device)
 

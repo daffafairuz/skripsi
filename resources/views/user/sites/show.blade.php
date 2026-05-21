@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- HEADER -->
-<div class="flex justify-between items-center mb-8">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
 
     <div>
         <h1 class="text-3xl font-bold">

@@ -26,7 +26,7 @@
 <!-- Container -->
 <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
 
-    <div class="overflow-y-auto max-h-[600px]">
+    <div class="overflow-x-auto overflow-y-auto max-h-[600px]">
 
         <table class="w-full text-left">
 

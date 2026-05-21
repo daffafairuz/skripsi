@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- HEADER -->
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
     <div>
         <h1 class="text-2xl font-bold">Sites</h1>
@@ -70,7 +70,7 @@
 
         <div class="border rounded-xl p-5 hover:bg-gray-50 transition">
 
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
 
                 <!-- LEFT -->
                 <div class="flex items-center gap-4">
@@ -161,7 +161,7 @@
 {{-- ================= USER ================= --}}
 @else
 
-<div class="grid grid-cols-2 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
     @foreach($sites as $site)
 

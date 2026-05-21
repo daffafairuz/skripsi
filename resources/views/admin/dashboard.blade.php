@@ -15,7 +15,7 @@
     </div>
 
     <!-- STATS KPI GRID -->
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         
         <!-- KPI 1: SITES -->
         <div class="bg-white p-5 rounded-3xl border border-gray-100/80 shadow-sm flex items-center gap-4 hover:shadow-md transition duration-300">

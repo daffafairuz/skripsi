@@ -57,7 +57,7 @@
 
                 </h3>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                     <div>
 
@@ -155,7 +155,7 @@
 
                     <div class="border rounded-xl p-4 mb-3">
 
-                        <div class="grid grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
                             <input
                                 :name="'sensors['+index+'][name]'"
@@ -249,7 +249,7 @@
 
                     <div class="border rounded-xl p-4 mb-3">
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                             <input
                                 :name="'actuators['+index+'][name]'"

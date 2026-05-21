@@ -4,7 +4,7 @@
 
 <!-- HEADER -->
 
-<div class="flex justify-between items-center mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
 <div>
 
@@ -137,7 +137,7 @@ Aktif
 
 <!-- OVERVIEW -->
 
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
 
     <div class="bg-white rounded-2xl shadow p-5">
 
@@ -209,7 +209,7 @@ Aktif
     </div>
 
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
 
     @php
         $hasSensor=false;

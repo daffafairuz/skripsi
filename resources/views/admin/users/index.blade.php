@@ -21,7 +21,7 @@
 class="relative">
 
 <!-- HEADER -->
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
     <div>
         <h1 class="text-2xl font-bold">
@@ -49,7 +49,7 @@ class="relative">
 </div>
 
 <!-- TABLE -->
-<div class="bg-white rounded-2xl shadow overflow-hidden">
+<div class="bg-white rounded-2xl shadow overflow-x-auto">
 
     <table class="w-full">
 
@@ -175,9 +175,9 @@ class="relative">
 <div
     x-show="openCreate"
     x-transition
-    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
 
-    <div class="bg-white rounded-2xl p-6 w-full max-w-xl">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
 
         <div class="flex items-center justify-between mb-6">
 
@@ -256,9 +256,9 @@ class="relative">
 <div
     x-show="openEdit"
     x-transition
-    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
 
-    <div class="bg-white rounded-2xl p-6 w-full max-w-xl">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
 
         <div class="flex items-center justify-between mb-6">
 

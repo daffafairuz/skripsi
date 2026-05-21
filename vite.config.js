@@ -10,4 +10,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: '0.0.0.0', // Memungkinkan akses dari network luar
+        hmr: {
+            host: 'https://glummest-dangelo-politely.ngrok-free.dev',
+            protocol: 'wss',
+        },
+    },
 });

@@ -1,11 +1,11 @@
 <div
 x-show="openCreate"
 x-transition
-class="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4"
 style="display:none">
 
 <div
-class="bg-white rounded-2xl shadow w-full max-w-xl p-6">
+class="bg-white rounded-2xl shadow w-full max-w-xl p-6 max-h-[90vh] overflow-y-auto">
 
 <h2 class="text-xl font-bold mb-6">
 

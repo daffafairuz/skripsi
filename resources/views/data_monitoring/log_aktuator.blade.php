@@ -128,7 +128,7 @@
     </div>
 
     <!-- Table Area -->
-    <div class="overflow-y-auto max-h-[600px] border-t border-gray-50 scrollbar-thin scrollbar-thumb-gray-200">
+    <div class="overflow-x-auto overflow-y-auto max-h-[600px] border-t border-gray-50 scrollbar-thin scrollbar-thumb-gray-200">
         <table class="w-full text-left border-separate border-spacing-0">
             <thead class="sticky top-0 bg-white/95 backdrop-blur-md z-10 shadow-sm">
                 <tr class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.1em]">

@@ -6,37 +6,46 @@
 <div class="space-y-6 max-w-7xl mx-auto pb-12">
 
     <!-- HEADER & SITE SELECTOR -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-3xl border border-gray-100/80 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white p-6 rounded-3xl border border-gray-100/80 shadow-sm">
+    
+    <!-- Kolom Kiri: Judul dan Selector (Jika ada Site) -->
+    <div class="space-y-5 w-full md:w-auto">
         <div>
             <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">Dashboard Pemantauan</h1>
             <p class="text-sm text-gray-500 mt-1">Pantau kondisi ekosistem akuaponik Anda secara real-time</p>
         </div>
 
         @if($hasSite)
-            <div class="flex items-center gap-3 w-full md:w-auto">
-                <form action="{{ url('/dashboard') }}" method="GET" class="flex items-center gap-2 w-full md:w-auto">
-                    <label for="site-select" class="text-xs font-semibold text-gray-400 uppercase tracking-wider whitespace-nowrap hidden sm:inline">Pilih Site:</label>
-                    <div class="relative w-full md:w-64">
-                        <select id="site-select" name="site_id" onchange="this.form.submit()" 
-                                class="w-full pl-4 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all appearance-none cursor-pointer">
-                            @foreach($sites as $s)
-                                <option value="{{ $s->id }}" {{ $site && $site->id === $s->id ? 'selected' : '' }}>
-                                    {{ $s->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
+            <form action="{{ url('/dashboard') }}" method="GET" class="flex items-center gap-2 w-full md:w-auto">
+                <label for="site-select" class="text-xs font-semibold text-gray-400 uppercase tracking-wider whitespace-nowrap">Pilih Site:</label>
+                <div class="relative w-full md:w-64">
+                    <select id="site-select" name="site_id" onchange="this.form.submit()" 
+                            class="w-full pl-4 pr-10 py-2 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all appearance-none cursor-pointer">
+                        @foreach($sites as $s)
+                            <option value="{{ $s->id }}" {{ $site && $site->id === $s->id ? 'selected' : '' }}>
+                                {{ $s->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+        @endif
+    </div>
+
+    <!-- Kolom Kanan: User Card -->
+    <div class="w-full md:w-auto flex justify-end">
+        @if($hasSite)
+            @include('layouts.user-card', ['subtitle' => 'Dashboard'])
         @else
             @include('layouts.user-card', ['subtitle' => 'No Site Connected'])
         @endif
     </div>
+</div>
 
     @if(!$hasSite)
         <!-- EMPTY STATE (NO SITES) -->
@@ -60,7 +69,7 @@
     @else
 
         <!-- STATS KPI GRID -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
             <!-- STATS 1: DEVICES -->
             <div class="bg-white p-5 rounded-3xl border border-gray-100/80 shadow-sm flex items-center gap-4 hover:shadow-md transition duration-300">

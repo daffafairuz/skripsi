@@ -4,7 +4,7 @@
 
 <div class="max-w-4xl mx-auto">
 
-<div class="flex justify-between items-center mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 
 <div>
 
