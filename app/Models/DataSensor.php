@@ -13,7 +13,8 @@ class DataSensor extends Model
     protected $fillable = [
         'sensor_id',
         'value',
-        'created_at_ts'
+        'created_at',
+        'updated_at'
     ];
     /**
      * Relasi: DataSensor ini dimiliki oleh (belongsTo) satu Sensor.

@@ -17,3 +17,10 @@ Route::prefix('sensors')->group(function () {
     Route::post('/', [SensorDataController::class, 'store']);
     Route::get('/', [SensorDataController::class, 'index']);  
 });
+
+use App\Http\Controllers\NotificationController;
+
+Route::post(
+    '/sensor-alert',
+    [NotificationController::class,'sensorAlert']
+);

@@ -130,3 +130,21 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', fn() => redirect('/login'));
+
+use App\Models\Notification;
+use App\Mail\NotificationMail;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/test-email', function () {
+
+    $notification = new Notification([
+        'message' => 'Ini email percobaan Smart Aquaponic',
+        'type' => 'info',
+        'is_read' => false
+    ]);
+
+    Mail::to('bima4453@gmail.com')
+        ->send(new NotificationMail($notification));
+
+    return 'Email berhasil dikirim';
+});
