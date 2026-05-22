@@ -8,6 +8,7 @@ use App\Models\Actuator;
 use App\Models\Site;
 use App\Models\Device;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ActuatorLogController extends Controller
 {
@@ -237,5 +238,136 @@ class ActuatorLogController extends Controller
             'activeTab',
             'perPage'
         ));
+    }
+
+    public function exportCsv(Request $request): StreamedResponse
+    {
+        $user = Auth::user();
+
+        // 1. Get sites (same logic as index)
+        if ($user->role === 'admin') {
+            $sites = Site::latest()->get();
+        } else {
+            $sites = $user->sites;
+        }
+
+        if ($sites->isEmpty()) {
+            return response()->streamDownload(function () {
+                echo "Tidak ada data";
+            }, 'actuator_log_kosong.csv');
+        }
+
+        $selectedSiteId = $request->input('site_id');
+        $selectedDeviceId = $request->input('device_id');
+
+        if ($selectedSiteId && !$sites->contains('id', $selectedSiteId)) {
+            $selectedSiteId = null;
+        }
+
+        if ($selectedSiteId) {
+            $devices = Device::whereHas('sites', function ($q) use ($selectedSiteId) {
+                $q->where('sites.id', $selectedSiteId)
+                  ->whereNull('site_devices.ended_at');
+            })->get();
+        } else {
+            $allSiteIds = $sites->pluck('id');
+            $devices = Device::whereHas('sites', function ($q) use ($allSiteIds) {
+                $q->whereIn('sites.id', $allSiteIds)
+                  ->whereNull('site_devices.ended_at');
+            })->get();
+        }
+
+        if ($selectedDeviceId && !$devices->contains('id', $selectedDeviceId)) {
+            $selectedDeviceId = null;
+        }
+
+        // Build log query
+        $query = ActuatorLog::with('actuator.device');
+
+        if ($selectedDeviceId) {
+            $actuatorIds = Actuator::where('device_id', $selectedDeviceId)->pluck('id');
+            $query->whereIn('actuator_id', $actuatorIds);
+        } elseif ($selectedSiteId) {
+            $deviceIds = Device::whereHas('sites', function ($q) use ($selectedSiteId) {
+                $q->where('sites.id', $selectedSiteId)
+                  ->whereNull('site_devices.ended_at');
+            })->pluck('devices.id');
+            $actuatorIds = Actuator::whereIn('device_id', $deviceIds)->pluck('id');
+            $query->whereIn('actuator_id', $actuatorIds);
+        } else {
+            if ($user->role !== 'admin') {
+                $allSiteIds = $sites->pluck('id');
+                $deviceIds = Device::whereHas('sites', function ($q) use ($allSiteIds) {
+                    $q->whereIn('sites.id', $allSiteIds)
+                      ->whereNull('site_devices.ended_at');
+                })->pluck('devices.id');
+                $actuatorIds = Actuator::whereIn('device_id', $deviceIds)->pluck('id');
+                $query->whereIn('actuator_id', $actuatorIds);
+            }
+        }
+
+        // Tab filter
+        $activeTab = $request->input('tab', 'all');
+        if ($activeTab !== 'all') {
+            $query->whereHas('actuator', function ($q) use ($activeTab) {
+                if ($activeTab === 'waterpump') {
+                    $q->where(fn($sq) => $sq->where('type', 'like', '%pump%')->orWhere('type', 'like', '%pompa%'));
+                } elseif ($activeTab === 'growlight') {
+                    $q->where(fn($sq) => $sq->where('type', 'like', '%light%')->orWhere('type', 'like', '%grow%'));
+                } elseif ($activeTab === 'aerator') {
+                    $q->where(fn($sq) => $sq->where('type', 'like', '%aerator%')->orWhere('type', 'like', '%aera%'));
+                } elseif ($activeTab === 'feeder') {
+                    $q->where(fn($sq) => $sq->where('type', 'like', '%feeder%')->orWhere('type', 'like', '%feed%'));
+                } else {
+                    $q->where(fn($sq) => $sq->where('type', 'not like', '%pump%')
+                        ->where('type', 'not like', '%pompa%')
+                        ->where('type', 'not like', '%light%')
+                        ->where('type', 'not like', '%grow%')
+                        ->where('type', 'not like', '%aerator%')
+                        ->where('type', 'not like', '%aera%')
+                        ->where('type', 'not like', '%feeder%')
+                        ->where('type', 'not like', '%feed%')
+                    );
+                }
+            });
+        }
+
+        $logs = $query->latest()->get();
+
+        $filename = 'laporan_aktuator_log_' . now()->format('Y-m-d_His') . '.csv';
+
+        return response()->streamDownload(function () use ($logs) {
+            $handle = fopen('php://output', 'w');
+
+            // BOM for Excel UTF-8 compatibility
+            fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+            // Header row
+            fputcsv($handle, [
+                'No',
+                'Waktu',
+                'Nama Aktuator',
+                'Tipe Aktuator',
+                'Status',
+                'Metode Kontrol',
+                'Device',
+            ]);
+
+            foreach ($logs as $index => $log) {
+                fputcsv($handle, [
+                    $index + 1,
+                    $log->created_at->format('d/m/Y H:i:s'),
+                    $log->actuator->name ?? '-',
+                    $log->actuator->type ?? '-',
+                    strtoupper($log->action),
+                    $log->triggered_by === 'manual' ? 'Manual' : 'Auto-Sensor',
+                    $log->actuator->device->name ?? '-',
+                ]);
+            }
+
+            fclose($handle);
+        }, $filename, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
     }
 }

@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Actuator Log (Data Monitoring)
     Route::get('/actuator-log', [ActuatorLogController::class, 'index'])->name('actuator-log');
+    Route::get('/actuator-log/export-csv', [ActuatorLogController::class, 'exportCsv'])->name('actuator-log.export-csv');
 
     // Grow Light Schedule
     Route::prefix('growlight')->group(function () {
@@ -66,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Data Sensor (Data Monitoring)
     Route::get('/data-sensor', [DataSensorController::class, 'index'])->name('data-sensor');
+    Route::get('/data-sensor/export-csv', [DataSensorController::class, 'exportCsv'])->name('data-sensor.export-csv');
 
     // Grow Light Schedule (alias)
     Route::get('/jadwal-grow-light', [GrowLightScheduleController::class, 'index'])->name('grow-light-schedule');
