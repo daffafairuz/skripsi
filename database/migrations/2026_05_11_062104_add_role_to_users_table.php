@@ -13,17 +13,23 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
 
-            $table->string('phone_number')
-                ->nullable()
-                ->after('email');
+            if (!Schema::hasColumn('users', 'phone_number')) {
+                $table->string('phone_number')
+                    ->nullable()
+                    ->after('email');
+            }
 
-            $table->enum('role', ['admin', 'user'])
-                ->default('user')
-                ->after('phone_number');
+            if (!Schema::hasColumn('users', 'role')) {
+                $table->enum('role', ['admin', 'user'])
+                    ->default('user')
+                    ->after('phone_number');
+            }
 
-            $table->enum('status', ['active', 'inactive'])
-                ->default('active')
-                ->after('role');
+            if (!Schema::hasColumn('users', 'status')) {
+                $table->enum('status', ['active', 'inactive'])
+                    ->default('active')
+                    ->after('role');
+            }
 
         });
     }
