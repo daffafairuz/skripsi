@@ -89,6 +89,10 @@ Actuator
 </th>
 
 <th class="p-4 text-left">
+Site
+</th>
+
+<th class="p-4 text-left">
 Status
 </th>
 
@@ -103,6 +107,10 @@ Action
 <tbody>
 
 @foreach($devices as $device)
+
+@php
+    $activeSite = $device->sites->first();
+@endphp
 
 <tr class="border-t hover:bg-gray-50">
 
@@ -123,6 +131,81 @@ Action
 </p>
 
 </div>
+
+</td>
+
+<td class="p-4 min-w-[260px]">
+
+@if($activeSite)
+
+<div class="space-y-2">
+
+<div>
+
+<p class="font-semibold text-sm">
+{{ $activeSite->name }}
+</p>
+
+<p class="text-xs text-gray-500">
+{{ $activeSite->user->name ?? 'Owner tidak diketahui' }}
+</p>
+
+</div>
+
+<form
+action="{{ route('sites.devices.destroy', [$activeSite->id, $device->id]) }}"
+method="POST"
+onsubmit="return confirm('Copot device ini dari site?')">
+
+@csrf
+@method('DELETE')
+
+<button
+class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-semibold">
+Copot dari Site
+</button>
+
+</form>
+
+</div>
+
+@else
+
+<form
+action="{{ route('site-devices.store') }}"
+method="POST"
+class="flex flex-col gap-2">
+
+@csrf
+
+<input type="hidden" name="device_id" value="{{ $device->id }}">
+
+<select
+name="site_id"
+class="border border-gray-200 rounded-xl px-3 py-2 text-sm bg-white">
+
+<option value="">
+Pilih Site
+</option>
+
+@foreach($sites as $site)
+
+<option value="{{ $site->id }}">
+{{ $site->name }} - {{ $site->user->name ?? 'Owner' }}
+</option>
+
+@endforeach
+
+</select>
+
+<button
+class="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">
+Hubungkan
+</button>
+
+</form>
+
+@endif
 
 </td>
 

@@ -23,7 +23,10 @@ class DeviceController extends Controller
         $query = Device::with([
             'sensors',
             'actuators',
-            'sites'
+            'sites' => function ($q) {
+                $q->whereNull('site_devices.ended_at');
+            },
+            'sites.user',
         ]);
 
         /*
@@ -34,10 +37,11 @@ class DeviceController extends Controller
 
         if ($user->role == 'admin') {
             $devices = $query->get();
+            $sites = Site::with('user')->latest()->get();
 
             return view(
                 'admin.devices.index',
-                compact('devices')
+                compact('devices', 'sites')
             );
         }
 
@@ -53,7 +57,8 @@ class DeviceController extends Controller
 
         $devices = $query
             ->whereHas('sites', function ($q) use ($user, $selectedSiteId) {
-                $q->where('user_id', $user->id);
+                $q->where('user_id', $user->id)
+                    ->whereNull('site_devices.ended_at');
                 if ($selectedSiteId) {
                     $q->where('sites.id', $selectedSiteId);
                 }

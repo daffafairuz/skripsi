@@ -39,7 +39,7 @@ method="POST">
 
 <div class="space-y-4">
 
-@foreach($devices as $device)
+@forelse($devices as $device)
 
 <label
 class="bg-white rounded-xl shadow p-5 flex justify-between items-center cursor-pointer">
@@ -70,7 +70,21 @@ class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">
 
 </span>
 
-@endforeach
+@empty
+
+<div class="bg-white rounded-xl shadow p-8 text-center">
+
+<p class="font-semibold text-gray-700">
+Tidak ada device tersedia
+</p>
+
+<p class="text-sm text-gray-500 mt-2">
+Semua device sudah terhubung atau belum ada device yang siap dipakai.
+</p>
+
+</div>
+
+@endforelse
 
 </div>
 
@@ -109,6 +123,7 @@ class="w-5 h-5">
 <div class="flex justify-end mt-6">
 
 <button
+@if($devices->isEmpty()) disabled @endif
 class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl">
 
 Hubungkan Device

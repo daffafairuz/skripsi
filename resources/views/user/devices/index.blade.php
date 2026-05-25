@@ -96,6 +96,15 @@
 
 @else
 
+@php
+    $selectedSiteForAction = null;
+    if ($selectedSiteId) {
+        $selectedSiteForAction = $sites->firstWhere('id', (int) $selectedSiteId);
+    } elseif ($sites->count() === 1) {
+        $selectedSiteForAction = $sites->first();
+    }
+@endphp
+
 @if($hasSite && $sites->count() > 1)
 <div class="flex items-center gap-3 mb-6 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
     <form action="{{ route('devices.index') }}" method="GET" class="flex items-center gap-2 w-full md:w-auto">
@@ -119,6 +128,32 @@
     </form>
 </div>
 @endif
+
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+    <div>
+        <h2 class="text-lg font-bold text-gray-800">
+            Device Terhubung
+        </h2>
+        <p class="text-sm text-gray-500">
+            Hubungkan atau copot device pada site Anda
+        </p>
+    </div>
+
+    @if($selectedSiteForAction)
+        <a
+            href="{{ route('sites.devices.create', $selectedSiteForAction->id) }}"
+            class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-xl font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+            </svg>
+            Tambah Device
+        </a>
+    @else
+        <div class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gray-100 text-gray-500 text-sm font-semibold">
+            Pilih site untuk tambah device
+        </div>
+    @endif
+</div>
 
 @if($devices->count()==0)
 
@@ -146,12 +181,20 @@
 
     </h2>
 
-    <p class="text-gray-500">
+    <p class="text-gray-500 mb-6">
 
         Belum ada device
         yang terhubung ke site Anda.
 
     </p>
+
+    @if($selectedSiteForAction)
+        <a
+            href="{{ route('sites.devices.create', $selectedSiteForAction->id) }}"
+            class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-xl font-semibold">
+            Tambah Device
+        </a>
+    @endif
 
 </div>
 
@@ -162,6 +205,10 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 @foreach($devices as $device)
+
+@php
+    $activeSite = $device->sites->first();
+@endphp
 
 <div class="bg-white rounded-2xl shadow p-6">
 
@@ -265,6 +312,24 @@
         </div>
 
     </div>
+
+    @if($activeSite)
+        <form
+            action="{{ route('sites.devices.destroy', [$activeSite->id, $device->id]) }}"
+            method="POST"
+            class="mt-5 pt-5 border-t border-gray-100"
+            onsubmit="return confirm('Copot device ini dari site?')">
+
+            @csrf
+            @method('DELETE')
+
+            <button
+                class="w-full bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-xl text-sm font-semibold">
+                Copot Device
+            </button>
+
+        </form>
+    @endif
 
 </div>
 

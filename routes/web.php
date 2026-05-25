@@ -117,6 +117,8 @@ Route::middleware(['auth'])->group(function () {
     // Site Devices
     Route::get('/sites/{site}/devices/create', [SiteDeviceController::class, 'create'])->name('sites.devices.create');
     Route::post('/sites/{site}/devices', [SiteDeviceController::class, 'store'])->name('sites.devices.store');
+    Route::post('/site-devices', [SiteDeviceController::class, 'attach'])->name('site-devices.store');
+    Route::delete('/sites/{site}/devices/{device}', [SiteDeviceController::class, 'destroy'])->name('sites.devices.destroy');
 
     // Actuator Toggle (from bima_view)
     Route::post('/actuator/{actuator}/toggle', [ActuatorController::class, 'toggle'])->name('actuator.toggle');
