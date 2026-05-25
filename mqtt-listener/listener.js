@@ -10,9 +10,9 @@ const axios = require('axios');
 const db = mysql.createConnection({
 
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'skripsi_daffa'
+    user: 'smartaqu_skripsi_user',
+    password: 'skripsi1234?',
+    database: 'smartaqu_skripsi_db'
 
 });
 

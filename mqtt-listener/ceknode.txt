@@ -1,0 +1,1 @@
+smartaqu  125424  0.0  0.0 221944  1096 pts/6    S+   15:33   0:00 grep --color=auto node
