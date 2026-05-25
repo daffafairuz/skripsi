@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -57,8 +58,8 @@ class User extends Authenticatable
         return $this->hasOne(Site::class);
     }
 
-    public function notifications()
+    public function notifications(): HasManyThrough
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasManyThrough(Notification::class, Site::class);
     }
 }

@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'sensor_alert' => [
+        'secret' => env('SENSOR_ALERT_SECRET'),
+    ],
+
 ];

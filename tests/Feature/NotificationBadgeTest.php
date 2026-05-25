@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use App\Models\Site;
+use App\Mail\NotificationMail;
 use App\Models\Notification;
+use App\Models\Site;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class NotificationBadgeTest extends TestCase
@@ -13,8 +15,11 @@ class NotificationBadgeTest extends TestCase
     use RefreshDatabase;
 
     private $user;
+
     private $admin;
+
     private $site1;
+
     private $site2;
 
     protected function setUp(): void
@@ -23,12 +28,12 @@ class NotificationBadgeTest extends TestCase
 
         // Create standard user
         $this->user = User::factory()->create([
-            'role' => 'user'
+            'role' => 'user',
         ]);
 
         // Create admin user
         $this->admin = User::factory()->create([
-            'role' => 'admin'
+            'role' => 'admin',
         ]);
 
         // Create site belonging to $this->user
@@ -92,7 +97,7 @@ class NotificationBadgeTest extends TestCase
         for ($i = 0; $i < 9; $i++) {
             Notification::create([
                 'site_id' => $this->site1->id,
-                'message' => 'Notification ' . ($i + 2),
+                'message' => 'Notification '.($i + 2),
                 'is_read' => false,
                 'type' => 'info',
             ]);
@@ -145,5 +150,79 @@ class NotificationBadgeTest extends TestCase
 
         // Verify all notifications in DB are now marked as read
         $this->assertEquals(0, Notification::where('is_read', false)->count());
+    }
+
+    public function test_sensor_alert_endpoint_rejects_requests_without_secret()
+    {
+        $response = $this->postJson('/api/sensor-alert', [
+            'site_id' => $this->site1->id,
+            'message' => 'pH abnormal (9.2)',
+        ]);
+
+        $response->assertStatus(403);
+        $this->assertDatabaseMissing('notifications', [
+            'site_id' => $this->site1->id,
+            'message' => 'pH abnormal (9.2)',
+        ]);
+    }
+
+    public function test_sensor_alert_endpoint_creates_notification_with_valid_secret()
+    {
+        Mail::fake();
+
+        $response = $this
+            ->withHeader('X-Sensor-Alert-Secret', config('services.sensor_alert.secret'))
+            ->postJson('/api/sensor-alert', [
+                'site_id' => $this->site1->id,
+                'message' => 'pH abnormal (9.2)',
+                'type' => 'alert',
+        ]);
+
+        $response->assertOk();
+        $response->assertJson([
+            'created' => true,
+        ]);
+
+        $this->assertDatabaseHas('notifications', [
+            'site_id' => $this->site1->id,
+            'message' => 'pH abnormal (9.2)',
+            'type' => 'alert',
+            'is_read' => false,
+        ]);
+
+        Mail::assertSent(NotificationMail::class);
+    }
+
+    public function test_sensor_alert_endpoint_does_not_duplicate_recent_notifications()
+    {
+        Mail::fake();
+
+        Notification::create([
+            'site_id' => $this->site1->id,
+            'message' => 'Temperature abnormal (40C)',
+            'is_read' => false,
+            'type' => 'warning',
+        ]);
+
+        $response = $this
+            ->withHeader('X-Sensor-Alert-Secret', config('services.sensor_alert.secret'))
+            ->postJson('/api/sensor-alert', [
+                'site_id' => $this->site1->id,
+                'message' => 'Temperature abnormal (40C)',
+        ]);
+
+        $response->assertOk();
+        $response->assertJson([
+            'created' => false,
+        ]);
+
+        $this->assertEquals(
+            1,
+            Notification::where('site_id', $this->site1->id)
+                ->where('message', 'Temperature abnormal (40C)')
+                ->count()
+        );
+
+        Mail::assertNothingSent();
     }
 }
