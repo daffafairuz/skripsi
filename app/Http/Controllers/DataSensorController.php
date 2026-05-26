@@ -118,6 +118,7 @@ class DataSensorController extends Controller
             if (!isset($tempGroups[$groupKey])) {
                 $tempGroups[$groupKey] = [
                     'waktu' => $timeKey,
+                    'device_id' => $device->id,
                     'device_name' => $device->name, // Slave ESP32
                     'site_name' => $site ? $site->name : '-', // Master ESP32
                     'values' => [
@@ -356,6 +357,7 @@ class DataSensorController extends Controller
             if (!isset($tempGroups[$groupKey])) {
                 $tempGroups[$groupKey] = [
                     'waktu' => $timeKey,
+                    'device_id' => $device->id,
                     'device_name' => $device->name,
                     'site_name' => $site ? $site->name : '-',
                     'values' => [

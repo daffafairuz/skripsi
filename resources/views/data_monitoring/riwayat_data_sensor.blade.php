@@ -172,7 +172,14 @@
                     <!-- Slave Device and Site (Master) Relationship -->
                     <td class="py-3 px-5 border-b border-gray-100/50">
                         <div class="flex flex-col">
-                            <span class="text-gray-800 font-semibold text-[11px]">{{ $row['device_name'] }}</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-800 font-semibold text-[11px]">{{ $row['device_name'] }}</span>
+                                @if(isset($row['device_id']))
+                                <a href="{{ route('sensors.device', $row['device_id']) }}" class="text-[9px] font-bold text-emerald-600 bg-emerald-50 hover:bg-emerald-100 px-2 py-0.5 rounded-md transition duration-150 shadow-sm" title="Lihat Grafik Telemetri">
+                                    Grafik
+                                </a>
+                                @endif
+                            </div>
                             <span class="text-[10px] text-gray-400 flex items-center gap-1 mt-0.5">
                                 <svg class="w-3 h-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>

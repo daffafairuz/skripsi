@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/sensors', [SensorController::class, 'store']);
         Route::put('/sensors/{sensor}', [SensorController::class, 'update']);
         Route::delete('/sensors/{sensor}', [SensorController::class, 'destroy']);
+        Route::put('/sensors/{sensor}/threshold', [SensorController::class, 'updateThreshold'])->name('sensors.update-threshold');
 
         // Actuators CRUD
         Route::get('/actuators', [ActuatorController::class, 'index']);

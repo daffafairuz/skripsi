@@ -16302,3 +16302,593 @@ abnormal
 [2026-05-26T09:07:08.544Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
 [2026-05-26T09:07:28.663Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:03/config
 [2026-05-26T09:12:07.330Z] Heartbeat alive
+[2026-05-26T09:32:07.362Z] Heartbeat alive
+[2026-05-26T09:37:07.370Z] Heartbeat alive
+[2026-05-26T09:42:07.370Z] Heartbeat alive
+[2026-05-26T09:47:07.377Z] Heartbeat alive
+[2026-05-26T09:52:07.383Z] Heartbeat alive
+[2026-05-26T09:57:07.396Z] Heartbeat alive
+[2026-05-26T10:02:07.409Z] Heartbeat alive
+[2026-05-26T10:07:07.422Z] Heartbeat alive
+[2026-05-26T10:12:07.423Z] Heartbeat alive
+[2026-05-26T10:17:07.436Z] Heartbeat alive
+[2026-05-26T10:22:07.445Z] Heartbeat alive
+[2026-05-26T10:27:07.452Z] Heartbeat alive
+[2026-05-26T10:32:07.456Z] Heartbeat alive
+[2026-05-26T10:47:11.974Z] Heartbeat alive
+[2026-05-26T10:47:42.060Z] MQTT Error:
+Keepalive timeout
+[2026-05-26T10:47:42.090Z] MQTT Offline
+[2026-05-26T10:47:42.147Z] MQTT Closed
+[2026-05-26T10:47:47.108Z] MQTT Reconnecting...
+[2026-05-26T10:47:48.423Z] MQTT Connected
+[2026-05-26T10:47:48.423Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-26T10:52:11.979Z] Heartbeat alive
+[2026-05-26T10:55:26.113Z] Topic: aquaponic/device/data
+[2026-05-26T10:55:26.119Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":-999,"ntu":300}}
+[2026-05-26T10:55:26.324Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T10:57:11.980Z] Heartbeat alive
+[2026-05-26T11:00:28.104Z] Topic: aquaponic/device/data
+[2026-05-26T11:00:28.105Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":-999,"ntu":300}}
+[2026-05-26T11:00:28.142Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:02:11.990Z] Heartbeat alive
+[2026-05-26T11:05:34.383Z] Topic: aquaponic/device/data
+[2026-05-26T11:05:34.384Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":-999,"ntu":300}}
+[2026-05-26T11:05:34.403Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:07:12.005Z] Heartbeat alive
+[2026-05-26T11:08:03.296Z] Topic: aquaponic/device/data
+[2026-05-26T11:08:03.297Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":-999,"ntu":128.92}}
+[2026-05-26T11:08:03.310Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:12:12.011Z] Heartbeat alive
+[2026-05-26T11:17:12.021Z] Heartbeat alive
+[2026-05-26T11:22:12.022Z] Heartbeat alive
+[2026-05-26T11:22:31.274Z] Topic: aquaponic/device/data
+[2026-05-26T11:22:31.276Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":30.69,"ntu":300}}
+[2026-05-26T11:22:31.308Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:22:45.981Z] Topic: aquaponic/device/data
+[2026-05-26T11:22:45.982Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":-999,"ntu":300}}
+[2026-05-26T11:22:45.997Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:27:11.981Z] Topic: aquaponic/device/data
+[2026-05-26T11:27:11.981Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":2.56,"temp":29.75,"ntu":300}}
+[2026-05-26T11:27:12.001Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:27:12.023Z] Heartbeat alive
+[2026-05-26T11:32:12.038Z] Heartbeat alive
+[2026-05-26T11:37:12.045Z] Heartbeat alive
+[2026-05-26T11:42:12.055Z] Heartbeat alive
+[2026-05-26T11:47:12.056Z] Heartbeat alive
+[2026-05-26T11:52:12.061Z] Heartbeat alive
+[2026-05-26T11:53:15.553Z] Topic: aquaponic/device/data
+[2026-05-26T11:53:15.555Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.5,"temp":30.12,"ntu":300}}
+[2026-05-26T11:53:15.621Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T11:57:12.064Z] Heartbeat alive
+[2026-05-26T11:58:18.270Z] Topic: aquaponic/device/data
+[2026-05-26T11:58:18.271Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.26,"temp":29.94,"ntu":300}}
+[2026-05-26T11:58:18.292Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:02:12.071Z] Heartbeat alive
+[2026-05-26T12:03:21.091Z] Topic: aquaponic/device/data
+[2026-05-26T12:03:21.097Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.49,"temp":29.94,"ntu":300}}
+[2026-05-26T12:03:21.113Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:07:12.084Z] Heartbeat alive
+[2026-05-26T12:08:23.880Z] Topic: aquaponic/device/data
+[2026-05-26T12:08:23.881Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":9.03,"temp":29.87,"ntu":300}}
+[2026-05-26T12:08:23.896Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:12:12.098Z] Heartbeat alive
+[2026-05-26T12:13:26.679Z] Topic: aquaponic/device/data
+[2026-05-26T12:13:26.682Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.99,"temp":29.87,"ntu":300}}
+[2026-05-26T12:13:26.707Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:17:12.109Z] Heartbeat alive
+[2026-05-26T12:18:29.583Z] Topic: aquaponic/device/data
+[2026-05-26T12:18:29.585Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":9.07,"temp":29.87,"ntu":300}}
+[2026-05-26T12:18:29.608Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:22:12.115Z] Heartbeat alive
+[2026-05-26T12:23:32.487Z] Topic: aquaponic/device/data
+[2026-05-26T12:23:32.489Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":9.12,"temp":29.87,"ntu":300}}
+[2026-05-26T12:23:32.503Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:27:12.121Z] Heartbeat alive
+[2026-05-26T12:28:35.393Z] Topic: aquaponic/device/data
+[2026-05-26T12:28:35.394Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.86,"temp":29.81,"ntu":300}}
+[2026-05-26T12:28:35.406Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:32:12.123Z] Heartbeat alive
+[2026-05-26T12:32:40.311Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:02/config
+[2026-05-26T12:32:43.997Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T12:33:38.302Z] Topic: aquaponic/device/data
+[2026-05-26T12:33:38.303Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.76,"temp":29.81,"ntu":300}}
+[2026-05-26T12:33:38.317Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:37:12.136Z] Heartbeat alive
+[2026-05-26T12:38:41.303Z] Topic: aquaponic/device/data
+[2026-05-26T12:38:41.306Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":8.42,"temp":29.81,"ntu":300}}
+[2026-05-26T12:38:41.320Z] Runtime Error:
+Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T12:42:12.145Z] Heartbeat alive
+[2026-05-26T12:47:12.150Z] Heartbeat alive
+[2026-05-26T12:52:12.165Z] Heartbeat alive
+[2026-05-26T12:57:12.178Z] Heartbeat alive
+[2026-05-26T13:02:12.189Z] Heartbeat alive
+[2026-05-26T13:07:12.202Z] Heartbeat alive
+[2026-05-26T13:12:12.214Z] Heartbeat alive
+[2026-05-26T13:13:36.261Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:17:12.216Z] Heartbeat alive
+[2026-05-26T13:19:58.312Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:22:12.221Z] Heartbeat alive
+[2026-05-26T13:27:12.236Z] Heartbeat alive
+[2026-05-26T13:32:12.247Z] Heartbeat alive
+[2026-05-26T13:34:56.208Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:37:12.256Z] Heartbeat alive
+[2026-05-26T13:41:11.011Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:41:44.921Z] === APP STARTED ===
+[2026-05-26T13:41:44.945Z] HTTP Running on port 5000
+[2026-05-26T13:41:45.003Z] Database Connected
+[2026-05-26T13:41:46.157Z] MQTT Connected
+[2026-05-26T13:41:46.375Z] Subsribe to all
+[2026-05-26T13:41:46.378Z] {"mac_address":"ESP:32:AA:BB:CC:03","actuators":[{"id":4,"name":"Aerator Kolam","type":"water_pump","state":"on","schedules":[]},{"id":5,"name":"Pompa Sirkulasi Aquaponik","type":"water_pump","state":"on","schedules":[]},{"id":6,"name":"Feeder Ikan Otomatis","type":"feeder","state":"off","schedules":[{"id":1,"time":"09:00","duration":10},{"id":2,"time":"12:00","duration":10},{"id":3,"time":"17:00","duration":15}]}]}
+[2026-05-26T13:41:46.377Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:03/config
+[2026-05-26T13:41:46.379Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:02/config
+[2026-05-26T13:41:46.379Z] {"mac_address":"ESP:32:AA:BB:CC:02","actuators":[{"id":3,"name":"Pompa Sirkulasi NFT","type":"water_pump","state":"off","schedules":[]}]}
+[2026-05-26T13:41:46.380Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:41:46.381Z] {"mac_address":"ESP:32:AA:BB:CC:01","actuators":[{"id":1,"name":"Grow Light LED Selada","type":"grow_light","state":"off","schedules":[{"id":1,"start_time":"20:41","end_time":"20:45"}]},{"id":2,"name":"Pompa Nutrisi NFT","type":"water_pump","state":"on","schedules":[]}]}
+[2026-05-26T13:43:05.446Z] === APP STARTED ===
+[2026-05-26T13:43:05.470Z] HTTP Running on port 5000
+[2026-05-26T13:43:05.503Z] Database Connected
+[2026-05-26T13:43:06.606Z] MQTT Connected
+[2026-05-26T13:43:06.861Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-26T13:43:28.890Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:48:05.467Z] Heartbeat alive
+[2026-05-26T13:48:15.131Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:48:15.132Z] {"type":"water_pump","state":"on"}
+[2026-05-26T13:48:15.198Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:53:05.479Z] Heartbeat alive
+[2026-05-26T13:55:00.164Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:55:00.164Z] {"type":"grow_light","state":"off"}
+[2026-05-26T13:55:00.167Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:55:00.167Z] {"type":"water_pump","state":"on"}
+[2026-05-26T13:55:00.207Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:55:00.224Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:55:04.081Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:55:04.389Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:55:04.407Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:55:04.398Z] {"type":"grow_light","state":"off"}
+[2026-05-26T13:55:04.424Z] {"type":"water_pump","state":"on"}
+[2026-05-26T13:55:04.526Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:55:04.540Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:04.430Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:04.430Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:04.447Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:09.394Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:09.395Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:09.410Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:14.440Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:14.441Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:14.462Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:19.458Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:19.458Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:19.470Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:24.473Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:24.474Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:24.489Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:29.498Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:29.499Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:29.511Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:34.408Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:34.408Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:34.416Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:39.526Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:39.527Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:39.541Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:44.443Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:44.444Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:44.460Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:49.403Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:49.404Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:49.414Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:54.478Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:54.478Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:54.493Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:57:59.495Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:57:59.496Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:57:59.509Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:04.410Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:04.411Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:04.426Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:05.487Z] Heartbeat alive
+[2026-05-26T13:58:09.428Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:09.429Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:09.445Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:14.406Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:14.407Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:14.421Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:19.408Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:19.407Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:19.417Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:24.481Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:24.481Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:24.496Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:29.499Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:29.500Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:29.517Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:34.425Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:34.425Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:34.436Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:39.414Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:39.417Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:39.428Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:40.661Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:58:40.968Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:40.970Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:40.974Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:40.975Z] {"type":"water_pump","state":"off"}
+[2026-05-26T13:58:40.993Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:40.995Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:44.452Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:44.453Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:44.461Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:49.570Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:49.570Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:49.586Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:54.485Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:54.486Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:54.501Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:58:59.510Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:58:59.509Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:58:59.524Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:59:15.680Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:59:16.029Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:59:16.038Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:59:16.043Z] {"type":"water_pump","state":"off"}
+[2026-05-26T13:59:16.032Z] {"type":"grow_light","state":"off"}
+[2026-05-26T13:59:16.098Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:59:16.112Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:59:20.907Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:59:21.317Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:59:21.317Z] {"type":"grow_light","state":"off"}
+[2026-05-26T13:59:21.321Z] {"type":"water_pump","state":"on"}
+[2026-05-26T13:59:21.320Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:59:21.341Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:59:21.355Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:59:37.085Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T13:59:37.391Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:59:37.391Z] {"type":"grow_light","state":"on"}
+[2026-05-26T13:59:37.393Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T13:59:37.394Z] {"type":"water_pump","state":"on"}
+[2026-05-26T13:59:37.414Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T13:59:37.416Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:00:09.651Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:00:09.883Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:00:09.902Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:00:09.906Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:00:09.919Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:00:10.131Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:00:10.066Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:00:43.134Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:00:43.369Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:00:43.370Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:00:43.373Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:00:43.373Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:00:43.391Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:00:43.396Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:02.970Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:01:03.314Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:03.314Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:01:03.317Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:01:03.316Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:03.334Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:03.338Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:10.662Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:01:10.987Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:10.988Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:01:10.991Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:10.992Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:01:11.018Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:11.019Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:18.588Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:01:18.872Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:18.873Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:01:18.879Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:01:18.878Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:18.895Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:18.901Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:35.879Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:01:36.185Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:36.186Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:01:36.191Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:01:36.198Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:01:36.248Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:01:36.265Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:18.939Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:18.940Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:02:18.943Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:02:18.943Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:18.960Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:18.972Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:23.383Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:02:23.691Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:23.692Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:02:23.694Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:23.695Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:02:23.706Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:23.708Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:27.582Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:02:27.926Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:27.943Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:27.933Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:02:27.948Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:02:28.020Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:28.023Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:38.471Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:02:38.845Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:38.848Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:38.849Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:02:38.846Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:02:38.862Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:38.864Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:45.605Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:02:45.744Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:45.745Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:02:45.748Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:45.749Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:02:45.763Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:45.772Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:51.221Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:51.222Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:02:51.224Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:51.225Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:02:51.256Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:51.265Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:56.768Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:56.772Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:02:56.769Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:02:56.773Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:02:56.805Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:02:56.808Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:01.111Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:03:02.500Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:02.509Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:02.512Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:03:02.503Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:03:02.563Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:02.574Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:05.499Z] Heartbeat alive
+[2026-05-26T14:03:07.007Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:03:07.320Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:07.331Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:03:07.342Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:07.348Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:03:07.409Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:07.428Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:24.210Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:03:24.522Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:24.525Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:24.525Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:03:24.523Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:03:24.537Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:24.538Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:28.307Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:03:28.543Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:03:28.542Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:28.550Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:28.554Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:03:28.560Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:28.573Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:32.198Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:03:32.439Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:32.439Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:03:32.441Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:03:32.442Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:03:32.456Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:03:32.459Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:02.715Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:04:03.021Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:03.023Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:04:03.028Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:03.033Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:04:03.074Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:03.082Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:07.208Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:04:07.529Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:04:07.532Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:07.526Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:07.533Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:04:07.576Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:07.579Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:30.368Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:04:30.771Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:30.772Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:04:30.774Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:30.774Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:04:30.788Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:30.790Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:47.267Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:04:47.666Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:47.679Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:04:47.676Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:47.670Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:04:47.725Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:47.733Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:54.460Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:04:54.761Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:54.762Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:04:54.764Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:04:54.765Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:04:54.775Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:04:54.785Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:05:02.823Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:05:03.131Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:05:03.131Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:05:03.134Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:05:03.133Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:05:03.150Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:05:03.151Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:05:31.796Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:05:32.109Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:05:32.110Z] {"type":"grow_light","state":"off"}
+[2026-05-26T14:05:32.114Z] {"type":"water_pump","state":"on"}
+[2026-05-26T14:05:32.113Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:05:32.133Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:05:32.135Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:02.522Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:02.523Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:02.533Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:07.439Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:07.440Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:07.448Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:12.455Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:12.456Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:12.470Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:17.473Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:17.474Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:17.491Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:22.397Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:22.398Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:22.411Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:27.406Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:27.407Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:27.416Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:32.424Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:32.424Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:32.439Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:37.435Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:37.436Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:37.447Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:42.412Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:42.412Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:42.426Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:47.405Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:47.405Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:47.422Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:52.409Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:52.410Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:52.418Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:06:57.512Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:06:57.513Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:06:57.525Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:02.529Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:02.530Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:02.547Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:07.444Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:07.445Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:07.461Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:12.408Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:12.407Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:12.420Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:17.480Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:17.480Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:17.495Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:22.409Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:22.410Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:22.422Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:27.411Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:27.412Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:27.422Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:32.432Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:32.433Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:32.444Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:37.426Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:37.427Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:37.447Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:42.467Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:42.468Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:42.481Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:47.485Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:47.487Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:47.497Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:52.505Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:52.506Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:52.521Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:07:57.525Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:07:57.527Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:07:57.541Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:02.436Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:02.438Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:02.450Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:05.515Z] Heartbeat alive
+[2026-05-26T14:08:07.453Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:07.454Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:07.467Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:12.470Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:12.471Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:12.481Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:17.591Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:17.592Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:17.607Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:22.510Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:22.510Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:22.521Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:27.523Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:27.524Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:27.536Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:32.526Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:32.526Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:32.538Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:37.444Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:37.446Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:37.453Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:42.433Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:42.432Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:42.440Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:47.424Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:47.424Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:47.429Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:52.432Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:52.432Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:52.439Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:08:57.426Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:08:57.426Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:08:57.435Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:02.428Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:02.429Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:02.434Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:07.439Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:07.439Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:07.446Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:12.429Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:12.430Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:12.437Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:17.432Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:17.432Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:17.440Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:22.438Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:22.440Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:22.451Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:27.434Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:27.433Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:27.439Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:32.431Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:32.431Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:32.444Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:37.443Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:37.443Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:37.456Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:42.434Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:42.435Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:42.445Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:47.442Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:47.444Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:47.460Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:52.442Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:52.443Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:52.452Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:09:57.439Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:09:57.440Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:09:57.451Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:11:24.754Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-26T14:11:25.016Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:11:25.017Z] {"type":"grow_light","state":"on"}
+[2026-05-26T14:11:25.019Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-26T14:11:25.021Z] {"type":"water_pump","state":"off"}
+[2026-05-26T14:11:25.029Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-26T14:11:25.030Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)

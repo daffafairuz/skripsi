@@ -121,7 +121,9 @@
                 {
                 name:'',
                 type:'',
-                unit:''
+                unit:'',
+                min_threshold:'',
+                max_threshold:''
                 }
                 ]
                 }">
@@ -139,7 +141,9 @@
                         @click="sensors.push({
                         name:'',
                         type:'',
-                        unit:''
+                        unit:'',
+                        min_threshold:'',
+                        max_threshold:''
                         })"
                         class="bg-blue-500 text-white px-3 py-2 rounded-lg">
 
@@ -195,6 +199,26 @@
                                 x-model="sensor.unit"
                                 class="border p-3 rounded-xl"
                                 placeholder="Unit">
+
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+
+                            <input
+                                type="number"
+                                step="any"
+                                :name="'sensors['+index+'][min_threshold]'"
+                                x-model="sensor.min_threshold"
+                                class="border p-3 rounded-xl"
+                                placeholder="Min Threshold (Opsional)">
+
+                            <input
+                                type="number"
+                                step="any"
+                                :name="'sensors['+index+'][max_threshold]'"
+                                x-model="sensor.max_threshold"
+                                class="border p-3 rounded-xl"
+                                placeholder="Max Threshold (Opsional)">
 
                         </div>
 

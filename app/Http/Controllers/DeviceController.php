@@ -121,7 +121,9 @@ class DeviceController extends Controller
                     'device_id' => $device->id,
                     'name' => $sensor['name'],
                     'type' => $sensor['type'],
-                    'unit' => $sensor['unit'] ?? null
+                    'unit' => $sensor['unit'] ?? null,
+                    'min_threshold' => isset($sensor['min_threshold']) && $sensor['min_threshold'] !== '' ? $sensor['min_threshold'] : null,
+                    'max_threshold' => isset($sensor['max_threshold']) && $sensor['max_threshold'] !== '' ? $sensor['max_threshold'] : null,
                 ]);
             }
         }

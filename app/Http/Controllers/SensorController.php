@@ -48,21 +48,50 @@ class SensorController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function chart(Sensor $sensor)
+    public function chart(Request $request, Sensor $sensor)
     {
-        $data = $sensor
-            ->dataSensors()
-            ->latest()
-            ->take(20)
-            ->get()
-            ->reverse();
+        $query = $sensor->dataSensors();
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        if ($request->filled('start_date') || $request->filled('end_date')) {
+            $data = $query->orderBy('created_at', 'asc')->get();
+        } else {
+            $data = $query->latest()->take(100)->get()->reverse();
+        }
+
+        $firstData = $sensor->dataSensors()->orderBy('created_at', 'asc')->first();
+        $minDate = $firstData ? $firstData->created_at->format('Y-m-d') : now()->format('Y-m-d');
+        $maxDate = now()->format('Y-m-d');
 
         return response()->json([
-            'labels' => $data->map(fn($d) => $d->created_at->format('H:i')),
-            'values' => $data->pluck('value'),
+            'labels' => $data->map(fn($d) => $d->created_at->format('d/m H:i'))->values()->all(),
+            'values' => $data->map(fn($d) => (float) $d->value)->values()->all(),
             'sensor' => $sensor->name,
-            'unit' => $sensor->unit
+            'unit' => $sensor->unit,
+            'min_date' => $minDate,
+            'max_date' => $maxDate,
         ]);
+    }
+
+    public function updateThreshold(Request $request, Sensor $sensor)
+    {
+        $request->validate([
+            'min_threshold' => 'nullable|numeric',
+            'max_threshold' => 'nullable|numeric',
+        ]);
+
+        $sensor->update([
+            'min_threshold' => $request->min_threshold,
+            'max_threshold' => $request->max_threshold,
+        ]);
+
+        return back()->with('success', 'Threshold untuk sensor ' . $sensor->name . ' berhasil diperbarui');
     }
 
     /*
