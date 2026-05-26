@@ -9,7 +9,19 @@
         <p class="text-sm text-gray-500">Log telemetri berkala (interval 5 menit) dari ESP32 Slave yang terhubung ke ESP32 Master (Site)</p>
     </div>
     
-    @include('layouts.user-card', ['subtitle' => 'Telemetry Hub Active'])
+    <div class="flex items-center gap-3">
+        <!-- Download CSV Button -->
+        <a href="{{ route('data-sensor.export-csv', request()->query()) }}"
+           class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white rounded-2xl text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95 group"
+           title="Download laporan CSV">
+            <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <span>Download CSV</span>
+        </a>
+
+        @include('layouts.user-card', ['subtitle' => 'Telemetry Hub Active'])
+    </div>
 </div>
 
 <!-- Filter Section -->
