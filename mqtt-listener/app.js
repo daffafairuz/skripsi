@@ -239,18 +239,15 @@ async function sendSensorAlert(alert){
         );
 
         return {
-            created:
-            false
+            created:false
         };
 
     }
 
-    const response =
-    await axios.post(
+    try{
 
-        sensorAlertUrl,
+        const payload={
 
-        {
             site_id:
             alert.siteId,
 
@@ -259,21 +256,106 @@ async function sendSensorAlert(alert){
 
             type:
             'warning'
-        },
 
-        {
-            headers:{
-                'X-Sensor-Alert-Secret':
-                sensorAlertSecret
-            },
+        };
 
-            timeout:
-            10000
+
+        // =====================
+        // LOG REQUEST
+        // =====================
+
+        log(
+
+            `Sending Alert:
+${JSON.stringify(
+payload
+)}`
+
+        );
+
+
+        const response=
+        await axios.post(
+
+            sensorAlertUrl,
+
+            payload,
+
+            {
+
+                headers:{
+
+                    'X-Sensor-Alert-Secret':
+                    sensorAlertSecret
+
+                },
+
+                timeout:
+                10000
+
+            }
+
+        );
+
+
+        // =====================
+        // LOG RESPONSE
+        // =====================
+
+        log(
+
+            `Sensor Alert Response:
+${JSON.stringify(
+response.data
+)}`
+
+        );
+
+
+        if(
+            response.data?.created===true
+        ){
+
+            log(
+                `Notification created:
+${response.data.notification_id}`
+            );
+
+        }
+        else{
+
+            log(
+                'Duplicate notification skipped'
+            );
+
         }
 
-    );
 
-    return response.data;
+        return response.data;
+
+    }
+    catch(err){
+
+        log(
+
+            `Sensor Alert Error:
+${
+    err.response?.data
+    ? JSON.stringify(
+        err.response.data
+    )
+    : err.message
+}`
+
+        );
+
+        return {
+
+            created:false
+
+        };
+
+    }
 
 }
 
@@ -289,11 +371,11 @@ async function sendWhatsAppAlert(alert){
             'Fonnte token missing'
         );
 
-        return;
+        return false;
 
     }
 
-    const target =
+    const target=
     normalizePhoneNumber(
         alert.phoneNumber
     );
@@ -302,38 +384,88 @@ async function sendWhatsAppAlert(alert){
 
         log(
             `WhatsApp target missing:
-site_id=${alert.siteId}`
+            site_id=${alert.siteId}`
         );
 
-        return;
+        return false;
 
     }
 
-    await axios.post(
+    try{
 
-        whatsappUrl,
+        const response=
+        await axios.post(
 
-        new URLSearchParams({
-            target:
-            target,
+            whatsappUrl,
 
-            message:
-            whatsappMessage(
-                alert
-            )
-        }),
+            new URLSearchParams({
 
-        {
-            headers:{
-                Authorization:
-                whatsappToken
-            },
+                target:
+                target,
 
-            timeout:
-            10000
+                message:
+                whatsappMessage(
+                    alert
+                )
+
+            }),
+
+            {
+
+                headers:{
+
+                    Authorization:
+                    whatsappToken,
+
+                    'Content-Type':
+                    'application/x-www-form-urlencoded'
+
+                },
+
+                timeout:
+                10000
+
+            }
+
+        );
+
+        log(
+            `Fonnte Response:
+            ${JSON.stringify(response.data)}`
+        );
+
+        if(
+            response.data &&
+            response.data.status===true
+        ){
+
+            return true;
+
         }
 
-    );
+        throw new Error(
+
+            response.data?.reason ||
+
+            response.data?.message ||
+
+            'Unknown WhatsApp error'
+
+        );
+
+    }
+    catch(err){
+
+        log(
+
+            `WhatsApp API Error:
+            ${err.message}`
+
+        );
+
+        return false;
+
+    }
 
 }
 
@@ -495,31 +627,22 @@ topic,
 mqttMessage
 )=>{
 
-let conn;
-let pendingAlerts = [];
+let conn=null;
+let pendingAlerts=[];
 
 try{
 
 log(
-`Topic:
-${topic}`
+`Topic: ${topic}`
 );
-
-
-// =====================
-// JSON
-// =====================
 
 const data=
 JSON.parse(
 mqttMessage.toString()
 );
 
-
 log(
-JSON.stringify(
-data
-)
+JSON.stringify(data)
 );
 
 
@@ -530,28 +653,16 @@ data
 if(
 !data.mac_address
 ){
-
-log(
-'MAC missing'
-);
-
+log('MAC missing');
 return;
-
 }
-
 
 if(
 !data.sensors
 ){
-
-log(
-'Sensors missing'
-);
-
+log('Sensors missing');
 return;
-
 }
-
 
 const mac=
 data.mac_address;
@@ -571,13 +682,12 @@ await conn.beginTransaction();
 // DEVICE
 // =====================
 
-const
-[deviceRows]=
-
+const [deviceRows]=
 await conn.execute(
 
 `
 SELECT
+
 d.id,
 sd.site_id,
 s.name AS site_name,
@@ -596,15 +706,12 @@ ON s.id=sd.site_id
 JOIN users u
 ON u.id=s.user_id
 
-WHERE
-d.mac_address=?
+WHERE d.mac_address=?
 
 LIMIT 1
 `,
 
-[
-mac
-]
+[mac]
 
 );
 
@@ -614,7 +721,7 @@ deviceRows.length===0
 ){
 
 log(
-`Active device site not found:
+`Device not found:
 ${mac}`
 );
 
@@ -624,18 +731,15 @@ return;
 
 }
 
-
 const device=
 deviceRows[0];
 
 
 // =====================
-// SENSOR LIST
+// GET SENSORS
 // =====================
 
-const
-[sensorRows]=
-
+const [sensorRows]=
 await conn.execute(
 
 `
@@ -643,23 +747,38 @@ SELECT
 
 id,
 name,
-json_key,
+type,
 unit,
 min_threshold,
 max_threshold
 
 FROM sensors
 
-WHERE
-device_id=?
-
+WHERE device_id=?
 `,
-
 [
 device.id
 ]
-
 );
+
+// =====================
+// NORMALIZE MQTT DATA
+// =====================
+
+const sensorPayload={};
+
+for(
+const [key,value]
+of Object.entries(
+data.sensors
+)
+){
+
+sensorPayload[
+key.toLowerCase()
+]=Number(value);
+
+}
 
 
 // =====================
@@ -667,66 +786,36 @@ device.id
 // =====================
 
 for(
-let sensor
+const sensor
 of sensorRows
 ){
 
-const key=
-sensor.json_key;
-
-
-if(
-!key
-){
-
-continue;
-
-}
-
-
-// =====================
-// GET VALUE
-// =====================
+const sensorType=
+sensor.type
+.toLowerCase()
+.trim();
 
 let value=
-data.sensors[key];
-
+sensorPayload[
+sensorType
+];
 
 if(
 value===undefined ||
-value===null
+value===null ||
+isNaN(value)
 ){
-
 continue;
-
 }
-
-
-value=
-Number(
-value
-);
-
-
-if(
-isNaN(
-value
-)
-){
-
-continue;
-
-}
-
 
 log(
-`${key}
+`${sensorType}
 => ${value}`
 );
 
 
 // =====================
-// INSERT SENSOR
+// SAVE SENSOR
 // =====================
 
 await conn.execute(
@@ -735,12 +824,10 @@ await conn.execute(
 INSERT INTO
 data_sensors
 (
-
 sensor_id,
 value,
 created_at,
 updated_at
-
 )
 
 VALUES
@@ -750,7 +837,6 @@ VALUES
 NOW(),
 NOW()
 )
-
 `,
 
 [
@@ -759,7 +845,6 @@ value
 ]
 
 );
-
 
 log(
 `${sensor.name}
@@ -777,88 +862,77 @@ sensor.min_threshold;
 const max=
 sensor.max_threshold;
 
-const minValue=
-min===null
-? null
-: Number(
-min
-);
+const isBelow=
 
-const maxValue=
-max===null
-? null
-: Number(
-max
-);
+min!==null &&
+value<
+Number(min);
 
-const isBelowMin=
-minValue!==null &&
-!Number.isNaN(
-minValue
-) &&
-value<minValue;
+const isAbove=
 
-const isAboveMax=
-maxValue!==null &&
-!Number.isNaN(
-maxValue
-) &&
-value>maxValue;
+max!==null &&
+value>
+Number(max);
 
 
 if(
-
-isBelowMin ||
-isAboveMax
-
+isBelow ||
+isAbove
 ){
 
 const unit=
 sensor.unit || '';
 
-const notifMessage=
+const message=
 
 `${sensor.name}
 abnormal
 (${value}${unit})`;
 
-
-log(
-`Threshold alert queued:
-${notifMessage}`
-);
-
 pendingAlerts.push({
-    siteId:
-    device.site_id,
 
-    siteName:
-    device.site_name,
+siteId:
+device.site_id,
 
-    userName:
-    device.user_name,
+siteName:
+device.site_name,
 
-    phoneNumber:
-    device.phone_number,
+userName:
+device.user_name,
 
-    sensorName:
-    sensor.name,
+phoneNumber:
+device.phone_number,
 
-    value:
-    value,
+sensorName:
+sensor.name,
 
-    unit:
-    unit,
+value:
+value,
 
-    message:
-    notifMessage
+unit:
+unit,
+
+message:
+message
+
 });
 
+log(
+`Alert queued:
+${message}`
+);
+
 }
 
 }
+
 
 await conn.commit();
+
+
+// =====================
+// SEND NOTIFICATION
+// =====================
 
 for(
 const alert
@@ -867,22 +941,14 @@ of pendingAlerts
 
 try{
 
-const result =
+const result=
 await sendSensorAlert(
-    alert
-);
-
-log(
-`Notification sent:
-${alert.message}`
+alert
 );
 
 if(
-!result ||
-result.created!==false
+result?.created===true
 ){
-
-try{
 
 await sendWhatsAppAlert(
 alert
@@ -890,68 +956,69 @@ alert
 
 log(
 `WhatsApp sent:
-${alert.phoneNumber || '-'}`
-);
-
-}
-catch(waErr){
-
-log(
-`WhatsApp API Error:
-${waErr.message}`
+${alert.phoneNumber}`
 );
 
 }
 
 }
-else{
-
-log(
-`WhatsApp skipped for duplicate:
-${alert.message}`
-);
-
-}
-
-}
-catch(alertErr){
-
-log(
-`Notification API Error:
-${alertErr.message}`
-);
-
-}
-
-}
-
-}
-
 catch(err){
 
-if(conn){
-
-try{
-
-await conn.rollback();
-
-}
-catch(e){}
+log(
+`Alert Error:
+${err.message}`
+);
 
 }
+
+}
+
+}
+catch(err){
 
 log(
 `Runtime Error:
 ${err.message}`
 );
 
+if(conn){
+
+    try{
+
+        await conn.rollback();
+
+    }
+    catch(e){
+
+        log(
+        `Rollback Error:
+        ${e.message}`
+        );
+
+    }
+
 }
 
+}
 finally{
 
 if(conn){
 
-conn.release();
+    try{
+
+        conn.release();
+
+    }
+    catch(e){
+
+        log(
+        `Release Error:
+        ${e.message}`
+        );
+
+    }
+
+    conn=null;
 
 }
 
@@ -1000,24 +1067,27 @@ log(
 // HTTP
 // =====================
 
+const PORT =
+process.env.PORT;
+
 http.createServer(
 
 (req,res)=>{
 
-res.writeHead(
+    res.writeHead(
 
-200,
+        200,
 
-{
-'Content-Type':
-'text/plain'
-}
+        {
+            'Content-Type':
+            'text/plain'
+        }
 
-);
+    );
 
-res.end(
-'OK'
-);
+    res.end(
+        'OK'
+    );
 
 }
 
@@ -1025,16 +1095,14 @@ res.end(
 
 .listen(
 
-process.env.PORT,
+PORT,
 
 ()=>{
 
-log(
-
-`HTTP Running:
-${process.env.PORT}`
-
-);
+    log(
+    `HTTP Running:
+    ${PORT}`
+    );
 
 }
 

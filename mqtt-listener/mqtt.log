@@ -15125,3 +15125,1173 @@
 [2026-05-25T09:52:35.801Z] Heartbeat alive
 [2026-05-25T09:57:35.807Z] Heartbeat alive
 [2026-05-25T10:02:35.813Z] Heartbeat alive
+[2026-05-25T10:07:35.816Z] Heartbeat alive
+[2026-05-25T10:12:35.818Z] Heartbeat alive
+[2026-05-25T10:17:35.820Z] Heartbeat alive
+[2026-05-25T10:22:35.821Z] Heartbeat alive
+[2026-05-25T10:27:35.831Z] Heartbeat alive
+[2026-05-25T10:32:35.842Z] Heartbeat alive
+[2026-05-25T10:32:44.954Z] Topic: aquaponic/device/data
+[2026-05-25T10:32:44.955Z] Payload: {"mac_address":"A4:F0:0F:76:1F:88","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T10:32:44.955Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T10:32:44.979Z] Topic: aquaponic/device/data
+[2026-05-25T10:32:44.979Z] Payload: {"mac_address":"A4:F0:0F:76:1F:88","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T10:32:44.981Z] Device not found
+[2026-05-25T10:37:35.853Z] Heartbeat alive
+[2026-05-25T10:37:51.366Z] Topic: aquaponic/device/data
+[2026-05-25T10:37:51.367Z] Payload: {"mac_address":"A4:F0:0F:76:1F:88","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T10:37:51.368Z] Device not found
+[2026-05-25T10:37:51.368Z] Topic: aquaponic/device/data
+[2026-05-25T10:37:51.368Z] Payload: {"mac_address":"A4:F0:0F:76:1F:88","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T10:37:51.369Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T10:38:54.001Z] Topic: aquaponic/device/data
+[2026-05-25T10:38:54.001Z] Payload: {"mac_address":"A4:F0:0F:76:1F:88","sensors":{"ph":20.28,"temp":-127,"ntu":3000}}
+[2026-05-25T10:38:54.002Z] Device not found
+[2026-05-25T10:38:54.004Z] Topic: aquaponic/device/data
+[2026-05-25T10:38:54.004Z] Payload: {"mac_address":"A4:F0:0F:76:1F:88","sensors":{"ph":20.28,"temp":-127,"ntu":3000}}
+[2026-05-25T10:38:54.005Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T10:42:35.862Z] Heartbeat alive
+[2026-05-25T10:47:35.873Z] Heartbeat alive
+[2026-05-25T10:52:35.884Z] Heartbeat alive
+[2026-05-25T10:57:35.895Z] Heartbeat alive
+[2026-05-25T11:02:35.906Z] Heartbeat alive
+[2026-05-25T11:07:35.911Z] Heartbeat alive
+[2026-05-25T11:12:35.921Z] Heartbeat alive
+[2026-05-25T11:17:35.931Z] Heartbeat alive
+[2026-05-25T11:22:35.942Z] Heartbeat alive
+[2026-05-25T11:27:35.951Z] Heartbeat alive
+[2026-05-25T11:32:35.961Z] Heartbeat alive
+[2026-05-25T11:37:35.971Z] Heartbeat alive
+[2026-05-25T11:42:35.980Z] Heartbeat alive
+[2026-05-25T11:47:35.990Z] Heartbeat alive
+[2026-05-25T11:52:36.000Z] Heartbeat alive
+[2026-05-25T11:57:36.010Z] Heartbeat alive
+[2026-05-25T12:02:36.019Z] Heartbeat alive
+[2026-05-25T12:07:36.026Z] Heartbeat alive
+[2026-05-25T12:12:36.034Z] Heartbeat alive
+[2026-05-25T12:17:36.039Z] Heartbeat alive
+[2026-05-25T12:22:36.044Z] Heartbeat alive
+[2026-05-25T12:27:36.049Z] Heartbeat alive
+[2026-05-25T12:29:42.695Z] Topic: aquaponic/device/data
+[2026-05-25T12:29:42.695Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T12:29:42.700Z] ph => 20.89
+[2026-05-25T12:29:42.701Z] Topic: aquaponic/device/data
+[2026-05-25T12:29:42.701Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T12:29:42.701Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T12:29:42.723Z] ph: 20.89 saved
+[2026-05-25T12:29:42.738Z] Notification saved
+[2026-05-25T12:29:42.738Z] temperature => undefined
+[2026-05-25T12:29:42.738Z] No value for temperature
+[2026-05-25T12:30:15.467Z] Topic: aquaponic/device/data
+[2026-05-25T12:30:15.468Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":36.31,"ntu":3000}}
+[2026-05-25T12:30:15.468Z] Topic: aquaponic/device/data
+[2026-05-25T12:30:15.468Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T12:30:15.468Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":36.31,"ntu":3000}}
+[2026-05-25T12:30:15.470Z] ph => 20.89
+[2026-05-25T12:30:15.511Z] ph: 20.89 saved
+[2026-05-25T12:30:15.535Z] Notification saved
+[2026-05-25T12:30:15.535Z] temperature => undefined
+[2026-05-25T12:30:15.535Z] No value for temperature
+[2026-05-25T12:30:28.355Z] Topic: aquaponic/device/data
+[2026-05-25T12:30:28.355Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":36.31,"ntu":3000}}
+[2026-05-25T12:30:28.356Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T12:30:28.356Z] Topic: aquaponic/device/data
+[2026-05-25T12:30:28.356Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":36.31,"ntu":3000}}
+[2026-05-25T12:30:28.358Z] ph => 20.89
+[2026-05-25T12:30:28.375Z] ph: 20.89 saved
+[2026-05-25T12:30:28.390Z] Notification saved
+[2026-05-25T12:30:28.390Z] temperature => undefined
+[2026-05-25T12:30:28.390Z] No value for temperature
+[2026-05-25T12:30:41.883Z] Topic: aquaponic/device/data
+[2026-05-25T12:30:41.883Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":36.31,"ntu":3000}}
+[2026-05-25T12:30:41.883Z] Topic: aquaponic/device/data
+[2026-05-25T12:30:41.883Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":36.31,"ntu":3000}}
+[2026-05-25T12:30:41.884Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T12:30:41.885Z] ph => 20.89
+[2026-05-25T12:30:41.897Z] ph: 20.89 saved
+[2026-05-25T12:30:41.905Z] Notification saved
+[2026-05-25T12:30:41.905Z] temperature => undefined
+[2026-05-25T12:30:41.905Z] No value for temperature
+[2026-05-25T12:32:36.053Z] Heartbeat alive
+[2026-05-25T12:37:30.447Z] Topic: aquaponic/device/data
+[2026-05-25T12:37:30.447Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T12:37:30.449Z] ph => 20.89
+[2026-05-25T12:37:30.453Z] Topic: aquaponic/device/data
+[2026-05-25T12:37:30.454Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"ph":20.89,"temp":-127,"ntu":3000}}
+[2026-05-25T12:37:30.454Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T12:37:30.472Z] ph: 20.89 saved
+[2026-05-25T12:37:30.485Z] Notification saved
+[2026-05-25T12:37:30.486Z] temperature => undefined
+[2026-05-25T12:37:30.486Z] No value for temperature
+[2026-05-25T12:37:36.055Z] Heartbeat alive
+[2026-05-25T12:42:36.057Z] Heartbeat alive
+[2026-05-25T12:47:36.058Z] Heartbeat alive
+[2026-05-25T12:52:36.066Z] Heartbeat alive
+[2026-05-25T12:57:36.072Z] Heartbeat alive
+[2026-05-25T13:02:36.076Z] Heartbeat alive
+[2026-05-25T13:07:36.084Z] Heartbeat alive
+[2026-05-25T13:12:36.088Z] Heartbeat alive
+[2026-05-25T13:17:36.096Z] Heartbeat alive
+[2026-05-25T13:22:36.103Z] Heartbeat alive
+[2026-05-25T13:27:36.108Z] Heartbeat alive
+[2026-05-25T13:32:36.113Z] Heartbeat alive
+[2026-05-25T13:37:36.117Z] Heartbeat alive
+[2026-05-25T13:42:36.124Z] Heartbeat alive
+[2026-05-25T13:47:36.128Z] Heartbeat alive
+[2026-05-25T13:52:36.132Z] Heartbeat alive
+[2026-05-25T13:57:36.139Z] Heartbeat alive
+[2026-05-25T14:02:36.146Z] Heartbeat alive
+[2026-05-25T14:07:36.149Z] Heartbeat alive
+[2026-05-25T14:12:36.156Z] Heartbeat alive
+[2026-05-25T14:17:36.161Z] Heartbeat alive
+[2026-05-25T14:18:20.266Z] Topic: aquaponic/device/data
+[2026-05-25T14:18:20.267Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":29.1,"humidity":53.4,"ph":7.3}}
+[2026-05-25T14:18:20.269Z] temperature => 29.1
+[2026-05-25T14:18:20.273Z] Topic: aquaponic/device/data
+[2026-05-25T14:18:20.273Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":29.1,"humidity":53.4,"ph":7.3}}
+[2026-05-25T14:18:20.274Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:18:20.281Z] temperature: 29.1 saved
+[2026-05-25T14:18:20.281Z] humidity => 53.4
+[2026-05-25T14:18:20.298Z] humidity: 53.4 saved
+[2026-05-25T14:18:20.298Z] ph => 7.3
+[2026-05-25T14:18:20.310Z] ph: 7.3 saved
+[2026-05-25T14:22:36.168Z] Heartbeat alive
+[2026-05-25T14:23:22.455Z] Topic: aquaponic/device/data
+[2026-05-25T14:23:22.456Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":20.3,"humidity":85.7,"ph":8.5}}
+[2026-05-25T14:23:22.457Z] temperature => 20.3
+[2026-05-25T14:23:22.460Z] Topic: aquaponic/device/data
+[2026-05-25T14:23:22.460Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":20.3,"humidity":85.7,"ph":8.5}}
+[2026-05-25T14:23:22.460Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:23:22.476Z] temperature: 20.3 saved
+[2026-05-25T14:23:22.476Z] humidity => 85.7
+[2026-05-25T14:23:22.496Z] humidity: 85.7 saved
+[2026-05-25T14:23:22.507Z] Notification saved
+[2026-05-25T14:23:22.508Z] ph => 8.5
+[2026-05-25T14:23:22.516Z] ph: 8.5 saved
+[2026-05-25T14:23:22.527Z] Notification saved
+[2026-05-25T14:27:36.174Z] Heartbeat alive
+[2026-05-25T14:28:24.275Z] Topic: aquaponic/device/data
+[2026-05-25T14:28:24.275Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":22.1,"humidity":68.4,"ph":6.7}}
+[2026-05-25T14:28:24.277Z] temperature => 22.1
+[2026-05-25T14:28:24.278Z] Topic: aquaponic/device/data
+[2026-05-25T14:28:24.278Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":22.1,"humidity":68.4,"ph":6.7}}
+[2026-05-25T14:28:24.279Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:28:24.294Z] temperature: 22.1 saved
+[2026-05-25T14:28:24.294Z] humidity => 68.4
+[2026-05-25T14:28:24.303Z] humidity: 68.4 saved
+[2026-05-25T14:28:24.304Z] ph => 6.7
+[2026-05-25T14:28:24.321Z] ph: 6.7 saved
+[2026-05-25T14:32:36.180Z] Heartbeat alive
+[2026-05-25T14:33:26.302Z] Topic: aquaponic/device/data
+[2026-05-25T14:33:26.302Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":22.3,"humidity":63.7,"ph":8.8}}
+[2026-05-25T14:33:26.304Z] temperature => 22.3
+[2026-05-25T14:33:26.304Z] Topic: aquaponic/device/data
+[2026-05-25T14:33:26.304Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":22.3,"humidity":63.7,"ph":8.8}}
+[2026-05-25T14:33:26.305Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:33:26.313Z] temperature: 22.3 saved
+[2026-05-25T14:33:26.313Z] humidity => 63.7
+[2026-05-25T14:33:26.323Z] humidity: 63.7 saved
+[2026-05-25T14:33:26.323Z] ph => 8.8
+[2026-05-25T14:33:26.342Z] ph: 8.8 saved
+[2026-05-25T14:33:26.352Z] Notification saved
+[2026-05-25T14:37:36.183Z] Heartbeat alive
+[2026-05-25T14:38:28.585Z] Topic: aquaponic/device/data
+[2026-05-25T14:38:28.585Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":20.3,"humidity":77.5,"ph":8.1}}
+[2026-05-25T14:38:28.587Z] temperature => 20.3
+[2026-05-25T14:38:28.589Z] Topic: aquaponic/device/data
+[2026-05-25T14:38:28.589Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":20.3,"humidity":77.5,"ph":8.1}}
+[2026-05-25T14:38:28.590Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:38:28.600Z] temperature: 20.3 saved
+[2026-05-25T14:38:28.600Z] humidity => 77.5
+[2026-05-25T14:38:28.617Z] humidity: 77.5 saved
+[2026-05-25T14:38:28.618Z] ph => 8.1
+[2026-05-25T14:38:28.629Z] ph: 8.1 saved
+[2026-05-25T14:38:28.643Z] Notification saved
+[2026-05-25T14:40:12.413Z] Topic: aquaponic/device/data
+[2026-05-25T14:40:12.414Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":21.9,"humidity":36.1,"ph":5.4}}
+[2026-05-25T14:40:12.416Z] temperature => 21.9
+[2026-05-25T14:40:12.417Z] Topic: aquaponic/device/data
+[2026-05-25T14:40:12.417Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":21.9,"humidity":36.1,"ph":5.4}}
+[2026-05-25T14:40:12.418Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:40:12.431Z] temperature: 21.9 saved
+[2026-05-25T14:40:12.431Z] humidity => 36.1
+[2026-05-25T14:40:12.447Z] humidity: 36.1 saved
+[2026-05-25T14:40:12.469Z] Notification saved
+[2026-05-25T14:40:12.469Z] ph => 5.4
+[2026-05-25T14:40:12.479Z] ph: 5.4 saved
+[2026-05-25T14:40:12.493Z] Notification saved
+[2026-05-25T14:42:36.186Z] Heartbeat alive
+[2026-05-25T14:43:51.932Z] === APP STARTED ===
+[2026-05-25T14:43:52.009Z] HTTP Running:
+undefined
+[2026-05-25T14:43:52.061Z] Database Connected
+[2026-05-25T14:43:52.747Z] MQTT Connected
+[2026-05-25T14:43:52.934Z] Subscribed:
+aquaponic/device/data
+[2026-05-25T14:45:14.511Z] Topic: aquaponic/device/data
+[2026-05-25T14:45:14.511Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":34.8,"humidity":81.4,"ph":5}}
+[2026-05-25T14:45:14.512Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-25T14:45:14.510Z] Topic:
+aquaponic/device/data
+[2026-05-25T14:45:14.510Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":34.8,"humidity":81.4,"ph":5}}
+[2026-05-25T14:45:14.524Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-25T14:48:51.946Z] Heartbeat alive
+[2026-05-25T14:53:51.947Z] Heartbeat alive
+[2026-05-25T14:58:51.973Z] Heartbeat alive
+[2026-05-25T15:03:51.994Z] Heartbeat alive
+[2026-05-25T15:08:52.017Z] Heartbeat alive
+[2026-05-25T15:13:52.041Z] Heartbeat alive
+[2026-05-25T15:18:52.064Z] Heartbeat alive
+[2026-05-25T15:23:52.086Z] Heartbeat alive
+[2026-05-25T15:28:52.104Z] Heartbeat alive
+[2026-05-25T15:33:52.111Z] Heartbeat alive
+[2026-05-25T15:38:52.115Z] Heartbeat alive
+[2026-05-25T15:43:52.123Z] Heartbeat alive
+[2026-05-25T15:48:52.135Z] Heartbeat alive
+[2026-05-25T15:53:52.148Z] Heartbeat alive
+[2026-05-25T15:58:52.156Z] Heartbeat alive
+[2026-05-25T16:03:52.169Z] Heartbeat alive
+[2026-05-25T16:08:52.181Z] Heartbeat alive
+[2026-05-25T16:13:52.193Z] Heartbeat alive
+[2026-05-25T16:18:52.201Z] Heartbeat alive
+[2026-05-25T16:23:52.210Z] Heartbeat alive
+[2026-05-25T16:28:52.218Z] Heartbeat alive
+[2026-05-25T16:33:52.226Z] Heartbeat alive
+[2026-05-25T16:38:52.233Z] Heartbeat alive
+[2026-05-25T16:43:52.239Z] Heartbeat alive
+[2026-05-25T16:48:52.243Z] Heartbeat alive
+[2026-05-25T16:53:52.246Z] Heartbeat alive
+[2026-05-25T16:58:52.248Z] Heartbeat alive
+[2026-05-25T17:03:52.249Z] Heartbeat alive
+[2026-05-25T17:08:52.249Z] Heartbeat alive
+[2026-05-25T17:13:52.275Z] Heartbeat alive
+[2026-05-25T17:18:52.301Z] Heartbeat alive
+[2026-05-25T17:23:52.304Z] Heartbeat alive
+[2026-05-25T17:28:52.328Z] Heartbeat alive
+[2026-05-25T17:33:52.353Z] Heartbeat alive
+[2026-05-25T17:38:52.354Z] Heartbeat alive
+[2026-05-25T17:43:52.367Z] Heartbeat alive
+[2026-05-25T17:48:52.383Z] Heartbeat alive
+[2026-05-25T17:53:52.404Z] Heartbeat alive
+[2026-05-25T17:58:52.416Z] Heartbeat alive
+[2026-05-25T18:03:52.433Z] Heartbeat alive
+[2026-05-25T18:08:52.451Z] Heartbeat alive
+[2026-05-25T18:13:52.468Z] Heartbeat alive
+[2026-05-25T18:18:52.485Z] Heartbeat alive
+[2026-05-25T18:23:52.501Z] Heartbeat alive
+[2026-05-25T18:28:52.516Z] Heartbeat alive
+[2026-05-25T18:33:52.531Z] Heartbeat alive
+[2026-05-25T18:38:52.544Z] Heartbeat alive
+[2026-05-25T18:43:52.556Z] Heartbeat alive
+[2026-05-25T18:48:52.568Z] Heartbeat alive
+[2026-05-25T18:53:52.572Z] Heartbeat alive
+[2026-05-25T18:58:52.581Z] Heartbeat alive
+[2026-05-25T19:03:52.588Z] Heartbeat alive
+[2026-05-25T19:08:52.591Z] Heartbeat alive
+[2026-05-25T19:13:52.595Z] Heartbeat alive
+[2026-05-25T19:18:52.597Z] Heartbeat alive
+[2026-05-25T19:23:52.601Z] Heartbeat alive
+[2026-05-25T19:28:52.604Z] Heartbeat alive
+[2026-05-25T19:33:52.607Z] Heartbeat alive
+[2026-05-25T19:38:52.607Z] Heartbeat alive
+[2026-05-25T19:43:52.613Z] Heartbeat alive
+[2026-05-25T19:48:52.637Z] Heartbeat alive
+[2026-05-25T19:53:52.656Z] Heartbeat alive
+[2026-05-25T19:58:52.680Z] Heartbeat alive
+[2026-05-25T20:03:52.692Z] Heartbeat alive
+[2026-05-25T20:08:52.716Z] Heartbeat alive
+[2026-05-25T20:13:52.738Z] Heartbeat alive
+[2026-05-25T20:18:52.752Z] Heartbeat alive
+[2026-05-25T20:23:52.773Z] Heartbeat alive
+[2026-05-25T20:28:52.790Z] Heartbeat alive
+[2026-05-25T20:33:52.810Z] Heartbeat alive
+[2026-05-25T20:38:52.828Z] Heartbeat alive
+[2026-05-25T20:43:52.845Z] Heartbeat alive
+[2026-05-25T20:48:52.862Z] Heartbeat alive
+[2026-05-25T20:53:52.877Z] Heartbeat alive
+[2026-05-25T20:58:52.891Z] Heartbeat alive
+[2026-05-25T21:03:52.902Z] Heartbeat alive
+[2026-05-25T21:08:52.913Z] Heartbeat alive
+[2026-05-25T21:13:52.924Z] Heartbeat alive
+[2026-05-25T21:18:52.935Z] Heartbeat alive
+[2026-05-25T21:23:52.942Z] Heartbeat alive
+[2026-05-25T21:28:52.944Z] Heartbeat alive
+[2026-05-25T21:33:52.951Z] Heartbeat alive
+[2026-05-25T21:38:52.958Z] Heartbeat alive
+[2026-05-25T21:43:52.960Z] Heartbeat alive
+[2026-05-25T21:48:52.965Z] Heartbeat alive
+[2026-05-25T21:53:52.968Z] Heartbeat alive
+[2026-05-25T21:58:52.970Z] Heartbeat alive
+[2026-05-25T22:03:52.971Z] Heartbeat alive
+[2026-05-25T22:08:52.972Z] Heartbeat alive
+[2026-05-25T22:13:52.991Z] Heartbeat alive
+[2026-05-25T22:18:53.010Z] Heartbeat alive
+[2026-05-25T22:23:53.024Z] Heartbeat alive
+[2026-05-25T22:28:53.028Z] Heartbeat alive
+[2026-05-25T22:33:53.047Z] Heartbeat alive
+[2026-05-25T22:38:53.066Z] Heartbeat alive
+[2026-05-25T22:43:53.068Z] Heartbeat alive
+[2026-05-25T22:48:53.087Z] Heartbeat alive
+[2026-05-25T22:53:53.106Z] Heartbeat alive
+[2026-05-25T22:58:53.120Z] Heartbeat alive
+[2026-05-25T23:03:53.134Z] Heartbeat alive
+[2026-05-25T23:08:53.151Z] Heartbeat alive
+[2026-05-25T23:13:53.167Z] Heartbeat alive
+[2026-05-25T23:18:53.182Z] Heartbeat alive
+[2026-05-25T23:23:53.193Z] Heartbeat alive
+[2026-05-25T23:28:53.203Z] Heartbeat alive
+[2026-05-25T23:33:53.216Z] Heartbeat alive
+[2026-05-25T23:38:53.226Z] Heartbeat alive
+[2026-05-25T23:43:53.236Z] Heartbeat alive
+[2026-05-25T23:48:53.245Z] Heartbeat alive
+[2026-05-25T23:53:53.254Z] Heartbeat alive
+[2026-05-25T23:58:53.262Z] Heartbeat alive
+[2026-05-26T00:03:53.268Z] Heartbeat alive
+[2026-05-26T00:08:53.273Z] Heartbeat alive
+[2026-05-26T00:13:53.278Z] Heartbeat alive
+[2026-05-26T00:18:53.281Z] Heartbeat alive
+[2026-05-26T00:23:53.284Z] Heartbeat alive
+[2026-05-26T00:28:53.285Z] Heartbeat alive
+[2026-05-26T00:33:53.286Z] Heartbeat alive
+[2026-05-26T00:38:53.302Z] Heartbeat alive
+[2026-05-26T00:43:53.317Z] Heartbeat alive
+[2026-05-26T00:48:53.332Z] Heartbeat alive
+[2026-05-26T00:53:53.347Z] Heartbeat alive
+[2026-05-26T00:58:53.362Z] Heartbeat alive
+[2026-05-26T01:03:53.377Z] Heartbeat alive
+[2026-05-26T01:08:53.382Z] Heartbeat alive
+[2026-05-26T01:13:53.395Z] Heartbeat alive
+[2026-05-26T01:18:53.410Z] Heartbeat alive
+[2026-05-26T01:23:53.420Z] Heartbeat alive
+[2026-05-26T01:28:53.435Z] Heartbeat alive
+[2026-05-26T01:33:53.435Z] Heartbeat alive
+[2026-05-26T01:38:53.451Z] Heartbeat alive
+[2026-05-26T01:43:53.455Z] Heartbeat alive
+[2026-05-26T01:48:53.456Z] Heartbeat alive
+[2026-05-26T01:53:53.470Z] Heartbeat alive
+[2026-05-26T01:58:53.481Z] Heartbeat alive
+[2026-05-26T02:03:53.493Z] Heartbeat alive
+[2026-05-26T02:08:53.496Z] Heartbeat alive
+[2026-05-26T02:13:53.506Z] Heartbeat alive
+[2026-05-26T02:18:53.515Z] Heartbeat alive
+[2026-05-26T02:23:53.523Z] Heartbeat alive
+[2026-05-26T02:28:53.525Z] Heartbeat alive
+[2026-05-26T02:33:53.532Z] Heartbeat alive
+[2026-05-26T02:38:53.533Z] Heartbeat alive
+[2026-05-26T02:43:53.538Z] Heartbeat alive
+[2026-05-26T02:48:53.542Z] Heartbeat alive
+[2026-05-26T02:53:53.545Z] Heartbeat alive
+[2026-05-26T02:58:53.545Z] Heartbeat alive
+[2026-05-26T03:03:53.546Z] Heartbeat alive
+[2026-05-26T03:08:53.559Z] Heartbeat alive
+[2026-05-26T03:13:53.571Z] Heartbeat alive
+[2026-05-26T03:18:53.577Z] Heartbeat alive
+[2026-05-26T03:19:27.680Z] Topic:
+aquaponic/device/data
+[2026-05-26T03:19:27.680Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":22.6,"humidity":78.9,"ph":5.9}}
+[2026-05-26T03:19:27.682Z] Topic: aquaponic/device/data
+[2026-05-26T03:19:27.683Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":22.6,"humidity":78.9,"ph":5.9}}
+[2026-05-26T03:19:27.683Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:19:27.687Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-26T03:20:05.956Z] Topic: aquaponic/device/data
+[2026-05-26T03:20:05.956Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":23.7,"humidity":35.5,"ph":7.8}}
+[2026-05-26T03:20:05.956Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:20:05.955Z] Topic:
+aquaponic/device/data
+[2026-05-26T03:20:05.955Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":23.7,"humidity":35.5,"ph":7.8}}
+[2026-05-26T03:20:05.960Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-26T03:23:53.586Z] Heartbeat alive
+[2026-05-26T03:25:07.577Z] Topic:
+aquaponic/device/data
+[2026-05-26T03:25:07.577Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17.7,"humidity":43.8,"ph":6.3}}
+[2026-05-26T03:25:07.579Z] Topic: aquaponic/device/data
+[2026-05-26T03:25:07.579Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17.7,"humidity":43.8,"ph":6.3}}
+[2026-05-26T03:25:07.580Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:25:07.581Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-26T03:28:53.597Z] Heartbeat alive
+[2026-05-26T03:30:09.314Z] Topic: aquaponic/device/data
+[2026-05-26T03:30:09.314Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":18.1,"humidity":48.5,"ph":6.3}}
+[2026-05-26T03:30:09.315Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:30:09.315Z] Topic:
+aquaponic/device/data
+[2026-05-26T03:30:09.315Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":18.1,"humidity":48.5,"ph":6.3}}
+[2026-05-26T03:30:09.319Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-26T03:32:32.379Z] Topic: aquaponic/device/data
+[2026-05-26T03:32:32.379Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":18,"humidity":42.3,"ph":6.3}}
+[2026-05-26T03:32:32.379Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:32:32.379Z] Topic:
+aquaponic/device/data
+[2026-05-26T03:32:32.379Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":18,"humidity":42.3,"ph":6.3}}
+[2026-05-26T03:32:32.382Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-26T03:33:25.111Z] Topic:
+aquaponic/device/data
+[2026-05-26T03:33:25.111Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":19.8,"humidity":48.2,"ph":7.6}}
+[2026-05-26T03:33:25.113Z] Topic: aquaponic/device/data
+[2026-05-26T03:33:25.113Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":19.8,"humidity":48.2,"ph":7.6}}
+[2026-05-26T03:33:25.113Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:33:25.114Z] Runtime Error:
+Unknown column 'json_key' in 'field list'
+[2026-05-26T03:33:53.608Z] Heartbeat alive
+[2026-05-26T03:34:09.012Z] === APP STARTED ===
+[2026-05-26T03:34:09.028Z] HTTP Running:
+undefined
+[2026-05-26T03:34:09.062Z] Database Connected
+[2026-05-26T03:34:09.831Z] MQTT Connected
+[2026-05-26T03:34:10.029Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T03:34:24.703Z] Topic: aquaponic/device/data
+[2026-05-26T03:34:24.704Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":32.3,"humidity":40.4,"ph":5.4}}
+[2026-05-26T03:34:24.711Z] Topic: aquaponic/device/data
+[2026-05-26T03:34:24.711Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":32.3,"humidity":40.4,"ph":5.4}}
+[2026-05-26T03:34:24.712Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:39:09.045Z] Heartbeat alive
+[2026-05-26T03:39:26.268Z] Topic: aquaponic/device/data
+[2026-05-26T03:39:26.269Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":26.7,"humidity":63.5,"ph":5.9}}
+[2026-05-26T03:39:26.270Z] Topic: aquaponic/device/data
+[2026-05-26T03:39:26.270Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":26.7,"humidity":63.5,"ph":5.9}}
+[2026-05-26T03:39:26.271Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:49:34.016Z] === APP STARTED ===
+[2026-05-26T03:49:34.035Z] HTTP Running:
+    undefined
+[2026-05-26T03:49:34.067Z] Database Connected
+[2026-05-26T03:49:34.770Z] MQTT Connected
+[2026-05-26T03:49:34.958Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T03:49:37.423Z] === APP STARTED ===
+[2026-05-26T03:49:37.444Z] HTTP Running:
+    undefined
+[2026-05-26T03:49:37.530Z] Database Connected
+[2026-05-26T03:49:38.207Z] MQTT Connected
+[2026-05-26T03:49:38.398Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T03:49:52.135Z] Topic: aquaponic/device/data
+[2026-05-26T03:49:52.136Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":21.3,"humidity":62,"ph":4.4}}
+[2026-05-26T03:49:52.136Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:49:52.135Z] Topic: aquaponic/device/data
+[2026-05-26T03:49:52.136Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":21.3,"humidity":62,"ph":4.4}}
+[2026-05-26T03:53:47.620Z] === APP STARTED ===
+[2026-05-26T03:53:47.635Z] HTTP Running:
+    undefined
+[2026-05-26T03:53:47.716Z] Database Connected
+[2026-05-26T03:53:48.412Z] MQTT Connected
+[2026-05-26T03:53:48.611Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T03:54:08.037Z] Topic: aquaponic/device/data
+[2026-05-26T03:54:08.037Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17,"humidity":82.4,"ph":4.6}}
+[2026-05-26T03:54:08.037Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T03:54:08.047Z] Topic: aquaponic/device/data
+[2026-05-26T03:54:08.048Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17,"humidity":82.4,"ph":4.6}}
+[2026-05-26T03:58:47.653Z] Heartbeat alive
+[2026-05-26T03:59:09.621Z] Topic: aquaponic/device/data
+[2026-05-26T03:59:09.622Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":23.6,"humidity":80.5,"ph":7.1}}
+[2026-05-26T03:59:09.627Z] Topic: aquaponic/device/data
+[2026-05-26T03:59:09.627Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":23.6,"humidity":80.5,"ph":7.1}}
+[2026-05-26T03:59:09.628Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:03:47.680Z] Heartbeat alive
+[2026-05-26T04:04:10.965Z] Topic: aquaponic/device/data
+[2026-05-26T04:04:10.966Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":24.7,"humidity":40.4,"ph":7}}
+[2026-05-26T04:04:10.966Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:04:10.974Z] Topic: aquaponic/device/data
+[2026-05-26T04:04:10.974Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":24.7,"humidity":40.4,"ph":7}}
+[2026-05-26T04:06:25.827Z] === APP STARTED ===
+[2026-05-26T04:06:25.905Z] HTTP Running:
+    undefined
+[2026-05-26T04:06:25.937Z] Database Connected
+[2026-05-26T04:06:26.639Z] MQTT Connected
+[2026-05-26T04:06:26.822Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T04:06:39.971Z] Topic: aquaponic/device/data
+[2026-05-26T04:06:39.971Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17,"humidity":85.5,"ph":4.1}}
+[2026-05-26T04:06:39.968Z] Topic: aquaponic/device/data
+[2026-05-26T04:06:39.968Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17,"humidity":85.5,"ph":4.1}}
+[2026-05-26T04:06:39.971Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:06:39.986Z] Runtime Error:
+sensorType is not defined
+[2026-05-26T04:08:39.512Z] === APP STARTED ===
+[2026-05-26T04:08:39.528Z] HTTP Running:
+    undefined
+[2026-05-26T04:08:39.558Z] Database Connected
+[2026-05-26T04:08:40.269Z] MQTT Connected
+[2026-05-26T04:08:40.456Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T04:08:43.006Z] === APP STARTED ===
+[2026-05-26T04:08:43.025Z] HTTP Running:
+    undefined
+[2026-05-26T04:08:43.056Z] Database Connected
+[2026-05-26T04:08:43.760Z] MQTT Connected
+[2026-05-26T04:08:43.946Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T04:08:57.605Z] Topic: aquaponic/device/data
+[2026-05-26T04:08:57.605Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17.4,"humidity":54.9,"ph":7.2}}
+[2026-05-26T04:08:57.605Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:08:57.606Z] Topic: aquaponic/device/data
+[2026-05-26T04:08:57.606Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17.4,"humidity":54.9,"ph":7.2}}
+[2026-05-26T04:08:57.623Z] temperature
+=> 17.4
+[2026-05-26T04:08:57.626Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:08:57.626Z] Alert queued:
+DHT22 Suhu Udara
+abnormal
+(17.4°C)
+[2026-05-26T04:08:57.627Z] humidity
+=> 54.9
+[2026-05-26T04:08:57.628Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:08:57.628Z] ph
+=> 7.2
+[2026-05-26T04:08:57.629Z] Sensor pH Air
+saved
+[2026-05-26T04:08:57.870Z] Fonnte token missing
+[2026-05-26T04:08:57.870Z] WhatsApp sent:
+082145678901
+[2026-05-26T04:09:59.989Z] Topic: aquaponic/device/data
+[2026-05-26T04:09:59.989Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":15.6,"humidity":49.1,"ph":5.9}}
+[2026-05-26T04:09:59.990Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:09:59.995Z] Topic: aquaponic/device/data
+[2026-05-26T04:09:59.995Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":15.6,"humidity":49.1,"ph":5.9}}
+[2026-05-26T04:10:00.000Z] temperature
+=> 15.6
+[2026-05-26T04:10:00.001Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:10:00.001Z] Alert queued:
+DHT22 Suhu Udara
+abnormal
+(15.6°C)
+[2026-05-26T04:10:00.001Z] humidity
+=> 49.1
+[2026-05-26T04:10:00.002Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:10:00.002Z] ph
+=> 5.9
+[2026-05-26T04:10:00.002Z] Sensor pH Air
+saved
+[2026-05-26T04:10:00.186Z] Fonnte token missing
+[2026-05-26T04:10:00.186Z] WhatsApp sent:
+082145678901
+[2026-05-26T04:11:41.412Z] === APP STARTED ===
+[2026-05-26T04:11:41.429Z] HTTP Running:
+    undefined
+[2026-05-26T04:11:41.459Z] Database Connected
+[2026-05-26T04:11:42.167Z] MQTT Connected
+[2026-05-26T04:11:42.351Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T04:11:54.037Z] Topic: aquaponic/device/data
+[2026-05-26T04:11:54.037Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":19.5,"humidity":36.7,"ph":6}}
+[2026-05-26T04:11:54.037Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:11:54.039Z] Topic: aquaponic/device/data
+[2026-05-26T04:11:54.039Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":19.5,"humidity":36.7,"ph":6}}
+[2026-05-26T04:11:54.060Z] temperature
+=> 19.5
+[2026-05-26T04:11:54.062Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:11:54.062Z] humidity
+=> 36.7
+[2026-05-26T04:11:54.064Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:11:54.064Z] Alert queued:
+DHT22 Kelembapan Udara
+abnormal
+(36.7%)
+[2026-05-26T04:11:54.064Z] ph
+=> 6
+[2026-05-26T04:11:54.065Z] Sensor pH Air
+saved
+[2026-05-26T04:11:54.342Z] Fonnte Response:
+            {"detail":"success! message in queue","id":[158809671],"process":"pending","quota":{"6285866864749":{"details":"deduced from total quota","quota":1000,"remaining":999,"used":1}},"requestid":504468626,"status":true,"target":["6282145678901"]}
+[2026-05-26T04:11:54.343Z] WhatsApp sent:
+082145678901
+[2026-05-26T04:12:54.781Z] Topic: aquaponic/device/data
+[2026-05-26T04:12:54.781Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":21.3,"humidity":42.5,"ph":7.4}}
+[2026-05-26T04:12:54.782Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:12:54.781Z] Topic: aquaponic/device/data
+[2026-05-26T04:12:54.782Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":21.3,"humidity":42.5,"ph":7.4}}
+[2026-05-26T04:12:54.785Z] temperature
+=> 21.3
+[2026-05-26T04:12:54.786Z] humidity
+=> 42.5
+[2026-05-26T04:12:54.786Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:12:54.787Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:12:54.787Z] ph
+=> 7.4
+[2026-05-26T04:12:54.787Z] Sensor pH Air
+saved
+[2026-05-26T04:13:41.982Z] Topic: aquaponic/device/data
+[2026-05-26T04:13:41.982Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":29.2,"humidity":50.1,"ph":7.7}}
+[2026-05-26T04:13:41.984Z] Topic: aquaponic/device/data
+[2026-05-26T04:13:41.984Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":29.2,"humidity":50.1,"ph":7.7}}
+[2026-05-26T04:13:41.985Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:13:41.985Z] temperature
+=> 29.2
+[2026-05-26T04:13:41.986Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:13:41.986Z] humidity
+=> 50.1
+[2026-05-26T04:13:41.987Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:13:41.987Z] ph
+=> 7.7
+[2026-05-26T04:13:41.987Z] Sensor pH Air
+saved
+[2026-05-26T04:13:41.988Z] Alert queued:
+Sensor pH Air
+abnormal
+(7.7pH)
+[2026-05-26T04:13:42.205Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504471220,"status":false}
+[2026-05-26T04:13:42.206Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:13:42.206Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:14:01.762Z] Topic: aquaponic/device/data
+[2026-05-26T04:14:01.762Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":19.6,"humidity":69.5,"ph":6}}
+[2026-05-26T04:14:01.763Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:14:01.771Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":19.6,"humidity":69.5,"ph":6}}
+[2026-05-26T04:14:01.771Z] Topic: aquaponic/device/data
+[2026-05-26T04:14:01.774Z] temperature
+=> 19.6
+[2026-05-26T04:14:01.775Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:14:01.775Z] humidity
+=> 69.5
+[2026-05-26T04:14:01.775Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:14:01.775Z] ph
+=> 6
+[2026-05-26T04:14:01.776Z] Sensor pH Air
+saved
+[2026-05-26T04:14:22.838Z] Topic: aquaponic/device/data
+[2026-05-26T04:14:22.838Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17.8,"humidity":47.3,"ph":7.1}}
+[2026-05-26T04:14:22.839Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:14:22.842Z] Topic: aquaponic/device/data
+[2026-05-26T04:14:22.842Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":17.8,"humidity":47.3,"ph":7.1}}
+[2026-05-26T04:14:22.845Z] temperature
+=> 17.8
+[2026-05-26T04:14:22.845Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:14:22.845Z] Alert queued:
+DHT22 Suhu Udara
+abnormal
+(17.8°C)
+[2026-05-26T04:14:22.846Z] humidity
+=> 47.3
+[2026-05-26T04:14:22.846Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:14:22.847Z] ph
+=> 7.1
+[2026-05-26T04:14:22.847Z] Sensor pH Air
+saved
+[2026-05-26T04:14:23.048Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504472557,"status":false}
+[2026-05-26T04:14:23.049Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:14:23.049Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:16:41.419Z] Heartbeat alive
+[2026-05-26T04:19:24.213Z] Topic: aquaponic/device/data
+[2026-05-26T04:19:24.213Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":33.1,"humidity":87.3,"ph":7}}
+[2026-05-26T04:19:24.214Z] Topic: aquaponic/device/data
+[2026-05-26T04:19:24.215Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":33.1,"humidity":87.3,"ph":7}}
+[2026-05-26T04:19:24.215Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:19:24.216Z] temperature
+=> 33.1
+[2026-05-26T04:19:24.217Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:19:24.217Z] Alert queued:
+DHT22 Suhu Udara
+abnormal
+(33.1°C)
+[2026-05-26T04:19:24.217Z] humidity
+=> 87.3
+[2026-05-26T04:19:24.218Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:19:24.218Z] Alert queued:
+DHT22 Kelembapan Udara
+abnormal
+(87.3%)
+[2026-05-26T04:19:24.218Z] ph
+=> 7
+[2026-05-26T04:19:24.218Z] Sensor pH Air
+saved
+[2026-05-26T04:19:24.465Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504483500,"status":false}
+[2026-05-26T04:19:24.465Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:19:24.465Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:19:24.625Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504483506,"status":false}
+[2026-05-26T04:19:24.625Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:19:24.625Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:21:41.447Z] Heartbeat alive
+[2026-05-26T04:24:25.876Z] Topic: aquaponic/device/data
+[2026-05-26T04:24:25.876Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.7,"humidity":72.9,"ph":7.8}}
+[2026-05-26T04:24:25.877Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:24:25.877Z] Topic: aquaponic/device/data
+[2026-05-26T04:24:25.877Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.7,"humidity":72.9,"ph":7.8}}
+[2026-05-26T04:24:25.880Z] temperature
+=> 30.7
+[2026-05-26T04:24:25.881Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:24:25.881Z] humidity
+=> 72.9
+[2026-05-26T04:24:25.882Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:24:25.882Z] ph
+=> 7.8
+[2026-05-26T04:24:25.882Z] Sensor pH Air
+saved
+[2026-05-26T04:24:25.882Z] Alert queued:
+Sensor pH Air
+abnormal
+(7.8pH)
+[2026-05-26T04:24:26.141Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504494997,"status":false}
+[2026-05-26T04:24:26.141Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:24:26.141Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:26:41.473Z] Heartbeat alive
+[2026-05-26T04:29:27.482Z] Topic: aquaponic/device/data
+[2026-05-26T04:29:27.483Z] Payload: {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":16.4,"humidity":57.7,"ph":5}}
+[2026-05-26T04:29:27.483Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:29:27.485Z] Topic: aquaponic/device/data
+[2026-05-26T04:29:27.485Z] {"mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":16.4,"humidity":57.7,"ph":5}}
+[2026-05-26T04:29:27.488Z] temperature
+=> 16.4
+[2026-05-26T04:29:27.489Z] DHT22 Suhu Udara
+saved
+[2026-05-26T04:29:27.489Z] Alert queued:
+DHT22 Suhu Udara
+abnormal
+(16.4°C)
+[2026-05-26T04:29:27.489Z] humidity
+=> 57.7
+[2026-05-26T04:29:27.490Z] DHT22 Kelembapan Udara
+saved
+[2026-05-26T04:29:27.490Z] ph
+=> 5
+[2026-05-26T04:29:27.490Z] Sensor pH Air
+saved
+[2026-05-26T04:29:27.490Z] Alert queued:
+Sensor pH Air
+abnormal
+(5pH)
+[2026-05-26T04:29:27.716Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504505201,"status":false}
+[2026-05-26T04:29:27.716Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:29:27.716Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:29:27.920Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504505211,"status":false}
+[2026-05-26T04:29:27.920Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:29:27.920Z] WhatsApp sent:
+085713211581
+[2026-05-26T04:30:46.937Z] Topic: aquaponic/device/data
+[2026-05-26T04:30:46.937Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.1,"humidity":86.3,"ph":5.3}}
+[2026-05-26T04:30:46.939Z] Topic: aquaponic/device/data
+[2026-05-26T04:30:46.939Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.1,"humidity":86.3,"ph":5.3}}
+[2026-05-26T04:30:46.940Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:30:46.940Z] ph
+=> 5.3
+[2026-05-26T04:30:46.941Z] PH Sensor Baru
+saved
+[2026-05-26T04:30:46.941Z] Alert queued:
+PH Sensor Baru
+abnormal
+(5.3pH)
+[2026-05-26T04:30:46.941Z] temperature
+=> 33.1
+[2026-05-26T04:30:46.941Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:30:47.149Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504510553,"status":false}
+[2026-05-26T04:30:47.149Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:30:47.150Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:31:41.497Z] Heartbeat alive
+[2026-05-26T04:35:48.364Z] Topic: aquaponic/device/data
+[2026-05-26T04:35:48.364Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8,"humidity":33.4,"ph":5.9}}
+[2026-05-26T04:35:48.364Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:35:48.365Z] Topic: aquaponic/device/data
+[2026-05-26T04:35:48.365Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8,"humidity":33.4,"ph":5.9}}
+[2026-05-26T04:35:48.368Z] ph
+=> 5.9
+[2026-05-26T04:35:48.368Z] PH Sensor Baru
+saved
+[2026-05-26T04:35:48.368Z] Alert queued:
+PH Sensor Baru
+abnormal
+(5.9pH)
+[2026-05-26T04:35:48.369Z] temperature
+=> 29.8
+[2026-05-26T04:35:48.369Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:35:48.607Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504518666,"status":false}
+[2026-05-26T04:35:48.608Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:35:48.608Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:36:41.509Z] Heartbeat alive
+[2026-05-26T04:40:49.938Z] Topic: aquaponic/device/data
+[2026-05-26T04:40:49.938Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":22.6,"humidity":72,"ph":7.7}}
+[2026-05-26T04:40:49.939Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:40:49.944Z] Topic: aquaponic/device/data
+[2026-05-26T04:40:49.944Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":22.6,"humidity":72,"ph":7.7}}
+[2026-05-26T04:40:49.947Z] ph
+=> 7.7
+[2026-05-26T04:40:49.948Z] PH Sensor Baru
+saved
+[2026-05-26T04:40:49.948Z] temperature
+=> 22.6
+[2026-05-26T04:40:49.948Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:41:41.532Z] Heartbeat alive
+[2026-05-26T04:45:51.225Z] Topic: aquaponic/device/data
+[2026-05-26T04:45:51.226Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":34.9,"humidity":33.3,"ph":4.7}}
+[2026-05-26T04:45:51.226Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:45:51.240Z] Topic: aquaponic/device/data
+[2026-05-26T04:45:51.240Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":34.9,"humidity":33.3,"ph":4.7}}
+[2026-05-26T04:45:51.242Z] ph
+=> 4.7
+[2026-05-26T04:45:51.243Z] PH Sensor Baru
+saved
+[2026-05-26T04:45:51.243Z] Alert queued:
+PH Sensor Baru
+abnormal
+(4.7pH)
+[2026-05-26T04:45:51.243Z] temperature
+=> 34.9
+[2026-05-26T04:45:51.244Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:45:51.504Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504529689,"status":false}
+[2026-05-26T04:45:51.504Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:45:51.504Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:46:41.545Z] Heartbeat alive
+[2026-05-26T04:50:52.797Z] Topic: aquaponic/device/data
+[2026-05-26T04:50:52.797Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":21.4,"humidity":58.8,"ph":5.2}}
+[2026-05-26T04:50:52.798Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:50:52.797Z] Topic: aquaponic/device/data
+[2026-05-26T04:50:52.798Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":21.4,"humidity":58.8,"ph":5.2}}
+[2026-05-26T04:50:52.801Z] ph
+=> 5.2
+[2026-05-26T04:50:52.802Z] PH Sensor Baru
+saved
+[2026-05-26T04:50:52.802Z] Alert queued:
+PH Sensor Baru
+abnormal
+(5.2pH)
+[2026-05-26T04:50:52.802Z] temperature
+=> 21.4
+[2026-05-26T04:50:52.802Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:50:53.027Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504537841,"status":false}
+[2026-05-26T04:50:53.027Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:50:53.028Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:51:41.552Z] Heartbeat alive
+[2026-05-26T04:51:50.318Z] === APP STARTED ===
+[2026-05-26T04:51:50.336Z] HTTP Running:
+    undefined
+[2026-05-26T04:51:50.417Z] Database Connected
+[2026-05-26T04:51:51.064Z] MQTT Connected
+[2026-05-26T04:51:51.252Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T04:52:31.478Z] Topic: aquaponic/device/data
+[2026-05-26T04:52:31.478Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":30.9,"humidity":91.4,"ph":8.7}}
+[2026-05-26T04:52:31.478Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:52:31.482Z] Topic: aquaponic/device/data
+[2026-05-26T04:52:31.483Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":30.9,"humidity":91.4,"ph":8.7}}
+[2026-05-26T04:52:31.497Z] ph
+=> 8.7
+[2026-05-26T04:52:31.499Z] PH Sensor Baru
+saved
+[2026-05-26T04:52:31.499Z] temperature
+=> 30.9
+[2026-05-26T04:52:31.501Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:53:20.554Z] Topic: aquaponic/device/data
+[2026-05-26T04:53:20.554Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":27.3,"humidity":31.2,"ph":8.3}}
+[2026-05-26T04:53:20.555Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:53:20.558Z] Topic: aquaponic/device/data
+[2026-05-26T04:53:20.558Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":27.3,"humidity":31.2,"ph":8.3}}
+[2026-05-26T04:53:20.561Z] ph
+=> 8.3
+[2026-05-26T04:53:20.562Z] PH Sensor Baru
+saved
+[2026-05-26T04:53:20.562Z] Alert queued:
+PH Sensor Baru
+abnormal
+(8.3pH)
+[2026-05-26T04:53:20.562Z] temperature
+=> 27.3
+[2026-05-26T04:53:20.563Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:53:20.583Z] Sending Alert:
+{"site_id":9,"message":"PH Sensor Baru\nabnormal\n(8.3pH)","type":"warning"}
+[2026-05-26T04:53:20.779Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":1730}
+[2026-05-26T04:53:20.779Z] Notification created:
+1730
+[2026-05-26T04:53:20.805Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504542223,"status":false}
+[2026-05-26T04:53:20.806Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:53:20.806Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:56:50.354Z] Heartbeat alive
+[2026-05-26T04:58:21.922Z] Topic: aquaponic/device/data
+[2026-05-26T04:58:21.922Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":19.8,"humidity":39.7,"ph":5.6}}
+[2026-05-26T04:58:21.922Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:58:21.921Z] Topic: aquaponic/device/data
+[2026-05-26T04:58:21.921Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":19.8,"humidity":39.7,"ph":5.6}}
+[2026-05-26T04:58:21.926Z] ph
+=> 5.6
+[2026-05-26T04:58:21.927Z] PH Sensor Baru
+saved
+[2026-05-26T04:58:21.927Z] Alert queued:
+PH Sensor Baru
+abnormal
+(5.6pH)
+[2026-05-26T04:58:21.927Z] temperature
+=> 19.8
+[2026-05-26T04:58:21.928Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:58:21.928Z] Alert queued:
+Temperature Sensor Baru
+abnormal
+(19.8Celcius)
+[2026-05-26T04:58:21.939Z] Sending Alert:
+{"site_id":9,"message":"PH Sensor Baru\nabnormal\n(5.6pH)","type":"warning"}
+[2026-05-26T04:58:22.151Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":1731,"error":"Mailer [SMTP] is not defined.","file":"MailManager.php","line":117}
+[2026-05-26T04:58:22.151Z] Notification created:
+1731
+[2026-05-26T04:58:22.184Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504550255,"status":false}
+[2026-05-26T04:58:22.184Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:58:22.185Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:58:22.185Z] Sending Alert:
+{"site_id":9,"message":"Temperature Sensor Baru\nabnormal\n(19.8Celcius)","type":"warning"}
+[2026-05-26T04:58:22.318Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":1732,"error":"Mailer [SMTP] is not defined.","file":"MailManager.php","line":117}
+[2026-05-26T04:58:22.319Z] Notification created:
+1732
+[2026-05-26T04:58:22.326Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504550262,"status":false}
+[2026-05-26T04:58:22.326Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T04:58:22.326Z] WhatsApp sent:
+6285713211581
+[2026-05-26T04:59:27.534Z] === APP STARTED ===
+[2026-05-26T04:59:27.605Z] HTTP Running:
+    undefined
+[2026-05-26T04:59:27.633Z] Database Connected
+[2026-05-26T04:59:28.818Z] === APP STARTED ===
+[2026-05-26T04:59:28.833Z] HTTP Running:
+    undefined
+[2026-05-26T04:59:28.911Z] Database Connected
+[2026-05-26T04:59:29.562Z] MQTT Connected
+[2026-05-26T04:59:29.748Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T04:59:35.218Z] Topic: aquaponic/device/data
+[2026-05-26T04:59:35.218Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":27.3,"humidity":31.2,"ph":8.3}}
+[2026-05-26T04:59:35.218Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T04:59:35.217Z] Topic: aquaponic/device/data
+[2026-05-26T04:59:35.217Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":27.3,"humidity":31.2,"ph":8.3}}
+[2026-05-26T04:59:35.233Z] ph
+=> 8.3
+[2026-05-26T04:59:35.235Z] PH Sensor Baru
+saved
+[2026-05-26T04:59:35.235Z] Alert queued:
+PH Sensor Baru
+abnormal
+(8.3pH)
+[2026-05-26T04:59:35.236Z] temperature
+=> 27.3
+[2026-05-26T04:59:35.237Z] Temperature Sensor Baru
+saved
+[2026-05-26T04:59:35.247Z] Sending Alert:
+{"site_id":9,"message":"PH Sensor Baru\nabnormal\n(8.3pH)","type":"warning"}
+[2026-05-26T04:59:35.409Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-26T04:59:35.409Z] Duplicate notification skipped
+[2026-05-26T05:04:37.182Z] Topic: aquaponic/device/data
+[2026-05-26T05:04:37.182Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":19.8,"humidity":39.7,"ph":5.6}}
+[2026-05-26T05:04:37.183Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T05:05:05.621Z] === APP STARTED ===
+[2026-05-26T05:05:05.638Z] HTTP Running:
+    undefined
+[2026-05-26T05:05:05.718Z] Database Connected
+[2026-05-26T05:05:06.424Z] MQTT Connected
+[2026-05-26T05:05:06.624Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T05:05:08.864Z] Topic: aquaponic/device/data
+[2026-05-26T05:05:08.864Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33,"humidity":40.8,"ph":7.5}}
+[2026-05-26T05:05:08.865Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T05:05:08.877Z] Topic: aquaponic/device/data
+[2026-05-26T05:05:08.877Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33,"humidity":40.8,"ph":7.5}}
+[2026-05-26T05:05:08.891Z] ph
+=> 7.5
+[2026-05-26T05:05:08.893Z] PH Sensor Baru
+saved
+[2026-05-26T05:05:08.894Z] temperature
+=> 33
+[2026-05-26T05:05:08.895Z] Temperature Sensor Baru
+saved
+[2026-05-26T05:05:08.895Z] Alert queued:
+Temperature Sensor Baru
+abnormal
+(33Celcius)
+[2026-05-26T05:05:08.907Z] Sending Alert:
+{"site_id":9,"message":"Temperature Sensor Baru\nabnormal\n(33Celcius)","type":"warning"}
+[2026-05-26T05:05:17.171Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":1733,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-26T05:05:17.171Z] Notification created:
+1733
+[2026-05-26T05:05:17.198Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504565228,"status":false}
+[2026-05-26T05:05:17.198Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T05:05:17.198Z] WhatsApp sent:
+6285713211581
+[2026-05-26T05:06:41.344Z] Topic: aquaponic/device/data
+[2026-05-26T05:06:41.344Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":30.9,"humidity":42.8,"ph":6.3}}
+[2026-05-26T05:06:41.345Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T05:06:41.351Z] Topic: aquaponic/device/data
+[2026-05-26T05:06:41.351Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":30.9,"humidity":42.8,"ph":6.3}}
+[2026-05-26T05:06:41.355Z] ph
+=> 6.3
+[2026-05-26T05:06:41.356Z] PH Sensor Baru
+saved
+[2026-05-26T05:06:41.356Z] temperature
+=> 30.9
+[2026-05-26T05:06:41.357Z] Temperature Sensor Baru
+saved
+[2026-05-26T05:06:41.357Z] Alert queued:
+Temperature Sensor Baru
+abnormal
+(30.9Celcius)
+[2026-05-26T05:06:41.364Z] Sending Alert:
+{"site_id":9,"message":"Temperature Sensor Baru\nabnormal\n(30.9Celcius)","type":"warning"}
+[2026-05-26T05:06:49.109Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":1734,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-26T05:06:49.109Z] Notification created:
+1734
+[2026-05-26T05:06:49.130Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504568322,"status":false}
+[2026-05-26T05:06:49.130Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T05:06:49.130Z] WhatsApp sent:
+6285713211581
+[2026-05-26T05:09:09.314Z] Topic: aquaponic/device/data
+[2026-05-26T05:09:09.314Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":31.2,"humidity":35.2,"ph":5.9}}
+[2026-05-26T05:09:09.315Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T05:09:09.330Z] Topic: aquaponic/device/data
+[2026-05-26T05:09:09.330Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":31.2,"humidity":35.2,"ph":5.9}}
+[2026-05-26T05:09:09.334Z] ph
+=> 5.9
+[2026-05-26T05:09:09.335Z] PH Sensor Baru
+saved
+[2026-05-26T05:09:09.335Z] Alert queued:
+PH Sensor Baru
+abnormal
+(5.9pH)
+[2026-05-26T05:09:09.335Z] temperature
+=> 31.2
+[2026-05-26T05:09:09.336Z] Temperature Sensor Baru
+saved
+[2026-05-26T05:09:09.336Z] Alert queued:
+Temperature Sensor Baru
+abnormal
+(31.2Celcius)
+[2026-05-26T05:09:09.354Z] Sending Alert:
+{"site_id":9,"message":"PH Sensor Baru\nabnormal\n(5.9pH)","type":"warning"}
+[2026-05-26T05:09:09.817Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1735}
+[2026-05-26T05:09:09.817Z] Notification created:
+1735
+[2026-05-26T05:09:09.836Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504573467,"status":false}
+[2026-05-26T05:09:09.837Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T05:09:09.837Z] WhatsApp sent:
+6285713211581
+[2026-05-26T05:09:09.837Z] Sending Alert:
+{"site_id":9,"message":"Temperature Sensor Baru\nabnormal\n(31.2Celcius)","type":"warning"}
+[2026-05-26T05:09:10.118Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1736}
+[2026-05-26T05:09:10.118Z] Notification created:
+1736
+[2026-05-26T05:09:10.126Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504573474,"status":false}
+[2026-05-26T05:09:10.127Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T05:09:10.127Z] WhatsApp sent:
+6285713211581
+[2026-05-26T05:09:50.347Z] === APP STARTED ===
+[2026-05-26T05:09:50.412Z] HTTP Running:
+    undefined
+[2026-05-26T05:09:50.443Z] Database Connected
+[2026-05-26T05:09:51.201Z] MQTT Connected
+[2026-05-26T05:09:51.400Z] Subscribed:
+aquaponic/device/data
+[2026-05-26T05:10:06.648Z] Topic: aquaponic/device/data
+[2026-05-26T05:10:06.648Z] Payload: {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.7,"humidity":32.2,"ph":5.2}}
+[2026-05-26T05:10:06.649Z] Runtime Error: Can't add new command when connection is in closed state
+[2026-05-26T05:10:06.661Z] Topic: aquaponic/device/data
+[2026-05-26T05:10:06.661Z] {"mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.7,"humidity":32.2,"ph":5.2}}
+[2026-05-26T05:10:06.679Z] ph
+=> 5.2
+[2026-05-26T05:10:06.682Z] PH Sensor Baru
+saved
+[2026-05-26T05:10:06.682Z] Alert queued:
+PH Sensor Baru
+abnormal
+(5.2pH)
+[2026-05-26T05:10:06.682Z] temperature
+=> 32.7
+[2026-05-26T05:10:06.684Z] Temperature Sensor Baru
+saved
+[2026-05-26T05:10:06.684Z] Alert queued:
+Temperature Sensor Baru
+abnormal
+(32.7Celcius)
+[2026-05-26T05:10:06.705Z] Sending Alert:
+{"site_id":9,"message":"PH Sensor Baru\nabnormal\n(5.2pH)","type":"warning"}
+[2026-05-26T05:10:06.854Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-26T05:10:06.854Z] Duplicate notification skipped
+[2026-05-26T05:10:06.854Z] Sending Alert:
+{"site_id":9,"message":"Temperature Sensor Baru\nabnormal\n(32.7Celcius)","type":"warning"}
+[2026-05-26T05:10:07.153Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1737}
+[2026-05-26T05:10:07.154Z] Notification created:
+1737
+[2026-05-26T05:10:07.210Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":504576593,"status":false}
+[2026-05-26T05:10:07.211Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-26T05:10:07.211Z] WhatsApp sent:
+6285713211581
