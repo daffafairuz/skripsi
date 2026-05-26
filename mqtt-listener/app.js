@@ -4,6 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const mqtt = require('mqtt');
 const mysql = require('mysql2/promise');
+const express = require('express');
 
 require('dotenv').config({
     path:
@@ -543,7 +544,7 @@ log(
 
 client.subscribe(
 
-process.env.MQTT_TOPIC,
+[process.env.MQTT_TOPIC, 'aquaponic/device/+/actuator'],
 
 (err)=>{
 
@@ -559,8 +560,7 @@ return;
 }
 
 log(
-`Subscribed:
-${process.env.MQTT_TOPIC}`
+`Subscribed to topics: ${process.env.MQTT_TOPIC} and aquaponic/device/+/actuator`
 );
 
 }
@@ -644,6 +644,9 @@ mqttMessage.toString()
 log(
 JSON.stringify(data)
 );
+
+
+if (topic === process.env.MQTT_TOPIC) {
 
 
 // =====================
@@ -973,6 +976,67 @@ ${err.message}`
 
 }
 
+} // close if (topic === process.env.MQTT_TOPIC)
+else if (topic.startsWith('aquaponic/device/') && topic.endsWith('/actuator')) {
+    const parts = topic.split('/');
+    const macAddress = parts[2];
+    
+    const type = data.type || data.actuator_type;
+    const state = data.state || data.action;
+
+    if (!type || !state) {
+        log(`Error: Payload aktuator tidak lengkap untuk device ${macAddress} (type=${type}, state=${state})`);
+    } else {
+        let actConn = null;
+        try {
+            actConn = await db.getConnection();
+            await actConn.beginTransaction();
+
+            const [actuatorRows] = await actConn.execute(
+                `SELECT a.id, a.name 
+                 FROM actuators a
+                 JOIN devices d ON d.id = a.device_id
+                 WHERE d.mac_address = ? AND a.type = ?
+                 LIMIT 1`,
+                [macAddress, type]
+            );
+
+            if (actuatorRows.length === 0) {
+                log(`Error: Aktuator dengan tipe ${type} tidak ditemukan untuk device ${macAddress}`);
+                await actConn.rollback();
+            } else {
+                const actuator = actuatorRows[0];
+
+                await actConn.execute(
+                    `INSERT INTO actuator_logs (actuator_id, action, triggered_by, created_at, updated_at)
+                     VALUES (?, ?, ?, NOW(), NOW())`,
+                    [actuator.id, state.toLowerCase(), 'auto']
+                );
+
+                await actConn.commit();
+                log(`[DB SUCCESS] Perubahan aktuator ${actuator.name} (${type}) menjadi ${state} berhasil disimpan (triggered_by: auto)`);
+            }
+        } catch (err) {
+            log(`Error menyimpan log aktuator dari ESP32: ${err.message}`);
+            if (actConn) {
+                try {
+                    await actConn.rollback();
+                } catch (e) {
+                    log(`Rollback Error: ${e.message}`);
+                }
+            }
+        } finally {
+            if (actConn) {
+                try {
+                    actConn.release();
+                } catch (e) {
+                    log(`Release Error: ${e.message}`);
+                }
+            }
+        }
+    }
+}
+
 }
 catch(err){
 
@@ -1067,46 +1131,46 @@ log(
 // HTTP
 // =====================
 
-const PORT =
-process.env.PORT;
+const app = express();
+app.use(express.json());
 
-http.createServer(
+// Endpoint untuk mempublikasikan konfigurasi ke MQTT
+app.post('/publish-config', (req, res) => {
+    const payload = req.body;
+    const macAddress = payload.mac_address;
 
-(req,res)=>{
+    if (!macAddress) {
+        log('Error: Request /publish-config tidak memiliki mac_address');
+        return res.status(400).json({ error: 'mac_address is required' });
+    }
 
-    res.writeHead(
+    const topic = `aquaponic/device/${macAddress}/config`;
+    const message = JSON.stringify(payload);
 
-        200,
-
-        {
-            'Content-Type':
-            'text/plain'
+    client.publish(topic, message, { qos: 1, retain: true }, (err) => {
+        if (err) {
+            log(`Publish Error ke topik ${topic}: ${err.message}`);
+            return res.status(500).json({ error: err.message });
         }
 
-    );
+        log(`Berhasil publish konfigurasi ke MQTT topik ${topic}`);
+        res.json({ success: true });
+    });
+});
 
-    res.end(
-        'OK'
-    );
+app.get('/health', (req, res) => {
+    res.send('OK');
+});
 
-}
+// Fallback untuk sembarang request (kompatibilitas lama)
+app.use((req, res) => {
+    res.send('OK');
+});
 
-)
-
-.listen(
-
-PORT,
-
-()=>{
-
-    log(
-    `HTTP Running:
-    ${PORT}`
-    );
-
-}
-
-);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    log(`HTTP Running on port ${PORT}`);
+});
 
 
 // =====================

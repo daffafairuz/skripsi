@@ -138,6 +138,9 @@ class GrowLightScheduleController extends Controller
             'end_time' => $request->end_time,
         ]);
 
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($actuator->device);
+
         return redirect()->route('growlight.schedule')
             ->with('success', 'Jadwal berhasil ditambahkan');
     }
@@ -248,6 +251,9 @@ class GrowLightScheduleController extends Controller
             'end_time' => $request->end_time,
         ]);
 
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($actuator->device);
+
         return redirect()->route('growlight.schedule')
             ->with('success', 'Jadwal berhasil diupdate');
     }
@@ -269,7 +275,11 @@ class GrowLightScheduleController extends Controller
             }
         }
 
+        $device = $schedule->actuator->device;
         $schedule->delete();
+
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($device);
 
         return redirect()->route('growlight.schedule')
             ->with('success', 'Jadwal berhasil dihapus');

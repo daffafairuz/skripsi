@@ -135,6 +135,9 @@ class ActuatorController extends Controller
             'triggered_by' => 'manual'
         ]);
 
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($actuator->device);
+
         return response()->json([
             'success' => true,
             'action' => $action

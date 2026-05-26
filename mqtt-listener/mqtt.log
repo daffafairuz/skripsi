@@ -16295,3 +16295,10 @@ abnormal
             request invalid on disconnected device
 [2026-05-26T05:10:07.211Z] WhatsApp sent:
 6285713211581
+[2026-05-26T09:07:07.308Z] === APP STARTED ===
+[2026-05-26T09:07:07.324Z] HTTP Running on port 5000
+[2026-05-26T09:07:07.374Z] DB Error: Access denied for user 'smartaqu_skripsi_user'@'localhost' (using password: YES)
+[2026-05-26T09:07:08.339Z] MQTT Connected
+[2026-05-26T09:07:08.544Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-26T09:07:28.663Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:03/config
+[2026-05-26T09:12:07.330Z] Heartbeat alive

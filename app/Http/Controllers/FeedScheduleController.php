@@ -143,6 +143,9 @@ class FeedScheduleController extends Controller
             'duration' => $validated['duration'],
         ]);
 
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($actuator->device);
+
         return redirect()->route('jadwal-pakan.index')
             ->with('success', 'Jadwal pakan berhasil ditambahkan');
     }
@@ -256,6 +259,9 @@ class FeedScheduleController extends Controller
             'duration' => $validated['duration'],
         ]);
 
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($actuator->device);
+
         return redirect()->route('jadwal-pakan.index')
             ->with('success', 'Jadwal pakan berhasil diupdate');
     }
@@ -278,7 +284,11 @@ class FeedScheduleController extends Controller
             }
         }
 
+        $device = $schedule->actuator->device;
         $schedule->delete();
+
+        // Kirim perubahan ke MQTT
+        \App\Services\MqttService::publishDeviceConfig($device);
 
         return redirect()->route('jadwal-pakan.index')
             ->with('success', 'Jadwal pakan berhasil dihapus');
