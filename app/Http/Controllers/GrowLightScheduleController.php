@@ -90,8 +90,8 @@ class GrowLightScheduleController extends Controller
         // Validasi input
         $validated = $request->validate([
             'actuator_id' => 'required|exists:actuators,id',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'start_time' => 'required|date_format:H:i,H:i:s',
+            'end_time' => 'required|date_format:H:i,H:i:s|after:start_time',
         ], [
             'actuator_id.required' => 'Grow light wajib dipilih',
             'actuator_id.exists' => 'Grow light tidak valid',
@@ -200,8 +200,8 @@ class GrowLightScheduleController extends Controller
         // Validasi input
         $validated = $request->validate([
             'actuator_id' => 'required|exists:actuators,id',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'start_time' => 'required|date_format:H:i,H:i:s',
+            'end_time' => 'required|date_format:H:i,H:i:s|after:start_time',
         ], [
             'actuator_id.required' => 'Grow light wajib dipilih',
             'actuator_id.exists' => 'Grow light tidak valid',

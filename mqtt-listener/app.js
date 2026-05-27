@@ -1158,6 +1158,35 @@ app.post('/publish-config', (req, res) => {
     });
 });
 
+// Endpoint untuk sinkronisasi daftar slave ke master
+app.post('/publish-master-sync', (req, res) => {
+    const payload = req.body;
+    const masterMac = payload.master_mac;
+    const siteId = payload.site_id;
+    const slaves = payload.slaves;
+
+    if (!masterMac) {
+        log('Error: Request /publish-master-sync tidak memiliki master_mac');
+        return res.status(400).json({ error: 'master_mac is required' });
+    }
+
+    const topic = `aquaponic/master/${masterMac}/sync`;
+    const message = JSON.stringify({
+        site_id: siteId,
+        slaves: slaves
+    });
+
+    client.publish(topic, message, { qos: 1, retain: true }, (err) => {
+        if (err) {
+            log(`Publish Error ke topik ${topic}: ${err.message}`);
+            return res.status(500).json({ error: err.message });
+        }
+
+        log(`Berhasil publish sinkronisasi slave ke MQTT topik ${topic}`);
+        res.json({ success: true });
+    });
+});
+
 app.get('/health', (req, res) => {
     res.send('OK');
 });

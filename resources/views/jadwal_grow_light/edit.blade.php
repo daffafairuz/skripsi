@@ -61,7 +61,7 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1">Start Time</label>
                 <input type="time" name="start_time" required
                        class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition"
-                       value="{{ old('start_time', $schedule->start_time) }}">
+                       value="{{ old('start_time', \Carbon\Carbon::parse($schedule->start_time)->format('H:i')) }}">
                 @error('start_time')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -71,7 +71,7 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1">End Time</label>
                 <input type="time" name="end_time" required
                        class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition"
-                       value="{{ old('end_time', $schedule->end_time) }}">
+                       value="{{ old('end_time', \Carbon\Carbon::parse($schedule->end_time)->format('H:i')) }}">
                 @error('end_time')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror

@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\Site;
-use App\Models\SiteDevice;
+use App\Services\SiteDeviceService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Exception;
 
 class SiteDeviceController extends Controller
 {
+    protected $siteDeviceService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param SiteDeviceService $siteDeviceService
+     */
+    public function __construct(SiteDeviceService $siteDeviceService)
+    {
+        $this->siteDeviceService = $siteDeviceService;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Form Tambah Device
@@ -50,17 +62,20 @@ class SiteDeviceController extends Controller
 
         $this->authorizeSiteAccess($site);
 
-        if (! $this->attachDevice($site, Device::findOrFail($request->device_id))) {
+        try {
+            $device = Device::findOrFail($request->device_id);
+            $this->siteDeviceService->attachDevice($site, $device);
+
+            return redirect()
+                ->route('devices.index', [
+                    'site_id' => $site->id,
+                ])
+                ->with('success', 'Device berhasil ditambahkan');
+        } catch (Exception $e) {
             return redirect()
                 ->back()
-                ->with('error', 'Device masih terhubung ke site lain');
+                ->with('error', $e->getMessage());
         }
-
-        return redirect()
-            ->route('devices.index', [
-                'site_id' => $site->id,
-            ])
-            ->with('success', 'Device berhasil ditambahkan');
     }
 
     /*
@@ -80,15 +95,18 @@ class SiteDeviceController extends Controller
 
         $this->authorizeSiteAccess($site);
 
-        if (! $this->attachDevice($site, Device::findOrFail($request->device_id))) {
+        try {
+            $device = Device::findOrFail($request->device_id);
+            $this->siteDeviceService->attachDevice($site, $device);
+
             return redirect()
                 ->back()
-                ->with('error', 'Device masih terhubung ke site lain');
+                ->with('success', 'Device berhasil dihubungkan');
+        } catch (Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', $e->getMessage());
         }
-
-        return redirect()
-            ->back()
-            ->with('success', 'Device berhasil dihubungkan');
     }
 
     /*
@@ -101,63 +119,25 @@ class SiteDeviceController extends Controller
     {
         $this->authorizeSiteAccess($site);
 
-        $active = SiteDevice::where('site_id', $site->id)
-            ->where('device_id', $device->id)
-            ->whereNull('ended_at')
-            ->first();
+        try {
+            $this->siteDeviceService->detachDevice($site, $device);
 
-        if (! $active) {
             return redirect()
                 ->back()
-                ->with('error', 'Device tidak sedang terhubung ke site ini');
+                ->with('success', 'Device berhasil dicopot');
+        } catch (Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', $e->getMessage());
         }
-
-        DB::transaction(function () use ($active, $device) {
-            $active->update([
-                'ended_at' => now(),
-            ]);
-
-            $stillAssigned = SiteDevice::where('device_id', $device->id)
-                ->whereNull('ended_at')
-                ->exists();
-
-            if (! $stillAssigned) {
-                $device->update([
-                    'status' => 'available',
-                ]);
-            }
-        });
-
-        return redirect()
-            ->back()
-            ->with('success', 'Device berhasil dicopot');
     }
 
-    private function attachDevice(Site $site, Device $device): bool
-    {
-        $activeAssignment = SiteDevice::where('device_id', $device->id)
-            ->whereNull('ended_at')
-            ->exists();
-
-        if ($activeAssignment || $device->status !== 'available') {
-            return false;
-        }
-
-        DB::transaction(function () use ($site, $device) {
-            SiteDevice::create([
-                'site_id' => $site->id,
-                'device_id' => $device->id,
-                'started_at' => now(),
-            ]);
-
-            $device->update([
-                'status' => 'assigned',
-            ]);
-        });
-
-        return true;
-    }
-
+    /**
+     * Authorize access to a specific site.
+     *
+     * @param Site $site
+     * @return void
+     */
     private function authorizeSiteAccess(Site $site): void
     {
         $user = auth()->user();
