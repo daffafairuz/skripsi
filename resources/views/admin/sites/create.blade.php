@@ -70,6 +70,20 @@ class="w-full border rounded-xl p-3">
 
 <div>
 
+<label>MAC Address (Master)</label>
+
+<input
+type="text"
+name="mac_address"
+placeholder="Contoh: AA:BB:CC:DD:EE:FF"
+class="w-full border rounded-xl p-3"
+required>
+
+</div>
+
+
+<div>
+
 <label>Deskripsi</label>
 
 <textarea

@@ -36,6 +36,17 @@ protected $fillable = [
     }
 
     /**
+     * Relasi: Mengambil perangkat yang AKTIF saja (ended_at IS NULL).
+     */
+    public function activeDevices(): BelongsToMany
+    {
+        return $this->belongsToMany(Device::class, 'site_devices')
+                    ->wherePivotNull('ended_at')
+                    ->withPivot('started_at', 'ended_at')
+                    ->withTimestamps();
+    }
+
+    /**
      * Relasi: Site memiliki banyak notifikasi.
      */
     public function notifications(): HasMany

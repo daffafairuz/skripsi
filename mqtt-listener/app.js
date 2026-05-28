@@ -1,694 +1,416 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const axios = require('axios');
-const mqtt = require('mqtt');
-const mysql = require('mysql2/promise');
-const express = require('express');
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const axios = require("axios");
+const mqtt = require("mqtt");
+const mysql = require("mysql2/promise");
+const express = require("express");
 
-require('dotenv').config({
-    path:
-    path.join(
-        __dirname,
-        '.env'
-    )
+require("dotenv").config({
+    path: path.join(__dirname, ".env"),
 });
 
-function env(...names){
+function env(...names) {
+    for (const name of names) {
+        const value = process.env[name];
 
-    for(
-    const name
-    of names
-    ){
-
-        const value =
-        process.env[name];
-
-        if(
-        value!==undefined &&
-        value!==''
-        ){
-
+        if (value !== undefined && value !== "") {
             return value;
-
         }
-
     }
 
     return undefined;
-
 }
 
-function trimTrailingSlash(value){
-
-    return String(
-        value
-    ).replace(
-        /\/+$/,
-        ''
-    );
-
+function trimTrailingSlash(value) {
+    return String(value).replace(/\/+$/, "");
 }
 
-function sensorAlertEndpoint(){
+function sensorAlertEndpoint() {
+    const explicitUrl = env("SENSOR_ALERT_URL");
 
-    const explicitUrl =
-    env('SENSOR_ALERT_URL');
-
-    if(explicitUrl){
-
+    if (explicitUrl) {
         return explicitUrl;
-
     }
 
-    const apiUrl =
-    env('API_URL');
+    const apiUrl = env("API_URL");
 
-    if(apiUrl){
-
-        return trimTrailingSlash(
-            apiUrl
-        ).endsWith(
-            '/sensor-alert'
-        )
-        ? apiUrl
-        : `${trimTrailingSlash(apiUrl)}/sensor-alert`;
-
+    if (apiUrl) {
+        return trimTrailingSlash(apiUrl).endsWith("/sensor-alert")
+            ? apiUrl
+            : `${trimTrailingSlash(apiUrl)}/sensor-alert`;
     }
 
-    return `${trimTrailingSlash(env('APP_URL') || 'http://127.0.0.1:8000')}/api/sensor-alert`;
-
+    return `${trimTrailingSlash(env("APP_URL") || "http://127.0.0.1:8000")}/api/sensor-alert`;
 }
 
-function normalizePhoneNumber(phoneNumber){
-
-    if(!phoneNumber){
-
+function normalizePhoneNumber(phoneNumber) {
+    if (!phoneNumber) {
         return null;
-
     }
 
-    let phone =
-    String(
-        phoneNumber
-    ).replace(
-        /\D/g,
-        ''
-    );
+    let phone = String(phoneNumber).replace(/\D/g, "");
 
-    if(
-    phone.startsWith(
-        '0'
-    )
-    ){
-
-        phone =
-        `62${phone.slice(1)}`;
-
-    }
-    else if(
-    phone.startsWith(
-        '8'
-    )
-    ){
-
-        phone =
-        `62${phone}`;
-
+    if (phone.startsWith("0")) {
+        phone = `62${phone.slice(1)}`;
+    } else if (phone.startsWith("8")) {
+        phone = `62${phone}`;
     }
 
     return phone || null;
-
 }
 
-function whatsappMessage(alert){
-
+function whatsappMessage(alert) {
     return [
-        'Smart Aquaponic Alert',
-        `Site: ${alert.siteName || '-'}`,
-        `Sensor: ${alert.sensorName || '-'}`,
-        `Nilai: ${alert.value}${alert.unit || ''}`,
-        `Status: ${alert.message}`
-    ].join(
-        '\n'
-    );
-
+        "Smart Aquaponic Alert",
+        `Site: ${alert.siteName || "-"}`,
+        `Sensor: ${alert.sensorName || "-"}`,
+        `Nilai: ${alert.value}${alert.unit || ""}`,
+        `Status: ${alert.message}`,
+    ].join("\n");
 }
-
 
 // =====================
 // LOGGER
 // =====================
 
-function log(text){
+function log(text) {
+    const time = new Date().toISOString();
 
-    const time =
-    new Date().toISOString();
-
-    const message =
-    `[${time}] ${text}\n`;
+    const message = `[${time}] ${text}\n`;
 
     console.log(text);
 
     fs.appendFile(
-
-        path.join(
-            __dirname,
-            'mqtt.log'
-        ),
+        path.join(__dirname, "mqtt.log"),
 
         message,
 
-        (err)=>{
-
-            if(err){
-
-                console.error(
-                    'Log Error:',
-                    err
-                );
-
+        (err) => {
+            if (err) {
+                console.error("Log Error:", err);
             }
-
-        }
-
+        },
     );
-
 }
-
 
 // =====================
 // DATABASE
 // =====================
 
-const db =
-mysql.createPool({
+const db = mysql.createPool({
+    host: env("DB_HOST", "MYSQL_HOST"),
 
-    host:
-    env('DB_HOST', 'MYSQL_HOST'),
+    port: Number(env("DB_PORT", "MYSQL_PORT") || 3306),
 
-    port:
-    Number(
-        env('DB_PORT', 'MYSQL_PORT') || 3306
-    ),
+    user: env("DB_USERNAME", "DB_USER", "MYSQL_USER"),
 
-    user:
-    env('DB_USERNAME', 'DB_USER', 'MYSQL_USER'),
+    password: env("DB_PASSWORD", "MYSQL_PASSWORD"),
 
-    password:
-    env('DB_PASSWORD', 'MYSQL_PASSWORD'),
+    database: env("DB_DATABASE", "DB_NAME", "MYSQL_DATABASE"),
 
-    database:
-    env('DB_DATABASE', 'DB_NAME', 'MYSQL_DATABASE'),
+    waitForConnections: true,
 
-    waitForConnections:true,
+    connectionLimit: 10,
 
-    connectionLimit:10,
+    queueLimit: 0,
 
-    queueLimit:0,
+    enableKeepAlive: true,
 
-    enableKeepAlive:true,
-
-    keepAliveInitialDelay:10000
-
+    keepAliveInitialDelay: 10000,
 });
 
-const sensorAlertUrl =
-sensorAlertEndpoint();
+const sensorAlertUrl = sensorAlertEndpoint();
 
-const sensorAlertSecret =
-env('SENSOR_ALERT_SECRET');
+const sensorAlertSecret = env("SENSOR_ALERT_SECRET");
 
-const whatsappToken =
-env('FONTE_TOKEN', 'FONNTE_TOKEN');
+const whatsappToken = env("FONTE_TOKEN", "FONNTE_TOKEN");
 
 const whatsappUrl =
-env('FONTE_URL', 'FONNTE_URL') ||
-'https://api.fonnte.com/send';
-
+    env("FONTE_URL", "FONNTE_URL") || "https://api.fonnte.com/send";
 
 // =====================
 // SENSOR ALERT API
 // =====================
 
-async function sendSensorAlert(alert){
-
-    if(!sensorAlertSecret){
-
-        log(
-            'Sensor alert secret missing'
-        );
+async function sendSensorAlert(alert) {
+    if (!sensorAlertSecret) {
+        log("Sensor alert secret missing");
 
         return {
-            created:false
+            created: false,
         };
-
     }
 
-    try{
+    try {
+        const payload = {
+            site_id: alert.siteId,
 
-        const payload={
+            message: alert.message,
 
-            site_id:
-            alert.siteId,
-
-            message:
-            alert.message,
-
-            type:
-            'warning'
-
+            type: "warning",
         };
-
 
         // =====================
         // LOG REQUEST
         // =====================
 
         log(
-
             `Sending Alert:
-${JSON.stringify(
-payload
-)}`
-
+${JSON.stringify(payload)}`,
         );
 
-
-        const response=
-        await axios.post(
-
+        const response = await axios.post(
             sensorAlertUrl,
 
             payload,
 
             {
-
-                headers:{
-
-                    'X-Sensor-Alert-Secret':
-                    sensorAlertSecret
-
+                headers: {
+                    "X-Sensor-Alert-Secret": sensorAlertSecret,
                 },
 
-                timeout:
-                10000
-
-            }
-
+                timeout: 10000,
+            },
         );
-
 
         // =====================
         // LOG RESPONSE
         // =====================
 
         log(
-
             `Sensor Alert Response:
-${JSON.stringify(
-response.data
-)}`
-
+${JSON.stringify(response.data)}`,
         );
 
-
-        if(
-            response.data?.created===true
-        ){
-
+        if (response.data?.created === true) {
             log(
                 `Notification created:
-${response.data.notification_id}`
+${response.data.notification_id}`,
             );
-
+        } else {
+            log("Duplicate notification skipped");
         }
-        else{
-
-            log(
-                'Duplicate notification skipped'
-            );
-
-        }
-
 
         return response.data;
-
-    }
-    catch(err){
-
+    } catch (err) {
         log(
-
             `Sensor Alert Error:
-${
-    err.response?.data
-    ? JSON.stringify(
-        err.response.data
-    )
-    : err.message
-}`
-
+${err.response?.data ? JSON.stringify(err.response.data) : err.message}`,
         );
 
         return {
-
-            created:false
-
+            created: false,
         };
-
     }
-
 }
 
 // =====================
 // WHATSAPP API
 // =====================
 
-async function sendWhatsAppAlert(alert){
-
-    if(!whatsappToken){
-
-        log(
-            'Fonnte token missing'
-        );
+async function sendWhatsAppAlert(alert) {
+    if (!whatsappToken) {
+        log("Fonnte token missing");
 
         return false;
-
     }
 
-    const target=
-    normalizePhoneNumber(
-        alert.phoneNumber
-    );
+    const target = normalizePhoneNumber(alert.phoneNumber);
 
-    if(!target){
-
+    if (!target) {
         log(
             `WhatsApp target missing:
-            site_id=${alert.siteId}`
+            site_id=${alert.siteId}`,
         );
 
         return false;
-
     }
 
-    try{
-
-        const response=
-        await axios.post(
-
+    try {
+        const response = await axios.post(
             whatsappUrl,
 
             new URLSearchParams({
+                target: target,
 
-                target:
-                target,
-
-                message:
-                whatsappMessage(
-                    alert
-                )
-
+                message: whatsappMessage(alert),
             }),
 
             {
+                headers: {
+                    Authorization: whatsappToken,
 
-                headers:{
-
-                    Authorization:
-                    whatsappToken,
-
-                    'Content-Type':
-                    'application/x-www-form-urlencoded'
-
+                    "Content-Type": "application/x-www-form-urlencoded",
                 },
 
-                timeout:
-                10000
-
-            }
-
+                timeout: 10000,
+            },
         );
 
         log(
             `Fonnte Response:
-            ${JSON.stringify(response.data)}`
+            ${JSON.stringify(response.data)}`,
         );
 
-        if(
-            response.data &&
-            response.data.status===true
-        ){
-
+        if (response.data && response.data.status === true) {
             return true;
-
         }
 
         throw new Error(
-
             response.data?.reason ||
-
-            response.data?.message ||
-
-            'Unknown WhatsApp error'
-
+                response.data?.message ||
+                "Unknown WhatsApp error",
         );
-
-    }
-    catch(err){
-
+    } catch (err) {
         log(
-
             `WhatsApp API Error:
-            ${err.message}`
-
+            ${err.message}`,
         );
 
         return false;
-
     }
-
 }
-
 
 // =====================
 // TEST DB
 // =====================
 
-async function testDB(){
+async function testDB() {
+    try {
+        const conn = await db.getConnection();
 
-    try{
-
-        const conn =
-        await db.getConnection();
-
-        log(
-            'Database Connected'
-        );
+        log("Database Connected");
 
         conn.release();
-
+    } catch (err) {
+        log(`DB Error: ${err.message}`);
     }
-    catch(err){
-
-        log(
-            `DB Error: ${err.message}`
-        );
-
-    }
-
 }
-
 
 // =====================
 // MQTT
 // =====================
 
-const client =
-mqtt.connect(
+const client = mqtt.connect(
+    process.env.MQTT_URL,
 
-process.env.MQTT_URL,
+    {
+        username: process.env.MQTT_USERNAME,
 
-{
+        password: process.env.MQTT_PASSWORD,
 
-username:
-process.env.MQTT_USERNAME,
+        reconnectPeriod: 5000,
 
-password:
-process.env.MQTT_PASSWORD,
+        connectTimeout: 30000,
 
-reconnectPeriod:5000,
-
-connectTimeout:30000,
-
-keepalive:60
-
-}
-
+        keepalive: 60,
+    },
 );
-
 
 // =====================
 // MQTT CONNECT
 // =====================
 
 client.on(
+    "connect",
 
-'connect',
+    () => {
+        log("MQTT Connected");
 
-()=>{
+        client.subscribe(
+            [process.env.MQTT_TOPIC, "aquaponic/device/+/actuator"],
 
-log(
-'MQTT Connected'
+            (err) => {
+                if (err) {
+                    log(
+                        `Subscribe Error:
+${err.message}`,
+                    );
+
+                    return;
+                }
+
+                log(
+                    `Subscribed to topics: ${process.env.MQTT_TOPIC} and aquaponic/device/+/actuator`,
+                );
+            },
+        );
+    },
 );
-
-client.subscribe(
-
-[process.env.MQTT_TOPIC, 'aquaponic/device/+/actuator'],
-
-(err)=>{
-
-if(err){
-
-log(
-`Subscribe Error:
-${err.message}`
-);
-
-return;
-
-}
-
-log(
-`Subscribed to topics: ${process.env.MQTT_TOPIC} and aquaponic/device/+/actuator`
-);
-
-}
-
-);
-
-}
-
-);
-
 
 // =====================
 // MQTT STATUS
 // =====================
 
-client.on(
-'error',
-(err)=>{
-log(
-`MQTT Error:
-${err.message}`
-);
-}
-);
+client.on("error", (err) => {
+    log(
+        `MQTT Error:
+${err.message}`,
+    );
+});
 
-client.on(
-'close',
-()=>{
-log(
-'MQTT Closed'
-);
-}
-);
+client.on("close", () => {
+    log("MQTT Closed");
+});
 
-client.on(
-'offline',
-()=>{
-log(
-'MQTT Offline'
-);
-}
-);
+client.on("offline", () => {
+    log("MQTT Offline");
+});
 
-client.on(
-'reconnect',
-()=>{
-log(
-'MQTT Reconnecting...'
-);
-}
-);
-
+client.on("reconnect", () => {
+    log("MQTT Reconnecting...");
+});
 
 // =====================
 // RECEIVE MQTT
 // =====================
 
 client.on(
+    "message",
 
-'message',
+    async (topic, mqttMessage) => {
+        let conn = null;
+        let pendingAlerts = [];
 
-async(
-topic,
-mqttMessage
-)=>{
+        try {
+            log(`Topic: ${topic}`);
 
-let conn=null;
-let pendingAlerts=[];
+            const data = JSON.parse(mqttMessage.toString());
 
-try{
+            log(JSON.stringify(data));
 
-log(
-`Topic: ${topic}`
-);
+            if (topic === process.env.MQTT_TOPIC) {
+                // =====================
+                // VALIDATION
+                // =====================
 
-const data=
-JSON.parse(
-mqttMessage.toString()
-);
+                if (!data.mac_address) {
+                    log("MAC missing");
+                    return;
+                }
 
-log(
-JSON.stringify(data)
-);
+                if (!data.sensors) {
+                    log("Sensors missing");
+                    return;
+                }
 
+                const mac = data.mac_address;
 
-if (topic === process.env.MQTT_TOPIC) {
+                // =====================
+                // DB CONNECTION
+                // =====================
 
+                conn = await db.getConnection();
 
-// =====================
-// VALIDATION
-// =====================
+                await conn.beginTransaction();
 
-if(
-!data.mac_address
-){
-log('MAC missing');
-return;
-}
+                // =====================
+                // DEVICE
+                // =====================
 
-if(
-!data.sensors
-){
-log('Sensors missing');
-return;
-}
-
-const mac=
-data.mac_address;
-
-
-// =====================
-// DB CONNECTION
-// =====================
-
-conn=
-await db.getConnection();
-
-await conn.beginTransaction();
-
-
-// =====================
-// DEVICE
-// =====================
-
-const [deviceRows]=
-await conn.execute(
-
-`
+                const [deviceRows] = await conn.execute(
+                    `
 SELECT
 
 d.id,
@@ -714,38 +436,28 @@ WHERE d.mac_address=?
 LIMIT 1
 `,
 
-[mac]
+                    [mac],
+                );
 
-);
+                if (deviceRows.length === 0) {
+                    log(
+                        `Device not found:
+${mac}`,
+                    );
 
+                    await conn.rollback();
 
-if(
-deviceRows.length===0
-){
+                    return;
+                }
 
-log(
-`Device not found:
-${mac}`
-);
+                const device = deviceRows[0];
 
-await conn.rollback();
+                // =====================
+                // GET SENSORS
+                // =====================
 
-return;
-
-}
-
-const device=
-deviceRows[0];
-
-
-// =====================
-// GET SENSORS
-// =====================
-
-const [sensorRows]=
-await conn.execute(
-
-`
+                const [sensorRows] = await conn.execute(
+                    `
 SELECT
 
 id,
@@ -759,71 +471,46 @@ FROM sensors
 
 WHERE device_id=?
 `,
-[
-device.id
-]
-);
+                    [device.id],
+                );
 
-// =====================
-// NORMALIZE MQTT DATA
-// =====================
+                // =====================
+                // NORMALIZE MQTT DATA
+                // =====================
 
-const sensorPayload={};
+                const sensorPayload = {};
 
-for(
-const [key,value]
-of Object.entries(
-data.sensors
-)
-){
+                for (const [key, value] of Object.entries(data.sensors)) {
+                    sensorPayload[key.toLowerCase()] = Number(value);
+                }
 
-sensorPayload[
-key.toLowerCase()
-]=Number(value);
+                // =====================
+                // LOOP SENSOR
+                // =====================
 
-}
+                for (const sensor of sensorRows) {
+                    const sensorType = sensor.type.toLowerCase().trim();
 
+                    let value = sensorPayload[sensorType];
 
-// =====================
-// LOOP SENSOR
-// =====================
+                    if (value === undefined || value === null || isNaN(value)) {
+                        continue;
+                    }
 
-for(
-const sensor
-of sensorRows
-){
+                    log(
+                        `${sensorType}
+=> ${value}`,
+                    );
 
-const sensorType=
-sensor.type
-.toLowerCase()
-.trim();
+                    // =====================
+                    // SAVE SENSOR
+                    // =====================
 
-let value=
-sensorPayload[
-sensorType
-];
+                    const createdAt = data.timestamp || new Date();
+                    const updatedAt = data.timestamp || new Date();
 
-if(
-value===undefined ||
-value===null ||
-isNaN(value)
-){
-continue;
-}
-
-log(
-`${sensorType}
-=> ${value}`
-);
-
-
-// =====================
-// SAVE SENSOR
-// =====================
-
-await conn.execute(
-
-`
+                    await conn.execute(
+                        `
 INSERT INTO
 data_sensors
 (
@@ -837,295 +524,213 @@ VALUES
 (
 ?,
 ?,
-NOW(),
-NOW()
+?,
+?
 )
 `,
 
-[
-sensor.id,
-value
-]
+                        [sensor.id, value, createdAt, updatedAt],
+                    );
 
-);
+                    log(
+                        `${sensor.name}
+saved`,
+                    );
 
-log(
-`${sensor.name}
-saved`
-);
+                    // =====================
+                    // THRESHOLD
+                    // =====================
 
+                    const min = sensor.min_threshold;
 
-// =====================
-// THRESHOLD
-// =====================
+                    const max = sensor.max_threshold;
 
-const min=
-sensor.min_threshold;
+                    const isBelow = min !== null && value < Number(min);
 
-const max=
-sensor.max_threshold;
+                    const isAbove = max !== null && value > Number(max);
 
-const isBelow=
+                    if (isBelow || isAbove) {
+                        const unit = sensor.unit || "";
 
-min!==null &&
-value<
-Number(min);
-
-const isAbove=
-
-max!==null &&
-value>
-Number(max);
-
-
-if(
-isBelow ||
-isAbove
-){
-
-const unit=
-sensor.unit || '';
-
-const message=
-
-`${sensor.name}
+                        const message = `${sensor.name}
 abnormal
 (${value}${unit})`;
 
-pendingAlerts.push({
+                        pendingAlerts.push({
+                            siteId: device.site_id,
 
-siteId:
-device.site_id,
+                            siteName: device.site_name,
 
-siteName:
-device.site_name,
+                            userName: device.user_name,
 
-userName:
-device.user_name,
+                            phoneNumber: device.phone_number,
 
-phoneNumber:
-device.phone_number,
+                            sensorName: sensor.name,
 
-sensorName:
-sensor.name,
+                            value: value,
 
-value:
-value,
+                            unit: unit,
 
-unit:
-unit,
+                            message: message,
+                        });
 
-message:
-message
+                        log(
+                            `Alert queued:
+${message}`,
+                        );
+                    }
+                }
 
-});
+                await conn.commit();
 
-log(
-`Alert queued:
-${message}`
-);
+                // =====================
+                // SEND NOTIFICATION
+                // =====================
 
-}
+                for (const alert of pendingAlerts) {
+                    try {
+                        const result = await sendSensorAlert(alert);
 
-}
+                        if (result?.created === true) {
+                            await sendWhatsAppAlert(alert);
 
+                            log(
+                                `WhatsApp sent:
+${alert.phoneNumber}`,
+                            );
+                        }
+                    } catch (err) {
+                        log(
+                            `Alert Error:
+${err.message}`,
+                        );
+                    }
+                }
+            } // close if (topic === process.env.MQTT_TOPIC)
+            else if (
+                topic.startsWith("aquaponic/device/") &&
+                topic.endsWith("/actuator")
+            ) {
+                const parts = topic.split("/");
+                const macAddress = parts[2];
 
-await conn.commit();
+                const type = data.type || data.actuator_type;
+                const state = data.state || data.action;
 
+                if (!type || !state) {
+                    log(
+                        `Error: Payload aktuator tidak lengkap untuk device ${macAddress} (type=${type}, state=${state})`,
+                    );
+                } else {
+                    let actConn = null;
+                    try {
+                        actConn = await db.getConnection();
+                        await actConn.beginTransaction();
 
-// =====================
-// SEND NOTIFICATION
-// =====================
-
-for(
-const alert
-of pendingAlerts
-){
-
-try{
-
-const result=
-await sendSensorAlert(
-alert
-);
-
-if(
-result?.created===true
-){
-
-await sendWhatsAppAlert(
-alert
-);
-
-log(
-`WhatsApp sent:
-${alert.phoneNumber}`
-);
-
-}
-
-}
-catch(err){
-
-log(
-`Alert Error:
-${err.message}`
-);
-
-}
-
-}
-
-} // close if (topic === process.env.MQTT_TOPIC)
-else if (topic.startsWith('aquaponic/device/') && topic.endsWith('/actuator')) {
-    const parts = topic.split('/');
-    const macAddress = parts[2];
-    
-    const type = data.type || data.actuator_type;
-    const state = data.state || data.action;
-
-    if (!type || !state) {
-        log(`Error: Payload aktuator tidak lengkap untuk device ${macAddress} (type=${type}, state=${state})`);
-    } else {
-        let actConn = null;
-        try {
-            actConn = await db.getConnection();
-            await actConn.beginTransaction();
-
-            const [actuatorRows] = await actConn.execute(
-                `SELECT a.id, a.name 
+                        const [actuatorRows] = await actConn.execute(
+                            `SELECT a.id, a.name 
                  FROM actuators a
                  JOIN devices d ON d.id = a.device_id
                  WHERE d.mac_address = ? AND a.type = ?
                  LIMIT 1`,
-                [macAddress, type]
-            );
+                            [macAddress, type],
+                        );
 
-            if (actuatorRows.length === 0) {
-                log(`Error: Aktuator dengan tipe ${type} tidak ditemukan untuk device ${macAddress}`);
-                await actConn.rollback();
-            } else {
-                const actuator = actuatorRows[0];
+                        if (actuatorRows.length === 0) {
+                            log(
+                                `Error: Aktuator dengan tipe ${type} tidak ditemukan untuk device ${macAddress}`,
+                            );
+                            await actConn.rollback();
+                        } else {
+                            const actuator = actuatorRows[0];
 
-                await actConn.execute(
-                    `INSERT INTO actuator_logs (actuator_id, action, triggered_by, created_at, updated_at)
+                            await actConn.execute(
+                                `INSERT INTO actuator_logs (actuator_id, action, triggered_by, created_at, updated_at)
                      VALUES (?, ?, ?, NOW(), NOW())`,
-                    [actuator.id, state.toLowerCase(), 'auto']
-                );
+                                [actuator.id, state.toLowerCase(), "auto"],
+                            );
 
-                await actConn.commit();
-                log(`[DB SUCCESS] Perubahan aktuator ${actuator.name} (${type}) menjadi ${state} berhasil disimpan (triggered_by: auto)`);
+                            await actConn.commit();
+                            log(
+                                `[DB SUCCESS] Perubahan aktuator ${actuator.name} (${type}) menjadi ${state} berhasil disimpan (triggered_by: auto)`,
+                            );
+                        }
+                    } catch (err) {
+                        log(
+                            `Error menyimpan log aktuator dari ESP32: ${err.message}`,
+                        );
+                        if (actConn) {
+                            try {
+                                await actConn.rollback();
+                            } catch (e) {
+                                log(`Rollback Error: ${e.message}`);
+                            }
+                        }
+                    } finally {
+                        if (actConn) {
+                            try {
+                                actConn.release();
+                            } catch (e) {
+                                log(`Release Error: ${e.message}`);
+                            }
+                        }
+                    }
+                }
             }
         } catch (err) {
-            log(`Error menyimpan log aktuator dari ESP32: ${err.message}`);
-            if (actConn) {
+            log(
+                `Runtime Error:
+${err.message}`,
+            );
+
+            if (conn) {
                 try {
-                    await actConn.rollback();
+                    await conn.rollback();
                 } catch (e) {
-                    log(`Rollback Error: ${e.message}`);
+                    log(
+                        `Rollback Error:
+        ${e.message}`,
+                    );
                 }
             }
         } finally {
-            if (actConn) {
+            if (conn) {
                 try {
-                    actConn.release();
+                    conn.release();
                 } catch (e) {
-                    log(`Release Error: ${e.message}`);
+                    log(
+                        `Release Error:
+        ${e.message}`,
+                    );
                 }
+
+                conn = null;
             }
         }
-    }
-}
-
-}
-catch(err){
-
-log(
-`Runtime Error:
-${err.message}`
+    },
 );
-
-if(conn){
-
-    try{
-
-        await conn.rollback();
-
-    }
-    catch(e){
-
-        log(
-        `Rollback Error:
-        ${e.message}`
-        );
-
-    }
-
-}
-
-}
-finally{
-
-if(conn){
-
-    try{
-
-        conn.release();
-
-    }
-    catch(e){
-
-        log(
-        `Release Error:
-        ${e.message}`
-        );
-
-    }
-
-    conn=null;
-
-}
-
-}
-
-}
-
-);
-
 
 // =====================
 // START APP
 // =====================
 
-(async()=>{
+(async () => {
+    log("=== APP STARTED ===");
 
-log(
-'=== APP STARTED ==='
-);
-
-await testDB();
-
+    await testDB();
 })();
-
 
 // =====================
 // HEARTBEAT
 // =====================
 
 setInterval(
+    () => {
+        log("Heartbeat alive");
+    },
 
-()=>{
-
-log(
-'Heartbeat alive'
+    300000,
 );
-
-},
-
-300000
-
-);
-
 
 // =====================
 // HTTP
@@ -1135,13 +740,13 @@ const app = express();
 app.use(express.json());
 
 // Endpoint untuk mempublikasikan konfigurasi ke MQTT
-app.post('/publish-config', (req, res) => {
+app.post("/publish-config", (req, res) => {
     const payload = req.body;
     const macAddress = payload.mac_address;
 
     if (!macAddress) {
-        log('Error: Request /publish-config tidak memiliki mac_address');
-        return res.status(400).json({ error: 'mac_address is required' });
+        log("Error: Request /publish-config tidak memiliki mac_address");
+        return res.status(400).json({ error: "mac_address is required" });
     }
 
     const topic = `aquaponic/device/${macAddress}/config`;
@@ -1159,21 +764,21 @@ app.post('/publish-config', (req, res) => {
 });
 
 // Endpoint untuk sinkronisasi daftar slave ke master
-app.post('/publish-master-sync', (req, res) => {
+app.post("/publish-master-sync", (req, res) => {
     const payload = req.body;
     const masterMac = payload.master_mac;
     const siteId = payload.site_id;
     const slaves = payload.slaves;
 
     if (!masterMac) {
-        log('Error: Request /publish-master-sync tidak memiliki master_mac');
-        return res.status(400).json({ error: 'master_mac is required' });
+        log("Error: Request /publish-master-sync tidak memiliki master_mac");
+        return res.status(400).json({ error: "master_mac is required" });
     }
 
     const topic = `aquaponic/master/${masterMac}/sync`;
     const message = JSON.stringify({
         site_id: siteId,
-        slaves: slaves
+        slaves: slaves,
     });
 
     client.publish(topic, message, { qos: 1, retain: true }, (err) => {
@@ -1187,13 +792,13 @@ app.post('/publish-master-sync', (req, res) => {
     });
 });
 
-app.get('/health', (req, res) => {
-    res.send('OK');
+app.get("/health", (req, res) => {
+    res.send("OK");
 });
 
 // Fallback untuk sembarang request (kompatibilitas lama)
 app.use((req, res) => {
-    res.send('OK');
+    res.send("OK");
 });
 
 const PORT = process.env.PORT || 5000;
@@ -1201,41 +806,28 @@ app.listen(PORT, () => {
     log(`HTTP Running on port ${PORT}`);
 });
 
-
 // =====================
 // GLOBAL ERROR
 // =====================
 
 process.on(
+    "uncaughtException",
 
-'uncaughtException',
-
-(err)=>{
-
-log(
-
-`Uncaught Error:
-${err.message}`
-
-);
-
-}
-
+    (err) => {
+        log(
+            `Uncaught Error:
+${err.message}`,
+        );
+    },
 );
 
 process.on(
+    "unhandledRejection",
 
-'unhandledRejection',
-
-(err)=>{
-
-log(
-
-`Unhandled Promise:
-${err}`
-
-);
-
-}
-
+    (err) => {
+        log(
+            `Unhandled Promise:
+${err}`,
+        );
+    },
 );

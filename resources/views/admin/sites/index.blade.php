@@ -63,7 +63,7 @@
 
 <p class="text-sm text-gray-500">
 
-{{ $site->location }}
+{{ $site->location }} @if($site->mac_address) | MAC Master: <span class="font-mono text-xs bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">{{ $site->mac_address }}</span> @endif
 
 </p>
 
@@ -180,11 +180,19 @@ Device Terhubung
 </div>
 
 
-<div class="mt-6 flex justify-end">
+<div class="mt-6 flex justify-end gap-3">
+
+<a
+href="{{ route('sites.edit',$site->id) }}"
+class="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-xl transition">
+
+Edit Site
+
+</a>
 
 <a
 href="{{ route('sites.show',$site->id) }}"
-class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-xl">
+class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-xl transition">
 
 Lihat Monitoring
 

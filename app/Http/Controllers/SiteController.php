@@ -25,8 +25,8 @@ class SiteController extends Controller
         if (auth()->user()->role == 'admin') {
             $sites = Site::with([
                 'user',
-                'devices.sensors',
-                'devices.actuators'
+                'activeDevices.sensors',
+                'activeDevices.actuators'
             ])->get();
 
             $users = User::where('role', 'user')->get();
@@ -44,21 +44,21 @@ class SiteController extends Controller
         */
 
         $site = Site::with([
-            'devices.sensors',
-            'devices.actuators',
+            'activeDevices.sensors',
+            'activeDevices.actuators',
             'notifications'
         ])
         ->where('user_id', auth()->id())
         ->first();
 
         $totalSensors = $site
-            ? $site->devices->sum(function ($d) {
+            ? $site->activeDevices->sum(function ($d) {
                 return $d->sensors->count();
             })
             : 0;
 
         $totalActuators = $site
-            ? $site->devices->sum(function ($d) {
+            ? $site->activeDevices->sum(function ($d) {
                 return $d->actuators->count();
             })
             : 0;
@@ -91,7 +91,7 @@ class SiteController extends Controller
         $users = User::where('role', 'user')->get();
 
         return view(
-            'admin.sites.create',
+            'admin.users.create',
             compact('users')
         );
     }
@@ -109,6 +109,7 @@ class SiteController extends Controller
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'mac_address' => 'required|string|max:255|unique:sites,mac_address',
         ]);
 
         Site::create([
@@ -116,6 +117,7 @@ class SiteController extends Controller
             'name' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
+            'mac_address' => $request->mac_address,
         ]);
 
         return redirect()
@@ -132,10 +134,10 @@ class SiteController extends Controller
     public function show(Site $site)
     {
         $site->load([
-            'devices.sensors.dataSensors' => function ($query) {
+            'activeDevices.sensors.dataSensors' => function ($query) {
                 $query->latest();
             },
-            'devices.actuators.logs' => function ($query) {
+            'activeDevices.actuators.logs' => function ($query) {
                 $query->latest();
             },
             'notifications'
@@ -156,7 +158,7 @@ class SiteController extends Controller
     public function edit(Site $site)
     {
         $users = User::where('role', 'user')->get();
-        return view('admin.sites.create', compact('site', 'users'));
+        return view('admin.users.edit', compact('site', 'users'));
     }
 
     /*
@@ -172,6 +174,7 @@ class SiteController extends Controller
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
             'user_id' => 'required|exists:users,id',
+            'mac_address' => 'required|string|max:255|unique:sites,mac_address,' . $site->id,
         ]);
 
         $site->update([
@@ -179,6 +182,7 @@ class SiteController extends Controller
             'location' => $request->location,
             'description' => $request->description,
             'user_id' => $request->user_id,
+            'mac_address' => $request->mac_address,
         ]);
 
         return redirect()->route('sites.index')

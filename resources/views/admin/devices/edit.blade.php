@@ -177,6 +177,14 @@
                                     Humidity
                                 </option>
 
+                                <option value="turbidity">
+                                    Turbidity (NTU)
+                                </option>
+
+                                <option value="tds">
+                                    TDS
+                                </option>
+
                             </select>
 
                             <input

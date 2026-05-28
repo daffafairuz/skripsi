@@ -117,6 +117,9 @@ class DeviceController extends Controller
 
         if ($request->sensors) {
             foreach ($request->sensors as $sensor) {
+                if (empty($sensor['name']) || empty($sensor['type'])) {
+                    continue;
+                }
                 Sensor::create([
                     'device_id' => $device->id,
                     'name' => $sensor['name'],
@@ -136,6 +139,9 @@ class DeviceController extends Controller
 
         if ($request->actuators) {
             foreach ($request->actuators as $actuator) {
+                if (empty($actuator['name']) || empty($actuator['type'])) {
+                    continue;
+                }
                 Actuator::create([
                     'device_id' => $device->id,
                     'name' => $actuator['name'],
@@ -224,8 +230,7 @@ class DeviceController extends Controller
     {
         $device->delete();
 
-        return redirect()
-            ->route('devices.index')
+        return redirect('/devices')
             ->with('success', 'Device berhasil dihapus');
     }
 }

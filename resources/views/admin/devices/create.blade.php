@@ -117,15 +117,7 @@
 
             <div
                 x-data="{
-                sensors:[
-                {
-                name:'',
-                type:'',
-                unit:'',
-                min_threshold:'',
-                max_threshold:''
-                }
-                ]
+                sensors:[]
                 }">
 
                 <div class="flex justify-between mb-4">
@@ -192,6 +184,14 @@
                                     Humidity
                                 </option>
 
+                                <option value="turbidity">
+                                    Turbidity (NTU)
+                                </option>
+
+                                <option value="tds">
+                                    TDS
+                                </option>
+
                             </select>
 
                             <input
@@ -235,14 +235,7 @@
 
             <div
                 x-data="{
-
-                actuators:[
-                {
-                name:'',
-                type:''
-                }
-                ]
-
+                actuators:[]
                 }">
 
                 <div class="flex justify-between mb-4">

@@ -41,4 +41,15 @@ protected $fillable = [
                     ->withPivot('started_at', 'ended_at')
                     ->withTimestamps();
     }
+
+    /**
+     * Relasi: Mengambil site yang AKTIF saja (ended_at IS NULL).
+     */
+    public function activeSites(): BelongsToMany
+    {
+        return $this->belongsToMany(Site::class, 'site_devices')
+                    ->wherePivotNull('ended_at')
+                    ->withPivot('started_at', 'ended_at')
+                    ->withTimestamps();
+    }
 }

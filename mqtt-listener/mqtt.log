@@ -17073,3 +17073,2181 @@ read ECONNRESET
 [2026-05-27T07:55:01.734Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
 [2026-05-27T07:56:33.365Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
 [2026-05-27T07:56:47.736Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:15:37.887Z] === APP STARTED ===
+[2026-05-27T08:15:37.927Z] HTTP Running on port 5000
+[2026-05-27T08:15:37.981Z] Database Connected
+[2026-05-27T08:15:38.807Z] MQTT Connected
+[2026-05-27T08:15:39.008Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-27T08:19:58.517Z] Topic: aquaponic/device/data
+[2026-05-27T08:19:58.519Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.7,"humidity":77.7}}
+[2026-05-27T08:19:58.553Z] temperature
+=> 30.7
+[2026-05-27T08:19:58.561Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:19:58.562Z] humidity
+=> 77.7
+[2026-05-27T08:19:58.565Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:20:37.916Z] Heartbeat alive
+[2026-05-27T08:25:37.924Z] Heartbeat alive
+[2026-05-27T08:30:37.928Z] Heartbeat alive
+[2026-05-27T08:35:37.928Z] Heartbeat alive
+[2026-05-27T08:36:28.894Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:36:29.177Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:36:29.177Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"on"}
+[2026-05-27T08:36:29.190Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:36:56.284Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:36:56.619Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:36:56.619Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"off"}
+[2026-05-27T08:36:56.635Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:37:01.811Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:37:02.147Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:37:02.148Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"on"}
+[2026-05-27T08:37:02.161Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:37:09.271Z] Topic: aquaponic/device/data
+[2026-05-27T08:37:09.272Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.5,"humidity":77.9}}
+[2026-05-27T08:37:09.278Z] temperature
+=> 30.5
+[2026-05-27T08:37:09.281Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:37:09.281Z] humidity
+=> 77.9
+[2026-05-27T08:37:09.284Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:38:09.282Z] Topic: aquaponic/device/data
+[2026-05-27T08:38:09.283Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.5,"humidity":77.9}}
+[2026-05-27T08:38:09.296Z] temperature
+=> 30.5
+[2026-05-27T08:38:09.301Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:38:09.303Z] humidity
+=> 77.9
+[2026-05-27T08:38:09.307Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:39:09.305Z] Topic: aquaponic/device/data
+[2026-05-27T08:39:09.305Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.5,"humidity":78}}
+[2026-05-27T08:39:09.311Z] temperature
+=> 30.5
+[2026-05-27T08:39:09.313Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:39:09.316Z] humidity
+=> 78
+[2026-05-27T08:39:09.319Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:39:44.200Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:39:45.305Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:39:45.306Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"grow_light","state":"on"}
+[2026-05-27T08:39:45.319Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:40:09.312Z] Topic: aquaponic/device/data
+[2026-05-27T08:40:09.312Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.5,"humidity":78.3}}
+[2026-05-27T08:40:09.324Z] temperature
+=> 30.5
+[2026-05-27T08:40:09.327Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:40:09.330Z] humidity
+=> 78.3
+[2026-05-27T08:40:09.333Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:40:36.867Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:40:37.247Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:40:37.247Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"off"}
+[2026-05-27T08:40:37.253Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:40:37.938Z] Heartbeat alive
+[2026-05-27T08:42:16.597Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:42:16.930Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:42:16.931Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"on"}
+[2026-05-27T08:42:16.938Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:45:37.953Z] Heartbeat alive
+[2026-05-27T08:46:44.118Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:46:48.014Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:47:36.030Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:47:36.323Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:47:36.324Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"grow_light","state":"on"}
+[2026-05-27T08:47:36.330Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:47:43.575Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:47:43.941Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:47:43.943Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"on"}
+[2026-05-27T08:47:43.950Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:47:45.329Z] Topic: aquaponic/device/data
+[2026-05-27T08:47:45.329Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.8,"humidity":78.2}}
+[2026-05-27T08:47:45.333Z] temperature
+=> 30.8
+[2026-05-27T08:47:45.335Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:47:45.335Z] humidity
+=> 78.2
+[2026-05-27T08:47:45.336Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:49:39.463Z] Topic: aquaponic/device/data
+[2026-05-27T08:49:39.464Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.8,"humidity":78.2}}
+[2026-05-27T08:49:39.471Z] temperature
+=> 30.8
+[2026-05-27T08:49:39.475Z] humidity
+=> 78.2
+[2026-05-27T08:49:39.474Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:49:39.478Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:50:37.954Z] Heartbeat alive
+[2026-05-27T08:50:39.466Z] Topic: aquaponic/device/data
+[2026-05-27T08:50:39.467Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.8,"humidity":77.1}}
+[2026-05-27T08:50:39.474Z] temperature
+=> 30.8
+[2026-05-27T08:50:39.477Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:50:39.478Z] humidity
+=> 77.1
+[2026-05-27T08:50:39.480Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:51:39.481Z] Topic: aquaponic/device/data
+[2026-05-27T08:51:39.481Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":31.3,"humidity":74.9}}
+[2026-05-27T08:51:39.490Z] temperature
+=> 31.3
+[2026-05-27T08:51:39.493Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:51:39.494Z] humidity
+=> 74.9
+[2026-05-27T08:51:39.497Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:51:49.597Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:51:49.903Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:51:49.903Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"grow_light","state":"on"}
+[2026-05-27T08:51:49.914Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:51:53.487Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T08:51:53.659Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:51:53.660Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"on"}
+[2026-05-27T08:51:53.673Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:52:39.570Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":31.6,"humidity":74.3}}
+[2026-05-27T08:52:39.569Z] Topic: aquaponic/device/data
+[2026-05-27T08:52:39.577Z] temperature
+=> 31.6
+[2026-05-27T08:52:39.581Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:52:39.582Z] humidity
+=> 74.3
+[2026-05-27T08:52:39.585Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:53:39.520Z] Topic: aquaponic/device/data
+[2026-05-27T08:53:39.521Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":31.5,"humidity":75.8}}
+[2026-05-27T08:53:39.529Z] temperature
+=> 31.5
+[2026-05-27T08:53:39.533Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:53:39.534Z] humidity
+=> 75.8
+[2026-05-27T08:53:39.540Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:54:39.525Z] Topic: aquaponic/device/data
+[2026-05-27T08:54:39.526Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":31.1,"humidity":75.9}}
+[2026-05-27T08:54:39.533Z] temperature
+=> 31.1
+[2026-05-27T08:54:39.538Z] humidity
+=> 75.9
+[2026-05-27T08:54:39.536Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:54:39.541Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:54:59.546Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"grow_light","state":"off"}
+[2026-05-27T08:54:59.545Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T08:54:59.574Z] [DB SUCCESS] Perubahan aktuator Grow Light LED Selada (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-27T08:55:37.955Z] Heartbeat alive
+[2026-05-27T08:55:39.541Z] Topic: aquaponic/device/data
+[2026-05-27T08:55:39.542Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.9,"humidity":76.6}}
+[2026-05-27T08:55:39.549Z] temperature
+=> 30.9
+[2026-05-27T08:55:39.553Z] humidity
+=> 76.6
+[2026-05-27T08:55:39.552Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:55:39.556Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:56:39.604Z] Topic: aquaponic/device/data
+[2026-05-27T08:56:39.605Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.8,"humidity":77.3}}
+[2026-05-27T08:56:39.613Z] temperature
+=> 30.8
+[2026-05-27T08:56:39.616Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:56:39.617Z] humidity
+=> 77.3
+[2026-05-27T08:56:39.621Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:57:39.707Z] Topic: aquaponic/device/data
+[2026-05-27T08:57:39.708Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.7,"humidity":77.9}}
+[2026-05-27T08:57:39.718Z] temperature
+=> 30.7
+[2026-05-27T08:57:39.724Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:57:39.725Z] humidity
+=> 77.9
+[2026-05-27T08:57:39.732Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:58:39.593Z] Topic: aquaponic/device/data
+[2026-05-27T08:58:39.594Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.6,"humidity":78.1}}
+[2026-05-27T08:58:39.605Z] temperature
+=> 30.6
+[2026-05-27T08:58:39.612Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:58:39.613Z] humidity
+=> 78.1
+[2026-05-27T08:58:39.620Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T08:59:39.644Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.6,"humidity":78.2}}
+[2026-05-27T08:59:39.643Z] Topic: aquaponic/device/data
+[2026-05-27T08:59:39.651Z] temperature
+=> 30.6
+[2026-05-27T08:59:39.654Z] DHT22 Suhu Udara
+saved
+[2026-05-27T08:59:39.656Z] humidity
+=> 78.2
+[2026-05-27T08:59:39.659Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T09:00:37.958Z] Heartbeat alive
+[2026-05-27T09:00:39.621Z] Topic: aquaponic/device/data
+[2026-05-27T09:00:39.622Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.6,"humidity":77.8}}
+[2026-05-27T09:00:39.630Z] temperature
+=> 30.6
+[2026-05-27T09:00:39.634Z] DHT22 Suhu Udara
+saved
+[2026-05-27T09:00:39.635Z] humidity
+=> 77.8
+[2026-05-27T09:00:39.638Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T09:01:39.637Z] Topic: aquaponic/device/data
+[2026-05-27T09:01:39.637Z] {"type":"sensor","mac_address":"ESP:32:AA:BB:CC:01","sensors":{"temperature":30.6,"humidity":78.1}}
+[2026-05-27T09:01:39.645Z] temperature
+=> 30.6
+[2026-05-27T09:01:39.648Z] DHT22 Suhu Udara
+saved
+[2026-05-27T09:01:39.649Z] humidity
+=> 78.1
+[2026-05-27T09:01:39.652Z] DHT22 Kelembapan Udara
+saved
+[2026-05-27T09:02:10.149Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/ESP:32:AA:BB:CC:01/config
+[2026-05-27T09:02:10.457Z] Topic: aquaponic/device/ESP:32:AA:BB:CC:01/actuator
+[2026-05-27T09:02:10.458Z] {"mac_address":"ESP:32:AA:BB:CC:01","type":"water_pump","state":"off"}
+[2026-05-27T09:02:10.473Z] [DB SUCCESS] Perubahan aktuator Pompa Nutrisi NFT (water_pump) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-27T09:05:37.962Z] Heartbeat alive
+[2026-05-27T09:10:37.973Z] Heartbeat alive
+[2026-05-27T09:15:37.985Z] Heartbeat alive
+[2026-05-27T09:20:37.994Z] Heartbeat alive
+[2026-05-27T09:42:46.471Z] Heartbeat alive
+[2026-05-27T12:47:59.154Z] Heartbeat alive
+[2026-05-27T12:48:00.253Z] MQTT Error:
+read ECONNRESET
+[2026-05-27T12:48:00.607Z] MQTT Offline
+[2026-05-27T12:48:00.722Z] MQTT Closed
+[2026-05-27T12:48:05.738Z] MQTT Reconnecting...
+[2026-05-27T12:48:06.855Z] MQTT Connected
+[2026-05-27T12:48:06.858Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-27T12:52:59.158Z] Heartbeat alive
+[2026-05-27T12:57:59.161Z] Heartbeat alive
+[2026-05-27T13:02:59.168Z] Heartbeat alive
+[2026-05-27T13:07:59.173Z] Heartbeat alive
+[2026-05-28T12:50:00.534Z] === APP STARTED ===
+[2026-05-28T12:50:00.553Z] HTTP Running on port 5000
+[2026-05-28T12:50:00.581Z] Database Connected
+[2026-05-28T12:50:01.594Z] MQTT Connected
+[2026-05-28T12:50:01.796Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T12:55:00.549Z] Heartbeat alive
+[2026-05-28T13:00:00.566Z] Heartbeat alive
+[2026-05-28T13:00:31.493Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:32.436Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:02/config
+[2026-05-28T13:00:32.701Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:32.923Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:33.230Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:33.562Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:33.822Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:34.069Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:34.413Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:34.704Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:35.012Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:00:36.229Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T13:00:36.587Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T13:00:36.835Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T13:00:37.115Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:00:37.320Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:00:37.622Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:00:37.840Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:00:38.087Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:00:38.291Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:00:38.501Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:00:38.702Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:05:00.569Z] Heartbeat alive
+[2026-05-28T13:08:10.676Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:08:10.900Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:10:00.572Z] Heartbeat alive
+[2026-05-28T13:15:00.574Z] Heartbeat alive
+[2026-05-28T13:15:20.704Z] MQTT Error:
+read ECONNRESET
+[2026-05-28T13:15:20.778Z] MQTT Offline
+[2026-05-28T13:15:20.783Z] MQTT Closed
+[2026-05-28T13:15:25.784Z] MQTT Reconnecting...
+[2026-05-28T13:15:27.660Z] MQTT Connected
+[2026-05-28T13:15:27.662Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T13:16:04.745Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:16:05.007Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:16:36.435Z] Topic: aquaponic/device/data
+[2026-05-28T13:16:36.439Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":34,"ph":3.921041,"turbidity":300}}
+[2026-05-28T13:16:36.505Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-28T13:16:43.716Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:16:43.988Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:17:36.753Z] Topic: aquaponic/device/data
+[2026-05-28T13:17:36.754Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.9375,"ph":3.822548,"turbidity":300}}
+[2026-05-28T13:17:36.773Z] ph
+=> 3.822548
+[2026-05-28T13:17:36.780Z] PH Pink
+saved
+[2026-05-28T13:17:36.780Z] Alert queued:
+PH Pink
+abnormal
+(3.822548ph)
+[2026-05-28T13:17:36.781Z] temperature
+=> 33.9375
+[2026-05-28T13:17:36.783Z] Alert queued:
+Suhu Pink
+abnormal
+(33.9375Celcius)
+[2026-05-28T13:17:36.782Z] Suhu Pink
+saved
+[2026-05-28T13:17:36.783Z] turbidity
+=> 300
+[2026-05-28T13:17:36.786Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:17:36.791Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.822548ph)","type":"warning"}
+[2026-05-28T13:17:37.564Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1755}
+[2026-05-28T13:17:37.564Z] Notification created:
+1755
+[2026-05-28T13:17:37.856Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507874498,"status":false}
+[2026-05-28T13:17:37.860Z] Sending Alert:
+{"site_id":9,"message":"Suhu Pink\nabnormal\n(33.9375Celcius)","type":"warning"}
+[2026-05-28T13:17:37.859Z] WhatsApp sent:
+085713211581
+[2026-05-28T13:17:37.858Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T13:17:43.220Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1757}
+[2026-05-28T13:17:43.221Z] Notification created:
+1757
+[2026-05-28T13:17:43.550Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507874524,"status":false}
+[2026-05-28T13:17:43.550Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T13:17:43.550Z] WhatsApp sent:
+085713211581
+[2026-05-28T13:18:37.065Z] Topic: aquaponic/device/data
+[2026-05-28T13:18:37.065Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":34,"ph":3.764347,"turbidity":300}}
+[2026-05-28T13:18:37.072Z] ph
+=> 3.764347
+[2026-05-28T13:18:37.077Z] Alert queued:
+PH Pink
+abnormal
+(3.764347ph)
+[2026-05-28T13:18:37.076Z] PH Pink
+saved
+[2026-05-28T13:18:37.077Z] temperature
+=> 34
+[2026-05-28T13:18:37.082Z] Suhu Pink
+saved
+[2026-05-28T13:18:37.083Z] Alert queued:
+Suhu Pink
+abnormal
+(34Celcius)
+[2026-05-28T13:18:37.084Z] turbidity
+=> 300
+[2026-05-28T13:18:37.087Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:18:37.092Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.764347ph)","type":"warning"}
+[2026-05-28T13:18:37.749Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1759}
+[2026-05-28T13:18:37.750Z] Notification created:
+1759
+[2026-05-28T13:18:38.167Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507875023,"status":false}
+[2026-05-28T13:18:38.168Z] WhatsApp sent:
+085713211581
+[2026-05-28T13:18:38.168Z] Sending Alert:
+{"site_id":9,"message":"Suhu Pink\nabnormal\n(34Celcius)","type":"warning"}
+[2026-05-28T13:18:38.168Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T13:18:43.540Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1760}
+[2026-05-28T13:18:43.540Z] Notification created:
+1760
+[2026-05-28T13:18:43.866Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T13:18:43.865Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507875039,"status":false}
+[2026-05-28T13:18:43.867Z] WhatsApp sent:
+085713211581
+[2026-05-28T13:19:37.439Z] Topic: aquaponic/device/data
+[2026-05-28T13:19:37.440Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":34,"ph":3.782255,"turbidity":300}}
+[2026-05-28T13:19:37.453Z] ph
+=> 3.782255
+[2026-05-28T13:19:37.456Z] PH Pink
+saved
+[2026-05-28T13:19:37.458Z] Alert queued:
+PH Pink
+abnormal
+(3.782255ph)
+[2026-05-28T13:19:37.458Z] temperature
+=> 34
+[2026-05-28T13:19:37.461Z] Suhu Pink
+saved
+[2026-05-28T13:19:37.461Z] Alert queued:
+Suhu Pink
+abnormal
+(34Celcius)
+[2026-05-28T13:19:37.464Z] turbidity
+=> 300
+[2026-05-28T13:19:37.468Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:19:37.472Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.782255ph)","type":"warning"}
+[2026-05-28T13:19:38.002Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1762}
+[2026-05-28T13:19:38.003Z] Notification created:
+1762
+[2026-05-28T13:19:38.272Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507875405,"status":false}
+[2026-05-28T13:19:38.273Z] WhatsApp sent:
+085713211581
+[2026-05-28T13:19:38.273Z] Sending Alert:
+{"site_id":9,"message":"Suhu Pink\nabnormal\n(34Celcius)","type":"warning"}
+[2026-05-28T13:19:38.272Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T13:19:38.444Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T13:19:38.445Z] Duplicate notification skipped
+[2026-05-28T13:20:00.589Z] Heartbeat alive
+[2026-05-28T13:20:37.715Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.9375,"ph":3.773301,"turbidity":300}}
+[2026-05-28T13:20:37.715Z] Topic: aquaponic/device/data
+[2026-05-28T13:20:37.721Z] ph
+=> 3.773301
+[2026-05-28T13:20:37.723Z] PH Pink
+saved
+[2026-05-28T13:20:37.724Z] Alert queued:
+PH Pink
+abnormal
+(3.773301ph)
+[2026-05-28T13:20:37.724Z] temperature
+=> 33.9375
+[2026-05-28T13:20:37.726Z] Suhu Pink
+saved
+[2026-05-28T13:20:37.727Z] Alert queued:
+Suhu Pink
+abnormal
+(33.9375Celcius)
+[2026-05-28T13:20:37.728Z] turbidity
+=> 300
+[2026-05-28T13:20:37.731Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:20:37.735Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.773301ph)","type":"warning"}
+[2026-05-28T13:20:38.390Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":1764}
+[2026-05-28T13:20:38.390Z] Notification created:
+1764
+[2026-05-28T13:20:38.722Z] Fonnte Response:
+            {"detail":"success! message in queue","id":[159118661],"process":"pending","quota":{"6285866864749":{"details":"deduced from total quota","quota":999,"remaining":998,"used":1}},"requestid":507877859,"status":true,"target":["6285713211581"]}
+[2026-05-28T13:20:38.726Z] Sending Alert:
+{"site_id":9,"message":"Suhu Pink\nabnormal\n(33.9375Celcius)","type":"warning"}
+[2026-05-28T13:20:38.725Z] WhatsApp sent:
+085713211581
+[2026-05-28T13:20:38.910Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T13:20:38.910Z] Duplicate notification skipped
+[2026-05-28T13:21:27.000Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:21:27.276Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:21:38.076Z] Topic: aquaponic/device/data
+[2026-05-28T13:21:38.077Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.9375,"ph":3.813594,"turbidity":300}}
+[2026-05-28T13:21:38.087Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-28T13:22:38.405Z] Topic: aquaponic/device/data
+[2026-05-28T13:22:38.406Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.9375,"ph":3.925519,"turbidity":300}}
+[2026-05-28T13:22:38.410Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-28T13:23:38.761Z] Topic: aquaponic/device/data
+[2026-05-28T13:23:38.762Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.875,"ph":3.750916,"turbidity":300}}
+[2026-05-28T13:23:38.766Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-28T13:24:39.117Z] Topic: aquaponic/device/data
+[2026-05-28T13:24:39.117Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.8125,"ph":3.880749,"turbidity":300}}
+[2026-05-28T13:24:39.120Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-28T13:25:00.601Z] Heartbeat alive
+[2026-05-28T13:25:39.406Z] Topic: aquaponic/device/data
+[2026-05-28T13:25:39.407Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.8125,"ph":3.800163,"turbidity":300}}
+[2026-05-28T13:25:39.410Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-28T13:26:09.966Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:26:10.215Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:26:39.756Z] Topic: aquaponic/device/data
+[2026-05-28T13:26:39.757Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.8125,"ph":3.62556,"turbidity":300}}
+[2026-05-28T13:26:39.768Z] ph
+=> 3.62556
+[2026-05-28T13:26:39.772Z] PH Pink
+saved
+[2026-05-28T13:26:39.775Z] temperature
+=> 33.8125
+[2026-05-28T13:26:39.774Z] Alert queued:
+PH Pink
+abnormal
+(3.62556ph)
+[2026-05-28T13:26:39.778Z] Alert queued:
+Suhu Pink
+abnormal
+(33.8125Celcius)
+[2026-05-28T13:26:39.778Z] Suhu Pink
+saved
+[2026-05-28T13:26:39.780Z] turbidity
+=> 300
+[2026-05-28T13:26:39.783Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:26:39.787Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.62556ph)","type":"warning"}
+[2026-05-28T13:26:40.085Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.8125Celcius)","type":"warning"}
+[2026-05-28T13:26:40.083Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:26:40.294Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:26:41.410Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:27:40.110Z] Topic: aquaponic/device/data
+[2026-05-28T13:27:40.114Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.75,"ph":3.90761,"turbidity":300}}
+[2026-05-28T13:27:40.118Z] ph
+=> 3.90761
+[2026-05-28T13:27:40.120Z] PH Pink
+saved
+[2026-05-28T13:27:40.121Z] Alert queued:
+PH Pink
+abnormal
+(3.90761ph)
+[2026-05-28T13:27:40.124Z] Suhu Pink
+saved
+[2026-05-28T13:27:40.124Z] Alert queued:
+Suhu Pink
+abnormal
+(33.75Celcius)
+[2026-05-28T13:27:40.122Z] temperature
+=> 33.75
+[2026-05-28T13:27:40.125Z] turbidity
+=> 300
+[2026-05-28T13:27:40.127Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:27:40.137Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.90761ph)","type":"warning"}
+[2026-05-28T13:27:40.434Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:27:40.435Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.75Celcius)","type":"warning"}
+[2026-05-28T13:27:40.689Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:28:40.451Z] Topic: aquaponic/device/data
+[2026-05-28T13:28:40.453Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.840456,"turbidity":300}}
+[2026-05-28T13:28:40.457Z] ph
+=> 3.840456
+[2026-05-28T13:28:40.459Z] Alert queued:
+PH Pink
+abnormal
+(3.840456ph)
+[2026-05-28T13:28:40.459Z] PH Pink
+saved
+[2026-05-28T13:28:40.460Z] temperature
+=> 33.625
+[2026-05-28T13:28:40.461Z] Suhu Pink
+saved
+[2026-05-28T13:28:40.461Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:28:40.462Z] turbidity
+=> 300
+[2026-05-28T13:28:40.464Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:28:40.471Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.840456ph)","type":"warning"}
+[2026-05-28T13:28:40.980Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:28:40.980Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:28:41.141Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:29:32.768Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:29:33.084Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:29:33.085Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:29:33.094Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:29:40.845Z] Topic: aquaponic/device/data
+[2026-05-28T13:29:40.846Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.6875,"ph":3.621083,"turbidity":300}}
+[2026-05-28T13:29:40.848Z] ph
+=> 3.621083
+[2026-05-28T13:29:40.850Z] PH Pink
+saved
+[2026-05-28T13:29:40.850Z] Alert queued:
+PH Pink
+abnormal
+(3.621083ph)
+[2026-05-28T13:29:40.850Z] temperature
+=> 33.6875
+[2026-05-28T13:29:40.852Z] Alert queued:
+Suhu Pink
+abnormal
+(33.6875Celcius)
+[2026-05-28T13:29:40.853Z] turbidity
+=> 300
+[2026-05-28T13:29:40.852Z] Suhu Pink
+saved
+[2026-05-28T13:29:40.854Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:29:40.856Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.621083ph)","type":"warning"}
+[2026-05-28T13:29:41.217Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:29:41.217Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.6875Celcius)","type":"warning"}
+[2026-05-28T13:29:41.430Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:30:00.609Z] Heartbeat alive
+[2026-05-28T13:30:41.149Z] Topic: aquaponic/device/data
+[2026-05-28T13:30:41.149Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.6875,"ph":3.795686,"turbidity":300}}
+[2026-05-28T13:30:41.154Z] ph
+=> 3.795686
+[2026-05-28T13:30:41.156Z] PH Pink
+saved
+[2026-05-28T13:30:41.156Z] Alert queued:
+PH Pink
+abnormal
+(3.795686ph)
+[2026-05-28T13:30:41.158Z] Alert queued:
+Suhu Pink
+abnormal
+(33.6875Celcius)
+[2026-05-28T13:30:41.156Z] temperature
+=> 33.6875
+[2026-05-28T13:30:41.158Z] Suhu Pink
+saved
+[2026-05-28T13:30:41.158Z] turbidity
+=> 300
+[2026-05-28T13:30:41.160Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:30:41.165Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.795686ph)","type":"warning"}
+[2026-05-28T13:30:41.595Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.6875Celcius)","type":"warning"}
+[2026-05-28T13:30:41.595Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:30:41.825Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:35:00.615Z] Heartbeat alive
+[2026-05-28T13:38:33.964Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:34.449Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:02/config
+[2026-05-28T13:38:34.798Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:35.178Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:35.733Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:36.052Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:36.356Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:36.657Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:37.077Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:37.433Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:37.777Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T13:38:41.007Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T13:38:41.633Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T13:38:41.994Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T13:38:42.512Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:38:42.741Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:38:43.130Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:38:43.383Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T13:38:43.717Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:38:44.138Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:38:44.519Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:38:44.754Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T13:39:51.642Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:39:51.973Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:39:51.973Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:39:51.982Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:39:52.326Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:39:52.328Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:39:52.336Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:39:54.435Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:39:54.766Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:39:54.767Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:39:54.772Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:40:00.620Z] Heartbeat alive
+[2026-05-28T13:40:43.434Z] Topic: aquaponic/device/data
+[2026-05-28T13:40:43.435Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.4375,"ph":4.024013,"turbidity":300}}
+[2026-05-28T13:40:43.441Z] ph
+=> 4.024013
+[2026-05-28T13:40:43.443Z] PH Pink
+saved
+[2026-05-28T13:40:43.444Z] Alert queued:
+PH Pink
+abnormal
+(4.024013ph)
+[2026-05-28T13:40:43.445Z] temperature
+=> 33.4375
+[2026-05-28T13:40:43.446Z] Suhu Pink
+saved
+[2026-05-28T13:40:43.447Z] Alert queued:
+Suhu Pink
+abnormal
+(33.4375Celcius)
+[2026-05-28T13:40:43.447Z] turbidity
+=> 300
+[2026-05-28T13:40:43.449Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:40:43.453Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(4.024013ph)","type":"warning"}
+[2026-05-28T13:40:43.758Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.4375Celcius)","type":"warning"}
+[2026-05-28T13:40:43.757Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:40:43.937Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:41:08.962Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:41:09.340Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:41:09.340Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:41:09.345Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:41:43.763Z] Topic: aquaponic/device/data
+[2026-05-28T13:41:43.767Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.375,"ph":3.862841,"turbidity":300}}
+[2026-05-28T13:41:43.772Z] ph
+=> 3.862841
+[2026-05-28T13:41:43.774Z] PH Pink
+saved
+[2026-05-28T13:41:43.774Z] Alert queued:
+PH Pink
+abnormal
+(3.862841ph)
+[2026-05-28T13:41:43.775Z] temperature
+=> 33.375
+[2026-05-28T13:41:43.777Z] Suhu Pink
+saved
+[2026-05-28T13:41:43.777Z] Alert queued:
+Suhu Pink
+abnormal
+(33.375Celcius)
+[2026-05-28T13:41:43.780Z] turbidity
+=> 300
+[2026-05-28T13:41:43.784Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:41:43.788Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.862841ph)","type":"warning"}
+[2026-05-28T13:41:44.060Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:41:44.061Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.375Celcius)","type":"warning"}
+[2026-05-28T13:41:44.237Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:41:48.730Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:42:44.111Z] Topic: aquaponic/device/data
+[2026-05-28T13:42:44.112Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.5,"ph":3.912087,"turbidity":300}}
+[2026-05-28T13:42:44.118Z] ph
+=> 3.912087
+[2026-05-28T13:42:44.123Z] PH Pink
+saved
+[2026-05-28T13:42:44.124Z] Alert queued:
+PH Pink
+abnormal
+(3.912087ph)
+[2026-05-28T13:42:44.124Z] temperature
+=> 33.5
+[2026-05-28T13:42:44.127Z] Suhu Pink
+saved
+[2026-05-28T13:42:44.128Z] Alert queued:
+Suhu Pink
+abnormal
+(33.5Celcius)
+[2026-05-28T13:42:44.128Z] turbidity
+=> 300
+[2026-05-28T13:42:44.131Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:42:44.136Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.912087ph)","type":"warning"}
+[2026-05-28T13:42:44.433Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:42:44.436Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.5Celcius)","type":"warning"}
+[2026-05-28T13:42:44.656Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:42:59.093Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:42:59.095Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"feeder","state":"on"}
+[2026-05-28T13:42:59.105Z] [DB SUCCESS] Perubahan aktuator Feeder Pink (feeder) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:43:00.095Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:43:00.095Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"feeder","state":"off"}
+[2026-05-28T13:43:00.107Z] [DB SUCCESS] Perubahan aktuator Feeder Pink (feeder) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:43:44.452Z] Topic: aquaponic/device/data
+[2026-05-28T13:43:44.452Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.5625,"ph":3.818071,"turbidity":300}}
+[2026-05-28T13:43:44.456Z] ph
+=> 3.818071
+[2026-05-28T13:43:44.460Z] PH Pink
+saved
+[2026-05-28T13:43:44.460Z] Alert queued:
+PH Pink
+abnormal
+(3.818071ph)
+[2026-05-28T13:43:44.461Z] temperature
+=> 33.5625
+[2026-05-28T13:43:44.464Z] turbidity
+=> 300
+[2026-05-28T13:43:44.463Z] Alert queued:
+Suhu Pink
+abnormal
+(33.5625Celcius)
+[2026-05-28T13:43:44.463Z] Suhu Pink
+saved
+[2026-05-28T13:43:44.465Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:43:44.476Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.818071ph)","type":"warning"}
+[2026-05-28T13:43:44.753Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:43:44.753Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.5625Celcius)","type":"warning"}
+[2026-05-28T13:43:44.923Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:44:44.771Z] Topic: aquaponic/device/data
+[2026-05-28T13:44:44.774Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.5625,"ph":3.925519,"turbidity":300}}
+[2026-05-28T13:44:44.781Z] ph
+=> 3.925519
+[2026-05-28T13:44:44.785Z] PH Pink
+saved
+[2026-05-28T13:44:44.785Z] Alert queued:
+PH Pink
+abnormal
+(3.925519ph)
+[2026-05-28T13:44:44.785Z] temperature
+=> 33.5625
+[2026-05-28T13:44:44.789Z] Alert queued:
+Suhu Pink
+abnormal
+(33.5625Celcius)
+[2026-05-28T13:44:44.789Z] turbidity
+=> 300
+[2026-05-28T13:44:44.788Z] Suhu Pink
+saved
+[2026-05-28T13:44:44.793Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:44:44.798Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.925519ph)","type":"warning"}
+[2026-05-28T13:44:45.138Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:44:45.138Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.5625Celcius)","type":"warning"}
+[2026-05-28T13:44:45.278Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:45:00.626Z] Heartbeat alive
+[2026-05-28T13:45:35.449Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:45:35.869Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:45:35.870Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:45:35.879Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:45:45.126Z] Topic: aquaponic/device/data
+[2026-05-28T13:45:45.127Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.938951,"turbidity":300}}
+[2026-05-28T13:45:45.132Z] ph
+=> 3.938951
+[2026-05-28T13:45:45.137Z] Alert queued:
+PH Pink
+abnormal
+(3.938951ph)
+[2026-05-28T13:45:45.142Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:45:45.138Z] temperature
+=> 33.625
+[2026-05-28T13:45:45.141Z] Suhu Pink
+saved
+[2026-05-28T13:45:45.133Z] PH Pink
+saved
+[2026-05-28T13:45:45.144Z] turbidity
+=> 300
+[2026-05-28T13:45:45.147Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:45:45.151Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.938951ph)","type":"warning"}
+[2026-05-28T13:45:45.435Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:45:45.435Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:45:45.634Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:46:32.938Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:46:33.315Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:46:33.316Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:46:33.324Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:46:42.848Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:46:43.247Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:46:43.248Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:46:43.256Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:46:59.252Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:46:59.253Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"feeder","state":"on"}
+[2026-05-28T13:46:59.263Z] [DB SUCCESS] Perubahan aktuator Feeder Pink (feeder) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:47:26.524Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:47:31.352Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:47:31.710Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:47:31.710Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:47:31.720Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:47:59.284Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:47:59.285Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"feeder","state":"off"}
+[2026-05-28T13:47:59.297Z] [DB SUCCESS] Perubahan aktuator Feeder Pink (feeder) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:48:00.706Z] Topic: aquaponic/device/data
+[2026-05-28T13:48:00.706Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.6875,"ph":3.818071,"turbidity":300}}
+[2026-05-28T13:48:00.710Z] ph
+=> 3.818071
+[2026-05-28T13:48:00.712Z] PH Pink
+saved
+[2026-05-28T13:48:00.712Z] Alert queued:
+PH Pink
+abnormal
+(3.818071ph)
+[2026-05-28T13:48:00.713Z] temperature
+=> 33.6875
+[2026-05-28T13:48:00.715Z] Suhu Pink
+saved
+[2026-05-28T13:48:00.716Z] Alert queued:
+Suhu Pink
+abnormal
+(33.6875Celcius)
+[2026-05-28T13:48:00.716Z] turbidity
+=> 300
+[2026-05-28T13:48:00.718Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:48:00.722Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.818071ph)","type":"warning"}
+[2026-05-28T13:48:01.299Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:48:01.300Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.6875Celcius)","type":"warning"}
+[2026-05-28T13:48:01.554Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:48:09.757Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:48:10.150Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:48:10.151Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:48:10.159Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:49:01.119Z] Topic: aquaponic/device/data
+[2026-05-28T13:49:01.120Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.912087,"turbidity":300}}
+[2026-05-28T13:49:01.126Z] ph
+=> 3.912087
+[2026-05-28T13:49:01.132Z] PH Pink
+saved
+[2026-05-28T13:49:01.133Z] Alert queued:
+PH Pink
+abnormal
+(3.912087ph)
+[2026-05-28T13:49:01.134Z] temperature
+=> 33.625
+[2026-05-28T13:49:01.136Z] Suhu Pink
+saved
+[2026-05-28T13:49:01.137Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:49:01.137Z] turbidity
+=> 300
+[2026-05-28T13:49:01.140Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:49:01.144Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.912087ph)","type":"warning"}
+[2026-05-28T13:49:01.622Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:49:01.623Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:49:01.837Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:50:00.629Z] Heartbeat alive
+[2026-05-28T13:50:01.489Z] Topic: aquaponic/device/data
+[2026-05-28T13:50:01.490Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.795686,"turbidity":300}}
+[2026-05-28T13:50:01.498Z] ph
+=> 3.795686
+[2026-05-28T13:50:01.502Z] PH Pink
+saved
+[2026-05-28T13:50:01.503Z] Alert queued:
+PH Pink
+abnormal
+(3.795686ph)
+[2026-05-28T13:50:01.504Z] temperature
+=> 33.625
+[2026-05-28T13:50:01.506Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:50:01.507Z] turbidity
+=> 300
+[2026-05-28T13:50:01.506Z] Suhu Pink
+saved
+[2026-05-28T13:50:01.510Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:50:01.520Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.795686ph)","type":"warning"}
+[2026-05-28T13:50:02.117Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:50:02.118Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:50:02.421Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:50:31.764Z] MQTT Error:
+read ECONNRESET
+[2026-05-28T13:50:31.794Z] MQTT Offline
+[2026-05-28T13:50:31.844Z] MQTT Closed
+[2026-05-28T13:50:36.845Z] MQTT Reconnecting...
+[2026-05-28T13:50:38.890Z] MQTT Connected
+[2026-05-28T13:50:38.891Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T13:52:29.451Z] Topic: aquaponic/device/data
+[2026-05-28T13:52:29.452Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.912087,"turbidity":300}}
+[2026-05-28T13:52:29.457Z] ph
+=> 3.912087
+[2026-05-28T13:52:29.461Z] Alert queued:
+PH Pink
+abnormal
+(3.912087ph)
+[2026-05-28T13:52:29.460Z] PH Pink
+saved
+[2026-05-28T13:52:29.461Z] temperature
+=> 33.625
+[2026-05-28T13:52:29.464Z] Suhu Pink
+saved
+[2026-05-28T13:52:29.465Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:52:29.465Z] turbidity
+=> 300
+[2026-05-28T13:52:29.468Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:52:29.478Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.912087ph)","type":"warning"}
+[2026-05-28T13:52:30.735Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:52:30.736Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:52:30.856Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:53:02.274Z] Topic: aquaponic/device/data
+[2026-05-28T13:53:02.274Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.5625,"ph":3.679284,"turbidity":300}}
+[2026-05-28T13:53:02.278Z] ph
+=> 3.679284
+[2026-05-28T13:53:02.281Z] PH Pink
+saved
+[2026-05-28T13:53:02.281Z] Alert queued:
+PH Pink
+abnormal
+(3.679284ph)
+[2026-05-28T13:53:02.281Z] temperature
+=> 33.5625
+[2026-05-28T13:53:02.283Z] Suhu Pink
+saved
+[2026-05-28T13:53:02.283Z] Alert queued:
+Suhu Pink
+abnormal
+(33.5625Celcius)
+[2026-05-28T13:53:02.284Z] turbidity
+=> 300
+[2026-05-28T13:53:02.285Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:53:02.289Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.679284ph)","type":"warning"}
+[2026-05-28T13:53:02.523Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:53:02.524Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.5625Celcius)","type":"warning"}
+[2026-05-28T13:53:02.653Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:54:02.620Z] Topic: aquaponic/device/data
+[2026-05-28T13:54:02.621Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.880749,"turbidity":300}}
+[2026-05-28T13:54:02.626Z] ph
+=> 3.880749
+[2026-05-28T13:54:02.627Z] Alert queued:
+PH Pink
+abnormal
+(3.880749ph)
+[2026-05-28T13:54:02.627Z] PH Pink
+saved
+[2026-05-28T13:54:02.628Z] temperature
+=> 33.625
+[2026-05-28T13:54:02.630Z] Suhu Pink
+saved
+[2026-05-28T13:54:02.631Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:54:02.632Z] turbidity
+=> 300
+[2026-05-28T13:54:02.635Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:54:02.638Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.880749ph)","type":"warning"}
+[2026-05-28T13:54:02.925Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:54:02.925Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:54:03.146Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:55:00.632Z] Heartbeat alive
+[2026-05-28T13:55:02.949Z] Topic: aquaponic/device/data
+[2026-05-28T13:55:02.950Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.625,"ph":3.773301,"turbidity":300}}
+[2026-05-28T13:55:02.957Z] ph
+=> 3.773301
+[2026-05-28T13:55:02.965Z] Suhu Pink
+saved
+[2026-05-28T13:55:02.965Z] Alert queued:
+Suhu Pink
+abnormal
+(33.625Celcius)
+[2026-05-28T13:55:02.961Z] temperature
+=> 33.625
+[2026-05-28T13:55:02.961Z] Alert queued:
+PH Pink
+abnormal
+(3.773301ph)
+[2026-05-28T13:55:02.960Z] PH Pink
+saved
+[2026-05-28T13:55:02.967Z] turbidity
+=> 300
+[2026-05-28T13:55:02.969Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:55:02.980Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.773301ph)","type":"warning"}
+[2026-05-28T13:55:03.274Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:55:03.274Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.625Celcius)","type":"warning"}
+[2026-05-28T13:55:03.499Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:56:03.313Z] Topic: aquaponic/device/data
+[2026-05-28T13:56:03.314Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.5625,"ph":3.871795,"turbidity":300}}
+[2026-05-28T13:56:03.318Z] ph
+=> 3.871795
+[2026-05-28T13:56:03.321Z] PH Pink
+saved
+[2026-05-28T13:56:03.322Z] Alert queued:
+PH Pink
+abnormal
+(3.871795ph)
+[2026-05-28T13:56:03.322Z] temperature
+=> 33.5625
+[2026-05-28T13:56:03.324Z] Suhu Pink
+saved
+[2026-05-28T13:56:03.325Z] Alert queued:
+Suhu Pink
+abnormal
+(33.5625Celcius)
+[2026-05-28T13:56:03.325Z] turbidity
+=> 300
+[2026-05-28T13:56:03.328Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:56:03.331Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.871795ph)","type":"warning"}
+[2026-05-28T13:56:03.631Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.5625Celcius)","type":"warning"}
+[2026-05-28T13:56:03.630Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:56:03.815Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:56:16.790Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:56:17.012Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:56:17.162Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:56:17.163Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:56:17.171Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:56:23.883Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:56:24.098Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:56:33.550Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:56:33.863Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:56:33.863Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:56:33.869Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:56:58.144Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:56:59.802Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:56:59.803Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:56:59.812Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:57:02.192Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:57:02.563Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:57:02.564Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:57:02.568Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:57:03.646Z] Topic: aquaponic/device/data
+[2026-05-28T13:57:03.647Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33.25,"ph":3.773301,"turbidity":300}}
+[2026-05-28T13:57:03.652Z] ph
+=> 3.773301
+[2026-05-28T13:57:03.654Z] PH Pink
+saved
+[2026-05-28T13:57:03.656Z] Alert queued:
+PH Pink
+abnormal
+(3.773301ph)
+[2026-05-28T13:57:03.657Z] temperature
+=> 33.25
+[2026-05-28T13:57:03.661Z] turbidity
+=> 300
+[2026-05-28T13:57:03.659Z] Suhu Pink
+saved
+[2026-05-28T13:57:03.660Z] Alert queued:
+Suhu Pink
+abnormal
+(33.25Celcius)
+[2026-05-28T13:57:03.664Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:57:03.670Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.773301ph)","type":"warning"}
+[2026-05-28T13:57:03.923Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:57:03.924Z] Sending Alert:
+{"site_id":10,"message":"Suhu Pink\nabnormal\n(33.25Celcius)","type":"warning"}
+[2026-05-28T13:57:04.133Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:57:24.733Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:57:25.025Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:57:25.330Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:57:25.330Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"on"}
+[2026-05-28T13:57:25.336Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:57:30.442Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:57:30.655Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-28T13:57:36.871Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-28T13:57:38.198Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-28T13:57:38.198Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off"}
+[2026-05-28T13:57:38.206Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-28T13:58:04.070Z] Topic: aquaponic/device/data
+[2026-05-28T13:58:04.070Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":33,"ph":3.827025,"turbidity":300}}
+[2026-05-28T13:58:04.078Z] ph
+=> 3.827025
+[2026-05-28T13:58:04.080Z] PH Pink
+saved
+[2026-05-28T13:58:04.081Z] Alert queued:
+PH Pink
+abnormal
+(3.827025ph)
+[2026-05-28T13:58:04.081Z] temperature
+=> 33
+[2026-05-28T13:58:04.083Z] Suhu Pink
+saved
+[2026-05-28T13:58:04.085Z] turbidity
+=> 300
+[2026-05-28T13:58:04.087Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:58:04.090Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.827025ph)","type":"warning"}
+[2026-05-28T13:58:04.393Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T13:59:04.410Z] Topic: aquaponic/device/data
+[2026-05-28T13:59:04.411Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.8125,"ph":3.934474,"turbidity":300}}
+[2026-05-28T13:59:04.416Z] ph
+=> 3.934474
+[2026-05-28T13:59:04.417Z] PH Pink
+saved
+[2026-05-28T13:59:04.418Z] Alert queued:
+PH Pink
+abnormal
+(3.934474ph)
+[2026-05-28T13:59:04.419Z] temperature
+=> 32.8125
+[2026-05-28T13:59:04.420Z] Suhu Pink
+saved
+[2026-05-28T13:59:04.421Z] turbidity
+=> 300
+[2026-05-28T13:59:04.422Z] Turbidity Sensor Pink
+saved
+[2026-05-28T13:59:04.426Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.934474ph)","type":"warning"}
+[2026-05-28T13:59:04.646Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T14:00:00.640Z] Heartbeat alive
+[2026-05-28T14:00:05.283Z] Topic: aquaponic/device/data
+[2026-05-28T14:00:05.284Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.6875,"ph":3.800163,"turbidity":300}}
+[2026-05-28T14:00:05.289Z] ph
+=> 3.800163
+[2026-05-28T14:00:05.292Z] PH Pink
+saved
+[2026-05-28T14:00:05.292Z] Alert queued:
+PH Pink
+abnormal
+(3.800163ph)
+[2026-05-28T14:00:05.292Z] temperature
+=> 32.6875
+[2026-05-28T14:00:05.294Z] Suhu Pink
+saved
+[2026-05-28T14:00:05.294Z] turbidity
+=> 300
+[2026-05-28T14:00:05.297Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:00:05.300Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.800163ph)","type":"warning"}
+[2026-05-28T14:00:05.472Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T14:01:05.078Z] Topic: aquaponic/device/data
+[2026-05-28T14:01:05.078Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.625,"ph":3.782255,"turbidity":300}}
+[2026-05-28T14:01:05.084Z] ph
+=> 3.782255
+[2026-05-28T14:01:05.087Z] PH Pink
+saved
+[2026-05-28T14:01:05.088Z] temperature
+=> 32.625
+[2026-05-28T14:01:05.088Z] Alert queued:
+PH Pink
+abnormal
+(3.782255ph)
+[2026-05-28T14:01:05.090Z] Suhu Pink
+saved
+[2026-05-28T14:01:05.091Z] turbidity
+=> 300
+[2026-05-28T14:01:05.093Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:01:05.097Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.782255ph)","type":"warning"}
+[2026-05-28T14:01:05.326Z] Sensor Alert Error:
+{"message":"The selected site id is invalid.","errors":{"site_id":["The selected site id is invalid."]}}
+[2026-05-28T14:02:00.785Z] === APP STARTED ===
+[2026-05-28T14:02:00.823Z] HTTP Running on port 5000
+[2026-05-28T14:02:00.848Z] Database Connected
+[2026-05-28T14:02:01.679Z] MQTT Connected
+[2026-05-28T14:02:01.888Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T14:02:05.511Z] Topic: aquaponic/device/data
+[2026-05-28T14:02:05.512Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.5625,"ph":3.840456,"turbidity":300},"timestamp":"2026-05-28 21:02:06"}
+[2026-05-28T14:02:05.538Z] ph
+=> 3.840456
+[2026-05-28T14:02:05.541Z] PH Pink
+saved
+[2026-05-28T14:02:05.542Z] Alert queued:
+PH Pink
+abnormal
+(3.840456ph)
+[2026-05-28T14:02:05.543Z] temperature
+=> 32.5625
+[2026-05-28T14:02:05.545Z] turbidity
+=> 300
+[2026-05-28T14:02:05.545Z] Suhu Pink
+saved
+[2026-05-28T14:02:05.547Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:02:05.551Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.840456ph)","type":"warning"}
+[2026-05-28T14:02:15.584Z] Sensor Alert Error:
+timeout of 10000ms exceeded
+[2026-05-28T14:03:05.677Z] Topic: aquaponic/device/data
+[2026-05-28T14:03:05.678Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.5,"ph":3.822548,"turbidity":300},"timestamp":"2026-05-28 21:03:07"}
+[2026-05-28T14:03:05.685Z] ph
+=> 3.822548
+[2026-05-28T14:03:05.689Z] PH Pink
+saved
+[2026-05-28T14:03:05.690Z] Alert queued:
+PH Pink
+abnormal
+(3.822548ph)
+[2026-05-28T14:03:05.695Z] turbidity
+=> 300
+[2026-05-28T14:03:05.690Z] temperature
+=> 32.5
+[2026-05-28T14:03:05.695Z] Suhu Pink
+saved
+[2026-05-28T14:03:05.699Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:03:05.705Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.822548ph)","type":"warning"}
+[2026-05-28T14:03:14.736Z] Notification created:
+461
+[2026-05-28T14:03:14.736Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":461,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:03:14.946Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507913091,"status":false}
+[2026-05-28T14:03:14.947Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:03:14.951Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:04:08.308Z] Topic: aquaponic/device/data
+[2026-05-28T14:04:08.309Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.375,"ph":3.791209,"turbidity":300},"timestamp":"2026-05-28 21:04:07"}
+[2026-05-28T14:04:08.314Z] ph
+=> 3.791209
+[2026-05-28T14:04:08.318Z] PH Pink
+saved
+[2026-05-28T14:04:08.318Z] Alert queued:
+PH Pink
+abnormal
+(3.791209ph)
+[2026-05-28T14:04:08.321Z] turbidity
+=> 300
+[2026-05-28T14:04:08.319Z] temperature
+=> 32.375
+[2026-05-28T14:04:08.321Z] Suhu Pink
+saved
+[2026-05-28T14:04:08.323Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:04:08.331Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.791209ph)","type":"warning"}
+[2026-05-28T14:04:16.613Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":462,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:04:16.614Z] Notification created:
+462
+[2026-05-28T14:04:16.723Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507913499,"status":false}
+[2026-05-28T14:04:16.723Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:04:16.724Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:05:06.331Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.375,"ph":3.840456,"turbidity":300},"timestamp":"2026-05-28 21:05:07"}
+[2026-05-28T14:05:06.331Z] Topic: aquaponic/device/data
+[2026-05-28T14:05:06.336Z] ph
+=> 3.840456
+[2026-05-28T14:05:06.340Z] PH Pink
+saved
+[2026-05-28T14:05:06.340Z] Alert queued:
+PH Pink
+abnormal
+(3.840456ph)
+[2026-05-28T14:05:06.341Z] temperature
+=> 32.375
+[2026-05-28T14:05:06.343Z] Suhu Pink
+saved
+[2026-05-28T14:05:06.345Z] turbidity
+=> 300
+[2026-05-28T14:05:06.347Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:05:06.351Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.840456ph)","type":"warning"}
+[2026-05-28T14:05:06.808Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:05:06.809Z] Duplicate notification skipped
+[2026-05-28T14:06:06.716Z] Topic: aquaponic/device/data
+[2026-05-28T14:06:06.716Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.3125,"ph":3.782255,"turbidity":300},"timestamp":"2026-05-28 21:06:08"}
+[2026-05-28T14:06:06.720Z] ph
+=> 3.782255
+[2026-05-28T14:06:06.721Z] PH Pink
+saved
+[2026-05-28T14:06:06.721Z] Alert queued:
+PH Pink
+abnormal
+(3.782255ph)
+[2026-05-28T14:06:06.721Z] temperature
+=> 32.3125
+[2026-05-28T14:06:06.722Z] Suhu Pink
+saved
+[2026-05-28T14:06:06.722Z] turbidity
+=> 300
+[2026-05-28T14:06:06.724Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:06:06.726Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.782255ph)","type":"warning"}
+[2026-05-28T14:06:15.620Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":463,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:06:15.621Z] Notification created:
+463
+[2026-05-28T14:06:15.749Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507916312,"status":false}
+[2026-05-28T14:06:15.750Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:06:15.750Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:07:00.819Z] Heartbeat alive
+[2026-05-28T14:07:07.030Z] Topic: aquaponic/device/data
+[2026-05-28T14:07:07.030Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.3125,"ph":3.782255,"turbidity":300},"timestamp":"2026-05-28 21:07:08"}
+[2026-05-28T14:07:07.033Z] ph
+=> 3.782255
+[2026-05-28T14:07:07.035Z] PH Pink
+saved
+[2026-05-28T14:07:07.035Z] Alert queued:
+PH Pink
+abnormal
+(3.782255ph)
+[2026-05-28T14:07:07.035Z] temperature
+=> 32.3125
+[2026-05-28T14:07:07.037Z] Suhu Pink
+saved
+[2026-05-28T14:07:07.038Z] turbidity
+=> 300
+[2026-05-28T14:07:07.039Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:07:07.041Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.782255ph)","type":"warning"}
+[2026-05-28T14:07:07.347Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:07:07.347Z] Duplicate notification skipped
+[2026-05-28T14:08:07.451Z] Topic: aquaponic/device/data
+[2026-05-28T14:08:07.452Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32.1875,"ph":3.880749,"turbidity":300},"timestamp":"2026-05-28 21:08:08"}
+[2026-05-28T14:08:07.455Z] ph
+=> 3.880749
+[2026-05-28T14:08:07.457Z] PH Pink
+saved
+[2026-05-28T14:08:07.458Z] Alert queued:
+PH Pink
+abnormal
+(3.880749ph)
+[2026-05-28T14:08:07.458Z] temperature
+=> 32.1875
+[2026-05-28T14:08:07.459Z] turbidity
+=> 300
+[2026-05-28T14:08:07.460Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:08:07.459Z] Suhu Pink
+saved
+[2026-05-28T14:08:07.467Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.880749ph)","type":"warning"}
+[2026-05-28T14:08:15.908Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":464,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:08:15.909Z] Notification created:
+464
+[2026-05-28T14:08:16.077Z] Fonnte Response:
+            {"detail":"success! message in queue","id":[159122869],"process":"pending","quota":{"6285866864749":{"details":"deduced from total quota","quota":972,"remaining":971,"used":1}},"requestid":507917100,"status":true,"target":["62895392433028"]}
+[2026-05-28T14:08:16.078Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:09:07.701Z] Topic: aquaponic/device/data
+[2026-05-28T14:09:07.702Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":32,"ph":3.84941,"turbidity":300},"timestamp":"2026-05-28 21:09:09"}
+[2026-05-28T14:09:07.708Z] ph
+=> 3.84941
+[2026-05-28T14:09:07.710Z] PH Pink
+saved
+[2026-05-28T14:09:07.710Z] Alert queued:
+PH Pink
+abnormal
+(3.84941ph)
+[2026-05-28T14:09:07.711Z] temperature
+=> 32
+[2026-05-28T14:09:07.712Z] Suhu Pink
+saved
+[2026-05-28T14:09:07.714Z] turbidity
+=> 300
+[2026-05-28T14:09:07.716Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:09:07.719Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.84941ph)","type":"warning"}
+[2026-05-28T14:09:16.719Z] Notification created:
+465
+[2026-05-28T14:09:16.718Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":465,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:09:16.850Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507917458,"status":false}
+[2026-05-28T14:09:16.851Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:09:16.851Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:10:08.053Z] Topic: aquaponic/device/data
+[2026-05-28T14:10:08.054Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":30.75,"ph":3.777778,"turbidity":300},"timestamp":"2026-05-28 21:10:09"}
+[2026-05-28T14:10:08.059Z] ph
+=> 3.777778
+[2026-05-28T14:10:08.060Z] PH Pink
+saved
+[2026-05-28T14:10:08.060Z] Alert queued:
+PH Pink
+abnormal
+(3.777778ph)
+[2026-05-28T14:10:08.061Z] temperature
+=> 30.75
+[2026-05-28T14:10:08.063Z] Suhu Pink
+saved
+[2026-05-28T14:10:08.063Z] turbidity
+=> 300
+[2026-05-28T14:10:08.065Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:10:08.073Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.777778ph)","type":"warning"}
+[2026-05-28T14:10:17.584Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":466,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:10:17.585Z] Notification created:
+466
+[2026-05-28T14:10:17.713Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507919192,"status":false}
+[2026-05-28T14:10:17.714Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:10:17.715Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:11:08.396Z] Topic: aquaponic/device/data
+[2026-05-28T14:11:08.396Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":30.1875,"ph":3.903133,"turbidity":300},"timestamp":"2026-05-28 21:11:09"}
+[2026-05-28T14:11:08.400Z] ph
+=> 3.903133
+[2026-05-28T14:11:08.402Z] PH Pink
+saved
+[2026-05-28T14:11:08.402Z] Alert queued:
+PH Pink
+abnormal
+(3.903133ph)
+[2026-05-28T14:11:08.402Z] temperature
+=> 30.1875
+[2026-05-28T14:11:08.405Z] Suhu Pink
+saved
+[2026-05-28T14:11:08.405Z] turbidity
+=> 300
+[2026-05-28T14:11:08.407Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:11:08.410Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.903133ph)","type":"warning"}
+[2026-05-28T14:11:17.751Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":467,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:11:17.752Z] Notification created:
+467
+[2026-05-28T14:11:17.866Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507920441,"status":false}
+[2026-05-28T14:11:17.868Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:11:17.867Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:12:00.822Z] Heartbeat alive
+[2026-05-28T14:12:08.726Z] Topic: aquaponic/device/data
+[2026-05-28T14:12:08.726Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.9375,"ph":3.903133,"turbidity":300},"timestamp":"2026-05-28 21:12:10"}
+[2026-05-28T14:12:08.732Z] ph
+=> 3.903133
+[2026-05-28T14:12:08.734Z] PH Pink
+saved
+[2026-05-28T14:12:08.736Z] temperature
+=> 29.9375
+[2026-05-28T14:12:08.735Z] Alert queued:
+PH Pink
+abnormal
+(3.903133ph)
+[2026-05-28T14:12:08.737Z] Suhu Pink
+saved
+[2026-05-28T14:12:08.738Z] turbidity
+=> 300
+[2026-05-28T14:12:08.739Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:12:08.742Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.903133ph)","type":"warning"}
+[2026-05-28T14:12:09.161Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:12:09.162Z] Duplicate notification skipped
+[2026-05-28T14:13:09.066Z] Topic: aquaponic/device/data
+[2026-05-28T14:13:09.066Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":3.809117,"turbidity":300},"timestamp":"2026-05-28 21:13:10"}
+[2026-05-28T14:13:09.071Z] ph
+=> 3.809117
+[2026-05-28T14:13:09.074Z] PH Pink
+saved
+[2026-05-28T14:13:09.075Z] Alert queued:
+PH Pink
+abnormal
+(3.809117ph)
+[2026-05-28T14:13:09.077Z] temperature
+=> 29.8125
+[2026-05-28T14:13:09.079Z] Suhu Pink
+saved
+[2026-05-28T14:13:09.081Z] turbidity
+=> 300
+[2026-05-28T14:13:09.084Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:13:09.087Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.809117ph)","type":"warning"}
+[2026-05-28T14:13:17.765Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":468,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:13:17.766Z] Notification created:
+468
+[2026-05-28T14:13:17.922Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507921352,"status":false}
+[2026-05-28T14:13:17.923Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:13:17.923Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:14:09.434Z] Topic: aquaponic/device/data
+[2026-05-28T14:14:09.435Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.6875,"ph":3.827025,"turbidity":300},"timestamp":"2026-05-28 21:14:10"}
+[2026-05-28T14:14:09.438Z] ph
+=> 3.827025
+[2026-05-28T14:14:09.440Z] PH Pink
+saved
+[2026-05-28T14:14:09.440Z] Alert queued:
+PH Pink
+abnormal
+(3.827025ph)
+[2026-05-28T14:14:09.441Z] temperature
+=> 29.6875
+[2026-05-28T14:14:09.442Z] Suhu Pink
+saved
+[2026-05-28T14:14:09.442Z] turbidity
+=> 300
+[2026-05-28T14:14:09.444Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:14:09.447Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.827025ph)","type":"warning"}
+[2026-05-28T14:14:17.842Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":469,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:14:17.842Z] Notification created:
+469
+[2026-05-28T14:14:17.994Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507921765,"status":false}
+[2026-05-28T14:14:17.996Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:14:17.996Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:15:09.748Z] Topic: aquaponic/device/data
+[2026-05-28T14:15:09.748Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.6875,"ph":3.831502,"turbidity":300},"timestamp":"2026-05-28 21:15:11"}
+[2026-05-28T14:15:09.752Z] ph
+=> 3.831502
+[2026-05-28T14:15:09.754Z] PH Pink
+saved
+[2026-05-28T14:15:09.755Z] temperature
+=> 29.6875
+[2026-05-28T14:15:09.754Z] Alert queued:
+PH Pink
+abnormal
+(3.831502ph)
+[2026-05-28T14:15:09.759Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:15:09.756Z] Suhu Pink
+saved
+[2026-05-28T14:15:09.757Z] turbidity
+=> 300
+[2026-05-28T14:15:09.765Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.831502ph)","type":"warning"}
+[2026-05-28T14:15:16.018Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:16.367Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:02/config
+[2026-05-28T14:15:16.648Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:16.949Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:17.283Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:17.592Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:17.850Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:18.121Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:18.543Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:18.665Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":470,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:15:18.665Z] Notification created:
+470
+[2026-05-28T14:15:18.768Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507923494,"status":false}
+[2026-05-28T14:15:18.769Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:15:18.772Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:15:18.829Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:19.107Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:15:20.300Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T14:15:20.717Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T14:15:21.010Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T14:15:21.325Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:15:21.543Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:15:21.867Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:15:22.089Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:15:22.363Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:15:22.583Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:15:22.846Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:15:23.062Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:16:10.080Z] Topic: aquaponic/device/data
+[2026-05-28T14:16:10.081Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.84941,"turbidity":300},"timestamp":"2026-05-28 21:16:11"}
+[2026-05-28T14:16:10.086Z] ph
+=> 3.84941
+[2026-05-28T14:16:10.089Z] PH Pink
+saved
+[2026-05-28T14:16:10.091Z] temperature
+=> 29.75
+[2026-05-28T14:16:10.090Z] Alert queued:
+PH Pink
+abnormal
+(3.84941ph)
+[2026-05-28T14:16:10.093Z] Suhu Pink
+saved
+[2026-05-28T14:16:10.094Z] turbidity
+=> 300
+[2026-05-28T14:16:10.098Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:16:10.103Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.84941ph)","type":"warning"}
+[2026-05-28T14:16:10.702Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:16:10.702Z] Duplicate notification skipped
+[2026-05-28T14:17:00.829Z] Heartbeat alive
+[2026-05-28T14:17:10.425Z] Topic: aquaponic/device/data
+[2026-05-28T14:17:10.425Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.741961,"turbidity":300},"timestamp":"2026-05-28 21:17:11"}
+[2026-05-28T14:17:10.429Z] ph
+=> 3.741961
+[2026-05-28T14:17:10.431Z] PH Pink
+saved
+[2026-05-28T14:17:10.432Z] temperature
+=> 29.75
+[2026-05-28T14:17:10.431Z] Alert queued:
+PH Pink
+abnormal
+(3.741961ph)
+[2026-05-28T14:17:10.434Z] Suhu Pink
+saved
+[2026-05-28T14:17:10.434Z] turbidity
+=> 300
+[2026-05-28T14:17:10.437Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:17:10.441Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.741961ph)","type":"warning"}
+[2026-05-28T14:17:15.558Z] Sensor Alert Error:
+read ECONNRESET
+[2026-05-28T14:17:46.921Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:47.355Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:02/config
+[2026-05-28T14:17:47.663Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:47.886Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:48.385Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:48.762Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:49.085Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:49.408Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:49.993Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:50.345Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:50.758Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-28T14:17:53.865Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T14:17:54.432Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T14:17:54.771Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-28T14:17:55.219Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:17:55.442Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:17:55.800Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:17:56.011Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-28T14:17:56.372Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:17:56.582Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:17:56.802Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:17:57.001Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-28T14:18:10.751Z] Topic: aquaponic/device/data
+[2026-05-28T14:18:10.752Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.791209,"turbidity":300},"timestamp":"2026-05-28 21:18:12"}
+[2026-05-28T14:18:10.757Z] ph
+=> 3.791209
+[2026-05-28T14:18:10.761Z] PH Pink
+saved
+[2026-05-28T14:18:10.761Z] Alert queued:
+PH Pink
+abnormal
+(3.791209ph)
+[2026-05-28T14:18:10.762Z] temperature
+=> 29.75
+[2026-05-28T14:18:10.765Z] turbidity
+=> 300
+[2026-05-28T14:18:10.765Z] Suhu Pink
+saved
+[2026-05-28T14:18:10.771Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:18:10.777Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.791209ph)","type":"warning"}
+[2026-05-28T14:18:11.342Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:18:11.343Z] Duplicate notification skipped
+[2026-05-28T14:18:32.705Z] === APP STARTED ===
+[2026-05-28T14:18:32.719Z] HTTP Running on port 5000
+[2026-05-28T14:18:32.744Z] Database Connected
+[2026-05-28T14:18:33.640Z] MQTT Connected
+[2026-05-28T14:18:33.860Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T14:19:11.198Z] Topic: aquaponic/device/data
+[2026-05-28T14:19:11.199Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.6875,"ph":3.795686,"turbidity":300},"timestamp":"2026-05-28 21:19:12"}
+[2026-05-28T14:19:11.232Z] ph
+=> 3.795686
+[2026-05-28T14:19:11.240Z] PH Pink
+saved
+[2026-05-28T14:19:11.241Z] Alert queued:
+PH Pink
+abnormal
+(3.795686ph)
+[2026-05-28T14:19:11.241Z] temperature
+=> 29.6875
+[2026-05-28T14:19:11.244Z] Suhu Pink
+saved
+[2026-05-28T14:19:11.244Z] turbidity
+=> 300
+[2026-05-28T14:19:11.245Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:19:11.252Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.795686ph)","type":"warning"}
+[2026-05-28T14:19:20.725Z] Sensor Alert Response:
+{"message":"Notification saved, but email failed","created":true,"notification_id":472,"error":"Failed to authenticate on SMTP server with username \"noreply@smartaquaponic.my.id\" using the following authenticators: \"LOGIN\", \"PLAIN\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Incorrect authentication data\".\".","file":"EsmtpTransport.php","line":269}
+[2026-05-28T14:19:20.725Z] Notification created:
+472
+[2026-05-28T14:19:20.946Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507925692,"status":false}
+[2026-05-28T14:19:20.948Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:19:20.951Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:20:07.818Z] === APP STARTED ===
+[2026-05-28T14:20:07.832Z] HTTP Running on port 5000
+[2026-05-28T14:20:07.858Z] Database Connected
+[2026-05-28T14:20:08.683Z] MQTT Connected
+[2026-05-28T14:20:08.916Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T14:20:11.503Z] Topic: aquaponic/device/data
+[2026-05-28T14:20:11.503Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.6875,"ph":3.782255,"turbidity":300},"timestamp":"2026-05-28 21:20:12"}
+[2026-05-28T14:20:11.519Z] ph
+=> 3.782255
+[2026-05-28T14:20:11.523Z] PH Pink
+saved
+[2026-05-28T14:20:11.523Z] Alert queued:
+PH Pink
+abnormal
+(3.782255ph)
+[2026-05-28T14:20:11.523Z] temperature
+=> 29.6875
+[2026-05-28T14:20:11.525Z] Suhu Pink
+saved
+[2026-05-28T14:20:11.525Z] turbidity
+=> 300
+[2026-05-28T14:20:11.527Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:20:11.537Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.782255ph)","type":"warning"}
+[2026-05-28T14:20:11.828Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:20:11.828Z] Duplicate notification skipped
+[2026-05-28T14:21:11.817Z] Topic: aquaponic/device/data
+[2026-05-28T14:21:11.817Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.912087,"turbidity":300},"timestamp":"2026-05-28 21:21:13"}
+[2026-05-28T14:21:11.823Z] ph
+=> 3.912087
+[2026-05-28T14:21:11.827Z] Alert queued:
+PH Pink
+abnormal
+(3.912087ph)
+[2026-05-28T14:21:11.826Z] PH Pink
+saved
+[2026-05-28T14:21:11.827Z] temperature
+=> 29.75
+[2026-05-28T14:21:11.830Z] Suhu Pink
+saved
+[2026-05-28T14:21:11.831Z] turbidity
+=> 300
+[2026-05-28T14:21:11.833Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:21:11.838Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.912087ph)","type":"warning"}
+[2026-05-28T14:21:13.426Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":473}
+[2026-05-28T14:21:13.427Z] Notification created:
+473
+[2026-05-28T14:21:13.595Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507928497,"status":false}
+[2026-05-28T14:21:13.596Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:21:13.596Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:22:12.134Z] Topic: aquaponic/device/data
+[2026-05-28T14:22:12.134Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.835979,"turbidity":300},"timestamp":"2026-05-28 21:22:13"}
+[2026-05-28T14:22:12.140Z] ph
+=> 3.835979
+[2026-05-28T14:22:12.141Z] PH Pink
+saved
+[2026-05-28T14:22:12.142Z] Alert queued:
+PH Pink
+abnormal
+(3.835979ph)
+[2026-05-28T14:22:12.142Z] temperature
+=> 29.75
+[2026-05-28T14:22:12.143Z] Suhu Pink
+saved
+[2026-05-28T14:22:12.144Z] turbidity
+=> 300
+[2026-05-28T14:22:12.146Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:22:12.150Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.835979ph)","type":"warning"}
+[2026-05-28T14:22:14.361Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":474}
+[2026-05-28T14:22:14.361Z] Notification created:
+474
+[2026-05-28T14:22:14.488Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507928983,"status":false}
+[2026-05-28T14:22:14.489Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:22:14.489Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:24:26.943Z] === APP STARTED ===
+[2026-05-28T14:24:26.962Z] HTTP Running on port 5000
+[2026-05-28T14:24:27.004Z] Database Connected
+[2026-05-28T14:24:27.961Z] MQTT Connected
+[2026-05-28T14:24:28.163Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-28T14:25:13.135Z] Topic: aquaponic/device/data
+[2026-05-28T14:25:13.136Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.835979,"turbidity":300},"timestamp":"2026-05-28 21:25:14"}
+[2026-05-28T14:25:13.169Z] ph
+=> 3.835979
+[2026-05-28T14:25:13.174Z] PH Pink
+saved
+[2026-05-28T14:25:13.175Z] Alert queued:
+PH Pink
+abnormal
+(3.835979ph)
+[2026-05-28T14:25:13.175Z] temperature
+=> 29.75
+[2026-05-28T14:25:13.177Z] Suhu Pink
+saved
+[2026-05-28T14:25:13.177Z] turbidity
+=> 300
+[2026-05-28T14:25:13.179Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:25:13.184Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.835979ph)","type":"warning"}
+[2026-05-28T14:25:14.040Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:25:14.041Z] Duplicate notification skipped
+[2026-05-28T14:26:13.517Z] Topic: aquaponic/device/data
+[2026-05-28T14:26:13.519Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.764347,"turbidity":300},"timestamp":"2026-05-28 21:26:14"}
+[2026-05-28T14:26:13.527Z] ph
+=> 3.764347
+[2026-05-28T14:26:13.531Z] PH Pink
+saved
+[2026-05-28T14:26:13.531Z] Alert queued:
+PH Pink
+abnormal
+(3.764347ph)
+[2026-05-28T14:26:13.532Z] temperature
+=> 29.75
+[2026-05-28T14:26:13.535Z] Suhu Pink
+saved
+[2026-05-28T14:26:13.538Z] turbidity
+=> 300
+[2026-05-28T14:26:13.540Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:26:13.544Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.764347ph)","type":"warning"}
+[2026-05-28T14:26:15.288Z] Notification created:
+475
+[2026-05-28T14:26:15.287Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":475}
+[2026-05-28T14:26:15.649Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507932534,"status":false}
+[2026-05-28T14:26:15.650Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:26:15.651Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:27:13.828Z] Topic: aquaponic/device/data
+[2026-05-28T14:27:13.828Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.6875,"ph":3.844933,"turbidity":300},"timestamp":"2026-05-28 21:27:15"}
+[2026-05-28T14:27:13.833Z] ph
+=> 3.844933
+[2026-05-28T14:27:13.835Z] PH Pink
+saved
+[2026-05-28T14:27:13.836Z] Alert queued:
+PH Pink
+abnormal
+(3.844933ph)
+[2026-05-28T14:27:13.836Z] temperature
+=> 29.6875
+[2026-05-28T14:27:13.838Z] Suhu Pink
+saved
+[2026-05-28T14:27:13.838Z] turbidity
+=> 300
+[2026-05-28T14:27:13.840Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:27:13.848Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.844933ph)","type":"warning"}
+[2026-05-28T14:27:14.740Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":476}
+[2026-05-28T14:27:14.740Z] Notification created:
+476
+[2026-05-28T14:27:14.852Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507932894,"status":false}
+[2026-05-28T14:27:14.853Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:27:14.854Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:28:14.185Z] Topic: aquaponic/device/data
+[2026-05-28T14:28:14.186Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.68376,"turbidity":300},"timestamp":"2026-05-28 21:28:15"}
+[2026-05-28T14:28:14.189Z] ph
+=> 3.68376
+[2026-05-28T14:28:14.192Z] PH Pink
+saved
+[2026-05-28T14:28:14.192Z] Alert queued:
+PH Pink
+abnormal
+(3.68376ph)
+[2026-05-28T14:28:14.192Z] temperature
+=> 29.75
+[2026-05-28T14:28:14.194Z] Suhu Pink
+saved
+[2026-05-28T14:28:14.195Z] turbidity
+=> 300
+[2026-05-28T14:28:14.196Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:28:14.200Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.68376ph)","type":"warning"}
+[2026-05-28T14:28:15.143Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":477}
+[2026-05-28T14:28:15.144Z] Notification created:
+477
+[2026-05-28T14:28:15.237Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507933308,"status":false}
+[2026-05-28T14:28:15.237Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:28:15.238Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:29:14.532Z] Topic: aquaponic/device/data
+[2026-05-28T14:29:14.533Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.90761,"turbidity":300},"timestamp":"2026-05-28 21:29:15"}
+[2026-05-28T14:29:14.536Z] ph
+=> 3.90761
+[2026-05-28T14:29:14.538Z] PH Pink
+saved
+[2026-05-28T14:29:14.538Z] Alert queued:
+PH Pink
+abnormal
+(3.90761ph)
+[2026-05-28T14:29:14.538Z] temperature
+=> 29.75
+[2026-05-28T14:29:14.539Z] Suhu Pink
+saved
+[2026-05-28T14:29:14.539Z] turbidity
+=> 300
+[2026-05-28T14:29:14.540Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:29:14.542Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.90761ph)","type":"warning"}
+[2026-05-28T14:29:15.443Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":478}
+[2026-05-28T14:29:15.444Z] Notification created:
+478
+[2026-05-28T14:29:15.546Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507933628,"status":false}
+[2026-05-28T14:29:15.547Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:29:15.547Z] WhatsApp sent:
+0895392433028
+[2026-05-28T14:29:26.961Z] Heartbeat alive
+[2026-05-28T14:30:14.857Z] Topic: aquaponic/device/data
+[2026-05-28T14:30:14.858Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.777778,"turbidity":300},"timestamp":"2026-05-28 21:30:16"}
+[2026-05-28T14:30:14.861Z] ph
+=> 3.777778
+[2026-05-28T14:30:14.864Z] PH Pink
+saved
+[2026-05-28T14:30:14.864Z] Alert queued:
+PH Pink
+abnormal
+(3.777778ph)
+[2026-05-28T14:30:14.864Z] temperature
+=> 29.75
+[2026-05-28T14:30:14.866Z] turbidity
+=> 300
+[2026-05-28T14:30:14.866Z] Suhu Pink
+saved
+[2026-05-28T14:30:14.867Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:30:14.871Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.777778ph)","type":"warning"}
+[2026-05-28T14:30:15.189Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:30:15.189Z] Duplicate notification skipped
+[2026-05-28T14:31:15.182Z] Topic: aquaponic/device/data
+[2026-05-28T14:31:15.183Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.90761,"turbidity":300},"timestamp":"2026-05-28 21:31:16"}
+[2026-05-28T14:31:15.187Z] ph
+=> 3.90761
+[2026-05-28T14:31:15.188Z] PH Pink
+saved
+[2026-05-28T14:31:15.189Z] Alert queued:
+PH Pink
+abnormal
+(3.90761ph)
+[2026-05-28T14:31:15.189Z] temperature
+=> 29.75
+[2026-05-28T14:31:15.191Z] Suhu Pink
+saved
+[2026-05-28T14:31:15.192Z] turbidity
+=> 300
+[2026-05-28T14:31:15.194Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:31:15.203Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.90761ph)","type":"warning"}
+[2026-05-28T14:31:15.452Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-28T14:31:15.453Z] Duplicate notification skipped
+[2026-05-28T14:32:15.510Z] Topic: aquaponic/device/data
+[2026-05-28T14:32:15.510Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.75,"ph":3.916564,"turbidity":300},"timestamp":"2026-05-28 21:32:16"}
+[2026-05-28T14:32:15.513Z] ph
+=> 3.916564
+[2026-05-28T14:32:15.513Z] PH Pink
+saved
+[2026-05-28T14:32:15.514Z] Alert queued:
+PH Pink
+abnormal
+(3.916564ph)
+[2026-05-28T14:32:15.514Z] temperature
+=> 29.75
+[2026-05-28T14:32:15.515Z] Suhu Pink
+saved
+[2026-05-28T14:32:15.515Z] turbidity
+=> 300
+[2026-05-28T14:32:15.517Z] Turbidity Sensor Pink
+saved
+[2026-05-28T14:32:15.524Z] Sending Alert:
+{"site_id":10,"message":"PH Pink\nabnormal\n(3.916564ph)","type":"warning"}
+[2026-05-28T14:32:16.421Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":479}
+[2026-05-28T14:32:16.422Z] Notification created:
+479
+[2026-05-28T14:32:16.571Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":507937018,"status":false}
+[2026-05-28T14:32:16.571Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-28T14:32:16.572Z] WhatsApp sent:
+0895392433028
