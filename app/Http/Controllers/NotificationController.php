@@ -205,46 +205,48 @@ class NotificationController extends Controller
             );
 
 
-            try{
+            if ($site->user->email_notification) {
+                try{
 
-                Mail::to(
-                    $site->user->email
-                )
-                ->send(
-                    new NotificationMail(
-                        $notification
+                    Mail::to(
+                        $site->user->email
                     )
-                );
+                    ->send(
+                        new NotificationMail(
+                            $notification
+                        )
+                    );
 
-            }
-            catch(Throwable $e) {
+                }
+                catch(Throwable $e) {
 
-                report($e);
-            
-                return response()->json([
-            
-                    'message'=>
-                    'Notification saved, but email failed',
-            
-                    'created'=>
-                    true,
-            
-                    'notification_id'=>
-                    $notification->id,
-            
-                    'error'=>
-                    $e->getMessage(),
-            
-                    'file'=>
-                    basename(
-                        $e->getFile()
-                    ),
-            
-                    'line'=>
-                    $e->getLine()
-            
-                ],202);
-            
+                    report($e);
+                
+                    return response()->json([
+                
+                        'message'=>
+                        'Notification saved, but email failed',
+                
+                        'created'=>
+                        true,
+                
+                        'notification_id'=>
+                        $notification->id,
+                
+                        'error'=>
+                        $e->getMessage(),
+                
+                        'file'=>
+                        basename(
+                            $e->getFile()
+                        ),
+                
+                        'line'=>
+                        $e->getLine()
+                
+                    ],202);
+                
+                }
             }
 
         }

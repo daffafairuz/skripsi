@@ -167,26 +167,42 @@
                 </div>
             </div>
 
-            <!-- Toggle Button -->
-            <form action="{{ route('actuator-control.toggle', $actuator->id) }}" method="POST">
-                @csrf
+            <!-- Control / Toggle Button or Scheduling Redirection -->
+            @if(strtolower($actuator->type) === 'grow_light')
+                <a href="{{ route('growlight.schedule') }}" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition font-semibold flex items-center justify-center gap-2 shadow-sm hover:shadow active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Atur Penjadwalan
+                </a>
+            @elseif(strtolower($actuator->type) === 'feeder')
+                <a href="{{ route('jadwal-pakan.index') }}" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition font-semibold flex items-center justify-center gap-2 shadow-sm hover:shadow active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Atur Penjadwalan
+                </a>
+            @else
+                <form action="{{ route('actuator-control.toggle', $actuator->id) }}" method="POST">
+                    @csrf
 
-                @if($actuator->current_state === 'on')
-                    <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl transition font-semibold flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
-                        </svg>
-                        Matikan
-                    </button>
-                @else
-                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl transition font-semibold flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                        Nyalakan
-                    </button>
-                @endif
-            </form>
+                    @if($actuator->current_state === 'on')
+                        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl transition font-semibold flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                            </svg>
+                            Matikan
+                        </button>
+                    @else
+                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl transition font-semibold flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            Nyalakan
+                        </button>
+                    @endif
+                </form>
+            @endif
 
         </div>
         @endforeach

@@ -172,7 +172,7 @@
 
             <div>
                 <label class="block mb-1 text-sm font-medium">Tipe</label>
-                <input type="text" name="type" placeholder="Contoh: Pump, Light, Feeder, Aerator"
+                <input type="text" name="type" placeholder="Contoh: pump, grow_light, feeder, aerator"
                        class="w-full border rounded-xl p-3" required>
             </div>
 

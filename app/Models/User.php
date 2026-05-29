@@ -21,6 +21,8 @@ class User extends Authenticatable
         'role',
         'status',
         'password',
+        'whatsapp_notification',
+        'email_notification',
     ];
 
     /**
@@ -39,6 +41,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'whatsapp_notification' => 'boolean',
+            'email_notification' => 'boolean',
         ];
     }
 

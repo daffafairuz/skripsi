@@ -19819,3 +19819,790 @@ read ECONNRESET
 [2026-05-28T23:03:28.668Z] MQTT Reconnecting...
 [2026-05-28T23:03:30.158Z] MQTT Connected
 [2026-05-28T23:03:30.178Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-29T07:38:05.148Z] === APP STARTED ===
+[2026-05-29T07:38:05.196Z] HTTP Running on port 5000
+[2026-05-29T07:38:05.240Z] Database Connected
+[2026-05-29T07:38:06.195Z] MQTT Connected
+[2026-05-29T07:38:06.491Z] Subscribed to topics: aquaponic/device/data and aquaponic/device/+/actuator
+[2026-05-29T07:38:16.809Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-29T07:38:18.023Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/44:1D:64:F8:9B:0C/sync
+[2026-05-29T07:43:05.173Z] Heartbeat alive
+[2026-05-29T07:48:05.181Z] Heartbeat alive
+[2026-05-29T07:53:05.190Z] Heartbeat alive
+[2026-05-29T07:58:05.196Z] Heartbeat alive
+[2026-05-29T08:03:05.206Z] Heartbeat alive
+[2026-05-29T08:08:05.217Z] Heartbeat alive
+[2026-05-29T08:10:47.766Z] Topic: aquaponic/device/data
+[2026-05-29T08:10:47.774Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.625,"ph":4.126985,"turbidity":300},"timestamp":"2026-05-29 15:10:48"}
+[2026-05-29T08:10:47.832Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:10:47.885Z] Topic: aquaponic/device/data
+[2026-05-29T08:10:47.885Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.625,"ph":4.126985,"turbidity":300},"timestamp":"2026-05-29 15:10:48"}
+[2026-05-29T08:10:47.890Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:13:05.231Z] Heartbeat alive
+[2026-05-29T08:18:05.247Z] Heartbeat alive
+[2026-05-29T08:19:44.798Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:19:44.800Z] {"timestamp":"2026-05-29 15:19:45","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:19:44.811Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:20:59.550Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:20:59.550Z] {"timestamp":"2026-05-29 15:21:00","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:20:59.554Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:22:13.485Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:22:13.487Z] {"timestamp":"2026-05-29 15:22:14","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:22:13.494Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:23:02.448Z] Topic: aquaponic/device/data
+[2026-05-29T08:23:02.449Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.710622,"turbidity":300},"timestamp":"2026-05-29 15:23:03"}
+[2026-05-29T08:23:02.454Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:23:02.503Z] Topic: aquaponic/device/data
+[2026-05-29T08:23:02.504Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.710622,"turbidity":300},"timestamp":"2026-05-29 15:23:03"}
+[2026-05-29T08:23:02.509Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:23:05.252Z] Heartbeat alive
+[2026-05-29T08:24:03.321Z] Topic: aquaponic/device/data
+[2026-05-29T08:24:03.322Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.643468,"turbidity":300},"timestamp":"2026-05-29 15:24:03"}
+[2026-05-29T08:24:03.325Z] Topic: aquaponic/device/data
+[2026-05-29T08:24:03.326Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.643468,"turbidity":300},"timestamp":"2026-05-29 15:24:03"}
+[2026-05-29T08:24:03.354Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:24:03.365Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:25:03.121Z] Topic: aquaponic/device/data
+[2026-05-29T08:25:03.122Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.486773,"turbidity":300},"timestamp":"2026-05-29 15:25:04"}
+[2026-05-29T08:25:03.127Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:25:03.130Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.486773,"turbidity":300},"timestamp":"2026-05-29 15:25:03"}
+[2026-05-29T08:25:03.129Z] Topic: aquaponic/device/data
+[2026-05-29T08:25:03.133Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:26:03.481Z] Topic: aquaponic/device/data
+[2026-05-29T08:26:03.482Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.9375,"ph":4.529915,"turbidity":300},"timestamp":"2026-05-29 15:26:04"}
+[2026-05-29T08:26:03.483Z] Topic: aquaponic/device/data
+[2026-05-29T08:26:03.484Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.9375,"ph":4.529915,"turbidity":300},"timestamp":"2026-05-29 15:26:04"}
+[2026-05-29T08:26:03.487Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:26:03.490Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:27:03.898Z] Topic: aquaponic/device/data
+[2026-05-29T08:27:03.899Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.9375,"ph":4.301588,"turbidity":300},"timestamp":"2026-05-29 15:27:04"}
+[2026-05-29T08:27:03.900Z] Topic: aquaponic/device/data
+[2026-05-29T08:27:03.901Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.9375,"ph":4.301588,"turbidity":300},"timestamp":"2026-05-29 15:27:04"}
+[2026-05-29T08:27:03.905Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:27:03.909Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:27:09.941Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:27:09.941Z] {"timestamp":"2026-05-29 15:27:10","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:27:09.944Z] {"timestamp":"2026-05-29 15:27:10","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:27:09.943Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:27:09.947Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:27:09.951Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:28:04.213Z] Topic: aquaponic/device/data
+[2026-05-29T08:28:04.214Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.413512,"turbidity":300},"timestamp":"2026-05-29 15:28:05"}
+[2026-05-29T08:28:04.216Z] Topic: aquaponic/device/data
+[2026-05-29T08:28:04.216Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.413512,"turbidity":300},"timestamp":"2026-05-29 15:28:05"}
+[2026-05-29T08:28:04.222Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:28:04.225Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:28:05.257Z] Heartbeat alive
+[2026-05-29T08:28:09.488Z] {"timestamp":"2026-05-29 15:28:09","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:28:09.487Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:28:09.491Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:28:09.496Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:28:09.497Z] {"timestamp":"2026-05-29 15:28:09","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:28:09.502Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:29:04.482Z] Topic: aquaponic/device/data
+[2026-05-29T08:29:04.484Z] Topic: aquaponic/device/data
+[2026-05-29T08:29:04.485Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.956858,"turbidity":300},"timestamp":"2026-05-29 15:29:05"}
+[2026-05-29T08:29:04.483Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.956858,"turbidity":300},"timestamp":"2026-05-29 15:29:05"}
+[2026-05-29T08:29:04.489Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:29:04.490Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:29:11.184Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:29:11.185Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:29:11.186Z] {"timestamp":"2026-05-29 15:29:11","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:29:11.184Z] {"timestamp":"2026-05-29 15:29:11","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:29:11.190Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:29:11.192Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:30:04.824Z] Topic: aquaponic/device/data
+[2026-05-29T08:30:04.825Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":4.753765,"turbidity":300},"timestamp":"2026-05-29 15:30:05"}
+[2026-05-29T08:30:04.828Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":4.753765,"turbidity":300},"timestamp":"2026-05-29 15:30:05"}
+[2026-05-29T08:30:04.827Z] Topic: aquaponic/device/data
+[2026-05-29T08:30:04.832Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:30:04.834Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:30:17.131Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:30:17.139Z] {"timestamp":"2026-05-29 15:30:17","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:30:17.145Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:30:17.153Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:30:17.154Z] {"timestamp":"2026-05-29 15:30:17","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:30:17.158Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:30:41.598Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:30:41.598Z] {"timestamp":"2026-05-29 15:30:42","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:30:41.602Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:30:41.606Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:30:41.606Z] {"timestamp":"2026-05-29 15:30:42","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:30:41.610Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:31:05.156Z] Topic: aquaponic/device/data
+[2026-05-29T08:31:05.157Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.646317,"turbidity":300},"timestamp":"2026-05-29 15:31:06"}
+[2026-05-29T08:31:05.160Z] Topic: aquaponic/device/data
+[2026-05-29T08:31:05.161Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.646317,"turbidity":300},"timestamp":"2026-05-29 15:31:06"}
+[2026-05-29T08:31:05.163Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:31:05.168Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:31:08.415Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:09.151Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:02/config
+[2026-05-29T08:31:09.528Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:09.748Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:10.496Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:10.980Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:11.404Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:11.814Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:13.145Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:13.627Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:14.100Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T08:31:19.502Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-29T08:31:20.244Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-29T08:31:20.665Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-29T08:31:21.746Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T08:31:22.024Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T08:31:22.463Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T08:31:22.669Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T08:31:22.975Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T08:31:23.283Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T08:31:23.532Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T08:31:23.749Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T08:31:42.228Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:31:42.228Z] {"timestamp":"2026-05-29 15:31:42","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:31:42.230Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:31:42.231Z] {"timestamp":"2026-05-29 15:31:42","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:31:42.238Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:31:42.239Z] Error: Aktuator dengan tipe grow_light tidak ditemukan untuk device 68:09:47:60:59:54
+[2026-05-29T08:32:05.575Z] Topic: aquaponic/device/data
+[2026-05-29T08:32:05.575Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":5.22385,"turbidity":300},"timestamp":"2026-05-29 15:32:06"}
+[2026-05-29T08:32:05.577Z] Topic: aquaponic/device/data
+[2026-05-29T08:32:05.578Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":5.22385,"turbidity":300},"timestamp":"2026-05-29 15:32:06"}
+[2026-05-29T08:32:05.583Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:32:05.585Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:33:05.260Z] Heartbeat alive
+[2026-05-29T08:33:05.857Z] Topic: aquaponic/device/data
+[2026-05-29T08:33:05.858Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":5.31339,"turbidity":300},"timestamp":"2026-05-29 15:33:06"}
+[2026-05-29T08:33:05.862Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:33:06.095Z] Topic: aquaponic/device/data
+[2026-05-29T08:33:06.095Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":5.31339,"turbidity":300},"timestamp":"2026-05-29 15:33:06"}
+[2026-05-29T08:33:06.100Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:33:44.315Z] {"timestamp":"2026-05-29 15:33:44","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:33:44.314Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:33:44.330Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:33:44.355Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:33:44.356Z] {"timestamp":"2026-05-29 15:33:44","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:33:44.365Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:34:06.307Z] Topic: aquaponic/device/data
+[2026-05-29T08:34:06.314Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":5.340252,"turbidity":300},"timestamp":"2026-05-29 15:34:07"}
+[2026-05-29T08:34:06.316Z] Topic: aquaponic/device/data
+[2026-05-29T08:34:06.317Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":5.340252,"turbidity":300},"timestamp":"2026-05-29 15:34:07"}
+[2026-05-29T08:34:06.321Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:34:06.323Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:34:33.818Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:34:34.058Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:34:43.981Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:34:44.401Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"on","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:34:45"}
+[2026-05-29T08:34:44.400Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:34:44.402Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:34:44.956Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:34:44.958Z] {"timestamp":"2026-05-29 15:34:45","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:34:44.958Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:34:44.956Z] {"timestamp":"2026-05-29 15:34:45","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:34:44.969Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:34:44.970Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:34:48.804Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:34:49.213Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:34:49.214Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"off","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:34:49"}
+[2026-05-29T08:34:49.214Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:35:06.520Z] Topic: aquaponic/device/data
+[2026-05-29T08:35:06.520Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":4.391127,"turbidity":300},"timestamp":"2026-05-29 15:35:07"}
+[2026-05-29T08:35:06.522Z] Topic: aquaponic/device/data
+[2026-05-29T08:35:06.522Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":4.391127,"turbidity":300},"timestamp":"2026-05-29 15:35:07"}
+[2026-05-29T08:35:06.527Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:35:06.531Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:35:39.939Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:35:40.415Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:35:40.415Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"on","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:35:41"}
+[2026-05-29T08:35:40.416Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:35:46.661Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:35:46.662Z] {"timestamp":"2026-05-29 15:35:47","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:35:46.664Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:35:46.664Z] {"timestamp":"2026-05-29 15:35:47","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:35:46.673Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:35:46.674Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:35:54.752Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:35:55.092Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:35:55.093Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"off","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:35:55"}
+[2026-05-29T08:35:55.093Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:35:59.560Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:35:59.974Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:35:59.974Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"on","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:36:00"}
+[2026-05-29T08:35:59.974Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:36:01.979Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:36:02.356Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:36:02.357Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"off","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:36:03"}
+[2026-05-29T08:36:02.357Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:36:04.377Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:36:04.786Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:36:04.787Z] {"mac_address":"68:09:47:60:59:54","actuators":[{"id":20,"name":"Pompa Hijau","type":"pump","state":"on","schedules":[]},{"id":21,"name":"Grow Light Hijau","type":"grow_light","state":"on","schedules":[]}],"timestamp":"2026-05-29 15:36:05"}
+[2026-05-29T08:36:04.788Z] Error: Payload aktuator tidak lengkap untuk device 68:09:47:60:59:54 (type=undefined, state=undefined)
+[2026-05-29T08:36:06.849Z] Topic: aquaponic/device/data
+[2026-05-29T08:36:06.850Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.776149,"turbidity":300},"timestamp":"2026-05-29 15:36:07"}
+[2026-05-29T08:36:06.852Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:36:06.853Z] Topic: aquaponic/device/data
+[2026-05-29T08:36:06.853Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.776149,"turbidity":300},"timestamp":"2026-05-29 15:36:07"}
+[2026-05-29T08:36:06.856Z] Device not found:
+A4:F0:0F:73:D7:20
+[2026-05-29T08:36:48.307Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:36:48.308Z] {"timestamp":"2026-05-29 15:36:49","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:36:48.310Z] {"timestamp":"2026-05-29 15:36:49","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:36:48.310Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:36:48.319Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:36:48.320Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:36:49.641Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:36:49.949Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:36:59.674Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-29T08:37:00.000Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-29T08:37:00.001Z] {"mac_address":"A4:F0:0F:73:D7:20","actuators":[{"id":18,"name":"Aerator Pink","type":"aerator","state":"on","schedules":[]},{"id":19,"name":"Feeder Pink","type":"feeder","state":"off","schedules":[{"id":4,"time":"20:47","duration":1}]}],"timestamp":"2026-05-29 15:37:00"}
+[2026-05-29T08:37:00.002Z] Error: Payload aktuator tidak lengkap untuk device A4:F0:0F:73:D7:20 (type=undefined, state=undefined)
+[2026-05-29T08:37:03.182Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-29T08:37:03.460Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-29T08:37:03.460Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off","timestamp":"2026-05-29 15:37:04"}
+[2026-05-29T08:37:03.471Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:37:03.493Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-29T08:37:03.493Z] {"mac_address":"A4:F0:0F:73:D7:20","actuators":[{"id":18,"name":"Aerator Pink","type":"aerator","state":"off","schedules":[]},{"id":19,"name":"Feeder Pink","type":"feeder","state":"off","schedules":[{"id":4,"time":"20:47","duration":1}]}],"timestamp":"2026-05-29 15:37:04"}
+[2026-05-29T08:37:03.495Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off","timestamp":"2026-05-29 15:37:04"}
+[2026-05-29T08:37:03.494Z] Error: Payload aktuator tidak lengkap untuk device A4:F0:0F:73:D7:20 (type=undefined, state=undefined)
+[2026-05-29T08:37:03.495Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-29T08:37:03.503Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:37:07.192Z] Topic: aquaponic/device/data
+[2026-05-29T08:37:07.193Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.015059,"turbidity":300},"timestamp":"2026-05-29 15:37:08"}
+[2026-05-29T08:37:07.200Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.015059,"turbidity":300},"timestamp":"2026-05-29 15:37:08"}
+[2026-05-29T08:37:07.199Z] Topic: aquaponic/device/data
+[2026-05-29T08:37:07.208Z] ph
+=> 4.015059
+[2026-05-29T08:37:07.216Z] ph
+=> 4.015059
+[2026-05-29T08:37:07.218Z] Alert queued:
+PH Pink
+abnormal
+(4.015059ph)
+[2026-05-29T08:37:07.219Z] temperature
+=> 29.875
+[2026-05-29T08:37:07.218Z] PH Pink
+saved
+[2026-05-29T08:37:07.223Z] Suhu Pink
+saved
+[2026-05-29T08:37:07.223Z] turbidity
+=> 300
+[2026-05-29T08:37:07.226Z] PH Pink
+saved
+[2026-05-29T08:37:07.227Z] Alert queued:
+PH Pink
+abnormal
+(4.015059ph)
+[2026-05-29T08:37:07.227Z] temperature
+=> 29.875
+[2026-05-29T08:37:07.229Z] Turbidity Sensor Pink
+saved
+[2026-05-29T08:37:07.232Z] Suhu Pink
+saved
+[2026-05-29T08:37:07.233Z] turbidity
+=> 300
+[2026-05-29T08:37:07.235Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(4.015059ph)","type":"warning"}
+[2026-05-29T08:37:07.276Z] Turbidity Sensor Pink
+saved
+[2026-05-29T08:37:07.279Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(4.015059ph)","type":"warning"}
+[2026-05-29T08:37:12.180Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":490}
+[2026-05-29T08:37:12.181Z] Notification created:
+490
+[2026-05-29T08:37:12.396Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509239896,"status":false}
+[2026-05-29T08:37:12.397Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T08:37:12.397Z] WhatsApp sent:
+085713211581
+[2026-05-29T08:37:12.741Z] Sensor Alert Response:
+{"message":"Notification sent","created":false,"notification_id":null}
+[2026-05-29T08:37:12.742Z] Duplicate notification skipped
+[2026-05-29T08:37:49.851Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:37:49.852Z] {"timestamp":"2026-05-29 15:37:50","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:37:49.854Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:37:49.854Z] {"timestamp":"2026-05-29 15:37:50","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:37:49.866Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:37:49.867Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:38:05.264Z] Heartbeat alive
+[2026-05-29T08:38:07.537Z] Topic: aquaponic/device/data
+[2026-05-29T08:38:07.538Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":5.04477,"turbidity":300},"timestamp":"2026-05-29 15:38:08"}
+[2026-05-29T08:38:07.544Z] ph
+=> 5.04477
+[2026-05-29T08:38:07.546Z] PH Pink
+saved
+[2026-05-29T08:38:07.547Z] temperature
+=> 29.875
+[2026-05-29T08:38:07.549Z] Suhu Pink
+saved
+[2026-05-29T08:38:07.550Z] turbidity
+=> 300
+[2026-05-29T08:38:07.552Z] Turbidity Sensor Pink
+saved
+[2026-05-29T08:38:51.448Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:38:51.449Z] {"timestamp":"2026-05-29 15:38:52","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:38:51.485Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:39:07.882Z] Topic: aquaponic/device/data
+[2026-05-29T08:39:07.883Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.9375,"ph":3.630037,"turbidity":300},"timestamp":"2026-05-29 15:39:08"}
+[2026-05-29T08:39:07.893Z] ph
+=> 3.630037
+[2026-05-29T08:39:07.896Z] PH Pink
+saved
+[2026-05-29T08:39:07.897Z] Alert queued:
+PH Pink
+abnormal
+(3.630037ph)
+[2026-05-29T08:39:07.898Z] temperature
+=> 29.9375
+[2026-05-29T08:39:07.900Z] Suhu Pink
+saved
+[2026-05-29T08:39:07.901Z] turbidity
+=> 300
+[2026-05-29T08:39:07.903Z] Turbidity Sensor Pink
+saved
+[2026-05-29T08:39:07.907Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.630037ph)","type":"warning"}
+[2026-05-29T08:39:09.956Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":491}
+[2026-05-29T08:39:09.957Z] Notification created:
+491
+[2026-05-29T08:39:10.077Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509242604,"status":false}
+[2026-05-29T08:39:10.077Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T08:39:10.078Z] WhatsApp sent:
+085713211581
+[2026-05-29T08:40:18.644Z] {"timestamp":"2026-05-29 15:40:19","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:40:18.643Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:40:18.653Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:41:21.921Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:41:26.842Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:41:35.648Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:41:35.870Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:42:11.900Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:42:12.123Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:42:52.432Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:42:52.675Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:43:05.280Z] Heartbeat alive
+[2026-05-29T08:43:24.502Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:43:24.810Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/04:B2:47:83:72:FC/sync
+[2026-05-29T08:47:28.367Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:47:49.038Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:48:05.291Z] Heartbeat alive
+[2026-05-29T08:48:19.217Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:48:36.902Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:48:44.410Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:48:44.749Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:48:44.749Z] {"timestamp":"2026-05-29 15:48:45","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T08:48:44.756Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:48:45.235Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:48:45.236Z] {"timestamp":"2026-05-29 15:48:46","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:48:45.246Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:48:52.110Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:51:07.111Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:51:07.491Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:51:07.491Z] {"timestamp":"2026-05-29 15:51:08","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:51:07.498Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:51:09.703Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:51:22.312Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:51:24.873Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:52:53.857Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:52:54.198Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:52:54.199Z] {"timestamp":"2026-05-29 15:52:55","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T08:52:54.209Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:52:54.279Z] {"timestamp":"2026-05-29 15:52:55","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:52:54.278Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:52:54.285Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:52:58.828Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:53:02.567Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:53:05.302Z] Heartbeat alive
+[2026-05-29T08:55:47.762Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:55:48.072Z] {"timestamp":"2026-05-29 15:55:48","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T08:55:48.071Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:55:48.076Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:55:48.521Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:55:48.521Z] {"timestamp":"2026-05-29 15:55:49","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:55:48.530Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:55:55.737Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:56:03.461Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:57:34.877Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:58:05.317Z] Heartbeat alive
+[2026-05-29T08:58:35.892Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:59:08.434Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T08:59:08.787Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:59:08.788Z] {"timestamp":"2026-05-29 15:59:09","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T08:59:08.797Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:59:08.814Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:59:08.814Z] {"timestamp":"2026-05-29 15:59:09","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T08:59:08.822Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T08:59:59.835Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T08:59:59.836Z] {"timestamp":"2026-05-29 16:00:00","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T08:59:59.845Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:03:05.330Z] Heartbeat alive
+[2026-05-29T09:03:32.440Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T09:03:37.866Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T09:03:38.252Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T09:03:38.253Z] {"timestamp":"2026-05-29 16:03:39","mac_address":"68:09:47:60:59:54","type":"pump","state":"on"}
+[2026-05-29T09:03:38.262Z] [DB SUCCESS] Perubahan aktuator Pompa Hijau (pump) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:03:41.656Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T09:03:41.982Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T09:03:41.982Z] {"timestamp":"2026-05-29 16:03:42","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T09:03:41.990Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:03:42.123Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T09:03:42.124Z] {"timestamp":"2026-05-29 16:03:42","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T09:03:42.134Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:07:18.338Z] Topic: aquaponic/device/data
+[2026-05-29T09:07:18.339Z] {"type":"sensor","timestamp":"2026-05-29 16:07:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":77.1}}
+[2026-05-29T09:07:18.345Z] temperature
+=> 30.2
+[2026-05-29T09:07:18.348Z] Temperature DHT22
+saved
+[2026-05-29T09:07:18.349Z] humidity
+=> 77.1
+[2026-05-29T09:07:18.351Z] Humidity DHT22
+saved
+[2026-05-29T09:08:05.330Z] Heartbeat alive
+[2026-05-29T09:08:18.347Z] Topic: aquaponic/device/data
+[2026-05-29T09:08:18.347Z] {"type":"sensor","timestamp":"2026-05-29 16:08:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":76.8}}
+[2026-05-29T09:08:18.353Z] temperature
+=> 30.2
+[2026-05-29T09:08:18.356Z] Temperature DHT22
+saved
+[2026-05-29T09:08:18.356Z] humidity
+=> 76.8
+[2026-05-29T09:08:18.358Z] Humidity DHT22
+saved
+[2026-05-29T09:08:37.393Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-29T09:08:41.080Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/A4:F0:0F:73:D7:20/config
+[2026-05-29T09:08:41.387Z] {"mac_address":"A4:F0:0F:73:D7:20","type":"aerator","state":"off","timestamp":"2026-05-29 16:08:42"}
+[2026-05-29T09:08:41.386Z] Topic: aquaponic/device/A4:F0:0F:73:D7:20/actuator
+[2026-05-29T09:08:41.397Z] [DB SUCCESS] Perubahan aktuator Aerator Pink (aerator) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:09:18.353Z] Topic: aquaponic/device/data
+[2026-05-29T09:09:18.354Z] {"type":"sensor","timestamp":"2026-05-29 16:09:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":76.9}}
+[2026-05-29T09:09:18.360Z] temperature
+=> 30.2
+[2026-05-29T09:09:18.362Z] Temperature DHT22
+saved
+[2026-05-29T09:09:18.362Z] humidity
+=> 76.9
+[2026-05-29T09:09:18.364Z] Humidity DHT22
+saved
+[2026-05-29T09:09:18.967Z] Topic: aquaponic/device/data
+[2026-05-29T09:09:18.968Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.364265,"turbidity":300},"timestamp":"2026-05-29 16:09:19"}
+[2026-05-29T09:09:18.974Z] ph
+=> 4.364265
+[2026-05-29T09:09:18.976Z] PH Pink
+saved
+[2026-05-29T09:09:18.977Z] Alert queued:
+PH Pink
+abnormal
+(4.364265ph)
+[2026-05-29T09:09:18.977Z] temperature
+=> 29.875
+[2026-05-29T09:09:18.980Z] turbidity
+=> 300
+[2026-05-29T09:09:18.979Z] Suhu Pink
+saved
+[2026-05-29T09:09:18.982Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:09:18.987Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(4.364265ph)","type":"warning"}
+[2026-05-29T09:09:20.808Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":492}
+[2026-05-29T09:09:20.809Z] Notification created:
+492
+[2026-05-29T09:09:21.326Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509281057,"status":false}
+[2026-05-29T09:09:21.327Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:09:21.327Z] WhatsApp sent:
+085713211581
+[2026-05-29T09:09:34.943Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/68:09:47:60:59:54/config
+[2026-05-29T09:09:35.285Z] {"timestamp":"2026-05-29 16:09:36","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"on"}
+[2026-05-29T09:09:35.285Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T09:09:35.294Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi on berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:09:35.353Z] Topic: aquaponic/device/68:09:47:60:59:54/actuator
+[2026-05-29T09:09:35.354Z] {"timestamp":"2026-05-29 16:09:36","mac_address":"68:09:47:60:59:54","type":"grow_light","state":"off"}
+[2026-05-29T09:09:35.362Z] [DB SUCCESS] Perubahan aktuator Grow Light Hijau (grow_light) menjadi off berhasil disimpan (triggered_by: auto)
+[2026-05-29T09:10:19.285Z] Topic: aquaponic/device/data
+[2026-05-29T09:10:19.286Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.310542,"turbidity":300},"timestamp":"2026-05-29 16:10:20"}
+[2026-05-29T09:10:19.297Z] ph
+=> 4.310542
+[2026-05-29T09:10:19.298Z] PH Pink
+saved
+[2026-05-29T09:10:19.299Z] Alert queued:
+PH Pink
+abnormal
+(4.310542ph)
+[2026-05-29T09:10:19.299Z] temperature
+=> 29.875
+[2026-05-29T09:10:19.300Z] Suhu Pink
+saved
+[2026-05-29T09:10:19.301Z] turbidity
+=> 300
+[2026-05-29T09:10:19.304Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:10:19.307Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(4.310542ph)","type":"warning"}
+[2026-05-29T09:10:20.304Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":493}
+[2026-05-29T09:10:20.304Z] Notification created:
+493
+[2026-05-29T09:10:20.391Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509283153,"status":false}
+[2026-05-29T09:10:20.391Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:10:20.391Z] WhatsApp sent:
+085713211581
+[2026-05-29T09:11:18.387Z] Topic: aquaponic/device/data
+[2026-05-29T09:11:18.388Z] {"type":"sensor","timestamp":"2026-05-29 16:11:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":76.6}}
+[2026-05-29T09:11:18.395Z] temperature
+=> 30.2
+[2026-05-29T09:11:18.435Z] humidity
+=> 76.6
+[2026-05-29T09:11:18.422Z] Temperature DHT22
+saved
+[2026-05-29T09:11:18.444Z] Humidity DHT22
+saved
+[2026-05-29T09:11:19.818Z] Topic: aquaponic/device/data
+[2026-05-29T09:11:19.818Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.632885,"turbidity":300},"timestamp":"2026-05-29 16:11:20"}
+[2026-05-29T09:11:19.823Z] ph
+=> 4.632885
+[2026-05-29T09:11:19.824Z] PH Pink
+saved
+[2026-05-29T09:11:19.825Z] Alert queued:
+PH Pink
+abnormal
+(4.632885ph)
+[2026-05-29T09:11:19.825Z] temperature
+=> 29.875
+[2026-05-29T09:11:19.826Z] turbidity
+=> 300
+[2026-05-29T09:11:19.826Z] Suhu Pink
+saved
+[2026-05-29T09:11:19.828Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:11:19.832Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(4.632885ph)","type":"warning"}
+[2026-05-29T09:11:22.092Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":494}
+[2026-05-29T09:11:22.092Z] Notification created:
+494
+[2026-05-29T09:11:22.295Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509284266,"status":false}
+[2026-05-29T09:11:22.296Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:11:22.296Z] WhatsApp sent:
+085713211581
+[2026-05-29T09:12:18.480Z] Topic: aquaponic/device/data
+[2026-05-29T09:12:18.480Z] {"type":"sensor","timestamp":"2026-05-29 16:12:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":76.7}}
+[2026-05-29T09:12:18.486Z] temperature
+=> 30.2
+[2026-05-29T09:12:18.489Z] Temperature DHT22
+saved
+[2026-05-29T09:12:18.490Z] humidity
+=> 76.7
+[2026-05-29T09:12:18.498Z] Humidity DHT22
+saved
+[2026-05-29T09:12:20.015Z] Topic: aquaponic/device/data
+[2026-05-29T09:12:20.016Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.934474,"turbidity":300},"timestamp":"2026-05-29 16:12:20"}
+[2026-05-29T09:12:20.021Z] ph
+=> 3.934474
+[2026-05-29T09:12:20.023Z] PH Pink
+saved
+[2026-05-29T09:12:20.024Z] Alert queued:
+PH Pink
+abnormal
+(3.934474ph)
+[2026-05-29T09:12:20.025Z] temperature
+=> 29.875
+[2026-05-29T09:12:20.026Z] Suhu Pink
+saved
+[2026-05-29T09:12:20.027Z] turbidity
+=> 300
+[2026-05-29T09:12:20.029Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:12:20.038Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.934474ph)","type":"warning"}
+[2026-05-29T09:12:21.894Z] Notification created:
+495
+[2026-05-29T09:12:21.894Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":495}
+[2026-05-29T09:12:21.982Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509284930,"status":false}
+[2026-05-29T09:12:21.983Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:12:21.983Z] WhatsApp sent:
+085713211581
+[2026-05-29T09:13:05.342Z] Heartbeat alive
+[2026-05-29T09:13:18.415Z] Topic: aquaponic/device/data
+[2026-05-29T09:13:18.416Z] {"type":"sensor","timestamp":"2026-05-29 16:13:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":76.8}}
+[2026-05-29T09:13:18.421Z] temperature
+=> 30.2
+[2026-05-29T09:13:18.423Z] Temperature DHT22
+saved
+[2026-05-29T09:13:18.424Z] humidity
+=> 76.8
+[2026-05-29T09:13:18.426Z] Humidity DHT22
+saved
+[2026-05-29T09:13:20.332Z] Topic: aquaponic/device/data
+[2026-05-29T09:13:20.333Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":3.701668,"turbidity":300},"timestamp":"2026-05-29 16:13:21"}
+[2026-05-29T09:13:20.338Z] ph
+=> 3.701668
+[2026-05-29T09:13:20.341Z] PH Pink
+saved
+[2026-05-29T09:13:20.342Z] Alert queued:
+PH Pink
+abnormal
+(3.701668ph)
+[2026-05-29T09:13:20.342Z] temperature
+=> 29.875
+[2026-05-29T09:13:20.344Z] Suhu Pink
+saved
+[2026-05-29T09:13:20.345Z] turbidity
+=> 300
+[2026-05-29T09:13:20.348Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:13:20.351Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.701668ph)","type":"warning"}
+[2026-05-29T09:13:22.204Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":496}
+[2026-05-29T09:13:22.205Z] Notification created:
+496
+[2026-05-29T09:13:22.316Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509285404,"status":false}
+[2026-05-29T09:13:22.316Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:13:22.317Z] WhatsApp sent:
+085713211581
+[2026-05-29T09:14:18.495Z] Topic: aquaponic/device/data
+[2026-05-29T09:14:18.496Z] {"type":"sensor","timestamp":"2026-05-29 16:14:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.2,"humidity":76.9}}
+[2026-05-29T09:14:18.501Z] temperature
+=> 30.2
+[2026-05-29T09:14:18.504Z] Temperature DHT22
+saved
+[2026-05-29T09:14:18.504Z] humidity
+=> 76.9
+[2026-05-29T09:14:18.507Z] Humidity DHT22
+saved
+[2026-05-29T09:14:20.645Z] Topic: aquaponic/device/data
+[2026-05-29T09:14:20.645Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.875,"ph":4.077736,"turbidity":300},"timestamp":"2026-05-29 16:14:21"}
+[2026-05-29T09:14:20.652Z] ph
+=> 4.077736
+[2026-05-29T09:14:20.655Z] PH Pink
+saved
+[2026-05-29T09:14:20.656Z] Alert queued:
+PH Pink
+abnormal
+(4.077736ph)
+[2026-05-29T09:14:20.657Z] temperature
+=> 29.875
+[2026-05-29T09:14:20.659Z] Suhu Pink
+saved
+[2026-05-29T09:14:20.660Z] turbidity
+=> 300
+[2026-05-29T09:14:20.663Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:14:20.665Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(4.077736ph)","type":"warning"}
+[2026-05-29T09:14:22.430Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":497}
+[2026-05-29T09:14:22.431Z] Notification created:
+497
+[2026-05-29T09:14:22.636Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509286017,"status":false}
+[2026-05-29T09:14:22.637Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:14:22.637Z] WhatsApp sent:
+085713211581
+[2026-05-29T09:14:45.428Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:45.836Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:02/config
+[2026-05-29T09:14:46.194Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:46.419Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:46.743Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:47.065Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:47.372Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:47.630Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:48.089Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:48.525Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:48.909Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:01/config
+[2026-05-29T09:14:50.342Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-29T09:14:50.753Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-29T09:14:51.059Z] Berhasil publish konfigurasi ke MQTT topik aquaponic/device/00:11:22:33:44:55/config
+[2026-05-29T09:14:51.470Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T09:14:51.704Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T09:14:52.001Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T09:14:52.206Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:01/sync
+[2026-05-29T09:14:52.489Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T09:14:52.703Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T09:14:52.925Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T09:14:53.127Z] Berhasil publish sinkronisasi slave ke MQTT topik aquaponic/master/AA:BB:CC:DD:EE:02/sync
+[2026-05-29T09:15:18.502Z] Topic: aquaponic/device/data
+[2026-05-29T09:15:18.503Z] {"type":"sensor","timestamp":"2026-05-29 16:15:19","mac_address":"68:09:47:60:59:54","sensors":{"temperature":30.1,"humidity":77}}
+[2026-05-29T09:15:18.509Z] temperature
+=> 30.1
+[2026-05-29T09:15:18.510Z] Temperature DHT22
+saved
+[2026-05-29T09:15:18.511Z] humidity
+=> 77
+[2026-05-29T09:15:18.512Z] Humidity DHT22
+saved
+[2026-05-29T09:15:21.064Z] Topic: aquaponic/device/data
+[2026-05-29T09:15:21.065Z] {"type":"sensor","mac_address":"A4:F0:0F:73:D7:20","sensors":{"temperature":29.8125,"ph":3.576313,"turbidity":300},"timestamp":"2026-05-29 16:15:21"}
+[2026-05-29T09:15:21.070Z] ph
+=> 3.576313
+[2026-05-29T09:15:21.072Z] PH Pink
+saved
+[2026-05-29T09:15:21.073Z] temperature
+=> 29.8125
+[2026-05-29T09:15:21.072Z] Alert queued:
+PH Pink
+abnormal
+(3.576313ph)
+[2026-05-29T09:15:21.074Z] Suhu Pink
+saved
+[2026-05-29T09:15:21.075Z] turbidity
+=> 300
+[2026-05-29T09:15:21.076Z] Turbidity Sensor Pink
+saved
+[2026-05-29T09:15:21.080Z] Sending Alert:
+{"site_id":9,"message":"PH Pink\nabnormal\n(3.576313ph)","type":"warning"}
+[2026-05-29T09:15:22.134Z] Sensor Alert Response:
+{"message":"Notification sent","created":true,"notification_id":498}
+[2026-05-29T09:15:22.135Z] Notification created:
+498
+[2026-05-29T09:15:22.239Z] Fonnte Response:
+            {"reason":"request invalid on disconnected device","requestid":509287989,"status":false}
+[2026-05-29T09:15:22.240Z] WhatsApp API Error:
+            request invalid on disconnected device
+[2026-05-29T09:15:22.241Z] WhatsApp sent:
+085713211581

@@ -44,6 +44,16 @@ class AccountController extends Controller
                 'max:20'
             ],
 
+            'whatsapp_notification' => [
+                'nullable',
+                'boolean'
+            ],
+
+            'email_notification' => [
+                'nullable',
+                'boolean'
+            ],
+
             'password' => [
                 'nullable',
                 'min:8',
@@ -54,6 +64,8 @@ class AccountController extends Controller
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->phone_number = $validated['phone_number'] ?? null;
+        $user->whatsapp_notification = $request->boolean('whatsapp_notification');
+        $user->email_notification = $request->boolean('email_notification');
 
         // Update password jika diisi
         if ($request->filled('password')) {

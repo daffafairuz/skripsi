@@ -417,7 +417,9 @@ d.id,
 sd.site_id,
 s.name AS site_name,
 u.name AS user_name,
-u.phone_number
+u.phone_number,
+u.whatsapp_notification,
+u.email_notification
 
 FROM devices d
 
@@ -565,6 +567,10 @@ abnormal
 
                             phoneNumber: device.phone_number,
 
+                            whatsappNotification: device.whatsapp_notification,
+
+                            emailNotification: device.email_notification,
+
                             sensorName: sensor.name,
 
                             value: value,
@@ -592,12 +598,16 @@ ${message}`,
                         const result = await sendSensorAlert(alert);
 
                         if (result?.created === true) {
-                            await sendWhatsAppAlert(alert);
+                            if (alert.whatsappNotification === 1 || alert.whatsappNotification === true) {
+                                await sendWhatsAppAlert(alert);
 
-                            log(
-                                `WhatsApp sent:
+                                log(
+                                    `WhatsApp sent:
 ${alert.phoneNumber}`,
-                            );
+                                );
+                            } else {
+                                log(`WhatsApp notification disabled for user: ${alert.userName}`);
+                            }
                         }
                     } catch (err) {
                         log(

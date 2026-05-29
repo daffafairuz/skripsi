@@ -276,6 +276,10 @@
                                     Aerator
                                 </option>
 
+                                <option value="grow_light">
+                                    Grow Light
+                                </option>
+
                             </select>
 
                             <button

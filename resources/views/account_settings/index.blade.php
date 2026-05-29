@@ -129,6 +129,63 @@
 
             </div>
 
+            <!-- Preferensi Notifikasi -->
+            <div class="border-t border-gray-100 pt-5">
+
+                <h3 class="text-sm font-semibold text-gray-700 mb-4">
+                    Preferensi Notifikasi
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Email Notification Switch -->
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-100 transition duration-200">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-blue-50 text-blue-600 rounded-xl">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <label for="email_notification" class="block text-sm font-semibold text-gray-700 cursor-pointer">
+                                    Notifikasi Email
+                                </label>
+                                <p class="text-xs text-gray-400">
+                                    Kirim alert sensor ke email Anda
+                                </p>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" name="email_notification" id="email_notification" value="1" class="sr-only peer" {{ old('email_notification', $user->email_notification) ? 'checked' : '' }}>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+
+                    <!-- WhatsApp Notification Switch -->
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-green-100 transition duration-200">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-green-50 text-green-600 rounded-xl">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <label for="whatsapp_notification" class="block text-sm font-semibold text-gray-700 cursor-pointer">
+                                    Notifikasi WhatsApp
+                                </label>
+                                <p class="text-xs text-gray-400">
+                                    Kirim alert sensor ke WhatsApp Anda
+                                </p>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" name="whatsapp_notification" id="whatsapp_notification" value="1" class="sr-only peer" {{ old('whatsapp_notification', $user->whatsapp_notification) ? 'checked' : '' }}>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
             <!-- Password -->
             <div class="border-t border-gray-100 pt-5">
 
