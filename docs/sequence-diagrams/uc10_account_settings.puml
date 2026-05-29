@@ -1,0 +1,99 @@
+@startuml UC-10: Pengaturan Akun (Account Settings)
+
+title UC-10: Pengaturan Akun (Account Settings)\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 230
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "User / Admin"                  as User
+boundary    "AccountSettingsPage (UI)"      as UI
+control     "AccountController"            as AC
+entity      "Users <<database>>"           as DB
+entity      "Session <<database>>"         as Session
+
+== UC-10a: Lihat Halaman Pengaturan Akun ==
+
+User  ->  UI  : GET /account
+activate UI
+UI    ->  AC  : index()
+activate AC
+AC    ->  AC  : Auth::user() — ambil user yang sedang login
+AC   -->  UI  : view('account_settings.index', user)
+deactivate AC
+UI   -->  User : Tampilkan form profil (nama, email, telepon)\nbeserta opsi ganti password
+deactivate UI
+
+== UC-10b: Update Profil & Password ==
+
+User  ->  UI  : Edit data → Submit (PUT /account/update)
+activate UI
+UI    ->  AC  : PUT /account/update\n{name, email, phone_number, ?password, ?password_confirmation}
+activate AC
+
+AC    ->  AC  : Auth::user() — ambil user yang login
+
+' Validasi input
+AC    ->  AC  : validate({\nname: required|string|max:255,\nemail: required|email|unique:users,email,{user.id},\nphone_number: nullable|string|max:20,\npassword: nullable|min:8|confirmed\n})
+
+alt Validasi Gagal
+    AC   -->  UI  : redirect back()->withErrors()->withInput()
+    UI   -->  User : Tampilkan pesan error (email sudah dipakai, password tidak cocok, dll.)
+else Validasi Berhasil
+    AC    ->  AC  : user->name = validated.name\nuser->email = validated.email\nuser->phone_number = validated.phone_number
+
+    alt Password Diisi (request->filled('password'))
+        AC    ->  AC  : user->password = Hash::make(validated.password)\n(enkripsi bcrypt)
+        note right : Password lama tidak diperlukan\n(tidak ada verifikasi password lama)
+    else Password Tidak Diisi
+        note over AC : Password lama tetap dipertahankan
+    end
+
+    AC    ->  DB  : user->save()
+    activate DB
+    DB   -->  AC  : Data user tersimpan
+    deactivate DB
+
+    AC   -->  UI  : redirect()->back()->with('success', 'Akun berhasil diperbarui!')
+    UI   -->  User : Flash sukses, form menampilkan data terbaru
+end
+
+deactivate AC
+deactivate UI
+
+== UC-10c: Hapus Akun ==
+
+User  ->  UI  : Klik "Hapus Akun" → Konfirmasi
+activate UI
+UI    ->  AC  : DELETE /account/destroy
+activate AC
+
+AC    ->  AC  : Auth::user() — ambil user yang akan dihapus
+
+AC    ->  AC  : Auth::logout()\nHapus autentikasi dari session
+AC    ->  DB  : user->delete() (hapus record user)
+activate DB
+DB   -->  AC  : User dihapus permanen
+deactivate DB
+
+AC    ->  Session : session()->invalidate()\nsession()->regenerateToken()
+activate Session
+Session -->  AC   : Session lama tidak valid
+deactivate Session
+
+AC   -->  UI  : redirect('/')\n->with('success', 'Akun berhasil dihapus')
+deactivate AC
+UI   -->  User : Arahkan ke halaman utama (redirect ke /login)
+deactivate UI
+
+@enduml

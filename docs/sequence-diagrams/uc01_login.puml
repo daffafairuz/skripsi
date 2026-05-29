@@ -1,0 +1,82 @@
+@startuml UC-01: Login dan Logout
+
+title UC-01: Login dan Logout\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 200
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "User / Admin"        as User
+boundary    "LoginPage (UI)"      as UI
+control     "AuthController"      as AC
+entity      "Users <<database>>"  as DB
+entity      "Session <<database>>" as Session
+
+== Skenario Utama: Login Berhasil ==
+
+User  ->  UI      : Buka halaman /login
+activate UI
+UI   -->  User    : Tampilkan form login (email, password)
+deactivate UI
+
+User  ->  UI      : Submit form (email, password)
+activate UI
+UI    ->  AC      : POST /login {email, password}
+activate AC
+
+' Validasi format input
+AC    ->  AC      : validate(email: required|email,\npassword: required)
+
+alt Validasi Format Gagal
+    AC   -->  UI  : redirect back() with validation errors
+    UI   -->  User : Tampilkan pesan error (field kosong / format salah)
+else Validasi Format Berhasil
+    AC    ->  DB  : Auth::attempt({email, password})
+    activate DB
+    DB    ->  DB  : Cari user berdasarkan email\nBandingkan hash password (bcrypt)
+    DB   -->  AC  : User ditemukan / tidak ditemukan
+    deactivate DB
+
+    alt Kredensial Salah
+        AC   -->  UI  : redirect back()->withErrors(['email' => 'Email atau password salah'])
+        UI   -->  User : Tampilkan error "Email atau password salah"
+    else Kredensial Valid
+        AC    ->  Session : session()->regenerate()\nBuat session baru (anti session fixation)
+        activate Session
+        Session -->  AC   : Session ID baru
+        deactivate Session
+        AC   -->  UI  : redirect('/dashboard')
+        deactivate AC
+        UI   -->  User : Arahkan ke halaman Dashboard
+    end
+end
+
+deactivate UI
+
+== Skenario: Logout ==
+
+User  ->  UI      : Klik tombol Logout
+activate UI
+UI    ->  AC      : POST /logout
+activate AC
+AC    ->  AC      : Auth::logout()\nHapus data autentikasi user dari session
+AC    ->  Session : session()->invalidate()\nsession()->regenerateToken()
+activate Session
+Session -->  AC   : Session lama dihapus, token baru dibuat
+deactivate Session
+AC   -->  UI      : redirect('/login')
+deactivate AC
+UI   -->  User    : Arahkan ke halaman Login
+deactivate UI
+
+@enduml

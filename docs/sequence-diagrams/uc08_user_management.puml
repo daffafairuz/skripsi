@@ -1,0 +1,118 @@
+@startuml UC-08: Manajemen User (Admin Only)
+
+title UC-08: Manajemen User oleh Admin\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 230
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "Admin"                         as Admin
+boundary    "UserManagementPage (UI)"       as UI
+control     "UserController"               as UC
+control     "RoleMiddleware"               as MW
+entity      "Users <<database>>"           as DB
+
+== Middleware: Proteksi Route Admin Only ==
+
+note over MW : Semua route /users dilindungi oleh\nmiddleware(['auth', 'role:admin'])
+
+== UC-08a: Lihat Daftar User ==
+
+Admin ->  UI  : GET /users
+activate UI
+UI    ->  MW  : Cek session auth + role = 'admin'
+activate MW
+alt Tidak Terautentikasi atau Bukan Admin
+    MW   -->  UI  : redirect('/login') atau abort(403)
+    UI   -->  Admin : Halaman 403 / redirect ke login
+else Terautentikasi sebagai Admin
+    MW   -->  UI  : Lanjutkan ke controller
+    deactivate MW
+    UI    ->  UC  : index()
+    activate UC
+    UC    ->  DB  : User::latest()->get()
+    activate DB
+    DB   -->  UC  : Daftar semua user
+    deactivate DB
+    UC   -->  UI  : view('admin.users.index', users)
+    deactivate UC
+    UI   -->  Admin : Tampilkan tabel user (nama, email, role, status)
+end
+deactivate UI
+
+== UC-08b: Tambah User Baru ==
+
+Admin ->  UI  : Klik "Tambah User" → Isi form (nama, email, role, password)
+activate UI
+UI    ->  UC  : POST /users {name, email, phone_number, role, password}
+activate UC
+
+UC    ->  UC  : validate({name: required,\nemail: required|email|unique:users,\nphone_number: nullable,\nrole: required|in:admin,user,\npassword: required|min:6})
+
+alt Validasi Gagal
+    UC   -->  UI  : redirect back()->withErrors()->withInput()
+    UI   -->  Admin : Tampilkan pesan error validasi
+else Validasi Berhasil
+    UC    ->  DB  : User::create({name, email, phone_number, role,\nstatus: 'active',\npassword: Hash::make(password)})
+    activate DB
+    DB   -->  UC  : User tersimpan (bcrypt hash password)
+    deactivate DB
+    UC   -->  UI  : redirect('/users')->with('success', 'User berhasil ditambahkan')
+    UI   -->  Admin : Flash sukses, kembali ke daftar user
+end
+
+deactivate UC
+deactivate UI
+
+== UC-08c: Update Data User ==
+
+Admin ->  UI  : Klik "Edit" → Ubah data user → Submit
+activate UI
+UI    ->  UC  : PUT /users/{user} {name, email, phone_number, role, status}
+activate UC
+
+UC    ->  UC  : validate({name: required,\nemail: required|email,\nphone_number: nullable,\nrole: required|in:admin,user,\nstatus: required|in:active,inactive})
+
+alt Validasi Gagal
+    UC   -->  UI  : redirect back()->withErrors()->withInput()
+    UI   -->  Admin : Tampilkan pesan error validasi
+else Validasi Berhasil
+    UC    ->  DB  : $user->update({name, email, phone_number, role, status})
+    activate DB
+    DB   -->  UC  : Data user diperbarui
+    deactivate DB
+    UC   -->  UI  : redirect('/users')->with('success', 'User berhasil diperbarui')
+    UI   -->  Admin : Flash sukses, data user terupdate
+end
+
+deactivate UC
+deactivate UI
+
+== UC-08d: Hapus User ==
+
+Admin ->  UI  : Klik "Hapus" pada user tertentu
+activate UI
+UI    ->  UC  : DELETE /users/{user}
+activate UC
+
+UC    ->  DB  : $user->delete() (Soft delete / Hard delete)
+activate DB
+DB   -->  UC  : User dihapus
+deactivate DB
+
+UC   -->  UI  : redirect('/users')->with('success', 'User berhasil dihapus')
+deactivate UC
+UI   -->  Admin : Flash sukses, user hilang dari daftar
+deactivate UI
+
+@enduml

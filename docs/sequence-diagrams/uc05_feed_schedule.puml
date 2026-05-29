@@ -1,0 +1,197 @@
+@startuml UC-05: Manajemen Jadwal Pakan (Feed Schedule CRUD)
+
+title UC-05: Manajemen Jadwal Pakan (Feed Schedule)\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 240
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "User / Admin"                      as User
+boundary    "JadwalPakanPage (UI)"              as UI
+control     "FeedScheduleController"            as FSC
+entity      "Actuators <<database>>"            as ActDB
+entity      "FeedSchedules <<database>>"        as FeedDB
+entity      "Sites <<database>>"                as SiteDB
+control     "MqttService"                       as MQTTS
+boundary    "Node.js MQTT Bridge\n<<external>>" as NODE
+boundary    "HiveMQ Cloud\n<<external>>"        as MQTT
+participant "ESP32\n(IoT Device)"               as ESP
+
+== UC-05a: Lihat Daftar Jadwal Pakan ==
+
+User  ->  UI  : GET /jadwal-pakan(?site_id=X)
+activate UI
+UI    ->  FSC : index(request)
+activate FSC
+FSC   ->  FSC : auth()->user() — identifikasi role
+
+alt Role: Admin
+    FSC   ->  FeedDB : FeedSchedule::with('actuator.device')->orderBy('time')->get()
+    activate FeedDB
+    FeedDB -->  FSC  : semua jadwal pakan
+    deactivate FeedDB
+else Role: User
+    FSC   ->  SiteDB : Site::where('user_id')->whereHas('devices.actuators', type='feeder')->get()
+    activate SiteDB
+    SiteDB -->  FSC  : sites yang memiliki feeder
+    deactivate SiteDB
+
+    FSC   ->  FeedDB : FeedSchedule::whereHas('actuator.device.sites',\nwhere user_id = user, ended_at IS NULL, ?site_id)\n->with('actuator.device')->orderBy('time')->get()
+    activate FeedDB
+    FeedDB -->  FSC  : jadwal pakan milik user
+    deactivate FeedDB
+end
+
+FSC  -->  UI  : view('jadwal_pakan.index', schedules, sites, selectedSiteId)
+deactivate FSC
+UI   -->  User : Tampilkan tabel daftar jadwal pakan
+deactivate UI
+
+== UC-05b: Tambah Jadwal Pakan Baru ==
+
+User  ->  UI  : Klik "Tambah Jadwal" → GET /jadwal-pakan/create
+activate UI
+UI    ->  FSC : create()
+activate FSC
+FSC   ->  ActDB : Actuator::where('type', 'feeder')\n->whereHas('device.sites', milik user)->with('device')->get()
+activate ActDB
+ActDB -->  FSC : daftar feeder yang dapat diakses user
+deactivate ActDB
+FSC  -->  UI  : view('jadwal_pakan.create', feeders)
+deactivate FSC
+UI   -->  User : Tampilkan form (pilih feeder, waktu HH:MM, durasi menit)
+deactivate UI
+
+User  ->  UI  : Submit form (actuator_id, time, duration)
+activate UI
+UI    ->  FSC : POST /jadwal-pakan {actuator_id, time, duration}
+activate FSC
+
+' Validasi input
+FSC   ->  FSC : validate({actuator_id: required|exists,\ntime: required|date_format:H:i,\nduration: required|integer|min:1|max:60})
+
+alt Validasi Input Gagal
+    FSC  -->  UI  : redirect back()->withErrors()->withInput()
+    UI   -->  User : Tampilkan pesan error validasi
+else Validasi Input Berhasil
+    FSC   ->  ActDB : Actuator::find(actuator_id)
+    activate ActDB
+    ActDB -->  FSC  : Aktuator
+    deactivate ActDB
+
+    alt Aktuator Bukan Tipe 'feeder'
+        FSC  -->  UI  : redirect back()->withErrors('Harus tipe feeder')
+        UI   -->  User : Tampilkan error tipe aktuator
+    else Aktuator Valid
+        ' Validasi kepemilikan (non-admin)
+        opt Role bukan Admin
+            FSC   ->  ActDB : actuator->device->sites()->whereIn(siteIds)->whereNull(ended_at)->exists()
+            activate ActDB
+            ActDB -->  FSC  : hasAccess true/false
+            deactivate ActDB
+            alt Tidak Punya Akses
+                FSC  -->  UI  : redirect back()->withErrors('Tidak memiliki akses')
+                UI   -->  User : Tampilkan error akses
+            end
+        end
+
+        ' Cek tabrakan jadwal
+        FSC   ->  FeedDB : FeedSchedule::where('actuator_id')->get()
+        activate FeedDB
+        FeedDB -->  FSC  : jadwal yang sudah ada
+        deactivate FeedDB
+
+        FSC   ->  FSC : checkFeedOverlap(existingSchedules, newTime, newDuration)\nKonversi waktu ke menit, cek irisan interval (wrap midnight)
+
+        alt Jadwal Bertabrakan
+            FSC  -->  UI  : redirect back()->withErrors('Jadwal bertabrakan dengan: HH:MM, X menit')
+            UI   -->  User : Tampilkan error tabrakan jadwal
+        else Tidak Ada Tabrakan
+            ' Simpan jadwal
+            FSC   ->  FeedDB : FeedSchedule::create({actuator_id, time, duration})
+            activate FeedDB
+            FeedDB -->  FSC  : Jadwal tersimpan
+            deactivate FeedDB
+
+            ' Sinkronisasi ke ESP32 via MQTT
+            FSC   ->  MQTTS : MqttService::publishDeviceConfig(actuator->device)
+            activate MQTTS
+            MQTTS ->  NODE  : POST /publish-config (payload JSON dengan schedules terbaru)
+            activate NODE
+            NODE  ->  MQTT  : mqtt.publish('aquaponic/config/{mac}', payload)
+            activate MQTT
+            MQTT  ->  ESP   : Forward konfigurasi baru ke ESP32
+            activate ESP
+            ESP   ->  ESP   : Update jadwal feeder\n(akan aktif otomatis pada waktu yang ditentukan)
+            deactivate ESP
+            deactivate MQTT
+            NODE  -->  MQTTS : HTTP 200
+            deactivate NODE
+            MQTTS -->  FSC  : true
+            deactivate MQTTS
+
+            FSC  -->  UI  : redirect('/jadwal-pakan')->with('success', 'Jadwal pakan berhasil ditambahkan')
+            UI   -->  User : Flash sukses, kembali ke daftar jadwal
+        end
+    end
+end
+
+deactivate FSC
+deactivate UI
+
+== UC-05c: Hapus Jadwal Pakan ==
+
+User  ->  UI  : Klik "Hapus" pada jadwal tertentu
+activate UI
+UI    ->  FSC : DELETE /jadwal-pakan/{id}
+activate FSC
+FSC   ->  FeedDB : FeedSchedule::findOrFail(id)
+activate FeedDB
+FeedDB -->  FSC  : Jadwal ditemukan
+deactivate FeedDB
+
+opt Role bukan Admin
+    FSC   ->  ActDB : schedule->actuator->device->sites()->whereIn(siteIds)->exists()
+    activate ActDB
+    ActDB -->  FSC  : hasAccess true/false
+    deactivate ActDB
+    alt Tidak Punya Akses
+        FSC  -->  UI  : abort(403)
+        UI   -->  User : Tampilkan halaman 403 Forbidden
+    end
+end
+
+FSC   ->  FeedDB : schedule->delete()
+activate FeedDB
+FeedDB -->  FSC  : Jadwal dihapus
+deactivate FeedDB
+
+FSC   ->  MQTTS : MqttService::publishDeviceConfig(device)
+activate MQTTS
+MQTTS ->  NODE  : POST /publish-config (payload tanpa jadwal yang dihapus)
+activate NODE
+NODE  ->  MQTT  : mqtt.publish('aquaponic/config/{mac}', payload)
+activate MQTT
+MQTT  ->  ESP   : ESP32 update: hapus jadwal dari memori
+deactivate MQTT
+NODE  -->  MQTTS : HTTP 200
+deactivate NODE
+MQTTS -->  FSC  : true
+deactivate MQTTS
+
+FSC  -->  UI  : redirect('/jadwal-pakan')->with('success', 'Jadwal pakan berhasil dihapus')
+deactivate FSC
+UI   -->  User : Flash sukses
+deactivate UI
+
+@enduml

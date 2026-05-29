@@ -1,0 +1,142 @@
+@startuml UC-07: Notifikasi Alert Sensor Abnormal
+
+title UC-07: Notifikasi Alert Sensor Abnormal\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 240
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+participant "Node.js\nMQTT Listener"               as NODE
+control     "NotificationController\n(API)"        as API
+entity      "Sites <<database>>"                   as SiteDB
+entity      "Notifications <<database>>"           as NotifDB
+boundary    "Mail Server SMTP\n<<external>>"       as MAIL
+actor       "User"                                 as User
+boundary    "NotificationPage (UI)"                as UI
+control     "NotificationController\n(Web)"        as WEB
+
+== Alur Trigger: Sensor Melewati Threshold ==
+
+note over NODE : Dipicu dari UC-03 (Sensor Data Flow)\nSaat nilai sensor < min OR > max threshold
+
+NODE  ->  API : POST /api/sensor-alert\nHeader: X-Sensor-Alert-Secret: {secret}\nBody: {site_id, message: "Sensor X abnormal (Y unit)", type: "warning"}
+activate API
+
+' Validasi secret header
+API   ->  API : config('services.sensor_alert.secret')
+
+alt Secret Belum Dikonfigurasi
+    API  -->  NODE : HTTP 503 {message: 'Secret belum dikonfigurasi'}
+else Secret Ada
+    API   ->  API : hash_equals(secret, request->header('X-Sensor-Alert-Secret'))
+    alt Secret Tidak Cocok (Unauthorized)
+        API  -->  NODE : HTTP 403 {message: 'Unauthorized'}
+    else Secret Valid
+        ' Validasi input body
+        API   ->  API : validate({site_id: required|integer|exists:sites,\nmessage: required|string|max:1000,\ntype: nullable|in:info,warning,alert})
+
+        alt Validasi Input Gagal
+            API  -->  NODE : HTTP 422 Unprocessable Entity
+        else Input Valid
+            ' Cari site beserta relasi user
+            API   ->  SiteDB : Site::with('user')->find(site_id)
+            activate SiteDB
+            SiteDB -->  API  : Site dengan user-nya
+            deactivate SiteDB
+
+            alt Site Tidak Ditemukan
+                API  -->  NODE : HTTP 404 {message: 'Site tidak ditemukan'}
+            else Site Ada
+                ' Anti-spam check: cegah notifikasi duplikat dalam 30 menit
+                API   ->  NotifDB : Notification::where(site_id)\n->where(message, validated.message)\n->where(created_at >= now() - 30 menit)\n->exists()
+                activate NotifDB
+                NotifDB -->  API  : exists: true / false
+                deactivate NotifDB
+
+                alt Notifikasi Duplikat (Anti-Spam Aktif)
+                    note over API : Notifikasi serupa sudah ada\ndalam 30 menit terakhir.\nAbaikan untuk mencegah spam.
+                    API  -->  NODE : HTTP 200 {message:'Notification sent', created:false}
+                else Notifikasi Baru (Belum Ada Duplikat)
+                    ' Simpan notifikasi ke database
+                    API   ->  NotifDB : Notification::create(\n{site_id, message, type: 'warning', is_read: false})
+                    activate NotifDB
+                    NotifDB -->  API  : Notification object tersimpan
+                    deactivate NotifDB
+
+                    API   ->  API : notification->load('site')
+
+                    ' Kirim email ke pemilik site
+                    API   ->  MAIL : Mail::to(site.user.email)\n->send(new NotificationMail(notification))
+                    activate MAIL
+
+                    alt Email Berhasil Terkirim
+                        MAIL -->  API  : Email terkirim (success)
+                        deactivate MAIL
+                        API  -->  NODE : HTTP 200 {message:'Notification sent', created:true,\nnotification_id: X}
+
+                        note over User : User menerima email alert\nbahwa sensor pada site-nya abnormal
+                    else Email Gagal (SMTP Exception)
+                        MAIL -->  API  : Throwable exception
+                        API   ->  API  : report($e) — Log error ke sistem
+                        API  -->  NODE : HTTP 202 {message:'Notification saved but email failed',\ncreated:true, notification_id:X, error:...}
+                    end
+                end
+            end
+        end
+    end
+end
+
+deactivate API
+
+== Alur: User Melihat Halaman Notifikasi ==
+
+User  ->  UI  : GET /notifications
+activate UI
+UI    ->  WEB : index()
+activate WEB
+
+WEB   ->  WEB : auth()->user() — identifikasi role
+
+alt Role: Admin
+    WEB   ->  NotifDB : Notification::latest()->get()
+    activate NotifDB
+    NotifDB -->  WEB  : semua notifikasi
+    deactivate NotifDB
+
+    WEB   ->  NotifDB : Notification::where('is_read', false)\n->update(['is_read' => true])
+    activate NotifDB
+    NotifDB -->  WEB  : semua notifikasi ditandai telah dibaca
+    deactivate NotifDB
+else Role: User
+    WEB   ->  NotifDB : user->sites->pluck('id') → siteIds
+    activate NotifDB
+    NotifDB -->  WEB  : site IDs milik user
+    deactivate NotifDB
+
+    WEB   ->  NotifDB : Notification::whereIn('site_id', siteIds)\n->latest()->get()
+    activate NotifDB
+    NotifDB -->  WEB  : notifikasi untuk site milik user
+    deactivate NotifDB
+
+    WEB   ->  NotifDB : Notification::whereIn('site_id', siteIds)\n->where('is_read', false)\n->update(['is_read' => true])
+    activate NotifDB
+    NotifDB -->  WEB  : notifikasi ditandai telah dibaca
+    deactivate NotifDB
+end
+
+WEB  -->  UI  : view('notification', notifications)
+deactivate WEB
+UI   -->  User : Tampilkan daftar notifikasi (pesan, tipe, waktu, status baca)
+deactivate UI
+
+@enduml

@@ -1,0 +1,162 @@
+@startuml UC-04: Toggle Aktuator Manual
+
+title UC-04: Toggle Aktuator Manual (ON/OFF)\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 230
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "User / Admin"                  as User
+boundary    "ActuatorControlPage (UI)"      as UI
+control     "ActuatorControlController"     as ACC
+entity      "Sites <<database>>"            as SiteDB
+entity      "Devices <<database>>"          as DevDB
+entity      "Actuators <<database>>"        as ActDB
+entity      "ActuatorLogs <<database>>"     as LogDB
+control     "MqttService"                   as MQTTS
+boundary    "Node.js MQTT Bridge\n<<external>>" as NODE
+boundary    "HiveMQ Cloud\n<<external>>"    as MQTT
+participant "ESP32\n(IoT Device)"           as ESP
+
+== Skenario: Buka Halaman Kontrol Aktuator ==
+
+User  ->  UI  : GET /actuator-control?site_id=X&device_id=Y
+activate UI
+UI    ->  ACC : index(request)
+activate ACC
+
+ACC   ->  ACC : auth()->user() — identifikasi role
+
+alt Role: Admin
+    ACC   ->  SiteDB : Site::latest()->get()
+    activate SiteDB
+    SiteDB -->  ACC  : semua site
+    deactivate SiteDB
+else Role: User
+    ACC   ->  SiteDB : user->sites (eager load)
+    activate SiteDB
+    SiteDB -->  ACC  : site milik user
+    deactivate SiteDB
+end
+
+alt Sites Kosong
+    ACC  -->  UI  : view('actuator_control', empty data)
+    UI   -->  User : Tampilkan halaman kosong "Belum ada site"
+else Sites Ada
+    ACC   ->  ACC   : Validasi site_id & device_id dari request\nPastikan milik user yang login
+
+    ACC   ->  DevDB : Device::whereHas('sites', whereNull(ended_at))->get()
+    activate DevDB
+    DevDB -->  ACC  : daftar device aktif pada site
+    deactivate DevDB
+
+    ACC   ->  ActDB : Actuator::with(['device', 'logs' => latest limit 1])\n->whereIn('device_id', deviceIds)->get()
+    activate ActDB
+    ActDB -->  ACC  : daftar aktuator beserta log terakhir
+    deactivate ActDB
+
+    ACC   ->  ACC   : Map tiap aktuator:\ncurrent_state = lastLog.action ?? default_state\nlast_triggered = lastLog.created_at\nlast_triggered_by = lastLog.triggered_by
+
+    ACC  -->  UI    : view('actuator_control', sites, devices, actuators, ...)
+    UI   -->  User  : Tampilkan kartu aktuator dengan status ON/OFF terkini
+end
+
+deactivate ACC
+deactivate UI
+
+== Skenario Utama: Toggle Aktuator ==
+
+User  ->  UI  : Klik tombol Toggle (ON → OFF atau OFF → ON)
+activate UI
+UI    ->  ACC : POST /actuator-control/{id}/toggle
+activate ACC
+
+ACC   ->  ACC : auth()->user() — identifikasi role
+
+alt Role: Admin
+    ACC   ->  ActDB : Actuator::findOrFail(id)
+    activate ActDB
+    ActDB -->  ACC  : Aktuator ditemukan
+    deactivate ActDB
+else Role: User
+    ' Validasi kepemilikan: aktuator harus milik site user
+    ACC   ->  SiteDB : user->sites()->pluck('sites.id')
+    activate SiteDB
+    SiteDB -->  ACC  : siteIds
+    deactivate SiteDB
+
+    ACC   ->  DevDB : Device::whereHas('sites', whereIn(siteIds), whereNull(ended_at))->pluck('id')
+    activate DevDB
+    DevDB -->  ACC  : deviceIds yang diizinkan
+    deactivate DevDB
+
+    ACC   ->  ActDB : Actuator::whereIn('device_id', deviceIds)->findOrFail(id)
+    activate ActDB
+    ActDB -->  ACC  : Aktuator (403 jika tidak ditemukan)
+    deactivate ActDB
+end
+
+' Baca state terakhir
+ACC   ->  LogDB : actuator->logs()->latest()->first()
+activate LogDB
+LogDB -->  ACC  : Log terakhir (atau null jika belum ada)
+deactivate LogDB
+
+ACC   ->  ACC   : currentState = lastLog.action ?? actuator.default_state\nnewState = (currentState === 'on') ? 'off' : 'on'
+
+' Buat log baru
+ACC   ->  LogDB : ActuatorLog::create(\n{actuator_id, action: newState, triggered_by: 'manual'})
+activate LogDB
+LogDB -->  ACC  : Log tersimpan
+deactivate LogDB
+
+' Publish ke MQTT melalui MqttService
+ACC   ->  MQTTS : MqttService::publishDeviceConfig(actuator->device)
+activate MQTTS
+
+MQTTS ->  ActDB : device->load(['actuators.feedSchedules',\n'actuators.growLightSchedules',\n'actuators.logs (latest 1)'])
+activate ActDB
+ActDB -->  MQTTS : Device dengan semua relasi
+deactivate ActDB
+
+MQTTS ->  MQTTS : Bangun payload JSON:\n{mac_address, actuators:[{id, name, type, state, schedules}]}
+
+MQTTS ->  NODE  : POST http://127.0.0.1:5000/publish-config\n(payload JSON konfigurasi device)
+activate NODE
+
+alt Node.js Bridge Tidak Tersedia / Timeout
+    NODE  -->  MQTTS : Exception / HTTP Error
+    MQTTS ->  MQTTS  : Log::error('Gagal publish config')
+    MQTTS -->  ACC   : return false
+else Publish Berhasil
+    NODE  ->  MQTT  : mqtt.publish('aquaponic/config/{mac}', payload)
+    activate MQTT
+    MQTT  ->  ESP   : Forward config ke ESP32 via MQTT
+    activate ESP
+    ESP   ->  ESP   : Update state aktuator sesuai payload\n(nyalakan/matikan pompa, lampu, feeder)
+    deactivate ESP
+    deactivate MQTT
+    NODE  -->  MQTTS : HTTP 200 OK
+    deactivate NODE
+    MQTTS ->  MQTTS  : Log::info('MQTT config berhasil dikirim')
+    MQTTS -->  ACC   : return true
+end
+
+deactivate MQTTS
+
+ACC  -->  UI  : redirect back()->with('success', 'Aktuator berhasil di-{ON/OFF}')
+deactivate ACC
+UI   -->  User : Tampilkan flash message sukses\nUpdate status kartu aktuator
+deactivate UI
+
+@enduml

@@ -1,0 +1,210 @@
+@startuml UC-06: Manajemen Jadwal Grow Light (CRUD)
+
+title UC-06: Manajemen Jadwal Grow Light\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 240
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "User / Admin"                          as User
+boundary    "JadwalGrowLightPage (UI)"              as UI
+control     "GrowLightScheduleController"           as GLC
+entity      "Actuators <<database>>"                as ActDB
+entity      "GrowLightSchedules <<database>>"       as GrowDB
+entity      "Sites <<database>>"                    as SiteDB
+control     "MqttService"                           as MQTTS
+boundary    "Node.js MQTT Bridge\n<<external>>"     as NODE
+boundary    "HiveMQ Cloud\n<<external>>"            as MQTT
+participant "ESP32\n(IoT Device)"                   as ESP
+
+== UC-06a: Lihat Daftar Jadwal Grow Light ==
+
+User  ->  UI  : GET /jadwal-grow-light(?site_id=X)
+activate UI
+UI    ->  GLC : index(request)
+activate GLC
+GLC   ->  GLC : auth()->user() — identifikasi role
+
+alt Role: Admin
+    GLC   ->  GrowDB : GrowLightSchedule::with('actuator.device')\n->orderBy('start_time')->get()
+    activate GrowDB
+    GrowDB -->  GLC  : semua jadwal grow light
+    deactivate GrowDB
+else Role: User
+    GLC   ->  SiteDB : Site::where('user_id')\n->whereHas('devices.actuators', type='grow_light')->get()
+    activate SiteDB
+    SiteDB -->  GLC  : sites yang memiliki grow light
+    deactivate SiteDB
+
+    GLC   ->  GrowDB : GrowLightSchedule::whereHas('actuator.device.sites',\nwhere user_id = user, ended_at IS NULL, ?site_id)\n->with('actuator.device')->orderBy('start_time')->get()
+    activate GrowDB
+    GrowDB -->  GLC  : jadwal grow light milik user
+    deactivate GrowDB
+end
+
+GLC  -->  UI  : view('jadwal_grow_light.index', schedules, sites, selectedSiteId)
+deactivate GLC
+UI   -->  User : Tampilkan tabel jadwal grow light (start - end time)
+deactivate UI
+
+== UC-06b: Tambah Jadwal Grow Light Baru ==
+
+User  ->  UI  : Klik "Tambah Jadwal" → GET /growlight/create
+activate UI
+UI    ->  GLC : create()
+activate GLC
+GLC   ->  ActDB : Actuator::where('type', 'grow_light')\n->whereHas('device.sites', milik user)->with('device')->get()
+activate ActDB
+ActDB -->  GLC : daftar grow light yang dapat diakses
+deactivate ActDB
+GLC  -->  UI  : view('jadwal_grow_light.create', growLights)
+deactivate GLC
+UI   -->  User : Tampilkan form (pilih grow light, start_time, end_time)
+deactivate UI
+
+User  ->  UI  : Submit form (actuator_id, start_time, end_time)
+activate UI
+UI    ->  GLC : POST /growlight/store {actuator_id, start_time, end_time}
+activate GLC
+
+' Validasi input
+GLC   ->  GLC : validate({actuator_id: required|exists,\nstart_time: required|date_format:H:i,\nend_time: required|date_format:H:i|after:start_time})
+
+alt Validasi Input Gagal
+    GLC  -->  UI  : redirect back()->withErrors()->withInput()
+    UI   -->  User : Tampilkan pesan error validasi
+else Validasi Input Berhasil
+    GLC   ->  ActDB : Actuator::find(actuator_id)
+    activate ActDB
+    ActDB -->  GLC  : Aktuator
+    deactivate ActDB
+
+    alt Aktuator Bukan Tipe 'grow_light'
+        GLC  -->  UI  : redirect back()->withErrors('Harus tipe grow light')
+        UI   -->  User : Tampilkan error tipe aktuator
+    else Aktuator Valid
+        ' Validasi kepemilikan (non-admin)
+        opt Role bukan Admin
+            GLC   ->  ActDB : actuator->device->sites()->whereIn(siteIds)->whereNull(ended_at)->exists()
+            activate ActDB
+            ActDB -->  GLC  : hasAccess true/false
+            deactivate ActDB
+            alt Tidak Punya Akses
+                GLC  -->  UI  : redirect back()->withErrors('Tidak memiliki akses')
+                UI   -->  User : Tampilkan error akses
+            end
+        end
+
+        ' Cek tabrakan waktu
+        GLC   ->  GrowDB : GrowLightSchedule::where('actuator_id')->get()
+        activate GrowDB
+        GrowDB -->  GLC  : jadwal yang sudah ada
+        deactivate GrowDB
+
+        GLC   ->  GLC : checkGrowLightOverlap(existingSchedules, newStart, newEnd)\nKonversi ke menit, cek: s1 < e2 && e1 > s2
+
+        alt Jadwal Bertabrakan
+            GLC  -->  UI  : redirect back()->withErrors(\n'Bertabrakan dengan jadwal: HH:MM - HH:MM')
+            UI   -->  User : Tampilkan error tabrakan waktu
+        else Tidak Ada Tabrakan
+            ' Simpan jadwal
+            GLC   ->  GrowDB : GrowLightSchedule::create({actuator_id, start_time, end_time})
+            activate GrowDB
+            GrowDB -->  GLC  : Jadwal tersimpan
+            deactivate GrowDB
+
+            ' Sinkronisasi ke ESP32 via MQTT
+            GLC   ->  MQTTS : MqttService::publishDeviceConfig(actuator->device)
+            activate MQTTS
+            MQTTS ->  NODE  : POST /publish-config (payload JSON dengan schedules terbaru)
+            activate NODE
+            NODE  ->  MQTT  : mqtt.publish('aquaponic/config/{mac}', payload)
+            activate MQTT
+            MQTT  ->  ESP   : Forward konfigurasi baru ke ESP32
+            activate ESP
+            ESP   ->  ESP   : Update jadwal grow light\n(nyala otomatis dari start_time sampai end_time)
+            deactivate ESP
+            deactivate MQTT
+            NODE  -->  MQTTS : HTTP 200
+            deactivate NODE
+            MQTTS -->  GLC  : true
+            deactivate MQTTS
+
+            GLC  -->  UI  : redirect('/growlight/schedule')\n->with('success', 'Jadwal berhasil ditambahkan')
+            UI   -->  User : Flash sukses, kembali ke daftar jadwal
+        end
+    end
+end
+
+deactivate GLC
+deactivate UI
+
+== UC-06c: Update Jadwal Grow Light ==
+
+User  ->  UI  : Klik "Edit" → GET /growlight/edit/{id}
+activate UI
+UI    ->  GLC : edit(id)
+activate GLC
+GLC   ->  GrowDB : GrowLightSchedule::findOrFail(id)
+activate GrowDB
+GrowDB -->  GLC : Schedule ditemukan
+deactivate GrowDB
+
+opt Role bukan Admin
+    GLC   ->  ActDB : schedule->actuator->device->sites()->whereIn(siteIds)->exists()
+    activate ActDB
+    ActDB -->  GLC  : hasAccess true/false
+    deactivate ActDB
+    alt Tidak Punya Akses
+        GLC  -->  UI  : abort(403)
+        UI   -->  User : Tampilkan halaman 403 Forbidden
+    end
+end
+
+GLC  -->  UI  : view('jadwal_grow_light.edit', schedule, growLights)
+deactivate GLC
+UI   -->  User : Tampilkan form edit terisi data lama
+deactivate UI
+
+User  ->  UI  : Submit perubahan (actuator_id, start_time, end_time)
+activate UI
+UI    ->  GLC : PUT /growlight/update/{id}
+activate GLC
+GLC   ->  GLC : validate input (sama seperti store)
+
+alt Validasi / Akses / Tabrakan Gagal
+    GLC  -->  UI  : redirect back()->withErrors(...)
+    UI   -->  User : Tampilkan pesan error
+else Semua Valid
+    GLC   ->  GrowDB : schedule->update({actuator_id, start_time, end_time})
+    activate GrowDB
+    GrowDB -->  GLC : Jadwal diupdate
+    deactivate GrowDB
+
+    GLC   ->  MQTTS : MqttService::publishDeviceConfig(actuator->device)
+    activate MQTTS
+    MQTTS ->  NODE  : POST /publish-config
+    NODE  ->  MQTT  : mqtt.publish('aquaponic/config/{mac}', updated payload)
+    MQTT  ->  ESP   : ESP32 update jadwal grow light
+    NODE  -->  MQTTS : HTTP 200
+    MQTTS -->  GLC  : true
+    deactivate MQTTS
+
+    GLC  -->  UI  : redirect('/growlight/schedule')->with('success', 'Jadwal diupdate')
+    UI   -->  User : Flash sukses
+end
+
+deactivate GLC
+deactivate UI
+
+@enduml

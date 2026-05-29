@@ -1,0 +1,132 @@
+@startuml UC-03: Alur Data Sensor IoT (ESP32 ke Database)
+
+title UC-03: Alur Data Sensor IoT\nESP32 \u2192 MQTT Broker \u2192 Node.js Listener \u2192 Database \u2192 Alert
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 240
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+participant "ESP32\n(IoT Device)"          as ESP
+participant "HiveMQ Cloud\n<<external>>"   as MQTT
+participant "Node.js\nMQTT Listener"       as NODE
+entity      "Devices <<database>>"         as DevDB
+entity      "Sensors <<database>>"         as SenDB
+entity      "DataSensors <<database>>"     as DataDB
+entity      "Notifications <<database>>"   as NotifDB
+control     "NotificationController\n(Laravel API)" as API
+boundary    "Mail Server\n<<external>>"    as MAIL
+actor       "User"                         as User
+
+== Inisialisasi Koneksi ==
+
+NODE  ->  MQTT  : mqtt.connect(mqtts://hivemq.cloud:8883)\n{username, password}
+activate MQTT
+MQTT -->  NODE  : CONNACK (connected)
+NODE  ->  MQTT  : subscribe('aquaponic/device/data')
+MQTT -->  NODE  : SUBACK
+deactivate MQTT
+
+== Siklus Pengiriman Data Sensor (Periodik) ==
+
+loop Setiap interval waktu (misal: setiap 30 detik)
+
+    ESP   ->  MQTT  : PUBLISH topic='aquaponic/device/data'\npayload={mac_address, sensors:{temperature, humidity, ph, tds, water_level}}
+    activate MQTT
+    MQTT  ->  NODE  : Forward pesan MQTT ke subscriber
+    deactivate MQTT
+    activate NODE
+
+    NODE  ->  NODE  : JSON.parse(message)\nEkstrak mac_address & sensors payload
+
+    alt JSON Parse Error
+        NODE  ->  NODE  : console.log('JSON Error')\nAbaikan pesan (return)
+    else JSON Valid
+        ' Cari device berdasarkan MAC address
+        NODE  ->  DevDB : SELECT id FROM devices\nWHERE mac_address = ? LIMIT 1
+        activate DevDB
+        DevDB -->  NODE : device row / kosong
+        deactivate DevDB
+
+        alt Device Tidak Ditemukan
+            NODE  ->  NODE  : console.log('Device not found')\nAbaikan pesan (return)
+        else Device Ditemukan
+            NODE  ->  SenDB : SELECT id, name, type,\nmin_threshold, max_threshold\nFROM sensors WHERE device_id = ?
+            activate SenDB
+            SenDB -->  NODE : daftar sensor milik device
+            deactivate SenDB
+
+            loop Setiap sensor dalam daftar
+                NODE  ->  NODE  : Mapping tipe sensor ke nilai payload:\ntemperature / humidity / ph / tds / water_level
+
+                opt Nilai payload tersedia (tidak null/undefined)
+                    ' Simpan data sensor
+                    NODE  ->  DataDB : INSERT INTO data_sensors\n(sensor_id, value, created_at, updated_at)\nVALUES (?, ?, NOW(), NOW())
+                    activate DataDB
+                    DataDB -->  NODE : Insert berhasil
+                    deactivate DataDB
+
+                    ' Threshold check
+                    alt Nilai < min_threshold ATAU Nilai > max_threshold
+                        note over NODE : Nilai sensor di luar batas normal!\nKirim notifikasi alert ke Laravel API
+                        NODE  ->  API  : POST /api/sensor-alert\n{site_id: 1, message: "Sensor X abnormal (Y unit)"}
+                        activate API
+
+                        ' Validasi secret header & input
+                        API   ->  API  : Validasi X-Sensor-Alert-Secret header\nValidasi site_id & message
+
+                        alt Secret / Validasi Gagal
+                            API  -->  NODE : HTTP 403 / 422 (Unauthorized / Unprocessable)
+                            NODE  ->  NODE : console.log('API Error')
+                        else Validasi Berhasil
+                            ' Anti-spam check
+                            API  ->  NotifDB : Cek duplikat: notification dengan\npesan sama di site ini dalam 30 menit terakhir
+                            activate NotifDB
+                            NotifDB --> API  : Exists / Not exists
+                            deactivate NotifDB
+
+                            alt Notifikasi Sudah Ada (Anti-Spam)
+                                API  -->  NODE : HTTP 200 {created: false}
+                            else Notifikasi Baru
+                                API   ->  NotifDB : Notification::create(\n{site_id, message, type:'warning', is_read:false})
+                                activate NotifDB
+                                NotifDB -->  API  : Notification tersimpan
+                                deactivate NotifDB
+
+                                API   ->  MAIL  : Mail::to(user_email)->send(NotificationMail)
+                                activate MAIL
+                                alt Email Berhasil Dikirim
+                                    MAIL -->  API  : Email terkirim
+                                    API  -->  NODE : HTTP 200 {message:'Notification sent', created:true}
+                                else Email Gagal (SMTP Error)
+                                    MAIL -->  API  : Exception
+                                    deactivate MAIL
+                                    API  -->  NODE : HTTP 202 {message:'Notification saved, but email failed'}
+                                end
+
+                                note over User : User menerima email alert\nbahwa sensor abnormal
+                            end
+                        end
+
+                        deactivate API
+                    else Nilai Normal (dalam threshold)
+                        NODE  ->  NODE  : console.log(type + ': ' + value + ' saved')
+                    end
+                end
+            end
+        end
+    end
+
+    deactivate NODE
+end
+
+@enduml

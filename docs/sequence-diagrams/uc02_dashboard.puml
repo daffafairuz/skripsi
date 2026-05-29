@@ -1,0 +1,127 @@
+@startuml UC-02: Monitoring Dashboard
+
+title UC-02: Monitoring Dashboard\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 220
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "User"                      as User
+boundary    "DashboardPage (UI)"        as UI
+control     "DashboardController"       as DC
+entity      "Sites <<database>>"        as SiteDB
+entity      "Devices <<database>>"      as DevDB
+entity      "Sensors <<database>>"      as SenDB
+entity      "DataSensors <<database>>"  as DataDB
+entity      "Actuators <<database>>"    as ActDB
+entity      "Notifications <<database>>" as NotifDB
+
+== Skenario: User Membuka Dashboard ==
+
+User  ->  UI : Buka /dashboard (opsional: ?site_id=X)
+activate UI
+UI    ->  DC : GET /dashboard
+activate DC
+
+DC    ->  DC : auth()->user()\nIdentifikasi role user (admin / user)
+
+alt Role: Admin
+    DC    ->  SiteDB  : Site::count()
+    activate SiteDB
+    SiteDB -->  DC    : total_sites
+    deactivate SiteDB
+
+    DC    ->  DevDB   : Device::count()
+    activate DevDB
+    DevDB -->  DC     : total_devices
+    deactivate DevDB
+
+    DC    ->  NotifDB : Notification::with('site')->latest()->take(5)->get()
+    activate NotifDB
+    NotifDB -->  DC   : 5 notifikasi terbaru
+    deactivate NotifDB
+
+    DC   -->  UI      : return view('admin.dashboard', adminStats, devices, sites, activities)
+    UI   -->  User    : Render Dashboard Admin (statistik global, tabel device, pilih site)
+
+else Role: User
+    DC    ->  SiteDB  : Site::where('user_id', id)->get()
+    activate SiteDB
+    SiteDB -->  DC    : daftar sites milik user
+    deactivate SiteDB
+
+    alt User Tidak Memiliki Site
+        DC   -->  UI  : return view('user.dashboard', hasSite=false)
+        UI   -->  User : Tampilkan pesan "Belum memiliki site"
+    else User Memiliki Site
+        DC    ->  DC  : Tentukan selectedSiteId dari request\natau default ke site pertama
+
+        ' Eager load relasi
+        DC    ->  SiteDB  : Site::with(['devices' => whereNull(ended_at),\n'devices.sensors.latestData',\n'devices.actuators.logs'])->find(selectedSiteId)
+        activate SiteDB
+        SiteDB --> DC     : Site beserta devices, sensors, actuators
+        deactivate SiteDB
+
+        ' Hitung statistik
+        loop Setiap Device di Site
+            loop Setiap Sensor di Device
+                DC    ->  DC  : Cek latestData vs min/max_threshold\nTentukan status: normal / low / high
+                note right : Jika di luar threshold:\nwarningsCount++
+            end
+            loop Setiap Actuator di Device
+                DC    ->  DC  : Baca log terakhir\nJika state='on': activeActuatorsCount++
+            end
+        end
+
+        DC    ->  NotifDB : Notification::where('site_id')->latest()->take(5)->get()
+        activate NotifDB
+        NotifDB -->  DC   : 5 notifikasi terbaru untuk site ini
+        deactivate NotifDB
+
+        DC   -->  UI  : return view('user.dashboard',\nhasSite, sites, site, userStats, sensorsList, notifications)
+        UI   -->  User : Render Dashboard User (sensor cards, chart, notifikasi)
+    end
+end
+
+deactivate DC
+
+== Skenario: Refresh Chart Data (AJAX) ==
+
+User  ->  UI : Pilih site / auto-refresh chart
+activate UI
+UI    ->  DC : GET /chart-data?site_id=X
+activate DC
+
+DC    ->  SenDB : Sensor::whereHas('device.sites',\nwhere sites.id = siteId, ended_at IS NULL)->get()
+activate SenDB
+SenDB -->  DC  : daftar sensor aktif
+deactivate SenDB
+
+alt Tidak Ada Data Sensor
+    DC   -->  UI  : return fallbackChartData() (data default)
+else Ada Data Sensor
+    loop Setiap Sensor
+        DC    ->  DataDB : DataSensor::where('sensor_id')\n->latest()->take(15)->get()->reverse()
+        activate DataDB
+        DataDB -->  DC  : 15 titik data terbaru (dibalik untuk urutan kronologis)
+        deactivate DataDB
+        DC    ->  DC  : Buat dataset dengan label, data, color berdasarkan tipe sensor
+    end
+    DC   -->  UI  : return JSON {labels, datasets}
+    UI   -->  User : Render Chart.js (multi-line chart sensor)
+end
+
+deactivate DC
+deactivate UI
+
+@enduml

@@ -1,0 +1,137 @@
+@startuml UC-09: Manajemen Site (Lokasi Aquaponic)
+
+title UC-09: Manajemen Site (Lokasi Aquaponic)\nSistem Smart Aquaponic
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 240
+skinparam sequence {
+    ArrowColor #2C7BE5
+    ActorBorderColor #2C7BE5
+    LifeLineBorderColor #2C7BE5
+    ParticipantBorderColor #2C7BE5
+    ParticipantBackgroundColor #EBF4FF
+    ActorBackgroundColor #EBF4FF
+    GroupBackgroundColor #F0F4FF
+    GroupBorderColor #ADC8FF
+}
+
+actor       "Admin"                         as Admin
+actor       "User"                          as User
+boundary    "SiteManagementPage (UI)"       as UI
+control     "SiteController"               as SC
+control     "SiteDeviceController"         as SDC
+entity      "Sites <<database>>"           as SiteDB
+entity      "Devices <<database>>"         as DevDB
+entity      "SiteDevices <<database>>"     as PivotDB
+control     "MqttService"                  as MQTTS
+boundary    "HiveMQ Cloud\n<<external>>"   as MQTT
+
+== UC-09a: Admin Membuat Site Baru ==
+
+Admin ->  UI  : GET /sites/create → Isi form site
+activate UI
+UI    ->  SC  : POST /sites {user_id, name, location, description, mac_address}
+activate SC
+
+SC    ->  SC  : Cek auth()->user()->role === 'admin' (abort 403 jika bukan admin)
+
+SC    ->  SC  : validate({user_id: required|exists:users,\nname: required|string|max:255,\nlocation: required|string|max:255,\ndescription: nullable|string,\nmac_address: required|string|unique:sites})
+
+alt Validasi Gagal
+    SC   -->  UI  : redirect back()->withErrors()->withInput()
+    UI   -->  Admin : Tampilkan error validasi (termasuk MAC address duplikat)
+else Validasi Berhasil
+    SC    ->  SiteDB : Site::create({user_id, name, location, description, mac_address})
+    activate SiteDB
+    SiteDB -->  SC  : Site tersimpan dengan master MAC address
+    deactivate SiteDB
+    SC   -->  UI  : redirect(route('sites.index'))->with('success', 'Site berhasil dibuat')
+    UI   -->  Admin : Flash sukses, site muncul di daftar
+end
+
+deactivate SC
+deactivate UI
+
+== UC-09b: User Melihat Detail Site ==
+
+User  ->  UI  : GET /sites/{site}
+activate UI
+UI    ->  SC  : show(site)
+activate SC
+
+SC    ->  SiteDB : site->load(['activeDevices.sensors.dataSensors' (latest),\n'activeDevices.actuators.logs' (latest),\n'notifications'])
+activate SiteDB
+SiteDB -->  SC  : Site lengkap dengan device, sensor, aktuator, notifikasi
+deactivate SiteDB
+
+SC   -->  UI  : view('user.sites.show', site)
+deactivate SC
+UI   -->  User : Tampilkan halaman detail site:\n(device aktif, sensor terkini, aktuator, notifikasi)
+deactivate UI
+
+== UC-09c: Admin Menambahkan Device ke Site ==
+
+Admin ->  UI  : GET /sites/{site}/devices/create → Pilih device
+activate UI
+UI    ->  SDC : store(request, site)
+activate SDC
+
+SDC   ->  SDC : validate({device_id: required|exists:devices})
+
+SDC   ->  PivotDB : SiteDevice::create({site_id, device_id, started_at: now(), ended_at: null})
+activate PivotDB
+PivotDB -->  SDC : Relasi site-device tersimpan (pivot table)
+deactivate PivotDB
+
+' Publish master sync ke MQTT
+SDC   ->  MQTTS : MqttService::publishMasterSync(site)
+activate MQTTS
+
+MQTTS ->  SiteDB : site->devices()->wherePivot('ended_at', null)->get()
+activate SiteDB
+SiteDB -->  MQTTS : Daftar slave aktif pada site
+deactivate SiteDB
+
+MQTTS ->  MQTTS : Bangun payload:\n{master_mac: site.mac_address,\nsite_id: site.id,\nslaves: [{mac_address},...]}
+
+MQTTS ->  MQTT  : POST Node.js /publish-master-sync\n→ mqtt.publish('aquaponic/master/{mac}', payload)
+activate MQTT
+MQTT  -->  MQTTS : Publish berhasil
+deactivate MQTT
+MQTTS -->  SDC  : true
+deactivate MQTTS
+
+SDC  -->  UI  : redirect()->with('success', 'Device berhasil ditambahkan ke site')
+deactivate SDC
+UI   -->  Admin : Flash sukses, device muncul di site
+deactivate UI
+
+== UC-09d: Admin Melepas Device dari Site ==
+
+Admin ->  UI  : Klik "Lepas Device" dari site
+activate UI
+UI    ->  SDC : DELETE /sites/{site}/devices/{device}
+activate SDC
+
+SDC   ->  PivotDB : SiteDevice::where(site_id, device_id)\n->whereNull('ended_at')\n->update({ended_at: now()})
+activate PivotDB
+PivotDB -->  SDC : ended_at diisi (soft detach — riwayat tetap tersimpan)
+deactivate PivotDB
+
+' Update master sync
+SDC   ->  MQTTS : MqttService::publishMasterSync(site)
+activate MQTTS
+MQTTS ->  MQTT  : Publish slave list terbaru ke master ESP32\n(device yang dilepas tidak ada lagi)
+activate MQTT
+MQTT  -->  MQTTS : Berhasil
+deactivate MQTT
+MQTTS -->  SDC  : true
+deactivate MQTTS
+
+SDC  -->  UI  : redirect()->with('success', 'Device berhasil dilepas dari site')
+deactivate SDC
+UI   -->  Admin : Flash sukses, device hilang dari daftar aktif site
+deactivate UI
+
+@enduml
