@@ -146,7 +146,7 @@ Aktif
         </p>
 
         <h2 class="text-3xl font-bold mt-2">
-            {{ $site->devices->count() }}
+            {{ $site->activeDevices->count() }}
         </h2>
 
     </div>
@@ -216,7 +216,7 @@ Aktif
     @endphp
 
 
-    @foreach($site->devices as $device)
+    @foreach($site->activeDevices as $device)
 
         @foreach($device->sensors as $sensor)
 
@@ -352,7 +352,7 @@ class="bg-green-500 text-white px-4 py-2 rounded-xl">
 
 <div class="space-y-4">
 
-@foreach($site->devices as $device)
+@foreach($site->activeDevices as $device)
 
 <div class="border rounded-xl p-4">
 
@@ -417,7 +417,7 @@ class="bg-green-500 text-white px-4 py-2 rounded-xl">
         $hasActuator=false;
     @endphp
 
-    @foreach($site->devices as $device)
+    @foreach($site->activeDevices as $device)
 
         @foreach($device->actuators as $actuator)
 

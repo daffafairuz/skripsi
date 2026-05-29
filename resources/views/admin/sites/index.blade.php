@@ -108,7 +108,7 @@ Device
 
 <p class="font-semibold">
 
-{{ $site->devices->count() }}
+{{ $site->activeDevices->count() }}
 
 </p>
 
@@ -125,7 +125,7 @@ Sensor
 
 <p class="font-semibold">
 
-{{ $site->devices->sum(
+{{ $site->activeDevices->sum(
 fn($d)=>$d->sensors->count()
 ) }}
 
@@ -144,7 +144,7 @@ Actuator
 
 <p class="font-semibold">
 
-{{ $site->devices->sum(
+{{ $site->activeDevices->sum(
 fn($d)=>$d->actuators->count()
 ) }}
 
@@ -165,7 +165,7 @@ Device Terhubung
 
 <div class="flex flex-wrap gap-2">
 
-@foreach($site->devices as $device)
+@foreach($site->activeDevices as $device)
 
 <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
 

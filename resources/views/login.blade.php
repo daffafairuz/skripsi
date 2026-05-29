@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - AquaPakcoy</title>
+    <title>Login - SmartAquaponic</title>
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     @vite('resources/css/app.css')
     <!-- Google Fonts for premium typography -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,12 +20,10 @@
 
     <!-- Header / Brand -->
     <div class="text-center mb-8">
-        <div class="inline-flex p-3 bg-emerald-50 text-emerald-600 rounded-2xl mb-4 shadow-inner">
-            <svg class="w-8 h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 5H9l-1-5z"/>
-            </svg>
+        <div class="inline-flex mb-4">
+            <img src="{{ asset('logo.png') }}" alt="SmartAquaponic Logo" class="w-24 h-24 object-contain">
         </div>
-        <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">AquaPakcoy</h2>
+        <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">SmartAquaponic</h2>
         <p class="text-sm text-gray-500 mt-2">Masuk ke dasbor pemantauan akuaponik Anda</p>
     </div>
 

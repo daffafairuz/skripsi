@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaPakcoy</title>
+    <title>SmartAquaponic</title>
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     @vite('resources/css/app.css')
 </head>
 
@@ -21,7 +22,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
-            <span class="font-bold text-lg text-gray-800 tracking-tight">AquaPakcoy</span>
+            <div class="flex items-center gap-2">
+                <img src="{{ asset('logo.png') }}" alt="SmartAquaponic Logo" class="w-6 h-6 object-contain">
+                <span class="font-bold text-lg text-gray-800 tracking-tight">SmartAquaponic</span>
+            </div>
         </div>
     </div>
 
@@ -42,10 +46,14 @@
          class="fixed lg:static inset-y-0 left-0 z-50 bg-white shadow transition-all duration-300 flex flex-col transform lg:transform-none">
 
         <!-- Logo -->
-        <div class="flex items-center justify-between p-4">
-            <span x-show="openSidebar" class="font-bold text-lg">
-                AquaPakcoy
-            </span>
+        <div class="flex items-center justify-between p-4 border-b border-gray-100 mb-4">
+            <div class="flex items-center gap-2" x-show="openSidebar">
+                <img src="{{ asset('logo.png') }}" alt="SmartAquaponic Logo" class="w-8 h-8 object-contain">
+                <span class="font-bold text-lg text-emerald-600">SmartAquaponic</span>
+            </div>
+            <div class="flex items-center justify-center w-full" x-show="!openSidebar">
+                <img src="{{ asset('logo.png') }}" alt="SmartAquaponic Logo" class="w-8 h-8 object-contain">
+            </div>
 
             <button @click="openSidebar = !openSidebar"
                     class="text-gray-500 hover:text-black">

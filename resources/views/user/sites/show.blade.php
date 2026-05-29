@@ -29,7 +29,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
 
-        @foreach($site->devices as $device)
+        @foreach($site->activeDevices as $device)
 
             @foreach($device->sensors as $sensor)
 
@@ -116,7 +116,7 @@
 
     <div class="space-y-5">
 
-        @foreach($site->devices as $device)
+        @foreach($site->activeDevices as $device)
 
             @foreach($device->actuators as $actuator)
 

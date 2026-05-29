@@ -301,7 +301,7 @@
 
                     @php
                         $actuators = collect();
-                        foreach($site->devices as $d) {
+                        foreach($site->activeDevices as $d) {
                             foreach($d->actuators as $act) {
                                 $lastLog = $act->logs->first();
                                 $act->current_state = $lastLog ? $lastLog->action : $act->default_state;
