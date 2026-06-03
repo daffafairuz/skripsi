@@ -20,6 +20,18 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+
+            // Cek apakah akun user sudah dinonaktifkan
+            if (Auth::user()->status === 'inactive') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Akun Anda telah dinonaktifkan. Hubungi admin untuk mengaktifkan kembali.',
+                ]);
+            }
+
             $request->session()->regenerate();
             return redirect('/dashboard');
         }

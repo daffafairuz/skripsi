@@ -91,9 +91,11 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        Auth::logout();
+        // Soft-deactivate: hanya ubah status menjadi inactive
+        $user->status = 'inactive';
+        $user->save();
 
-        $user->delete();
+        Auth::logout();
 
         $request->session()->invalidate();
 
@@ -102,7 +104,7 @@ class AccountController extends Controller
         return redirect('/')
             ->with(
                 'success',
-                'Akun berhasil dihapus'
+                'Akun berhasil dinonaktifkan. Hubungi admin untuk mengaktifkan kembali.'
             );
     }
 }

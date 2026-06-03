@@ -59,12 +59,12 @@
             <p class="text-gray-500 mb-8 max-w-md mx-auto">
                 Anda belum memiliki site pemantauan yang aktif. Hubungkan site baru untuk mulai memantau pH, suhu, dan parameter akuaponik lainnya.
             </p>
-            <a href="{{ route('sites.create') }}" class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all transform active:scale-95">
+            <div class="inline-flex items-center gap-2 bg-amber-50 text-amber-700 font-semibold px-6 py-3 rounded-2xl border border-amber-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Tambah Site Baru
-            </a>
+                Hubungi admin untuk menambahkan site baru
+            </div>
         </div>
     @else
 

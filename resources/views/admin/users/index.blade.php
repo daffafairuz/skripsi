@@ -144,7 +144,8 @@ class="relative">
 
                         <!-- DELETE -->
                         <form action="/users/{{ $user->id }}"
-                              method="POST">
+                              method="POST"
+                              onsubmit="return confirm('Yakin ingin menghapus user ini?')">
 
                             @csrf
                             @method('DELETE')
