@@ -67,7 +67,7 @@ class MqttService
         try {
             // URL local Node.js bridge. Dapat dikonfigurasi melalui .env.
             // Port default adalah 5000.
-            $nodeUrl = env('NODE_MQTT_API_URL', 'http://127.0.0.1:5000/publish-config');
+            $nodeUrl = env('NODE_MQTT_API_URL');
             
             Log::info("Mengirim konfigurasi perangkat {$device->mac_address} ke Node.js MQTT bridge: " . json_encode($payload));
 
@@ -120,7 +120,7 @@ class MqttService
         ];
 
         try {
-            $nodeUrl = env('NODE_MQTT_SYNC_URL', 'http://127.0.0.1:5000/publish-master-sync');
+            $nodeUrl = env('NODE_MQTT_SYNC_URL');
 
             Log::info("Mengirim sinkronisasi master {$masterMac} ke Node.js MQTT bridge: " . json_encode($payload));
 

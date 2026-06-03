@@ -749,10 +749,33 @@ setInterval(
 const app = express();
 app.use(express.json());
 
+const BASE_PATH =
+process.env.BASE_PATH || "";
+
+app.use((req, res, next) => {
+
+    log(
+        `HTTP ${req.method} ${req.originalUrl}`
+    );
+
+    next();
+
+});
+
 // Endpoint untuk mempublikasikan konfigurasi ke MQTT
-app.post("/publish-config", (req, res) => {
+
+app.get(`${BASE_PATH}/health`,(req, res) => {
+        res.send("OK");
+    }
+);
+
+app.post(`${BASE_PATH}/publish-config`, (req, res) => {
     const payload = req.body;
     const macAddress = payload.mac_address;
+
+    log(
+            "CONFIG ENDPOINT HIT"
+        );
 
     if (!macAddress) {
         log("Error: Request /publish-config tidak memiliki mac_address");
@@ -774,11 +797,19 @@ app.post("/publish-config", (req, res) => {
 });
 
 // Endpoint untuk sinkronisasi daftar slave ke master
-app.post("/publish-master-sync", (req, res) => {
+app.post(`${BASE_PATH}/publish-master-sync`, (req, res) => {
     const payload = req.body;
     const masterMac = payload.master_mac;
     const siteId = payload.site_id;
     const slaves = payload.slaves;
+    
+    log(
+        "SYNC ENDPOINT HIT"
+    );
+
+    log(
+        JSON.stringify(req.body)
+    );
 
     if (!masterMac) {
         log("Error: Request /publish-master-sync tidak memiliki master_mac");
@@ -802,9 +833,7 @@ app.post("/publish-master-sync", (req, res) => {
     });
 });
 
-app.get("/health", (req, res) => {
-    res.send("OK");
-});
+
 
 // Fallback untuk sembarang request (kompatibilitas lama)
 app.use((req, res) => {
