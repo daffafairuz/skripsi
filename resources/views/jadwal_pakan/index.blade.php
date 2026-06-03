@@ -65,7 +65,7 @@
 @endif
 
 <!-- Tabel Daftar Jadwal -->
-<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+<div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
@@ -75,7 +75,7 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Mulai</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi (menit)</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Selesai</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -95,23 +95,36 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{ \Carbon\Carbon::parse($schedule->time)->addMinutes($schedule->duration)->format('H:i') }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                        <a href="{{ route('jadwal-pakan.edit', $schedule->id) }}"
-                           class="text-blue-600 hover:text-blue-900">Edit</a>
+                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <div class="flex items-center justify-center gap-2">
+                            <!-- Edit Button -->
+                            <a href="{{ route('jadwal-pakan.edit', $schedule->id) }}"
+                               class="p-1.5 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </a>
 
-                        <form action="{{ route('jadwal-pakan.destroy', $schedule->id) }}"
-                              method="POST"
-                              class="inline-block"
-                              onsubmit="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
-                        </form>
+                            <!-- Delete Button -->
+                            <form action="{{ route('jadwal-pakan.destroy', $schedule->id) }}"
+                                  method="POST"
+                                  class="inline"
+                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-8 text-center text-gray-500">
+                    <td colspan="6" class="px-6 py-8 text-center text-gray-500">
                         Belum ada jadwal pakan. Silakan tambah jadwal baru.
                     </td>
                 </tr>
