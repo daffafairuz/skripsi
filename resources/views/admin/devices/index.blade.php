@@ -7,6 +7,7 @@
 openCreate:false,
 openEdit:false,
 openDelete:false,
+openDetach:false,
 
 selectedDevice:{
 id:'',
@@ -15,6 +16,13 @@ mac:'',
 description:'',
 sensors:[],
 actuators:[]
+},
+
+detachData:{
+deviceId:'',
+deviceName:'',
+siteId:'',
+siteName:''
 }
 
 }">
@@ -152,20 +160,18 @@ Action
 
 </div>
 
-<form
-action="{{ route('sites.devices.destroy', [$activeSite->id, $device->id]) }}"
-method="POST"
-onsubmit="return confirm('Copot device ini dari site?')">
-
-@csrf
-@method('DELETE')
-
 <button
-class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-semibold">
-Copot dari Site
+    type="button"
+    @click="
+        openDetach = true;
+        detachData.deviceId = '{{ $device->id }}';
+        detachData.deviceName = '{{ addslashes($device->name) }}';
+        detachData.siteId = '{{ $activeSite->id }}';
+        detachData.siteName = '{{ addslashes($activeSite->name) }}';
+    "
+    class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-semibold">
+    Copot dari Site
 </button>
-
-</form>
 
 </div>
 
@@ -380,6 +386,110 @@ Delete
 
 {{-- EDIT MODAL --}}
 @include('admin.devices.edit')
+
+{{-- DETACH MODAL --}}
+<!-- DETACH MODAL -->
+<div
+    x-show="openDetach"
+    x-transition
+    class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4"
+    style="display:none">
+
+    <div
+        @click.away="openDetach=false"
+        class="bg-white rounded-2xl shadow-xl w-full max-w-md">
+
+        <!-- HEADER -->
+        <div class="p-6 text-center">
+
+            <!-- Warning Icon -->
+            <div class="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                <svg
+                    class="w-8 h-8 text-amber-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                </svg>
+            </div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Copot Device?
+            </h2>
+
+            <p class="text-gray-500 text-sm">
+                Copot device
+                <span
+                    class="font-semibold"
+                    x-text="detachData.deviceName">
+                </span>
+                dari site
+                <span
+                    class="font-semibold"
+                    x-text="detachData.siteName">
+                </span>?
+            </p>
+
+        </div>
+
+        <!-- WARNING BOX -->
+        <div class="mx-6 mb-6 p-4 bg-amber-50 rounded-xl text-left">
+            <div class="flex gap-3">
+                <svg
+                    class="w-5 h-5 text-amber-600 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01"/>
+                </svg>
+                <div>
+                    <p class="font-medium text-amber-700 text-sm">
+                        Tindakan ini akan:
+                    </p>
+                    <ul class="text-xs text-amber-600 mt-2 space-y-1">
+                        <li>
+                            • Mengakhiri periode aktif hubungan device dengan site tersebut
+                        </li>
+                        <li>
+                            • Device akan kembali berstatus 'Available'
+                        </li>
+                        <li>
+                            • Riwayat data sensor dan log aktuator pada periode ini akan diarsipkan (tidak dihapus)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <form
+            :action="'/sites/' + detachData.siteId + '/devices/' + detachData.deviceId"
+            method="POST"
+            class="p-6 border-t">
+            @csrf
+            @method('DELETE')
+
+            <div class="flex justify-end gap-3">
+                <button
+                    type="button"
+                    @click="openDetach=false"
+                    class="px-5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200">
+                    Batal
+                </button>
+                <button
+                    class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold">
+                    Copot
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
 
 {{-- DELETE MODAL --}}
 @include('admin.devices.delete')

@@ -2,6 +2,8 @@
 
 @section('content')
 
+<div x-data="{ openDelete: false, deleteSchedule: { id: '', name: '' } }">
+
 
 
 <!-- Header -->
@@ -106,19 +108,17 @@
                             </a>
 
                             <!-- Delete Button -->
-                            <form action="{{ route('jadwal-pakan.destroy', $schedule->id) }}"
-                                  method="POST"
-                                  class="inline"
-                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                            <button type="button"
+                                    @click="
+                                        openDelete = true;
+                                        deleteSchedule.id = '{{ $schedule->id }}';
+                                        deleteSchedule.name = '{{ addslashes($schedule->actuator->name ?? 'Feeder') }} ({{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}, {{ $schedule->duration }}m)';
+                                    "
+                                    class="p-1.5 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -132,6 +132,78 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<!-- ================= DELETE MODAL ================= -->
+<div
+    x-show="openDelete"
+    x-transition
+    class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4"
+    style="display:none">
+
+    <div
+        @click.away="openDelete=false"
+        class="bg-white rounded-2xl shadow-xl w-full max-w-md">
+
+        <!-- HEADER -->
+        <div class="p-6 text-center">
+
+            <!-- Warning Icon -->
+            <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
+                <svg
+                    class="w-8 h-8 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                </svg>
+            </div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Hapus Jadwal?
+            </h2>
+
+            <p class="text-gray-500 text-sm">
+                Jadwal
+                <span
+                    class="font-semibold"
+                    x-text="deleteSchedule.name">
+                </span>
+                akan dihapus permanen.
+            </p>
+
+        </div>
+
+        <!-- FOOTER -->
+        <form
+            :action="'/jadwal-pakan/' + deleteSchedule.id"
+            method="POST"
+            class="p-6 border-t">
+            @csrf
+            @method('DELETE')
+
+            <div class="flex justify-end gap-3">
+                <button
+                    type="button"
+                    @click="openDelete=false"
+                    class="px-5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200">
+                    Batal
+                </button>
+                <button
+                    class="px-5 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold">
+                    Hapus
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
 </div>
 
 @endsection
