@@ -10,6 +10,7 @@ use App\Models\DataSensor;
 use App\Models\SensorData;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -248,8 +249,9 @@ class DashboardController extends Controller
         ];
 
         foreach ($sensors as $sensor) {
-            $dataPoints = DataSensor::where('sensor_id', $sensor->id)
-                ->latest()
+            $query = DataSensor::where('sensor_id', $sensor->id);
+            $this->applyConnectionPeriodFilter($query, $siteId, $sensor->device_id, $user, $request);
+            $dataPoints = $query->latest()
                 ->take(15)
                 ->get()
                 ->reverse();
@@ -319,5 +321,65 @@ class DashboardController extends Controller
                 ]
             ]
         ]);
+    }
+
+    private function applyConnectionPeriodFilter($query, $selectedSiteId, $selectedDeviceId, $user, $request, $dateColumn = 'created_at')
+    {
+        // 1. Admin bypass check
+        if ($user->role === 'admin') {
+            // In dashboard context, default is 'site' to show correct site telemetry.
+            // But let's allow 'all' if explicitly requested.
+            $scope = $request->input('scope', 'site');
+            if ($scope === 'all') {
+                return; // Admin wants to see everything, no filter
+            }
+        }
+
+        // 2. Fetch periods
+        $periodsQuery = DB::table('site_devices');
+
+        if ($user->role === 'admin') {
+            if ($selectedSiteId) {
+                $periodsQuery->where('site_id', $selectedSiteId);
+            } else {
+                return;
+            }
+        } else {
+            $userSiteIds = $user->sites->pluck('id')->toArray();
+            if (empty($userSiteIds)) {
+                $query->whereRaw('1 = 0');
+                return;
+            }
+            if ($selectedSiteId && in_array($selectedSiteId, $userSiteIds)) {
+                $periodsQuery->where('site_id', $selectedSiteId);
+            } else {
+                $periodsQuery->whereIn('site_id', $userSiteIds);
+            }
+        }
+
+        if ($selectedDeviceId) {
+            $periodsQuery->where('device_id', $selectedDeviceId);
+        }
+
+        $periods = $periodsQuery->get(['started_at', 'ended_at']);
+
+        if ($periods->isEmpty()) {
+            $query->whereRaw('1 = 0');
+            return;
+        }
+
+        $query->where(function ($q) use ($periods, $dateColumn) {
+            foreach ($periods as $index => $period) {
+                $started = $period->started_at;
+                $ended = $period->ended_at;
+                
+                $q->{ $index === 0 ? 'where' : 'orWhere' }(function ($subQ) use ($started, $ended, $dateColumn) {
+                    $subQ->where($dateColumn, '>=', $started);
+                    if ($ended) {
+                        $subQ->where($dateColumn, '<=', $ended);
+                    }
+                });
+            }
+        });
     }
 }

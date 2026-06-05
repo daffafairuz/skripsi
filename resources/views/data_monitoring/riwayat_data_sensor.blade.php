@@ -104,7 +104,32 @@
                 </div>
             </div>
 
-            @if($selectedSiteId || $selectedDeviceId || $perPage != 10)
+            @if(auth()->user()->role === 'admin')
+            <!-- Cakupan Data (Scope) -->
+            <div class="w-full md:w-48">
+                <label for="scope-select" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Cakupan Data</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </span>
+                    <select id="scope-select" name="scope" onchange="this.form.submit();"
+                            class="w-full pl-10 pr-10 py-3 bg-gray-50/50 border border-gray-200/80 rounded-2xl text-sm font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all appearance-none cursor-pointer hover:bg-gray-50">
+                        <option value="all" {{ request('scope', 'all') == 'all' ? 'selected' : '' }}>Semua Riwayat Alat</option>
+                        <option value="site" {{ request('scope') == 'site' ? 'selected' : '' }}>Hanya Periode Site</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @if($selectedSiteId || $selectedDeviceId || $perPage != 10 || request('scope') == 'site')
                 <div class="w-full md:w-auto">
                     <a href="{{ route('data-sensor') }}"
                        class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-2xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-95">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Device;
 use App\Models\Sensor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SensorController extends Controller
 {
@@ -30,8 +31,10 @@ class SensorController extends Controller
 
     public function device(Device $device)
     {
+        $user = auth()->user();
         $device->load([
-            'sensors.dataSensors' => function ($query) {
+            'sensors.dataSensors' => function ($query) use ($device, $user) {
+                $this->applyConnectionPeriodFilter($query, request('site_id'), $device->id, $user, request());
                 $query->latest()->take(20);
             }
         ]);
@@ -51,6 +54,9 @@ class SensorController extends Controller
     public function chart(Request $request, Sensor $sensor)
     {
         $query = $sensor->dataSensors();
+        $user = auth()->user();
+
+        $this->applyConnectionPeriodFilter($query, $request->input('site_id'), $sensor->device_id, $user, $request);
 
         if ($request->filled('start_date')) {
             $query->whereDate('created_at', '>=', $request->start_date);
@@ -171,5 +177,63 @@ class SensorController extends Controller
 
         return redirect('/sensors')
             ->with('success', 'Sensor berhasil dihapus');
+    }
+
+    private function applyConnectionPeriodFilter($query, $selectedSiteId, $selectedDeviceId, $user, $request, $dateColumn = 'created_at')
+    {
+        // 1. Admin bypass check
+        if ($user->role === 'admin') {
+            $scope = $request->input('scope', 'all');
+            if ($scope === 'all') {
+                return; // Admin wants to see everything, no filter
+            }
+        }
+
+        // 2. Fetch periods
+        $periodsQuery = DB::table('site_devices');
+
+        if ($user->role === 'admin') {
+            if ($selectedSiteId) {
+                $periodsQuery->where('site_id', $selectedSiteId);
+            } else {
+                return;
+            }
+        } else {
+            $userSiteIds = $user->sites->pluck('id')->toArray();
+            if (empty($userSiteIds)) {
+                $query->whereRaw('1 = 0');
+                return;
+            }
+            if ($selectedSiteId && in_array($selectedSiteId, $userSiteIds)) {
+                $periodsQuery->where('site_id', $selectedSiteId);
+            } else {
+                $periodsQuery->whereIn('site_id', $userSiteIds);
+            }
+        }
+
+        if ($selectedDeviceId) {
+            $periodsQuery->where('device_id', $selectedDeviceId);
+        }
+
+        $periods = $periodsQuery->get(['started_at', 'ended_at']);
+
+        if ($periods->isEmpty()) {
+            $query->whereRaw('1 = 0');
+            return;
+        }
+
+        $query->where(function ($q) use ($periods, $dateColumn) {
+            foreach ($periods as $index => $period) {
+                $started = $period->started_at;
+                $ended = $period->ended_at;
+                
+                $q->{ $index === 0 ? 'where' : 'orWhere' }(function ($subQ) use ($started, $ended, $dateColumn) {
+                    $subQ->where($dateColumn, '>=', $started);
+                    if ($ended) {
+                        $subQ->where($dateColumn, '<=', $ended);
+                    }
+                });
+            }
+        });
     }
 }

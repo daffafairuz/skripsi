@@ -91,6 +91,8 @@ class DataSensorController extends Controller
             }
         }
 
+        $this->applyConnectionPeriodFilter($query, $selectedSiteId, $selectedDeviceId, $user, $request);
+
         $rawSensors = $query->orderBy('created_at', 'desc')->take(3000)->get();
 
         // Pivot EAV data: Group by device & 5-minute time window
@@ -340,6 +342,8 @@ class DataSensorController extends Controller
             }
         }
 
+        $this->applyConnectionPeriodFilter($query, $selectedSiteId, $selectedDeviceId, $user, $request);
+
         $rawSensors = $query->orderBy('created_at', 'desc')->get();
 
         // Pivot EAV data (same logic as index)
@@ -459,5 +463,65 @@ class DataSensorController extends Controller
         }, $filename, [
             'Content-Type' => 'text/csv; charset=UTF-8',
         ]);
+    }
+
+    private function applyConnectionPeriodFilter($query, $selectedSiteId, $selectedDeviceId, $user, $request, $dateColumn = 'created_at')
+    {
+        // 1. Admin bypass check
+        if ($user->role === 'admin') {
+            $scope = $request->input('scope', 'all');
+            if ($scope === 'all') {
+                return; // Admin wants to see everything, no filter
+            }
+        }
+
+        // 2. Fetch periods
+        $periodsQuery = DB::table('site_devices');
+
+        if ($user->role === 'admin') {
+            // Admin filters by specific site
+            if ($selectedSiteId) {
+                $periodsQuery->where('site_id', $selectedSiteId);
+            } else {
+                return; // Admin has no site selected and wants to see everything
+            }
+        } else {
+            // Regular user: must be restricted to their own sites
+            $userSiteIds = $user->sites->pluck('id')->toArray();
+            if (empty($userSiteIds)) {
+                $query->whereRaw('1 = 0');
+                return;
+            }
+            if ($selectedSiteId && in_array($selectedSiteId, $userSiteIds)) {
+                $periodsQuery->where('site_id', $selectedSiteId);
+            } else {
+                $periodsQuery->whereIn('site_id', $userSiteIds);
+            }
+        }
+
+        if ($selectedDeviceId) {
+            $periodsQuery->where('device_id', $selectedDeviceId);
+        }
+
+        $periods = $periodsQuery->get(['started_at', 'ended_at']);
+
+        if ($periods->isEmpty()) {
+            $query->whereRaw('1 = 0');
+            return;
+        }
+
+        $query->where(function ($q) use ($periods, $dateColumn) {
+            foreach ($periods as $index => $period) {
+                $started = $period->started_at;
+                $ended = $period->ended_at;
+                
+                $q->{ $index === 0 ? 'where' : 'orWhere' }(function ($subQ) use ($started, $ended, $dateColumn) {
+                    $subQ->where($dateColumn, '>=', $started);
+                    if ($ended) {
+                        $subQ->where($dateColumn, '<=', $ended);
+                    }
+                });
+            }
+        });
     }
 }
