@@ -105,8 +105,12 @@ class DataSensorController extends Controller
             $device = $sensor->device;
             if (!$device) continue;
 
-            // Get first associated site, if any (Site acts as the ESP32 Master gateway)
-            $site = $device->sites->first();
+            // Find the site that was connected to this device at the time of the sensor reading
+            $site = $device->sites->first(function ($s) use ($record) {
+                $startedAt = \Carbon\Carbon::parse($s->pivot->started_at);
+                $endedAt = $s->pivot->ended_at ? \Carbon\Carbon::parse($s->pivot->ended_at) : null;
+                return $record->created_at >= $startedAt && ($endedAt === null || $record->created_at <= $endedAt);
+            });
 
             // Round created_at timestamp to the nearest 5-minute interval
             $time = Carbon::parse($record->created_at);
@@ -356,7 +360,12 @@ class DataSensorController extends Controller
             $device = $sensor->device;
             if (!$device) continue;
 
-            $site = $device->sites->first();
+            // Find the site that was connected to this device at the time of the sensor reading
+            $site = $device->sites->first(function ($s) use ($record) {
+                $startedAt = \Carbon\Carbon::parse($s->pivot->started_at);
+                $endedAt = $s->pivot->ended_at ? \Carbon\Carbon::parse($s->pivot->ended_at) : null;
+                return $record->created_at >= $startedAt && ($endedAt === null || $record->created_at <= $endedAt);
+            });
 
             $time = Carbon::parse($record->created_at);
             $minute = $time->minute;

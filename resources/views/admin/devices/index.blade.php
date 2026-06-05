@@ -481,7 +481,7 @@ Delete
                     Batal
                 </button>
                 <button
-                    class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold">
+                    class="px-5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white font-semibold transition">
                     Copot
                 </button>
             </div>
