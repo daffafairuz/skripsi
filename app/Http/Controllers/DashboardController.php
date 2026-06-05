@@ -240,6 +240,10 @@ class DashboardController extends Controller
             'soil_moisture' => [
                 'border' => 'rgba(120, 53, 4, 1)',
                 'bg' => 'rgba(120, 53, 4, 0.05)'
+            ],
+            'turbidity' => [
+                'border' => 'rgba(14, 116, 144, 1)',
+                'bg' => 'rgba(14, 116, 144, 0.05)'
             ]
         ];
 

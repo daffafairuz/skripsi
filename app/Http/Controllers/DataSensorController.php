@@ -131,6 +131,7 @@ class DataSensorController extends Controller
                         'ec' => null,
                         'soil_moisture' => null,
                         'light' => null,
+                        'turbidity' => null,
                     ],
                     'raw_created' => $record->created_at, // used for sorting
                 ];
@@ -203,6 +204,12 @@ class DataSensorController extends Controller
                 'unit' => 'lux',
                 'bg_color' => 'bg-yellow-50 border border-yellow-200 text-yellow-700',
                 'format' => '%.0f',
+            ],
+            'turbidity' => [
+                'label' => 'Turbidity',
+                'unit' => 'NTU',
+                'bg_color' => 'bg-sky-50 border border-sky-100 text-sky-600',
+                'format' => '%.1f',
             ],
         ];
 
@@ -370,6 +377,7 @@ class DataSensorController extends Controller
                         'ec' => null,
                         'soil_moisture' => null,
                         'light' => null,
+                        'turbidity' => null,
                     ],
                     'raw_created' => $record->created_at,
                 ];
@@ -396,6 +404,7 @@ class DataSensorController extends Controller
             'ec' => ['label' => 'EC (mS)', 'format' => '%.2f'],
             'soil_moisture' => ['label' => 'Soil Moisture (%)', 'format' => '%.1f'],
             'light' => ['label' => 'Cahaya (lux)', 'format' => '%.0f'],
+            'turbidity' => ['label' => 'Turbidity (NTU)', 'format' => '%.1f'],
         ];
 
         // Determine active sensor columns in scope

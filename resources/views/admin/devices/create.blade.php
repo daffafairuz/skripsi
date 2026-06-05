@@ -192,6 +192,22 @@
                                     TDS
                                 </option>
 
+                                <option value="dissolved_oxygen">
+                                    Dissolved Oxygen (DO)
+                                </option>
+
+                                <option value="ec">
+                                    Electrical Conductivity (EC)
+                                </option>
+
+                                <option value="soil_moisture">
+                                    Soil Moisture
+                                </option>
+
+                                <option value="light">
+                                    Light / Cahaya
+                                </option>
+
                             </select>
 
                             <input
@@ -297,6 +313,14 @@
 
                                 <option value="grow_light">
                                     Grow Light
+                                </option>
+
+                                <option value="water_pump">
+                                    Water Pump
+                                </option>
+
+                                <option value="fan">
+                                    Fan / Kipas
                                 </option>
 
                             </select>
