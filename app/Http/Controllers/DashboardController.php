@@ -361,24 +361,44 @@ class DashboardController extends Controller
             $periodsQuery->where('device_id', $selectedDeviceId);
         }
 
-        $periods = $periodsQuery->get(['started_at', 'ended_at']);
+        $periods = $periodsQuery->get(['device_id', 'started_at', 'ended_at']);
 
         if ($periods->isEmpty()) {
             $query->whereRaw('1 = 0');
             return;
         }
 
-        $query->where(function ($q) use ($periods, $dateColumn) {
-            foreach ($periods as $index => $period) {
-                $started = $period->started_at;
-                $ended = $period->ended_at;
+        // Group periods by device_id
+        $periodsByDevice = $periods->groupBy('device_id');
+        $deviceIds = $periods->pluck('device_id')->unique()->toArray();
+
+        // Get sensors for these devices
+        $sensorsByDevice = Sensor::whereIn('device_id', $deviceIds)->get(['id', 'device_id'])->groupBy('device_id');
+
+        $query->where(function ($q) use ($periodsByDevice, $sensorsByDevice, $dateColumn) {
+            $isFirstDevice = true;
+            foreach ($periodsByDevice as $deviceId => $devicePeriods) {
+                $sensorIds = $sensorsByDevice->get($deviceId, collect())->pluck('id')->toArray();
+                if (empty($sensorIds)) {
+                    continue;
+                }
                 
-                $q->{ $index === 0 ? 'where' : 'orWhere' }(function ($subQ) use ($started, $ended, $dateColumn) {
-                    $subQ->where($dateColumn, '>=', $started);
-                    if ($ended) {
-                        $subQ->where($dateColumn, '<=', $ended);
-                    }
+                $q->{ $isFirstDevice ? 'where' : 'orWhere' }(function ($subQ) use ($sensorIds, $devicePeriods, $dateColumn) {
+                    $subQ->whereIn('sensor_id', $sensorIds);
+                    $subQ->where(function ($dateQ) use ($devicePeriods, $dateColumn) {
+                        foreach ($devicePeriods as $idx => $period) {
+                            $started = $period->started_at;
+                            $ended = $period->ended_at;
+                            $dateQ->{ $idx === 0 ? 'where' : 'orWhere' }(function ($innerQ) use ($started, $ended, $dateColumn) {
+                                $innerQ->where($dateColumn, '>=', $started);
+                                if ($ended) {
+                                    $innerQ->where($dateColumn, '<=', $ended);
+                                }
+                            });
+                        }
+                    });
                 });
+                $isFirstDevice = false;
             }
         });
     }
