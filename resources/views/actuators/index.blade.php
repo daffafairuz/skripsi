@@ -260,8 +260,6 @@
     </div>
 </div>
 
-</div>
-
 <!-- ================= DELETE MODAL ================= -->
 <div
     x-show="openDelete"
