@@ -626,6 +626,46 @@ ${err.message}`,
 
                 const type = data.type || data.actuator_type;
                 const state = data.state || data.action;
+                
+                // =====================
+                // SYSTEM MESSAGE
+                // =====================
+                
+                const systemTypes = [
+                    "PAIR",
+                    "UNPAIR",
+                    "RECONFIG",
+                    "config_ack",
+                    "CONFIG_ACK",
+                ];
+                
+                if (
+                    type &&
+                    systemTypes.includes(type)
+                ) {
+                
+                    log(
+                        `[SYSTEM] ${type} | ${macAddress}`
+                    );
+                
+                    return;
+                
+                }
+                
+                // =====================
+                // CONFIG SNAPSHOT
+                // =====================
+                
+                if (data.actuators) {
+                
+                    log(
+                        `[CONFIG] ${macAddress}`
+                    );
+                
+                    return;
+                
+                }
+
 
                 if (!type || !state) {
                     log(

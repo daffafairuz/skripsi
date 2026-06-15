@@ -7,6 +7,7 @@ use App\Models\ActuatorLog;
 use App\Models\Actuator;
 use App\Models\Site;
 use App\Models\Device;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
