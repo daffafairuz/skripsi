@@ -1,0 +1,60 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "User" as Actor
+boundary "data_monitoring/log_aktuator.blade.php" as ActuatorLogView <<Boundary>>
+control "ActuatorLogController" as ActuatorLogController <<Controller>>
+entity "ActuatorLog" as ActuatorLogEntity <<Entity>>
+entity "User" as UserEntity <<Entity>>
+
+== View Log Aktuator ==
+
+Actor -> ActuatorLogView : Menekan dropdown "Data Monitoring" & klik "Log Aktuator"
+activate ActuatorLogView
+ActuatorLogView -> ActuatorLogController : index(request)
+activate ActuatorLogController
+
+ActuatorLogController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> ActuatorLogController : Mengembalikan objek User
+deactivate UserEntity
+
+ActuatorLogController -> ActuatorLogEntity : Query logs with actuator and device based on scope
+activate ActuatorLogEntity
+ActuatorLogEntity --> ActuatorLogController : Daftar logs terpaginasi
+deactivate ActuatorLogEntity
+
+ActuatorLogController --> ActuatorLogView : view('data_monitoring.log_aktuator', data)
+ActuatorLogView --> Actor : Tampilkan Halaman Log Aktuator
+deactivate ActuatorLogController
+deactivate ActuatorLogView
+
+== Unduh File CSV ==
+
+Actor -> ActuatorLogView : Menekan tombol "Download CSV"
+activate ActuatorLogView
+ActuatorLogView -> ActuatorLogController : exportCsv(request)
+activate ActuatorLogController
+
+ActuatorLogController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> ActuatorLogController : Mengembalikan objek User
+deactivate UserEntity
+
+ActuatorLogController -> ActuatorLogEntity : Query all matching logs based on scope
+activate ActuatorLogEntity
+ActuatorLogEntity --> ActuatorLogController : Daftar logs lengkap
+deactivate ActuatorLogEntity
+
+ActuatorLogController --> ActuatorLogView : Streamed CSV Download
+ActuatorLogView --> Actor : File CSV Terunduh
+deactivate ActuatorLogController
+deactivate ActuatorLogView
+
+@endum

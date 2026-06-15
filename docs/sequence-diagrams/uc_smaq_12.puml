@@ -1,0 +1,99 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "admin/sites/index.blade.php" as SitesIndexView <<Boundary>>
+control "SiteController" as SiteController <<Controller>>
+entity "Site" as SiteEntity <<Entity>>
+entity "User" as UserEntity <<Entity>>
+
+== View Daftar Site ==
+
+Actor -> SitesIndexView : Menekan menu "Sites" pada sidebar
+activate SitesIndexView
+SitesIndexView -> SiteController : index(...)
+activate SiteController
+
+SiteController -> SiteEntity : Site::with('user', 'activeDevices.sensors', 'activeDevices.actuators')->get(...)
+activate SiteEntity
+SiteEntity --> SiteController : Daftar site
+deactivate SiteEntity
+
+SiteController -> UserEntity : User::where('role', 'user')->get(...)
+activate UserEntity
+UserEntity --> SiteController : Daftar user
+deactivate UserEntity
+
+SiteController --> SitesIndexView : view('admin.sites.index', data)
+SitesIndexView --> Actor : Tampilkan Daftar Site
+deactivate SiteController
+deactivate SitesIndexView
+
+== Create Data Site ==
+
+Actor -> SitesIndexView : Klik tombol "Tambah Site"
+activate SitesIndexView
+SitesIndexView -> SitesIndexView : Set openCreate = true (Tampilkan modal tambah site)
+
+Actor -> SitesIndexView : Mengisi data site (user_id, nama, lokasi, mac_address) & klik "Simpan"
+SitesIndexView -> SiteController : store(request)
+activate SiteController
+
+SiteController -> SiteController : validate(request)
+
+SiteController -> SiteEntity : Site::create(data)
+activate SiteEntity
+SiteEntity --> SiteController : Berhasil menyimpan site
+deactivate SiteEntity
+
+SiteController --> SitesIndexView : redirect()->route('sites.index')
+deactivate SiteController
+deactivate SitesIndexView
+
+== Edit Data Site ==
+
+Actor -> SitesIndexView : Klik tombol "Edit Site" pada site tertentu
+activate SitesIndexView
+SitesIndexView -> SitesIndexView : Set openEdit = true (Tampilkan modal edit & isi data site)
+
+Actor -> SitesIndexView : Mengubah lokasi, nama, mac_address & klik "Update"
+SitesIndexView -> SiteController : update(request, site)
+activate SiteController
+
+SiteController -> SiteController : validate(request)
+
+SiteController -> SiteEntity : $site->update(data)
+activate SiteEntity
+SiteEntity --> SiteController : Berhasil diperbarui
+deactivate SiteEntity
+
+SiteController --> SitesIndexView : redirect()->route('sites.index')
+deactivate SiteController
+deactivate SitesIndexView
+
+== Delete Data Site ==
+
+Actor -> SitesIndexView : Klik tombol "Hapus" pada site tertentu
+activate SitesIndexView
+SitesIndexView -> SitesIndexView : Set openDelete = true (Tampilkan modal konfirmasi hapus)
+
+Actor -> SitesIndexView : Konfirmasi hapus dengan klik "Hapus" pada modal
+SitesIndexView -> SiteController : destroy(site)
+activate SiteController
+
+SiteController -> SiteEntity : $site->delete(...)
+activate SiteEntity
+SiteEntity --> SiteController : Berhasil menghapus site
+deactivate SiteEntity
+
+SiteController --> SitesIndexView : redirect()->route('sites.index')
+deactivate SiteController
+deactivate SitesIndexView
+
+@endum

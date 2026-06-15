@@ -1,0 +1,116 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "admin/devices/index.blade.php" as DevicesIndexView <<Boundary>>
+boundary "sensors/device.blade.php" as SensorsDeviceView <<Boundary>>
+control "DeviceController" as DeviceController <<Controller>>
+control "SensorController" as SensorController <<Controller>>
+entity "Device" as DeviceEntity <<Entity>>
+
+== View Data Device ==
+
+Actor -> DevicesIndexView : Menekan menu "Devices" pada sidebar
+activate DevicesIndexView
+DevicesIndexView -> DeviceController : index(request)
+activate DeviceController
+
+DeviceController -> DeviceEntity : Query devices with sensors, actuators & sites
+activate DeviceEntity
+DeviceEntity --> DeviceController : Daftar devices & sites
+deactivate DeviceEntity
+
+DeviceController --> DevicesIndexView : view('admin.devices.index', data)
+DevicesIndexView --> Actor : Tampilkan Daftar Devices
+deactivate DeviceController
+deactivate DevicesIndexView
+
+== Create Data Device ==
+
+Actor -> DevicesIndexView : Klik tombol "Tambah Device"
+activate DevicesIndexView
+DevicesIndexView -> DevicesIndexView : Set openCreate = true (Tampilkan modal tambah device)
+
+Actor -> DevicesIndexView : Mengisi data device (nama, mac_address, deskripsi) & klik "Simpan Device"
+DevicesIndexView -> DeviceController : store(request)
+activate DeviceController
+
+DeviceController -> DeviceController : validate(request)
+
+DeviceController -> DeviceEntity : Device::create(data)
+activate DeviceEntity
+DeviceEntity --> DeviceController : Objek device baru
+deactivate DeviceEntity
+
+DeviceController -> DeviceController : Loop sensor & actuator creation if present
+
+DeviceController --> DevicesIndexView : redirect()->route('devices.index')
+deactivate DeviceController
+deactivate DevicesIndexView
+
+== Edit Data Device ==
+
+Actor -> DevicesIndexView : Klik tombol "Edit" pada device tertentu
+activate DevicesIndexView
+DevicesIndexView -> DevicesIndexView : Set openEdit = true (Tampilkan modal edit & isi data device)
+
+Actor -> DevicesIndexView : Mengubah nama, mac_address, deskripsi & klik "Update"
+DevicesIndexView -> DeviceController : update(request, device)
+activate DeviceController
+
+DeviceController -> DeviceController : validate(request)
+
+DeviceController -> DeviceEntity : $device->update(data)
+activate DeviceEntity
+DeviceEntity --> DeviceController : Berhasil mengupdate device
+deactivate DeviceEntity
+
+DeviceController --> DevicesIndexView : redirect()->route('devices.index')
+deactivate DeviceController
+deactivate DevicesIndexView
+
+== Delete Data Device ==
+
+Actor -> DevicesIndexView : Klik tombol "Delete" pada device tertentu
+activate DevicesIndexView
+DevicesIndexView -> DevicesIndexView : Set openDelete = true (Tampilkan modal konfirmasi hapus)
+
+Actor -> DevicesIndexView : Konfirmasi hapus dengan klik "Hapus" pada modal
+DevicesIndexView -> DeviceController : destroy(device)
+activate DeviceController
+
+DeviceController -> DeviceEntity : $device->delete(...)
+activate DeviceEntity
+DeviceEntity --> DeviceController : Berhasil menghapus device
+deactivate DeviceEntity
+
+DeviceController --> DevicesIndexView : redirect('/devices')
+deactivate DeviceController
+deactivate DevicesIndexView
+
+== Monitoring Device ==
+
+Actor -> DevicesIndexView : Menekan tombol "Monitoring"
+activate DevicesIndexView
+DevicesIndexView -> SensorController : device(device)
+activate SensorController
+
+SensorController -> DeviceEntity : Load device sensors and latest data
+activate DeviceEntity
+DeviceEntity --> SensorController : Device data
+deactivate DeviceEntity
+
+SensorController --> SensorsDeviceView : view('sensors.device', device)
+activate SensorsDeviceView
+SensorsDeviceView --> Actor : Tampilkan Halaman Monitoring Sensor
+deactivate SensorsDeviceView
+deactivate SensorController
+deactivate DevicesIndexView
+
+@endum

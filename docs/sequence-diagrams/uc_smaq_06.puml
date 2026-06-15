@@ -1,0 +1,93 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "admin/users/index.blade.php" as UsersIndexView <<Boundary>>
+control "UserController" as UserController <<Controller>>
+entity "User" as UserEntity <<Entity>>
+
+== View Data User ==
+
+Actor -> UsersIndexView : Menekan menu "Pengguna" pada sidebar
+activate UsersIndexView
+UsersIndexView -> UserController : index(...)
+activate UserController
+
+UserController -> UserEntity : User::latest()->get(...)
+activate UserEntity
+UserEntity --> UserController : Daftar pengguna
+deactivate UserEntity
+
+UserController --> UsersIndexView : view('admin.users.index', data)
+UsersIndexView --> Actor : Tampilkan Daftar Pengguna
+deactivate UserController
+deactivate UsersIndexView
+
+== Create Data User ==
+
+Actor -> UsersIndexView : Klik tombol "+ Tambah User"
+activate UsersIndexView
+UsersIndexView -> UsersIndexView : Set openCreate = true (Tampilkan modal tambah user)
+
+Actor -> UsersIndexView : Mengisi username, email, password, role di form modal & klik "Simpan"
+UsersIndexView -> UserController : store(request)
+activate UserController
+
+UserController -> UserController : validate(request)
+
+UserController -> UserEntity : User::create(data)
+activate UserEntity
+UserEntity --> UserController : Berhasil menambahkan user
+deactivate UserEntity
+
+UserController --> UsersIndexView : redirect('/users') dengan status sukses
+deactivate UserController
+deactivate UsersIndexView
+
+== Edit Data User ==
+
+Actor -> UsersIndexView : Klik tombol "Edit" pada user tertentu
+activate UsersIndexView
+UsersIndexView -> UsersIndexView : Set openEdit = true (Tampilkan modal edit & isi data user)
+
+Actor -> UsersIndexView : Mengubah data user di form modal & klik "Update"
+UsersIndexView -> UserController : update(request, user)
+activate UserController
+
+UserController -> UserController : validate(request)
+
+UserController -> UserEntity : $user->update(data)
+activate UserEntity
+UserEntity --> UserController : Berhasil memperbarui user
+deactivate UserEntity
+
+UserController --> UsersIndexView : redirect('/users') dengan status sukses
+deactivate UserController
+deactivate UsersIndexView
+
+== Delete Data User ==
+
+Actor -> UsersIndexView : Klik tombol "Hapus" pada user tertentu
+activate UsersIndexView
+UsersIndexView -> UsersIndexView : Set openDelete = true (Tampilkan modal konfirmasi hapus)
+
+Actor -> UsersIndexView : Konfirmasi hapus dengan klik "Hapus" pada modal
+UsersIndexView -> UserController : destroy(user)
+activate UserController
+
+UserController -> UserEntity : $user->delete(...)
+activate UserEntity
+UserEntity --> UserController : Berhasil menghapus user
+deactivate UserEntity
+
+UserController --> UsersIndexView : redirect('/users') dengan status sukses
+deactivate UserController
+deactivate UsersIndexView
+
+@endum

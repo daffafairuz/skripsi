@@ -1,0 +1,93 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "actuators/index.blade.php" as ActuatorsIndexView <<Boundary>>
+control "ActuatorController" as ActuatorController <<Controller>>
+entity "Actuator" as ActuatorEntity <<Entity>>
+entity "Device" as DeviceEntity <<Entity>>
+
+== View Data Aktuator ==
+
+Actor -> ActuatorsIndexView : Menekan menu "Daftar Aktuator" pada sidebar
+activate ActuatorsIndexView
+ActuatorsIndexView -> ActuatorController : index(...)
+activate ActuatorController
+
+ActuatorController -> ActuatorEntity : Actuator::with('device')->latest()->get(...)
+activate ActuatorEntity
+ActuatorEntity --> ActuatorController : Daftar aktuator
+deactivate ActuatorEntity
+
+ActuatorController -> DeviceEntity : Device::all(...)
+activate DeviceEntity
+DeviceEntity --> ActuatorController : Daftar devices
+deactivate DeviceEntity
+
+ActuatorController --> ActuatorsIndexView : view('actuators.index', data)
+ActuatorsIndexView --> Actor : Tampilkan Daftar Aktuator
+deactivate ActuatorController
+deactivate ActuatorsIndexView
+
+== Create Data Aktuator ==
+
+Actor -> ActuatorsIndexView : Klik "Tambah Aktuator", isi data, klik "Simpan"
+activate ActuatorsIndexView
+ActuatorsIndexView -> ActuatorController : store(request)
+activate ActuatorController
+
+ActuatorController -> ActuatorController : validate(request)
+
+ActuatorController -> ActuatorEntity : Actuator::create(data)
+activate ActuatorEntity
+ActuatorEntity --> ActuatorController : Berhasil menyimpan aktuator
+deactivate ActuatorEntity
+
+ActuatorController --> ActuatorsIndexView : redirect('/actuators') dengan status sukses
+ActuatorsIndexView --> Actor : Tampilkan pesan sukses "Aktuator berhasil ditambahkan"
+deactivate ActuatorController
+deactivate ActuatorsIndexView
+
+== Edit Data Aktuator ==
+
+Actor -> ActuatorsIndexView : Klik "Edit", ubah data aktuator, klik "Update"
+activate ActuatorsIndexView
+ActuatorsIndexView -> ActuatorController : update(request, actuator)
+activate ActuatorController
+
+ActuatorController -> ActuatorController : validate(request)
+
+ActuatorController -> ActuatorEntity : $actuator->update(data)
+activate ActuatorEntity
+ActuatorEntity --> ActuatorController : Berhasil memperbarui aktuator
+deactivate ActuatorEntity
+
+ActuatorController --> ActuatorsIndexView : redirect('/actuators') dengan status sukses
+ActuatorsIndexView --> Actor : Tampilkan pesan sukses "Aktuator berhasil diperbarui"
+deactivate ActuatorController
+deactivate ActuatorsIndexView
+
+== Delete Data Aktuator ==
+
+Actor -> ActuatorsIndexView : Klik "Hapus" pada data tertentu & konfirmasi alert
+activate ActuatorsIndexView
+ActuatorsIndexView -> ActuatorController : destroy(actuator)
+activate ActuatorController
+
+ActuatorController -> ActuatorEntity : $actuator->delete(...)
+activate ActuatorEntity
+ActuatorEntity --> ActuatorController : Berhasil menghapus aktuator
+deactivate ActuatorEntity
+
+ActuatorController --> ActuatorsIndexView : redirect('/actuators') dengan status sukses
+ActuatorsIndexView --> Actor : Tampilkan pesan sukses "Aktuator berhasil dihapus"
+deactivate ActuatorController
+deactivate ActuatorsIndexView
+
+@endum

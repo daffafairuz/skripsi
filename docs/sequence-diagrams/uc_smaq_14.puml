@@ -1,0 +1,61 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "User" as Actor
+boundary "data_monitoring/riwayat_data_sensor.blade.php" as DataSensorView <<Boundary>>
+control "DataSensorController" as DataSensorController <<Controller>>
+entity "DataSensor" as DataSensorEntity <<Entity>>
+entity "User" as UserEntity <<Entity>>
+
+== View Riwayat Data Sensor ==
+
+Actor -> DataSensorView : Menekan dropdown "Data Monitoring" & klik "Riwayat Data Sensor"
+activate DataSensorView
+DataSensorView -> DataSensorController : index(request)
+activate DataSensorController
+
+DataSensorController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> DataSensorController : Mengembalikan objek User
+deactivate UserEntity
+
+DataSensorController -> DataSensorEntity : Query sensor readings based on scope & pivot data
+activate DataSensorEntity
+DataSensorEntity --> DataSensorController : Pivoted sensor data (success)
+deactivate DataSensorEntity
+
+DataSensorController --> DataSensorView : view('data_monitoring.riwayat_data_sensor', data)
+DataSensorView --> Actor : Tampilkan Halaman Riwayat Data Sensor
+deactivate DataSensorController
+deactivate DataSensorView
+
+== Unduh File CSV ==
+
+Actor -> DataSensorView : Menekan tombol "Download CSV"
+activate DataSensorView
+DataSensorView -> DataSensorController : exportCsv(request)
+activate DataSensorController
+
+DataSensorController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> DataSensorController : Mengembalikan objek User
+deactivate UserEntity
+
+DataSensorController -> DataSensorEntity : Query all sensor readings based on scope
+activate DataSensorEntity
+deactivate UserEntity
+DataSensorEntity --> DataSensorController : Daftar data sensor lengkap
+deactivate DataSensorEntity
+
+DataSensorController --> DataSensorView : Streamed CSV Download
+DataSensorView --> Actor : File CSV Terunduh
+deactivate DataSensorController
+deactivate DataSensorView
+
+@endum

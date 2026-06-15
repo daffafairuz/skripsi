@@ -1,0 +1,87 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin / User" as Actor
+boundary "account_settings/index.blade.php" as AccountSettingsView <<Boundary>>
+boundary "login.blade.php" as LoginView <<Boundary>>
+control "AccountController" as AccountController <<Controller>>
+entity "User" as UserEntity <<Entity>>
+
+== View Pengaturan Akun ==
+
+Actor -> AccountSettingsView : Mengakses halaman pengaturan akun (/account)
+activate AccountSettingsView
+AccountSettingsView -> AccountController : index(...)
+activate AccountController
+
+AccountController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> AccountController : Mengembalikan objek User
+deactivate UserEntity
+
+AccountController --> AccountSettingsView : view('account_settings.index', data)
+AccountSettingsView --> Actor : Tampilkan Halaman Pengaturan Akun
+deactivate AccountController
+deactivate AccountSettingsView
+
+== Edit Identitas Akun ==
+
+Actor -> AccountSettingsView : Mengubah data profil, klik "Simpan Perubahan"
+activate AccountSettingsView
+AccountSettingsView -> AccountController : update(request)
+activate AccountController
+
+AccountController -> AccountController : validate(request)
+
+AccountController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> AccountController : Mengembalikan objek User
+deactivate UserEntity
+
+AccountController -> UserEntity : Simpan perubahan data (name, email, phone_number, etc.)
+AccountController -> UserEntity : save(...)
+activate UserEntity
+UserEntity --> AccountController : Berhasil menyimpan data
+deactivate UserEntity
+
+AccountController --> AccountSettingsView : redirect()->back() dengan status sukses
+AccountSettingsView --> Actor : Tampilkan pesan sukses "Akun berhasil diperbarui!"
+deactivate AccountController
+deactivate AccountSettingsView
+
+== Delete (Non-aktifkan Akun) ==
+
+Actor -> AccountSettingsView : Klik tombol "Hapus Akun" & konfirmasi alert
+activate AccountSettingsView
+AccountSettingsView -> AccountController : destroy(request)
+activate AccountController
+
+AccountController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> AccountController : Mengembalikan objek User
+deactivate UserEntity
+
+AccountController -> UserEntity : Set status = "inactive"
+AccountController -> UserEntity : save(...)
+activate UserEntity
+UserEntity --> AccountController : Berhasil menyimpan data
+deactivate UserEntity
+
+AccountController -> AccountController : Auth::logout(...), session(...)->invalidate(...)
+
+AccountController --> Actor : redirect('/')
+deactivate AccountController
+deactivate AccountSettingsView
+
+Actor -> LoginView : GET / (Redirect ke /login)
+activate LoginView
+LoginView --> Actor : Tampilkan Halaman Login
+deactivate LoginView
+
+@endum

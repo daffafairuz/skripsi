@@ -1,0 +1,118 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "User" as Actor
+boundary "jadwal_pakan/index.blade.php" as FeederIndexView <<Boundary>>
+boundary "jadwal_pakan/create.blade.php" as FeederCreateView <<Boundary>>
+boundary "jadwal_pakan/edit.blade.php" as FeederEditView <<Boundary>>
+control "FeedScheduleController" as FeedScheduleController <<Controller>>
+entity "FeedSchedule" as FeedScheduleEntity <<Entity>>
+entity "Actuator" as ActuatorEntity <<Entity>>
+
+== View Jadwal Feeder ==
+
+Actor -> FeederIndexView : Menekan menu "Jadwal Pakan" pada sidebar
+activate FeederIndexView
+FeederIndexView -> FeedScheduleController : index(request)
+activate FeedScheduleController
+
+FeedScheduleController -> FeedScheduleEntity : Query schedules by user sites & order by time
+activate FeedScheduleEntity
+FeedScheduleEntity --> FeedScheduleController : Daftar jadwal feeder
+deactivate FeedScheduleEntity
+
+FeedScheduleController --> FeederIndexView : view('jadwal_pakan.index', data)
+FeederIndexView --> Actor : Tampilkan Halaman Jadwal Feeder
+deactivate FeedScheduleController
+deactivate FeederIndexView
+
+== Create Jadwal Feeder ==
+
+Actor -> FeederIndexView : Menekan tombol "Tambah Jadwal"
+activate FeederIndexView
+FeederIndexView -> FeedScheduleController : create(...)
+activate FeedScheduleController
+
+FeedScheduleController -> ActuatorEntity : Ambil daftar feeder milik user
+activate ActuatorEntity
+ActuatorEntity --> FeedScheduleController : Daftar feeders
+deactivate ActuatorEntity
+
+FeedScheduleController --> FeederCreateView : view('jadwal_pakan.create', data)
+deactivate FeedScheduleController
+deactivate FeederIndexView
+
+Actor -> FeederCreateView : Mengisi actuator_id, time, duration & klik "Simpan"
+activate FeederCreateView
+FeederCreateView -> FeedScheduleController : store(request)
+activate FeedScheduleController
+
+FeedScheduleController -> FeedScheduleController : validate(request)
+FeedScheduleController -> FeedScheduleEntity : Create new schedule
+activate FeedScheduleEntity
+FeedScheduleEntity --> FeedScheduleController : Berhasil menyimpan
+deactivate FeedScheduleEntity
+
+FeedScheduleController --> FeederIndexView : redirect()->route('jadwal-pakan.index')
+deactivate FeedScheduleController
+deactivate FeederCreateView
+
+== Edit Jadwal Feeder ==
+
+Actor -> FeederIndexView : Menekan tombol "edit" pada jadwal tertentu
+activate FeederIndexView
+FeederIndexView -> FeedScheduleController : edit(id)
+activate FeedScheduleController
+
+FeedScheduleController -> FeedScheduleEntity : Find schedule by ID
+activate FeedScheduleEntity
+FeedScheduleEntity --> FeedScheduleController : Objek jadwal
+deactivate FeedScheduleEntity
+
+FeedScheduleController -> ActuatorEntity : Ambil daftar feeder milik user
+activate ActuatorEntity
+ActuatorEntity --> FeedScheduleController : Daftar feeders
+deactivate ActuatorEntity
+
+FeedScheduleController --> FeederEditView : view('jadwal_pakan.edit', data)
+deactivate FeedScheduleController
+deactivate FeederIndexView
+
+Actor -> FeederEditView : Mengubah data jadwal & klik "Update"
+activate FeederEditView
+FeederEditView -> FeedScheduleController : update(request, id)
+activate FeedScheduleController
+
+FeedScheduleController -> FeedScheduleController : validate(request)
+FeedScheduleController -> FeedScheduleEntity : Update schedule
+activate FeedScheduleEntity
+FeedScheduleEntity --> FeedScheduleController : Berhasil memperbarui
+deactivate FeedScheduleEntity
+
+FeedScheduleController --> FeederIndexView : redirect()->route('jadwal-pakan.index')
+deactivate FeedScheduleController
+deactivate FeederEditView
+
+== Delete Jadwal Feeder ==
+
+Actor -> FeederIndexView : Menekan tombol "hapus" & konfirmasi alert
+activate FeederIndexView
+FeederIndexView -> FeedScheduleController : destroy(id)
+activate FeedScheduleController
+
+FeedScheduleController -> FeedScheduleEntity : Delete schedule
+activate FeedScheduleEntity
+FeedScheduleEntity --> FeedScheduleController : Berhasil menghapus
+deactivate FeedScheduleEntity
+
+FeedScheduleController --> FeederIndexView : redirect()->route('jadwal-pakan.index')
+deactivate FeedScheduleController
+deactivate FeederIndexView
+
+@endum

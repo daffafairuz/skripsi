@@ -1,0 +1,53 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "User" as Actor
+boundary "login.blade.php" as LoginView <<Boundary>>
+boundary "user/dashboard.blade.php" as UserDashboard <<Boundary>>
+control "AuthController" as AuthController <<Controller>>
+control "DashboardController" as DashboardController <<Controller>>
+entity "User" as UserEntity <<Entity>>
+entity "Site" as SiteEntity <<Entity>>
+
+== Melihat Halaman Dashboard User ==
+
+Actor -> LoginView : Input email & password, klik "Masuk Sekarang"
+activate LoginView
+LoginView -> AuthController : login(email, password)
+activate AuthController
+
+AuthController -> UserEntity : Auth::attempt(credentials)
+activate UserEntity
+UserEntity --> AuthController : User data (success)
+deactivate UserEntity
+
+AuthController --> Actor : redirect('/dashboard')
+deactivate AuthController
+deactivate LoginView
+
+Actor -> DashboardController : dashboard(...)
+activate DashboardController
+
+DashboardController -> UserEntity : auth(...)->user(...)
+activate UserEntity
+UserEntity --> DashboardController : User (role = "user")
+deactivate UserEntity
+
+DashboardController -> SiteEntity : Query sites belonging to user, devices, sensors, actuator logs
+activate SiteEntity
+SiteEntity --> DashboardController : User stats & site data
+deactivate SiteEntity
+
+DashboardController --> UserDashboard : view('user.dashboard', stats)
+activate UserDashboard
+UserDashboard --> Actor : Tampilkan Halaman Dashboard User
+deactivate UserDashboard
+deactivate DashboardController
+
+@endum

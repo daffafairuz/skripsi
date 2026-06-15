@@ -1,0 +1,93 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "sensors/index.blade.php" as SensorsIndexView <<Boundary>>
+control "SensorController" as SensorController <<Controller>>
+entity "Sensor" as SensorEntity <<Entity>>
+entity "Device" as DeviceEntity <<Entity>>
+
+== View Data Sensor ==
+
+Actor -> SensorsIndexView : Menekan menu "Daftar Sensor" pada sidebar
+activate SensorsIndexView
+SensorsIndexView -> SensorController : index(...)
+activate SensorController
+
+SensorController -> SensorEntity : Sensor::with('device')->latest()->get(...)
+activate SensorEntity
+SensorEntity --> SensorController : Daftar sensor
+deactivate SensorEntity
+
+SensorController -> DeviceEntity : Device::all(...)
+activate DeviceEntity
+DeviceEntity --> SensorController : Daftar devices
+deactivate DeviceEntity
+
+SensorController --> SensorsIndexView : view('sensors.index', data)
+SensorsIndexView --> Actor : Tampilkan Daftar Sensor
+deactivate SensorController
+deactivate SensorsIndexView
+
+== Create Data Sensor ==
+
+Actor -> SensorsIndexView : Klik "Tambah Sensor", isi data, klik "Simpan"
+activate SensorsIndexView
+SensorsIndexView -> SensorController : store(request)
+activate SensorController
+
+SensorController -> SensorController : validate(request)
+
+SensorController -> SensorEntity : Sensor::create(data)
+activate SensorEntity
+SensorEntity --> SensorController : Berhasil menyimpan sensor
+deactivate SensorEntity
+
+SensorController --> SensorsIndexView : redirect('/sensors') dengan status sukses
+SensorsIndexView --> Actor : Tampilkan pesan sukses "Sensor berhasil ditambahkan"
+deactivate SensorController
+deactivate SensorsIndexView
+
+== Edit Data Sensor ==
+
+Actor -> SensorsIndexView : Klik "Edit", ubah data sensor, klik "Update"
+activate SensorsIndexView
+SensorsIndexView -> SensorController : update(request, sensor)
+activate SensorController
+
+SensorController -> SensorController : validate(request)
+
+SensorController -> SensorEntity : $sensor->update(data)
+activate SensorEntity
+SensorEntity --> SensorController : Berhasil memperbarui sensor
+deactivate SensorEntity
+
+SensorController --> SensorsIndexView : redirect('/sensors') dengan status sukses
+SensorsIndexView --> Actor : Tampilkan pesan sukses "Sensor berhasil diperbarui"
+deactivate SensorController
+deactivate SensorsIndexView
+
+== Delete Data Sensor ==
+
+Actor -> SensorsIndexView : Klik "Hapus" pada data tertentu & konfirmasi alert
+activate SensorsIndexView
+SensorsIndexView -> SensorController : destroy(sensor)
+activate SensorController
+
+SensorController -> SensorEntity : $sensor->delete(...)
+activate SensorEntity
+SensorEntity --> SensorController : Berhasil menghapus sensor
+deactivate SensorEntity
+
+SensorController --> SensorsIndexView : redirect('/sensors') dengan status sukses
+SensorsIndexView --> Actor : Tampilkan pesan sukses "Sensor berhasil dihapus"
+deactivate SensorController
+deactivate SensorsIndexView
+
+@endum

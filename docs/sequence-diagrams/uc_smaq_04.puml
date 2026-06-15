@@ -1,0 +1,52 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "login.blade.php" as LoginView <<Boundary>>
+boundary "admin/dashboard.blade.php" as AdminDashboard <<Boundary>>
+control "AuthController" as AuthController <<Controller>>
+control "DashboardController" as DashboardController <<Controller>>
+entity "User" as UserEntity <<Entity>>
+
+== Melihat Halaman Dashboard Admin ==
+
+Actor -> LoginView : Input email & password, klik "Masuk Sekarang"
+activate LoginView
+LoginView -> AuthController : login(email, password)
+activate AuthController
+
+AuthController -> UserEntity : Auth::attempt(credentials)
+activate UserEntity
+UserEntity --> AuthController : User data (success)
+deactivate UserEntity
+
+AuthController --> Actor : redirect('/dashboard')
+deactivate AuthController
+deactivate LoginView
+
+Actor -> DashboardController : dashboard(...)
+activate DashboardController
+
+DashboardController -> UserEntity : auth(...)->user(...)
+activate UserEntity
+UserEntity --> DashboardController : User (role = "admin")
+deactivate UserEntity
+
+DashboardController -> UserEntity : Query total sites, users, devices, sensor data, notifications
+activate UserEntity
+UserEntity --> DashboardController : Admin stats data
+deactivate UserEntity
+
+DashboardController --> AdminDashboard : view('admin.dashboard', stats)
+activate AdminDashboard
+AdminDashboard --> Actor : Tampilkan Halaman Dashboard Admin
+deactivate AdminDashboard
+deactivate DashboardController
+
+@endum

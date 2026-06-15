@@ -1,0 +1,118 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "User" as Actor
+boundary "jadwal_grow_light/index.blade.php" as GrowLightIndexView <<Boundary>>
+boundary "jadwal_grow_light/create.blade.php" as GrowLightCreateView <<Boundary>>
+boundary "jadwal_grow_light/edit.blade.php" as GrowLightEditView <<Boundary>>
+control "GrowLightScheduleController" as GrowLightScheduleController <<Controller>>
+entity "GrowLightSchedule" as GrowLightScheduleEntity <<Entity>>
+entity "Actuator" as ActuatorEntity <<Entity>>
+
+== View Jadwal Grow Light ==
+
+Actor -> GrowLightIndexView : Menekan menu "Jadwal Grow Light" pada sidebar
+activate GrowLightIndexView
+GrowLightIndexView -> GrowLightScheduleController : index(request)
+activate GrowLightScheduleController
+
+GrowLightScheduleController -> GrowLightScheduleEntity : Query schedules by user sites & order by time
+activate GrowLightScheduleEntity
+GrowLightScheduleEntity --> GrowLightScheduleController : Daftar jadwal grow light
+deactivate GrowLightScheduleEntity
+
+GrowLightScheduleController --> GrowLightIndexView : view('jadwal_grow_light.index', data)
+GrowLightIndexView --> Actor : Tampilkan Halaman Jadwal Grow Light
+deactivate GrowLightScheduleController
+deactivate GrowLightIndexView
+
+== Create Jadwal Grow Light ==
+
+Actor -> GrowLightIndexView : Menekan tombol "Tambah Jadwal"
+activate GrowLightIndexView
+GrowLightIndexView -> GrowLightScheduleController : create(...)
+activate GrowLightScheduleController
+
+GrowLightScheduleController -> ActuatorEntity : Ambil daftar grow light milik user
+activate ActuatorEntity
+ActuatorEntity --> GrowLightScheduleController : Daftar grow lights
+deactivate ActuatorEntity
+
+GrowLightScheduleController --> GrowLightCreateView : view('jadwal_grow_light.create', data)
+deactivate GrowLightScheduleController
+deactivate GrowLightIndexView
+
+Actor -> GrowLightCreateView : Mengisi actuator_id, start_time, end_time & klik "Simpan"
+activate GrowLightCreateView
+GrowLightCreateView -> GrowLightScheduleController : store(request)
+activate GrowLightScheduleController
+
+GrowLightScheduleController -> GrowLightScheduleController : validate(request)
+GrowLightScheduleController -> GrowLightScheduleEntity : Create new schedule
+activate GrowLightScheduleEntity
+GrowLightScheduleEntity --> GrowLightScheduleController : Berhasil menyimpan
+deactivate GrowLightScheduleEntity
+
+GrowLightScheduleController --> GrowLightIndexView : redirect()->route('growlight.schedule')
+deactivate GrowLightScheduleController
+deactivate GrowLightCreateView
+
+== Edit Jadwal Grow Light ==
+
+Actor -> GrowLightIndexView : Menekan tombol "edit" pada jadwal tertentu
+activate GrowLightIndexView
+GrowLightIndexView -> GrowLightScheduleController : edit(id)
+activate GrowLightScheduleController
+
+GrowLightScheduleController -> GrowLightScheduleEntity : Find schedule by ID
+activate GrowLightScheduleEntity
+GrowLightScheduleEntity --> GrowLightScheduleController : Objek jadwal
+deactivate GrowLightScheduleEntity
+
+GrowLightScheduleController -> ActuatorEntity : Ambil daftar grow light milik user
+activate ActuatorEntity
+ActuatorEntity --> GrowLightScheduleController : Daftar grow lights
+deactivate ActuatorEntity
+
+GrowLightScheduleController --> GrowLightEditView : view('jadwal_grow_light.edit', data)
+deactivate GrowLightScheduleController
+deactivate GrowLightIndexView
+
+Actor -> GrowLightEditView : Mengubah data jadwal & klik "Update"
+activate GrowLightEditView
+GrowLightEditView -> GrowLightScheduleController : update(request, id)
+activate GrowLightScheduleController
+
+GrowLightScheduleController -> GrowLightScheduleController : validate(request)
+GrowLightScheduleController -> GrowLightScheduleEntity : Update schedule
+activate GrowLightScheduleEntity
+GrowLightScheduleEntity --> GrowLightScheduleController : Berhasil memperbarui
+deactivate GrowLightScheduleEntity
+
+GrowLightScheduleController --> GrowLightIndexView : redirect()->route('growlight.schedule')
+deactivate GrowLightScheduleController
+deactivate GrowLightEditView
+
+== Delete Jadwal Grow Light ==
+
+Actor -> GrowLightIndexView : Menekan tombol "hapus" & konfirmasi alert
+activate GrowLightIndexView
+GrowLightIndexView -> GrowLightScheduleController : destroy(id)
+activate GrowLightScheduleController
+
+GrowLightScheduleController -> GrowLightScheduleEntity : Delete schedule
+activate GrowLightScheduleEntity
+GrowLightScheduleEntity --> GrowLightScheduleController : Berhasil menghapus
+deactivate GrowLightScheduleEntity
+
+GrowLightScheduleController --> GrowLightIndexView : redirect()->route('growlight.schedule')
+deactivate GrowLightScheduleController
+deactivate GrowLightIndexView
+
+@endum

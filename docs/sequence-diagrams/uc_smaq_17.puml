@@ -1,0 +1,68 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "User" as Actor
+boundary "actuator_control.blade.php" as ActuatorControlView <<Boundary>>
+control "ActuatorControlController" as ActuatorControlController <<Controller>>
+entity "Actuator" as ActuatorEntity <<Entity>>
+entity "ActuatorLog" as ActuatorLogEntity <<Entity>>
+control "MqttService" as MqttService <<Controller>>
+
+== View Kontrol Perangkat ==
+
+Actor -> ActuatorControlView : Menekan menu "Kontrol Perangkat" pada sidebar
+activate ActuatorControlView
+ActuatorControlView -> ActuatorControlController : index(request)
+activate ActuatorControlController
+
+ActuatorControlController -> ActuatorEntity : Query actuators with latest status logs
+activate ActuatorEntity
+ActuatorEntity --> ActuatorControlController : Daftar status aktuator
+deactivate ActuatorEntity
+
+ActuatorControlController --> ActuatorControlView : view('actuator_control', data)
+ActuatorControlView --> Actor : Tampilkan Halaman Kontrol Perangkat
+deactivate ActuatorControlController
+deactivate ActuatorControlView
+
+== Mengaktifkan / Menonaktifkan Aktuator ==
+
+Actor -> ActuatorControlView : Menekan tombol "Nyalakan" / "Matikan" pada aktuator tertentu
+activate ActuatorControlView
+ActuatorControlView -> ActuatorControlController : toggle(request, id)
+activate ActuatorControlController
+
+ActuatorControlController -> ActuatorEntity : Find actuator by ID
+activate ActuatorEntity
+ActuatorEntity --> ActuatorControlController : Objek aktuator
+deactivate ActuatorEntity
+
+ActuatorControlController -> ActuatorEntity : Ambil logs status terakhir
+activate ActuatorEntity
+ActuatorEntity --> ActuatorControlController : Status terakhir (on / off)
+deactivate ActuatorEntity
+
+ActuatorControlController -> ActuatorControlController : Tentukan status baru (newState)
+
+ActuatorControlController -> ActuatorLogEntity : Create log (actuator_id, action = newState, triggered_by = "manual")
+activate ActuatorLogEntity
+ActuatorLogEntity --> ActuatorControlController : Berhasil membuat log
+deactivate ActuatorLogEntity
+
+ActuatorControlController -> MqttService : publishDeviceConfig(device)
+activate MqttService
+MqttService --> ActuatorControlController : Publikasi berhasil
+deactivate MqttService
+
+ActuatorControlController --> ActuatorControlView : redirect()->back() dengan status sukses
+ActuatorControlView --> Actor : Refresh halaman & tampilkan status baru aktuator
+deactivate ActuatorControlController
+deactivate ActuatorControlView
+
+@endum

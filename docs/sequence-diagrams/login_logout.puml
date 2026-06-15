@@ -1,0 +1,86 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin / User" as Actor
+boundary "login.blade.php" as LoginView <<Boundary>>
+boundary "admin/dashboard.blade.php" as AdminDashboard <<Boundary>>
+boundary "user/dashboard.blade.php" as UserDashboard <<Boundary>>
+control "AuthController" as AuthController <<Controller>>
+control "DashboardController" as DashboardController <<Controller>>
+entity "User" as UserEntity <<Entity>>
+
+== Aktivitas Login ==
+
+Actor -> LoginView : Mengakses halaman login (/login)
+activate LoginView
+LoginView --> Actor : Tampilkan Halaman Login
+deactivate LoginView
+
+Actor -> LoginView : Input email & password, klik "Masuk"
+activate LoginView
+LoginView -> AuthController : login(email, password)
+activate AuthController
+
+AuthController -> UserEntity : Auth::attempt(credentials)
+activate UserEntity
+UserEntity --> AuthController : User data (success)
+deactivate UserEntity
+
+AuthController --> Actor : redirect('/dashboard')
+deactivate AuthController
+deactivate LoginView
+
+Actor -> DashboardController : dashboard(...)
+activate DashboardController
+
+DashboardController -> UserEntity : auth(...)->user(...)
+activate UserEntity
+UserEntity --> DashboardController : User (role & data)
+deactivate UserEntity
+
+alt Role == "admin"
+    DashboardController --> AdminDashboard : view('admin.dashboard', data)
+    activate AdminDashboard
+    AdminDashboard --> Actor : Tampilkan Halaman Dashboard Admin
+    deactivate AdminDashboard
+else Role == "user"
+    DashboardController --> UserDashboard : view('user.dashboard', data)
+    activate UserDashboard
+    UserDashboard --> Actor : Tampilkan Halaman Dashboard User
+    deactivate UserDashboard
+end
+deactivate DashboardController
+
+== Aktivitas Logout ==
+
+alt Aktor berada di Dashboard Admin
+    Actor -> AdminDashboard : Klik tombol logout
+    activate AdminDashboard
+    AdminDashboard -> AuthController : logout(...)
+    activate AuthController
+    deactivate AdminDashboard
+else Aktor berada di Dashboard User
+    Actor -> UserDashboard : Klik tombol logout
+    activate UserDashboard
+    UserDashboard -> AuthController : logout(...)
+    activate AuthController
+    deactivate UserDashboard
+end
+
+AuthController -> AuthController : Auth::logout(...), session(...)->invalidate(...)
+
+AuthController --> Actor : redirect('/login')
+deactivate AuthController
+
+Actor -> LoginView : GET /login (Setelah redirect)
+activate LoginView
+LoginView --> Actor : Tampilkan Halaman Login
+deactivate LoginView
+
+@endum

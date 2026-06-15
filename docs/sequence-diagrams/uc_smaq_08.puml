@@ -1,0 +1,66 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin" as Actor
+boundary "admin/devices/index.blade.php" as DevicesIndexView <<Boundary>>
+control "SiteDeviceController" as SiteDeviceController <<Controller>>
+control "SiteDeviceService" as SiteDeviceService <<Controller>>
+entity "Site" as SiteEntity <<Entity>>
+entity "Device" as DeviceEntity <<Entity>>
+
+== Menghubungkan Site dengan Device ==
+
+Actor -> DevicesIndexView : Menekan menu "Devices" pada sidebar & diarahkan ke halaman devices
+activate DevicesIndexView
+Actor -> DevicesIndexView : Memilih site dan device, klik tombol "Hubungkan"
+DevicesIndexView -> SiteDeviceController : attach(request)
+activate SiteDeviceController
+
+SiteDeviceController -> SiteDeviceController : validate(request)
+
+SiteDeviceController -> SiteEntity : Site::findOrFail(site_id)
+activate SiteEntity
+SiteEntity --> SiteDeviceController : Objek Site
+deactivate SiteEntity
+
+SiteDeviceController -> DeviceEntity : Device::findOrFail(device_id)
+activate DeviceEntity
+DeviceEntity --> SiteDeviceController : Objek Device
+deactivate DeviceEntity
+
+SiteDeviceController -> SiteDeviceService : attachDevice(site, device)
+activate SiteDeviceService
+SiteDeviceService -> SiteEntity : Menghubungkan device ke site (update database)
+SiteDeviceService --> SiteDeviceController : Berhasil menghubungkan
+deactivate SiteDeviceService
+
+SiteDeviceController --> DevicesIndexView : redirect()->back() dengan status sukses
+DevicesIndexView --> Actor : Tampilkan pesan "Device berhasil dihubungkan"
+deactivate SiteDeviceController
+deactivate DevicesIndexView
+
+== Melepaskan Site dengan Device ==
+
+Actor -> DevicesIndexView : Klik tombol "Copot dari Site" & konfirmasi alert
+activate DevicesIndexView
+DevicesIndexView -> SiteDeviceController : destroy(site, device)
+activate SiteDeviceController
+
+SiteDeviceController -> SiteDeviceService : detachDevice(site, device)
+activate SiteDeviceService
+SiteDeviceService -> SiteEntity : Melepaskan device dari site (update database)
+SiteDeviceService --> SiteDeviceController : Berhasil melepaskan
+deactivate SiteDeviceService
+
+SiteDeviceController --> DevicesIndexView : redirect()->back() dengan status sukses
+DevicesIndexView --> Actor : Tampilkan pesan "Device berhasil dicopot"
+deactivate SiteDeviceController
+deactivate DevicesIndexView
+
+@endum

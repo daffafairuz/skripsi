@@ -1,0 +1,49 @@
+@startuml
+autonumber
+skinparam style strictuml
+skinparam BackgroundColor #FFFFFF
+skinparam ActorBorderColor #005A9C
+skinparam ControlBorderColor #D32F2F
+skinparam BoundaryBorderColor #388E3C
+skinparam EntityBorderColor #F57C00
+
+actor "Admin / User" as Actor
+boundary "notification.blade.php" as NotificationView <<Boundary>>
+control "NotificationController" as NotificationController <<Controller>>
+entity "User" as UserEntity <<Entity>>
+entity "Notification" as NotificationEntity <<Entity>>
+
+== Mendapatkan Notifikasi dari Sistem ==
+
+Actor -> NotificationView : Menekan menu "Notifikasi" pada sidebar
+activate NotificationView
+NotificationView -> NotificationController : index(...)
+activate NotificationController
+
+NotificationController -> UserEntity : Auth::user(...)
+activate UserEntity
+UserEntity --> NotificationController : Mengembalikan objek User
+deactivate UserEntity
+
+alt Pengguna adalah Admin
+    NotificationController -> NotificationEntity : Query all notifications & update as read
+    activate NotificationEntity
+    NotificationEntity --> NotificationController : Daftar notifikasi
+    deactivate NotificationEntity
+else Pengguna adalah User biasa
+    NotificationController -> UserEntity : sites() (Ambil site_id yang dimiliki user)
+    activate UserEntity
+    UserEntity --> NotificationController : Daftar Site ID
+    deactivate UserEntity
+    NotificationController -> NotificationEntity : Query notifications by site_id & update as read
+    activate NotificationEntity
+    NotificationEntity --> NotificationController : Daftar notifikasi
+    deactivate NotificationEntity
+end
+
+NotificationController --> NotificationView : view('notification', data)
+NotificationView --> Actor : Tampilkan Halaman Notifikasi
+deactivate NotificationController
+deactivate NotificationView
+
+@endum
