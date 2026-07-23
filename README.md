@@ -107,7 +107,7 @@ Sebelum menjalankan aplikasi, pastikan perangkat Anda telah terinstal:
    MQTT_TOPIC=aquaponic/device/data
 
    API_URL=http://127.0.0.1:8000/api/sensor-alert
-   SENSOR_ALERT_SECRET=RAHASIA_ANDA_MINIMAL_32_KARAKTER
+   SENSOR_ALERT_SECRET=...
    FONTE_TOKEN=TOKEN_FONNTE_ANDA
    ```
 
