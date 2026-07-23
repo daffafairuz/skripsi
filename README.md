@@ -65,9 +65,9 @@ Sebelum menjalankan aplikasi, pastikan perangkat Anda telah terinstal:
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
-   DB_DATABASE=skripsi_daffa
+   DB_DATABASE=nama_database_anda
    DB_USERNAME=root
-   DB_PASSWORD=
+   DB_PASSWORD=password_database_anda
    ```
 6. Generate application key:
    ```bash
@@ -98,17 +98,17 @@ Sebelum menjalankan aplikasi, pastikan perangkat Anda telah terinstal:
    ```env
    DB_HOST=127.0.0.1
    DB_USER=root
-   DB_PASSWORD=
-   DB_NAME=skripsi_daffa
+   DB_PASSWORD=password_database_anda
+   DB_NAME=nama_database_anda
 
-   MQTT_URL=mqtts://d1d3bb1af2324fe8893ca5b4d8ff18c3.s1.eu.hivemq.cloud:8883
-   MQTT_USERNAME=aquaponic
-   MQTT_PASSWORD=Aquaponic1
+   MQTT_URL=mqtts://BROKER_URL_ANDA:8883
+   MQTT_USERNAME=USERNAME_MQTT_ANDA
+   MQTT_PASSWORD=PASSWORD_MQTT_ANDA
    MQTT_TOPIC=aquaponic/device/data
 
    API_URL=http://127.0.0.1:8000/api/sensor-alert
-   SENSOR_ALERT_SECRET=197b8df18e58491cbc422709d7eb315f
-   FONTE_TOKEN=EFAt7UpAcLHe3Xyp2Pjh
+   SENSOR_ALERT_SECRET=RAHASIA_ANDA_MINIMAL_32_KARAKTER
+   FONTE_TOKEN=TOKEN_FONNTE_ANDA
    ```
 
 ---
@@ -335,8 +335,8 @@ Alur ini berjalan ketika pengguna berinteraksi dengan antarmuka web Laravel untu
 | `APP_KEY` | `base64:...` | Kunci enkripsi Laravel (sangat penting untuk keamanan sesi) |
 | `DB_CONNECTION` | `mysql` | Driver database relasional yang digunakan |
 | `DB_HOST` | `127.0.0.1` | Alamat IP atau hostname MySQL server |
-| `DB_DATABASE` | `skripsi_daffa` | Nama database skripsi |
-| `SENSOR_ALERT_SECRET` | `197b8df18e58491cbc...` | Token rahasia pengaman webhook API agar tidak ditembak sembarang entitas |
+| `DB_DATABASE` | `nama_database_anda` | Nama database yang digunakan |
+| `SENSOR_ALERT_SECRET` | `buat-string-acak-min-32-karakter` | Token rahasia pengaman webhook API agar tidak ditembak sembarang entitas |
 | `NODE_MQTT_API_URL` | `http://127.0.0.1:5000/publish-config` | Endpoint HTTP Node.js bridge untuk mempublish konfigurasi aktuator |
 | `NODE_MQTT_SYNC_URL` | `http://127.0.0.1:5000/publish-master-sync` | Endpoint HTTP Node.js bridge untuk mempublish sinkronisasi master-slave |
 
@@ -345,12 +345,12 @@ Alur ini berjalan ketika pengguna berinteraksi dengan antarmuka web Laravel untu
 | :--- | :--- | :--- |
 | `DB_HOST` | `localhost` | Alamat database MySQL |
 | `DB_USER` | `root` | Username MySQL |
-| `DB_NAME` | `skripsi_daffa` | Nama database target penyimpanan telemetri |
-| `MQTT_URL` | `mqtts://...:8883` | URI broker MQTT (gunakan `mqtts` jika menggunakan TLS pada port 8883) |
+| `DB_NAME` | `nama_database_anda` | Nama database target penyimpanan telemetri |
+| `MQTT_URL` | `mqtts://URL_BROKER_ANDA:8883` | URI broker MQTT (gunakan `mqtts` jika menggunakan TLS pada port 8883) |
 | `MQTT_TOPIC` | `aquaponic/device/data` | Topik utama di mana ESP32 mengirim data telemetri |
 | `API_URL` | `http://127.0.0.1:8000/api/sensor-alert` | Endpoint balik ke Laravel untuk pendaftaran alert |
-| `SENSOR_ALERT_SECRET` | `197b8df18e58491cbc...` | Harus bernilai sama dengan `SENSOR_ALERT_SECRET` di Laravel |
-| `FONTE_TOKEN` | `EFAt7UpAcLHe...` | Token otentikasi API Fonnte untuk pengiriman notifikasi WhatsApp |
+| `SENSOR_ALERT_SECRET` | `buat-string-acak-min-32-karakter` | Harus bernilai sama dengan `SENSOR_ALERT_SECRET` di Laravel |
+| `FONTE_TOKEN` | `TOKEN_DARI_DASHBOARD_FONNTE` | Token otentikasi API Fonnte untuk pengiriman notifikasi WhatsApp |
 
 ---
 
