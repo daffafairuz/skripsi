@@ -432,7 +432,7 @@ Hubungan komunikasi antar modul sistem dapat divisualisasikan melalui diagram Me
 
 ```mermaid
 graph TD
-    User([Pengguna/Petani]) <--> |HTTP/HTML| Laravel[Aplikasi Web Laravel]
+    User(Pengguna) <--> |HTTP| Laravel[Aplikasi Web Laravel]
     Laravel <--> |ORM Eloquent| MySQL[(MySQL Database)]
     Laravel --> |HTTP POST config| Express[Express Server Node.js]
     Express <--> |Publish/Subscribe| HiveMQ{Broker HiveMQ Cloud}
