@@ -7,131 +7,146 @@ Dokumentasi ini ditujukan sebagai panduan teknis bagi software engineer yang aka
 ## 1. Gambaran Proyek
 
 ### Tujuan Aplikasi
-Sistem **Smart Aquaponic** dirancang untuk melakukan pemantauan (*monitoring*) parameter telemetri lingkungan aquaponic secara *real-time* serta mengontrol aktuator (pompa, lampu penumbuh tanaman, pemberi pakan otomatis, aerator) baik secara terjadwal maupun manual melalui antarmuka web. Hal ini meminimalkan intervensi manual dan menjaga stabilitas ekosistem aquaponic demi meningkatkan produktivitas hasil budidaya ikan dan tanaman.
+
+Sistem **Smart Aquaponic** dirancang untuk melakukan pemantauan (_monitoring_) parameter telemetri lingkungan aquaponic secara _real-time_ serta mengontrol aktuator (pompa, lampu penumbuh tanaman, pemberi pakan otomatis, aerator) baik secara terjadwal maupun manual melalui antarmuka web. Hal ini meminimalkan intervensi manual dan menjaga stabilitas ekosistem aquaponic demi meningkatkan produktivitas hasil budidaya ikan dan tanaman.
 
 ### Teknologi yang Digunakan
-Sistem ini menggunakan arsitektur layanan ganda (*dual-service*) yang terdiri dari aplikasi web utama (backend & frontend) dan layanan penghubung MQTT (*MQTT bridge*):
 
-*   **Aplikasi Web Utama (Laravel Stack)**:
-    *   **Core**: Laravel 11.x (PHP 8.2+)
-    *   **Frontend**: Tailwind CSS (styling), Alpine.js (interaksi UI/Client-side state), Vite (asset bundler)
-    *   **Database**: MySQL/MariaDB (untuk data relasional)
-*   **Layanan Penghubung (MQTT Listener & Bridge)**:
-    *   **Core**: Node.js (Express & MQTT.js)
-    *   **API Client**: Axios (untuk panggilan API balik ke Laravel)
-    *   **Database Client**: `mysql2/promise` (koneksi langsung ke database MySQL untuk penulisan data performa tinggi)
-*   **Protokol & Broker**:
-    *   **Protokol**: MQTT (Message Queuing Telemetry Transport)
-    *   **Broker**: HiveMQ Cloud (koneksi secure port `8883` dengan enkripsi TLS)
-*   **Notifikasi & Integrasi**:
-    *   **Email**: Laravel Mail (SMTP / `NotificationMail` template)
-    *   **WhatsApp**: Integrasi gateway API Fonnte via HTTP request
+Sistem ini menggunakan arsitektur layanan ganda (_dual-service_) yang terdiri dari aplikasi web utama (backend & frontend) dan layanan penghubung MQTT (_MQTT bridge_):
+
+- **Aplikasi Web Utama (Laravel Stack)**:
+    - **Core**: Laravel 11.x (PHP 8.2+)
+    - **Frontend**: Tailwind CSS (styling), Alpine.js (interaksi UI/Client-side state), Vite (asset bundler)
+    - **Database**: MySQL/MariaDB (untuk data relasional)
+- **Layanan Penghubung (MQTT Listener & Bridge)**:
+    - **Core**: Node.js (Express & MQTT.js)
+    - **API Client**: Axios (untuk panggilan API balik ke Laravel)
+    - **Database Client**: `mysql2/promise` (koneksi langsung ke database MySQL untuk penulisan data performa tinggi)
+- **Protokol & Broker**:
+    - **Protokol**: MQTT (Message Queuing Telemetry Transport)
+    - **Broker**: HiveMQ Cloud (koneksi secure port `8883` dengan enkripsi TLS)
+- **Notifikasi & Integrasi**:
+    - **Email**: Laravel Mail (SMTP / `NotificationMail` template)
+    - **WhatsApp**: Integrasi gateway API Fonnte via HTTP request
 
 ### Arsitektur Singkat Aplikasi
-Proyek ini mengadopsi pola arsitektur **hybrid-decoupled**. Laravel bertindak sebagai penyedia antarmuka konfigurasi, pengelolaan jadwal, visualisasi data analitik, dan autentikasi pengguna. Sementara itu, Node.js bertindak sebagai *middleware* jembatan (*bridge*) asinkron yang menangani aliran data sensor berkecepatan tinggi dari mikrokontroler (ESP32) ke database dan meneruskan perintah kontrol aktuator dari Laravel ke jaringan MQTT.
+
+Proyek ini mengadopsi pola arsitektur **hybrid-decoupled**. Laravel bertindak sebagai penyedia antarmuka konfigurasi, pengelolaan jadwal, visualisasi data analitik, dan autentikasi pengguna. Sementara itu, Node.js bertindak sebagai _middleware_ jembatan (_bridge_) asinkron yang menangani aliran data sensor berkecepatan tinggi dari mikrokontroler (ESP32) ke database dan meneruskan perintah kontrol aktuator dari Laravel ke jaringan MQTT.
 
 ---
 
 ## 2. Cara Menjalankan Project
 
 ### Requirement
+
 Sebelum menjalankan aplikasi, pastikan perangkat Anda telah terinstal:
-*   PHP >= 8.2 (dengan ekstensi `pdo_mysql`, `curl`, `json`, `mbstring` aktif)
-*   Composer >= 2.x
-*   Node.js >= 18.x & NPM >= 9.x
-*   MySQL Server / MariaDB Server
-*   Akses ke Broker MQTT (HiveMQ Cloud / Broker MQTT Publik seperti Mosquitto)
+
+- PHP >= 8.2 (dengan ekstensi `pdo_mysql`, `curl`, `json`, `mbstring` aktif)
+- Composer >= 2.x
+- Node.js >= 18.x & NPM >= 9.x
+- MySQL Server / MariaDB Server
+- Akses ke Broker MQTT (HiveMQ Cloud / Broker MQTT Publik seperti Mosquitto)
 
 ---
 
 ### Instalasi & Setup
 
 #### Langkah 1: Setup Proyek Utama (Laravel)
-1. Buka terminal pada root direktori proyek.
-2. Instal semua dependensi PHP dengan Composer:
-   ```bash
-   composer install
-   ```
-3. Instal dependensi frontend Node.js:
-   ```bash
-   npm install
-   ```
-4. Salin berkas konfigurasi `.env`:
-   ```bash
-   copy .env.example .env
-   ```
-5. Buka berkas `.env` dan konfigurasikan koneksi database Anda:
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=nama_database_anda
-   DB_USERNAME=root
-   DB_PASSWORD=password_database_anda
-   ```
-6. Generate application key:
-   ```bash
-   php artisan key:generate
-   ```
-7. Jalankan migrasi database beserta data seeding awal (*seeder*):
-   ```bash
-   php artisan migrate --seed
-   ```
-   *Catatan Seeding*: Seeder akan membuat data dummy yang siap digunakan untuk login:
-   *   **Akun Admin**: `admin@gmail.com` | Password: `password`
-   *   **Akun User**: `budi.santoso@gmail.com` | Password: `password`
+
+1. Lakukan Clone dengan melakukan
+    ```bash
+    git clone https://github.com/daffafairuz/skripsi
+    ```
+2. Buka terminal pada root direktori proyek.
+3. Instal semua dependensi PHP dengan Composer:
+    ```bash
+    composer install
+    ```
+4. Instal dependensi frontend Node.js:
+    ```bash
+    npm install
+    ```
+5. Salin berkas konfigurasi `.env`:
+    ```bash
+    copy .env.example .env
+    ```
+6. Buka berkas `.env` dan konfigurasikan koneksi database Anda:
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=nama_database_anda
+    DB_USERNAME=root
+    DB_PASSWORD=password_database_anda
+    ```
+7. Generate application key:
+    ```bash
+    php artisan key:generate
+    ```
+8. Jalankan migrasi database beserta data seeding awal (_seeder_):
+    ```bash
+    php artisan migrate --seed
+    ```
+    _Catatan Seeding_: Seeder akan membuat data dummy yang siap digunakan untuk login:
+    - **Akun Admin**: `admin@gmail.com` | Password: `password`
+    - **Akun User**: `budi.santoso@gmail.com` | Password: `password`
 
 #### Langkah 2: Setup Layanan MQTT Bridge (Node.js)
+
 1. Pindah ke direktori layanan MQTT listener:
-   ```bash
-   cd mqtt-listener
-   ```
+    ```bash
+    cd mqtt-listener
+    ```
 2. Instal dependensi Node.js:
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 3. Salin berkas konfigurasi `.env`:
-   ```bash
-   copy .env.example .env
-   ```
+    ```bash
+    copy .env.example .env
+    ```
 4. Sesuaikan konfigurasi koneksi database dan broker MQTT pada berkas `mqtt-listener/.env`:
-   ```env
-   DB_HOST=127.0.0.1
-   DB_USER=root
-   DB_PASSWORD=password_database_anda
-   DB_NAME=nama_database_anda
 
-   MQTT_URL=mqtts://BROKER_URL_ANDA:8883
-   MQTT_USERNAME=USERNAME_MQTT_ANDA
-   MQTT_PASSWORD=PASSWORD_MQTT_ANDA
-   MQTT_TOPIC=aquaponic/device/data
+    ```env
+    DB_HOST=127.0.0.1
+    DB_USER=root
+    DB_PASSWORD=password_database_anda
+    DB_NAME=nama_database_anda
 
-   API_URL=http://127.0.0.1:8000/api/sensor-alert
-   SENSOR_ALERT_SECRET=...
-   FONTE_TOKEN=TOKEN_FONNTE_ANDA
-   ```
+    MQTT_URL=mqtts://BROKER_URL_ANDA:8883
+    MQTT_USERNAME=USERNAME_MQTT_ANDA
+    MQTT_PASSWORD=PASSWORD_MQTT_ANDA
+    MQTT_TOPIC=aquaponic/device/data
+
+    API_URL=http://127.0.0.1:8000/api/sensor-alert
+    SENSOR_ALERT_SECRET=...
+    FONTE_TOKEN=TOKEN_FONNTE_ANDA
+    ```
 
 ---
 
 ### Menjalankan Project dalam Mode Pengembangan (Dev)
 
-Kembali ke direktori root proyek (`d:\www-laravel\skripsi`), Anda dapat menjalankan proyek secara bersamaan (*concurrently*) menggunakan perintah *composer script* yang sudah disediakan di `composer.json`:
+Kembali ke direktori root proyek (`d:\www-laravel\skripsi`), Anda dapat menjalankan proyek secara bersamaan (_concurrently_) menggunakan perintah _composer script_ yang sudah disediakan di `composer.json`:
 
 ```bash
 composer run dev
 ```
 
 Perintah di atas akan menjalankan secara simultan:
+
 1.  **Web Server Laravel**: di `http://127.0.0.1:8000`
 2.  **Laravel Queue Listener**: memproses antrean email secara asinkron
 3.  **Laravel Pail**: logging real-time di terminal
 4.  **Vite Server**: melakukan kompilasi asset frontend (Tailwind) secara hot-reload
 
 Untuk menjalankan **Node.js MQTT Bridge** (di terminal terpisah):
+
 ```bash
 cd mqtt-listener
 node app.js
 ```
+
 Akan menjalankan server Node.js pada port `5000` (default) dan mulai mendengarkan pesan dari broker MQTT HiveMQ.
 
 ---
@@ -173,29 +188,30 @@ skripsi/
 
 Gunakan tabel referensi berikut untuk mengetahui bagian kode mana yang harus Anda modifikasi ketika ingin menambah atau mengubah fungsionalitas sistem:
 
-| Saya ingin mengubah... | File / Folder yang perlu diedit | Penjelasan |
-| :--- | :--- | :--- |
-| **Tampilan Halaman Login** | [login.blade.php](file:///d:/www-laravel/skripsi/resources/views/login.blade.php) | Mengedit tata letak dan UI form login |
-| **Navbar & Sidebar Utama** | [app.blade.php](file:///d:/www-laravel/skripsi/resources/views/layouts/app.blade.php) | Navigasi menu navigasi untuk role admin & user (menggunakan Alpine.js) |
-| **Logic Dashboard Admin/User** | [DashboardController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/DashboardController.php) | Perhitungan statistik, filter rentang waktu, dan pengambilan telemetri terkini |
-| **Tampilan Dashboard User** | [user/dashboard.blade.php](file:///d:/www-laravel/skripsi/resources/views/user/dashboard.blade.php) | Widget telemetri, tabel sensor, dan visualisasi chart |
-| **Chart Grafik Sensor** | [DashboardController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/DashboardController.php#L183) | Modifikasi data JSON endpoint `/chart-data` dan skema warna visualisasi |
-| **Rute Aplikasi (Web/API)** | [routes/web.php](file:///d:/www-laravel/skripsi/routes/web.php) & [routes/api.php](file:///d:/www-laravel/skripsi/routes/api.php) | Pendaftaran endpoint routing baru |
-| **Logika Autentikasi** | [AuthController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/AuthController.php) | Proses login, logout, dan pengecekan status akun (active/inactive) |
-| **Kontrol Aktuator Manual** | [ActuatorControlController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/ActuatorControlController.php) | Aksi *toggle* ON/OFF dari web, pembuatan log, dan *trigger* ke MQTT bridge |
-| **Penjadwalan Pakan (Feeder)**| [FeedScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/FeedScheduleController.php) | CRUD jadwal pakan, validasi overlap jadwal, dan sinkronisasi ke ESP32 |
-| **Penjadwalan Grow Light** | [GrowLightScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/GrowLightScheduleController.php) | CRUD jadwal grow light (waktu mulai/selesai) dan sinkronisasi ke ESP32 |
-| **Struktur Database (Tabel)** | [database/migrations/](file:///d:/www-laravel/skripsi/database/migrations) | Penambahan kolom, relasi tabel asing (*foreign keys*), atau pembuatan tabel baru |
-| **Relasi & Model Data** | [app/Models/](file:///d:/www-laravel/skripsi/app/Models) | Modifikasi model Eloquent (relasi *HasMany*, *BelongsTo*, dsb.) |
-| **Penghubung MQTT (Node.js)** | [mqtt-listener/app.js](file:///d:/www-laravel/skripsi/mqtt-listener/app.js) | Penanganan parsing payload JSON dari ESP32, integrasi webhook Fonnte WhatsApp |
-| **Endpoint Webhook Alert** | [NotificationController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/NotificationController.php#L70) | Validasi secret token alert, penyimpanan notifikasi, dan trigger kirim email |
-| **Desain Email Notifikasi** | [NotificationMail.php](file:///d:/www-laravel/skripsi/app/Mail/NotificationMail.php) & [emails/notification.blade.php](file:///d:/www-laravel/skripsi/resources/views/emails/notification.blade.php) | Template desain email alert yang dikirim ke user |
+| Saya ingin mengubah...         | File / Folder yang perlu diedit                                                                                                                                                                      | Penjelasan                                                                       |
+| :----------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| **Tampilan Halaman Login**     | [login.blade.php](file:///d:/www-laravel/skripsi/resources/views/login.blade.php)                                                                                                                    | Mengedit tata letak dan UI form login                                            |
+| **Navbar & Sidebar Utama**     | [app.blade.php](file:///d:/www-laravel/skripsi/resources/views/layouts/app.blade.php)                                                                                                                | Navigasi menu navigasi untuk role admin & user (menggunakan Alpine.js)           |
+| **Logic Dashboard Admin/User** | [DashboardController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/DashboardController.php)                                                                                               | Perhitungan statistik, filter rentang waktu, dan pengambilan telemetri terkini   |
+| **Tampilan Dashboard User**    | [user/dashboard.blade.php](file:///d:/www-laravel/skripsi/resources/views/user/dashboard.blade.php)                                                                                                  | Widget telemetri, tabel sensor, dan visualisasi chart                            |
+| **Chart Grafik Sensor**        | [DashboardController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/DashboardController.php#L183)                                                                                          | Modifikasi data JSON endpoint `/chart-data` dan skema warna visualisasi          |
+| **Rute Aplikasi (Web/API)**    | [routes/web.php](file:///d:/www-laravel/skripsi/routes/web.php) & [routes/api.php](file:///d:/www-laravel/skripsi/routes/api.php)                                                                    | Pendaftaran endpoint routing baru                                                |
+| **Logika Autentikasi**         | [AuthController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/AuthController.php)                                                                                                         | Proses login, logout, dan pengecekan status akun (active/inactive)               |
+| **Kontrol Aktuator Manual**    | [ActuatorControlController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/ActuatorControlController.php)                                                                                   | Aksi _toggle_ ON/OFF dari web, pembuatan log, dan _trigger_ ke MQTT bridge       |
+| **Penjadwalan Pakan (Feeder)** | [FeedScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/FeedScheduleController.php)                                                                                         | CRUD jadwal pakan, validasi overlap jadwal, dan sinkronisasi ke ESP32            |
+| **Penjadwalan Grow Light**     | [GrowLightScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/GrowLightScheduleController.php)                                                                               | CRUD jadwal grow light (waktu mulai/selesai) dan sinkronisasi ke ESP32           |
+| **Struktur Database (Tabel)**  | [database/migrations/](file:///d:/www-laravel/skripsi/database/migrations)                                                                                                                           | Penambahan kolom, relasi tabel asing (_foreign keys_), atau pembuatan tabel baru |
+| **Relasi & Model Data**        | [app/Models/](file:///d:/www-laravel/skripsi/app/Models)                                                                                                                                             | Modifikasi model Eloquent (relasi _HasMany_, _BelongsTo_, dsb.)                  |
+| **Penghubung MQTT (Node.js)**  | [mqtt-listener/app.js](file:///d:/www-laravel/skripsi/mqtt-listener/app.js)                                                                                                                          | Penanganan parsing payload JSON dari ESP32, integrasi webhook Fonnte WhatsApp    |
+| **Endpoint Webhook Alert**     | [NotificationController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/NotificationController.php#L70)                                                                                     | Validasi secret token alert, penyimpanan notifikasi, dan trigger kirim email     |
+| **Desain Email Notifikasi**    | [NotificationMail.php](file:///d:/www-laravel/skripsi/app/Mail/NotificationMail.php) & [emails/notification.blade.php](file:///d:/www-laravel/skripsi/resources/views/emails/notification.blade.php) | Template desain email alert yang dikirim ke user                                 |
 
 ---
 
 ## 5. Penjelasan Alur Aplikasi
 
 ### A. Aliran Uplink (Penerimaan Data Telemetri Sensor)
+
 Alur ini berjalan secara asinkron saat modul mikrokontroler (ESP32) mengirimkan data pembacaan sensor ke server:
 
 ```
@@ -209,7 +225,7 @@ Alur ini berjalan secara asinkron saat modul mikrokontroler (ESP32) mengirimkan 
      │
      ├─► [MySQL Database] (Tulis langsung ke tabel 'data_sensors' secara performan)
      │
-     └─► [Ambangan Threshold Terlampaui?] 
+     └─► [Ambangan Threshold Terlampaui?]
               │ (Ya)
               ▼
          [Kirim HTTP POST Alert] (Headers: X-Sensor-Alert-Secret)
@@ -225,6 +241,7 @@ Alur ini berjalan secara asinkron saat modul mikrokontroler (ESP32) mengirimkan 
 ---
 
 ### B. Aliran Downlink (Kontrol Aktuator & Sinkronisasi Jadwal)
+
 Alur ini berjalan ketika pengguna berinteraksi dengan antarmuka web Laravel untuk mengontrol aktuator atau mengubah jadwal:
 
 ```
@@ -254,114 +271,124 @@ Alur ini berjalan ketika pengguna berinteraksi dengan antarmuka web Laravel untu
 ## 6. Penjelasan Setiap Fitur
 
 ### 1. Dashboard & Telemetri Real-time
-*   **Lokasi**: [DashboardController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/DashboardController.php) & [user/dashboard.blade.php](file:///d:/www-laravel/skripsi/resources/views/user/dashboard.blade.php)
-*   **Komponen Utama**: Chart.js (grafik garis telemetri), widget status sensor (merah jika abnormal, hijau jika normal).
-*   **Logic Utama**:
-    *   Metode `applyConnectionPeriodFilter` menyaring data sensor historis agar hanya menampilkan data di mana perangkat aktif terasosiasi dengan Site tertentu berdasarkan tabel pivot `site_devices` (menghindari kebocoran data antar site atau antar masa asosiasi perangkat).
-    *   Metode `chartData` mengembalikan 15 titik data terbaru dalam format JSON untuk dirender ke Chart.
-*   **File Berhubungan**:
-    *   `app/Models/DataSensor.php`
-    *   `app/Models/Sensor.php`
-*   **Cara melakukan perubahan**:
+
+- **Lokasi**: [DashboardController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/DashboardController.php) & [user/dashboard.blade.php](file:///d:/www-laravel/skripsi/resources/views/user/dashboard.blade.php)
+- **Komponen Utama**: Chart.js (grafik garis telemetri), widget status sensor (merah jika abnormal, hijau jika normal).
+- **Logic Utama**:
+    - Metode `applyConnectionPeriodFilter` menyaring data sensor historis agar hanya menampilkan data di mana perangkat aktif terasosiasi dengan Site tertentu berdasarkan tabel pivot `site_devices` (menghindari kebocoran data antar site atau antar masa asosiasi perangkat).
+    - Metode `chartData` mengembalikan 15 titik data terbaru dalam format JSON untuk dirender ke Chart.
+- **File Berhubungan**:
+    - `app/Models/DataSensor.php`
+    - `app/Models/Sensor.php`
+- **Cara melakukan perubahan**:
     1. Untuk mengubah warna garis grafik sensor, edit variabel `$colors` di dalam `DashboardController::chartData` sesuai tipe sensornya.
     2. Untuk memperbanyak data yang tampil di grafik, ubah parameter `take(15)` pada query data points di `DashboardController::chartData` ke jumlah yang diinginkan.
 
 ### 2. Kontrol Aktuator Manual
-*   **Lokasi**: [ActuatorControlController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/ActuatorControlController.php) & [actuator_control.blade.php](file:///d:/www-laravel/skripsi/resources/views/actuator_control.blade.php)
-*   **Komponen Utama**: Toggle switch UI pada web user, representasi status fisik aktuator.
-*   **Logic Utama**:
-    *   User menekan tombol toggle aktuator -> Controller membuat record `ActuatorLog` baru dengan `triggered_by = 'manual'` dan mengubah status `action` (`on`/`off`).
-    *   Panggilan static ke `MqttService::publishDeviceConfig($actuator->device)` dilakukan untuk memformat payload konfigurasi perangkat terbaru.
-*   **File Berhubungan**:
-    *   `app/Services/MqttService.php`
-    *   `app/Models/ActuatorLog.php`
-*   **Cara melakukan perubahan**:
-    1. Jika ingin menambahkan tipe aktuator baru (misal: *heater*), daftarkan tipe tersebut di enum atau dokumentasi database, kemudian tambahkan ikon pendukung pada switch case layout `actuator_control.blade.php`.
+
+- **Lokasi**: [ActuatorControlController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/ActuatorControlController.php) & [actuator_control.blade.php](file:///d:/www-laravel/skripsi/resources/views/actuator_control.blade.php)
+- **Komponen Utama**: Toggle switch UI pada web user, representasi status fisik aktuator.
+- **Logic Utama**:
+    - User menekan tombol toggle aktuator -> Controller membuat record `ActuatorLog` baru dengan `triggered_by = 'manual'` dan mengubah status `action` (`on`/`off`).
+    - Panggilan static ke `MqttService::publishDeviceConfig($actuator->device)` dilakukan untuk memformat payload konfigurasi perangkat terbaru.
+- **File Berhubungan**:
+    - `app/Services/MqttService.php`
+    - `app/Models/ActuatorLog.php`
+- **Cara melakukan perubahan**:
+    1. Jika ingin menambahkan tipe aktuator baru (misal: _heater_), daftarkan tipe tersebut di enum atau dokumentasi database, kemudian tambahkan ikon pendukung pada switch case layout `actuator_control.blade.php`.
 
 ### 3. Penjadwalan Pakan Otomatis
-*   **Lokasi**: [FeedScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/FeedScheduleController.php) & [jadwal_pakan/index.blade.php](file:///d:/www-laravel/skripsi/resources/views/jadwal_pakan/index.blade.php)
-*   **Komponen Utama**: Form tambah/edit jadwal pakan (Waktu & Durasi dalam menit).
-*   **Logic Utama**:
-    *   Fungsi `checkFeedOverlap` memvalidasi agar jadwal baru tidak bertabrakan dengan jadwal yang sudah ada untuk aktuator feeder yang sama. Validasi ini mendukung pembagian interval melintasi tengah malam (24:00).
-    *   Setelah jadwal disimpan, `MqttService::publishDeviceConfig` dipanggil untuk memperbarui daftar jadwal pakan di memori ESP32 via MQTT.
-*   **Cara melakukan perubahan**:
+
+- **Lokasi**: [FeedScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/FeedScheduleController.php) & [jadwal_pakan/index.blade.php](file:///d:/www-laravel/skripsi/resources/views/jadwal_pakan/index.blade.php)
+- **Komponen Utama**: Form tambah/edit jadwal pakan (Waktu & Durasi dalam menit).
+- **Logic Utama**:
+    - Fungsi `checkFeedOverlap` memvalidasi agar jadwal baru tidak bertabrakan dengan jadwal yang sudah ada untuk aktuator feeder yang sama. Validasi ini mendukung pembagian interval melintasi tengah malam (24:00).
+    - Setelah jadwal disimpan, `MqttService::publishDeviceConfig` dipanggil untuk memperbarui daftar jadwal pakan di memori ESP32 via MQTT.
+- **Cara melakukan perubahan**:
     1. Untuk mengubah batas maksimal durasi pakan (default: 60 menit), edit aturan validasi `'duration' => 'required|integer|min:1|max:60'` pada metode `store()` dan `update()` di `FeedScheduleController.php`.
 
 ### 4. Penjadwalan Grow Light
-*   **Lokasi**: [GrowLightScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/GrowLightScheduleController.php) & [jadwal_grow_light/index.blade.php](file:///d:/www-laravel/skripsi/resources/views/jadwal_grow_light/index.blade.php)
-*   **Komponen Utama**: Form manajemen jadwal grow light (waktu mulai *start_time* dan waktu selesai *end_time*).
-*   **Logic Utama**:
-    *   Mirip dengan jadwal pakan, validasi overlap diaplikasikan untuk mencegah bentrokan rentang aktif lampu grow light.
-    *   Data dikirim ke ESP32 dalam format JSON berstruktur array jadwal berisi waktu mulai dan selesai.
-*   **File Berhubungan**:
-    *   `app/Models/GrowLightSchedule.php`
+
+- **Lokasi**: [GrowLightScheduleController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/GrowLightScheduleController.php) & [jadwal_grow_light/index.blade.php](file:///d:/www-laravel/skripsi/resources/views/jadwal_grow_light/index.blade.php)
+- **Komponen Utama**: Form manajemen jadwal grow light (waktu mulai _start_time_ dan waktu selesai _end_time_).
+- **Logic Utama**:
+    - Mirip dengan jadwal pakan, validasi overlap diaplikasikan untuk mencegah bentrokan rentang aktif lampu grow light.
+    - Data dikirim ke ESP32 dalam format JSON berstruktur array jadwal berisi waktu mulai dan selesai.
+- **File Berhubungan**:
+    - `app/Models/GrowLightSchedule.php`
 
 ### 5. Kelola Perangkat & Site (Sisi Admin)
-*   **Lokasi**: [SiteController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/SiteController.php) & [SiteDeviceController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/SiteDeviceController.php)
-*   **Komponen Utama**: Panel kontrol admin untuk mendaftarkan Site (lahan aquaponic), membuat akun User, serta menautkan Device (slave node) ke Site tertentu.
-*   **Logic Utama**:
-    *   `SiteDeviceService::attachDevice` mengubah status perangkat dari `available` ke `assigned` dan memicu event `SiteDevicesUpdated`.
-    *   Event tersebut memicu listener `SyncSiteDevicesToMqtt` yang mempublikasikan daftar relasi slave terbaru ke master node menggunakan `MqttService::publishMasterSync`.
+
+- **Lokasi**: [SiteController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/SiteController.php) & [SiteDeviceController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/SiteDeviceController.php)
+- **Komponen Utama**: Panel kontrol admin untuk mendaftarkan Site (lahan aquaponic), membuat akun User, serta menautkan Device (slave node) ke Site tertentu.
+- **Logic Utama**:
+    - `SiteDeviceService::attachDevice` mengubah status perangkat dari `available` ke `assigned` dan memicu event `SiteDevicesUpdated`.
+    - Event tersebut memicu listener `SyncSiteDevicesToMqtt` yang mempublikasikan daftar relasi slave terbaru ke master node menggunakan `MqttService::publishMasterSync`.
 
 ### 6. Sistem Alert & Notifikasi
-*   **Lokasi**: [NotificationController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/NotificationController.php) & [Notification.php](file:///d:/www-laravel/skripsi/app/Models/Notification.php)
-*   **Komponen Utama**: Mailer Laravel, integrasi REST API Fonnte WhatsApp, filter anti-spam 30 menit.
-*   **Logic Utama**:
-    *   Fungsi `sensorAlert` membatasi pengiriman alert berulang untuk site dan pesan yang identik dalam kurun waktu 30 menit (`created_at >= now()->subMinutes(30)`) guna mencegah spam notifikasi email dan WhatsApp ketika sensor berfluktuasi cepat di sekitar garis ambang batas (*threshold*).
+
+- **Lokasi**: [NotificationController.php](file:///d:/www-laravel/skripsi/app/Http/Controllers/NotificationController.php) & [Notification.php](file:///d:/www-laravel/skripsi/app/Models/Notification.php)
+- **Komponen Utama**: Mailer Laravel, integrasi REST API Fonnte WhatsApp, filter anti-spam 30 menit.
+- **Logic Utama**:
+    - Fungsi `sensorAlert` membatasi pengiriman alert berulang untuk site dan pesan yang identik dalam kurun waktu 30 menit (`created_at >= now()->subMinutes(30)`) guna mencegah spam notifikasi email dan WhatsApp ketika sensor berfluktuasi cepat di sekitar garis ambang batas (_threshold_).
 
 ---
 
 ## 7. Dependency Penting
 
 ### Backend (Laravel - composer.json)
-*   `laravel/framework (^11.31)`: Framework PHP inti yang digunakan.
-*   `laravel/sanctum (^4.0)`: Menyediakan sistem token API ringan untuk mengamankan komunikasi API eksternal jika diperlukan di masa depan.
-*   `concurrently (^9.0.1 - dev)`: Digunakan di dalam script development NPM untuk menjalankan server PHP, Vite, antrean log, dan queue listener secara bersamaan dalam satu baris perintah terminal.
+
+- `laravel/framework (^11.31)`: Framework PHP inti yang digunakan.
+- `laravel/sanctum (^4.0)`: Menyediakan sistem token API ringan untuk mengamankan komunikasi API eksternal jika diperlukan di masa depan.
+- `concurrently (^9.0.1 - dev)`: Digunakan di dalam script development NPM untuk menjalankan server PHP, Vite, antrean log, dan queue listener secara bersamaan dalam satu baris perintah terminal.
 
 ### MQTT Bridge (Node.js - package.json)
-*   `mqtt (^5.x)`: Library MQTT client untuk menghubungkan, berlangganan topik telemetri, dan mempublikasikan payload konfigurasi perangkat.
-*   `mysql2 (^3.x)`: Driver database MySQL berperforma tinggi yang mendukung antarmuka Promise (`mysql2/promise`) untuk melakukan operasi penulisan data sensor massal tanpa memblokir event-loop.
-*   `axios (^1.x)`: HTTP Client untuk menembak endpoint webhook alert Laravel secara asinkron.
-*   `express (^4.x)`: Web framework minimalis yang menyediakan API endpoint internal bagi Laravel (`/publish-config` & `/publish-master-sync`).
+
+- `mqtt (^5.x)`: Library MQTT client untuk menghubungkan, berlangganan topik telemetri, dan mempublikasikan payload konfigurasi perangkat.
+- `mysql2 (^3.x)`: Driver database MySQL berperforma tinggi yang mendukung antarmuka Promise (`mysql2/promise`) untuk melakukan operasi penulisan data sensor massal tanpa memblokir event-loop.
+- `axios (^1.x)`: HTTP Client untuk menembak endpoint webhook alert Laravel secara asinkron.
+- `express (^4.x)`: Web framework minimalis yang menyediakan API endpoint internal bagi Laravel (`/publish-config` & `/publish-master-sync`).
 
 ---
 
 ## 8. Environment Variable (.env)
 
 ### A. Konfigurasi Variabel di Root Laravel
-| Kunci Variabel | Nilai Default / Contoh | Deskripsi |
-| :--- | :--- | :--- |
-| `APP_ENV` | `local` | Mode aplikasi (`local`/`production`) |
-| `APP_KEY` | `base64:...` | Kunci enkripsi Laravel (sangat penting untuk keamanan sesi) |
-| `DB_CONNECTION` | `mysql` | Driver database relasional yang digunakan |
-| `DB_HOST` | `127.0.0.1` | Alamat IP atau hostname MySQL server |
-| `DB_DATABASE` | `nama_database_anda` | Nama database yang digunakan |
-| `SENSOR_ALERT_SECRET` | `buat-string-acak-min-32-karakter` | Token rahasia pengaman webhook API agar tidak ditembak sembarang entitas |
-| `NODE_MQTT_API_URL` | `http://127.0.0.1:5000/publish-config` | Endpoint HTTP Node.js bridge untuk mempublish konfigurasi aktuator |
-| `NODE_MQTT_SYNC_URL` | `http://127.0.0.1:5000/publish-master-sync` | Endpoint HTTP Node.js bridge untuk mempublish sinkronisasi master-slave |
+
+| Kunci Variabel        | Nilai Default / Contoh                      | Deskripsi                                                                |
+| :-------------------- | :------------------------------------------ | :----------------------------------------------------------------------- |
+| `APP_ENV`             | `local`                                     | Mode aplikasi (`local`/`production`)                                     |
+| `APP_KEY`             | `base64:...`                                | Kunci enkripsi Laravel (sangat penting untuk keamanan sesi)              |
+| `DB_CONNECTION`       | `mysql`                                     | Driver database relasional yang digunakan                                |
+| `DB_HOST`             | `127.0.0.1`                                 | Alamat IP atau hostname MySQL server                                     |
+| `DB_DATABASE`         | `nama_database_anda`                        | Nama database yang digunakan                                             |
+| `SENSOR_ALERT_SECRET` | `buat-string-acak-min-32-karakter`          | Token rahasia pengaman webhook API agar tidak ditembak sembarang entitas |
+| `NODE_MQTT_API_URL`   | `http://127.0.0.1:5000/publish-config`      | Endpoint HTTP Node.js bridge untuk mempublish konfigurasi aktuator       |
+| `NODE_MQTT_SYNC_URL`  | `http://127.0.0.1:5000/publish-master-sync` | Endpoint HTTP Node.js bridge untuk mempublish sinkronisasi master-slave  |
 
 ### B. Konfigurasi Variabel di `mqtt-listener/.env`
-| Kunci Variabel | Nilai Default / Contoh | Deskripsi |
-| :--- | :--- | :--- |
-| `DB_HOST` | `localhost` | Alamat database MySQL |
-| `DB_USER` | `root` | Username MySQL |
-| `DB_NAME` | `nama_database_anda` | Nama database target penyimpanan telemetri |
-| `MQTT_URL` | `mqtts://URL_BROKER_ANDA:8883` | URI broker MQTT (gunakan `mqtts` jika menggunakan TLS pada port 8883) |
-| `MQTT_TOPIC` | `aquaponic/device/data` | Topik utama di mana ESP32 mengirim data telemetri |
-| `API_URL` | `http://127.0.0.1:8000/api/sensor-alert` | Endpoint balik ke Laravel untuk pendaftaran alert |
-| `SENSOR_ALERT_SECRET` | `buat-string-acak-min-32-karakter` | Harus bernilai sama dengan `SENSOR_ALERT_SECRET` di Laravel |
-| `FONTE_TOKEN` | `TOKEN_DARI_DASHBOARD_FONNTE` | Token otentikasi API Fonnte untuk pengiriman notifikasi WhatsApp |
+
+| Kunci Variabel        | Nilai Default / Contoh                   | Deskripsi                                                             |
+| :-------------------- | :--------------------------------------- | :-------------------------------------------------------------------- |
+| `DB_HOST`             | `localhost`                              | Alamat database MySQL                                                 |
+| `DB_USER`             | `root`                                   | Username MySQL                                                        |
+| `DB_NAME`             | `nama_database_anda`                     | Nama database target penyimpanan telemetri                            |
+| `MQTT_URL`            | `mqtts://URL_BROKER_ANDA:8883`           | URI broker MQTT (gunakan `mqtts` jika menggunakan TLS pada port 8883) |
+| `MQTT_TOPIC`          | `aquaponic/device/data`                  | Topik utama di mana ESP32 mengirim data telemetri                     |
+| `API_URL`             | `http://127.0.0.1:8000/api/sensor-alert` | Endpoint balik ke Laravel untuk pendaftaran alert                     |
+| `SENSOR_ALERT_SECRET` | `buat-string-acak-min-32-karakter`       | Harus bernilai sama dengan `SENSOR_ALERT_SECRET` di Laravel           |
+| `FONTE_TOKEN`         | `TOKEN_DARI_DASHBOARD_FONNTE`            | Token otentikasi API Fonnte untuk pengiriman notifikasi WhatsApp      |
 
 ---
 
 ## 9. Tips Developer
 
-*   **Pentingnya Database Transaction**: Ketika menulis perubahan relasi perangkat pada `SiteDeviceService.php`, selalu bungkus proses dalam blok `DB::transaction`. Jika salah satu proses gagal (misalnya relasi tercatat tapi update status device gagal), database akan otomatis melakukan *rollback* untuk mencegah ketidaksinkronan data.
-*   **Jangan Mengedit Nilai MQTT_URL secara Hardcode**: Hindari menulis kredensial HiveMQ langsung di file `mqtt-listener/app.js`. Gunakan selalu file `.env` lokal untuk mempermudah migrasi server dari lokal ke staging/production.
-*   **Menambahkan Sensor Baru**: Jika ingin menambahkan sensor fisik baru (seperti sensor Oksigen Terlarut / *DO*):
+- **Pentingnya Database Transaction**: Ketika menulis perubahan relasi perangkat pada `SiteDeviceService.php`, selalu bungkus proses dalam blok `DB::transaction`. Jika salah satu proses gagal (misalnya relasi tercatat tapi update status device gagal), database akan otomatis melakukan _rollback_ untuk mencegah ketidaksinkronan data.
+- **Jangan Mengedit Nilai MQTT_URL secara Hardcode**: Hindari menulis kredensial HiveMQ langsung di file `mqtt-listener/app.js`. Gunakan selalu file `.env` lokal untuk mempermudah migrasi server dari lokal ke staging/production.
+- **Menambahkan Sensor Baru**: Jika ingin menambahkan sensor fisik baru (seperti sensor Oksigen Terlarut / _DO_):
     1. Daftarkan jenis sensor tersebut pada switch case parsing di file `mqtt-listener/app.js` (dalam bentuk huruf kecil).
     2. Daftarkan kode warnanya pada variabel `$colors` di `DashboardController.php` agar tampil di chart grafik dashboard.
-*   **Masa Aktif Asosiasi Perangkat**: Sistem mencatat riwayat perpindahan perangkat. Pastikan untuk mengisi kolom `ended_at` dengan waktu sekarang pada tabel `site_devices` sebelum memindahkan slave device ke site lain agar data telemetri historis tidak tercampur.
+- **Masa Aktif Asosiasi Perangkat**: Sistem mencatat riwayat perpindahan perangkat. Pastikan untuk mengisi kolom `ended_at` dengan waktu sekarang pada tabel `site_devices` sebelum memindahkan slave device ke site lain agar data telemetri historis tidak tercampur.
 
 ---
 
@@ -371,7 +398,7 @@ Alur ini berjalan ketika pengguna berinteraksi dengan antarmuka web Laravel untu
 **A**: Ganti file gambar `logo.png` yang terletak di direktori [public/logo.png](file:///d:/www-laravel/skripsi/public/logo.png). Ukuran gambar yang direkomendasikan adalah rasio persegi (misalnya 512x512 piksel).
 
 **Q: Mengapa data sensor masuk ke database tetapi grafik dashboard kosong?**
-**A**: Periksa kembali relasi perangkat Anda di halaman Admin. Pastikan *Device* yang mengirimkan data dengan MAC Address tersebut telah dihubungkan secara aktif ke *Site* pengguna, dan status asosiasi di tabel `site_devices` belum kedaluwarsa (`ended_at IS NULL`).
+**A**: Periksa kembali relasi perangkat Anda di halaman Admin. Pastikan _Device_ yang mengirimkan data dengan MAC Address tersebut telah dihubungkan secara aktif ke _Site_ pengguna, dan status asosiasi di tabel `site_devices` belum kedaluwarsa (`ended_at IS NULL`).
 
 **Q: Bagaimana cara mengubah rentang waktu sensor agar notifikasi peringatan tidak terus menerus dikirim?**
 **A**: Masuk sebagai Admin, pilih menu **Daftar Sensor**, lalu ubah batas minimum (`min_threshold`) dan batas maksimum (`max_threshold`) dari sensor yang bersangkutan.
@@ -450,11 +477,14 @@ graph TD
 ## 13. Catatan Maintenance
 
 ### Area dengan Tingkat Coupling Tinggi (High Coupling)
-*   **Payload Konfigurasi MQTT**: Format JSON konfigurasi aktuator dan jadwal yang dihasilkan oleh [MqttService::publishDeviceConfig](file:///d:/www-laravel/skripsi/app/Services/MqttService.php#L19) di Laravel harus sama persis dengan struktur parsing JSON yang ditangani oleh mikrokontroler ESP32. Jika Anda memodifikasi nama kunci atau struktur array pada backend Laravel, kode program (*firmware*) ESP32 juga wajib diperbarui agar tidak terjadi *crash* parsing data di perangkat keras.
+
+- **Payload Konfigurasi MQTT**: Format JSON konfigurasi aktuator dan jadwal yang dihasilkan oleh [MqttService::publishDeviceConfig](file:///d:/www-laravel/skripsi/app/Services/MqttService.php#L19) di Laravel harus sama persis dengan struktur parsing JSON yang ditangani oleh mikrokontroler ESP32. Jika Anda memodifikasi nama kunci atau struktur array pada backend Laravel, kode program (_firmware_) ESP32 juga wajib diperbarui agar tidak terjadi _crash_ parsing data di perangkat keras.
 
 ### Bagian Sensitif untuk Diubah
-*   **Fungsi Penyaringan Rentang Asosiasi Perangkat (`applyConnectionPeriodFilter`)**: Logika SQL dinamis ini diterapkan pada `DashboardController`, `DataSensorController`, dan `ActuatorLogController`. Modifikasi minor pada struktur query filter ini dapat menyebabkan kebocoran data telemetri historis (misalnya data milik user lama terbaca oleh user baru yang memakai device bekas).
+
+- **Fungsi Penyaringan Rentang Asosiasi Perangkat (`applyConnectionPeriodFilter`)**: Logika SQL dinamis ini diterapkan pada `DashboardController`, `DataSensorController`, dan `ActuatorLogController`. Modifikasi minor pada struktur query filter ini dapat menyebabkan kebocoran data telemetri historis (misalnya data milik user lama terbaca oleh user baru yang memakai device bekas).
 
 ### Rekomendasi Refaktorisasi di Masa Depan
-1.  **Konsolidasi Koneksi Database di Node.js**: Node.js MQTT listener saat ini terhubung langsung ke database MySQL menggunakan modul `mysql2/promise`. Jika di masa mendatang struktur tabel Laravel berubah, Anda harus memperbarui kode SQL mentah (*raw queries*) di `mqtt-listener/app.js`. Memigrasikan penulisan data telemetri dari Node.js langsung melalui API endpoint Laravel (seperti `/api/sensors`) akan membuat arsitektur lebih bersih dan ter-dekopol (*decoupled*), meski perlu mempertimbangkan beban latensi HTTP.
-2.  **Pemisahan Server**: Layanan Node.js MQTT bridge sebaiknya dideploy sebagai microservice terpisah (misalnya menggunakan PM2 proses manager) agar apabila layanan web Laravel mengalami *crash* atau *downtime* saat perbaikan (*maintenance*), penangkapan data sensor dari lapangan oleh Node.js bridge tetap berjalan lancar.
+
+1.  **Konsolidasi Koneksi Database di Node.js**: Node.js MQTT listener saat ini terhubung langsung ke database MySQL menggunakan modul `mysql2/promise`. Jika di masa mendatang struktur tabel Laravel berubah, Anda harus memperbarui kode SQL mentah (_raw queries_) di `mqtt-listener/app.js`. Memigrasikan penulisan data telemetri dari Node.js langsung melalui API endpoint Laravel (seperti `/api/sensors`) akan membuat arsitektur lebih bersih dan ter-dekopol (_decoupled_), meski perlu mempertimbangkan beban latensi HTTP.
+2.  **Pemisahan Server**: Layanan Node.js MQTT bridge sebaiknya dideploy sebagai microservice terpisah (misalnya menggunakan PM2 proses manager) agar apabila layanan web Laravel mengalami _crash_ atau _downtime_ saat perbaikan (_maintenance_), penangkapan data sensor dari lapangan oleh Node.js bridge tetap berjalan lancar.
